@@ -3,9 +3,9 @@ package pkg
 import (
 	"testing"
 
-	"github.com/H-BF/protos/pkg/api/sgroups"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
+	"protos/pkg/api/sgroups"
 )
 
 func TestSwaggerUtil(t *testing.T) {

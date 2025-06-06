@@ -8,9 +8,9 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	sgroups "github.com/H-BF/protos/pkg/api/sgroups"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
+	sgroups "protos/pkg/api/sgroups"
 	strings "strings"
 )
 
@@ -80,26 +80,6 @@ const (
 	SecGroupServiceGetSecGroupForAddressProcedure = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	secGroupServiceServiceDescriptor                     = sgroups.File_sgroups_api_proto.Services().ByName("SecGroupService")
-	secGroupServiceSyncMethodDescriptor                  = secGroupServiceServiceDescriptor.Methods().ByName("Sync")
-	secGroupServiceSyncStatusMethodDescriptor            = secGroupServiceServiceDescriptor.Methods().ByName("SyncStatus")
-	secGroupServiceSyncStatusesMethodDescriptor          = secGroupServiceServiceDescriptor.Methods().ByName("SyncStatuses")
-	secGroupServiceListNetworksMethodDescriptor          = secGroupServiceServiceDescriptor.Methods().ByName("ListNetworks")
-	secGroupServiceListSecurityGroupsMethodDescriptor    = secGroupServiceServiceDescriptor.Methods().ByName("ListSecurityGroups")
-	secGroupServiceGetSgSubnetsMethodDescriptor          = secGroupServiceServiceDescriptor.Methods().ByName("GetSgSubnets")
-	secGroupServiceFindSgSgRulesMethodDescriptor         = secGroupServiceServiceDescriptor.Methods().ByName("FindSgSgRules")
-	secGroupServiceFindFqdnRulesMethodDescriptor         = secGroupServiceServiceDescriptor.Methods().ByName("FindFqdnRules")
-	secGroupServiceFindSgIcmpRulesMethodDescriptor       = secGroupServiceServiceDescriptor.Methods().ByName("FindSgIcmpRules")
-	secGroupServiceFindSgSgIcmpRulesMethodDescriptor     = secGroupServiceServiceDescriptor.Methods().ByName("FindSgSgIcmpRules")
-	secGroupServiceFindIECidrSgRulesMethodDescriptor     = secGroupServiceServiceDescriptor.Methods().ByName("FindIECidrSgRules")
-	secGroupServiceFindIESgSgRulesMethodDescriptor       = secGroupServiceServiceDescriptor.Methods().ByName("FindIESgSgRules")
-	secGroupServiceFindIESgSgIcmpRulesMethodDescriptor   = secGroupServiceServiceDescriptor.Methods().ByName("FindIESgSgIcmpRules")
-	secGroupServiceFindIECidrSgIcmpRulesMethodDescriptor = secGroupServiceServiceDescriptor.Methods().ByName("FindIECidrSgIcmpRules")
-	secGroupServiceGetSecGroupForAddressMethodDescriptor = secGroupServiceServiceDescriptor.Methods().ByName("GetSecGroupForAddress")
-)
-
 // SecGroupServiceClient is a client for the hbf.v2.sgroups.SecGroupService service.
 type SecGroupServiceClient interface {
 	Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[emptypb.Empty], error)
@@ -128,95 +108,96 @@ type SecGroupServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) SecGroupServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	secGroupServiceMethods := sgroups.File_sgroups_api_proto.Services().ByName("SecGroupService").Methods()
 	return &secGroupServiceClient{
 		sync: connect.NewClient[sgroups.SyncReq, emptypb.Empty](
 			httpClient,
 			baseURL+SecGroupServiceSyncProcedure,
-			connect.WithSchema(secGroupServiceSyncMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("Sync")),
 			connect.WithClientOptions(opts...),
 		),
 		syncStatus: connect.NewClient[emptypb.Empty, sgroups.SyncStatusResp](
 			httpClient,
 			baseURL+SecGroupServiceSyncStatusProcedure,
-			connect.WithSchema(secGroupServiceSyncStatusMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("SyncStatus")),
 			connect.WithClientOptions(opts...),
 		),
 		syncStatuses: connect.NewClient[emptypb.Empty, sgroups.SyncStatusResp](
 			httpClient,
 			baseURL+SecGroupServiceSyncStatusesProcedure,
-			connect.WithSchema(secGroupServiceSyncStatusesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("SyncStatuses")),
 			connect.WithClientOptions(opts...),
 		),
 		listNetworks: connect.NewClient[sgroups.ListNetworksReq, sgroups.ListNetworksResp](
 			httpClient,
 			baseURL+SecGroupServiceListNetworksProcedure,
-			connect.WithSchema(secGroupServiceListNetworksMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("ListNetworks")),
 			connect.WithClientOptions(opts...),
 		),
 		listSecurityGroups: connect.NewClient[sgroups.ListSecurityGroupsReq, sgroups.ListSecurityGroupsResp](
 			httpClient,
 			baseURL+SecGroupServiceListSecurityGroupsProcedure,
-			connect.WithSchema(secGroupServiceListSecurityGroupsMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("ListSecurityGroups")),
 			connect.WithClientOptions(opts...),
 		),
 		getSgSubnets: connect.NewClient[sgroups.GetSgSubnetsReq, sgroups.GetSgSubnetsResp](
 			httpClient,
 			baseURL+SecGroupServiceGetSgSubnetsProcedure,
-			connect.WithSchema(secGroupServiceGetSgSubnetsMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("GetSgSubnets")),
 			connect.WithClientOptions(opts...),
 		),
 		findSgSgRules: connect.NewClient[sgroups.FindSgSgRulesReq, sgroups.SgSgRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindSgSgRulesProcedure,
-			connect.WithSchema(secGroupServiceFindSgSgRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindSgSgRules")),
 			connect.WithClientOptions(opts...),
 		),
 		findFqdnRules: connect.NewClient[sgroups.FindFqdnRulesReq, sgroups.FqdnRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindFqdnRulesProcedure,
-			connect.WithSchema(secGroupServiceFindFqdnRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindFqdnRules")),
 			connect.WithClientOptions(opts...),
 		),
 		findSgIcmpRules: connect.NewClient[sgroups.FindSgIcmpRulesReq, sgroups.SgIcmpRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindSgIcmpRulesProcedure,
-			connect.WithSchema(secGroupServiceFindSgIcmpRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindSgIcmpRules")),
 			connect.WithClientOptions(opts...),
 		),
 		findSgSgIcmpRules: connect.NewClient[sgroups.FindSgSgIcmpRulesReq, sgroups.SgSgIcmpRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindSgSgIcmpRulesProcedure,
-			connect.WithSchema(secGroupServiceFindSgSgIcmpRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindSgSgIcmpRules")),
 			connect.WithClientOptions(opts...),
 		),
 		findIECidrSgRules: connect.NewClient[sgroups.FindIECidrSgRulesReq, sgroups.IECidrSgRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindIECidrSgRulesProcedure,
-			connect.WithSchema(secGroupServiceFindIECidrSgRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgRules")),
 			connect.WithClientOptions(opts...),
 		),
 		findIESgSgRules: connect.NewClient[sgroups.FindIESgSgRulesReq, sgroups.IESgSgRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindIESgSgRulesProcedure,
-			connect.WithSchema(secGroupServiceFindIESgSgRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindIESgSgRules")),
 			connect.WithClientOptions(opts...),
 		),
 		findIESgSgIcmpRules: connect.NewClient[sgroups.FindIESgSgIcmpRulesReq, sgroups.IESgSgIcmpRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindIESgSgIcmpRulesProcedure,
-			connect.WithSchema(secGroupServiceFindIESgSgIcmpRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindIESgSgIcmpRules")),
 			connect.WithClientOptions(opts...),
 		),
 		findIECidrSgIcmpRules: connect.NewClient[sgroups.FindIECidrSgIcmpRulesReq, sgroups.IECidrSgIcmpRulesResp](
 			httpClient,
 			baseURL+SecGroupServiceFindIECidrSgIcmpRulesProcedure,
-			connect.WithSchema(secGroupServiceFindIECidrSgIcmpRulesMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 			connect.WithClientOptions(opts...),
 		),
 		getSecGroupForAddress: connect.NewClient[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup](
 			httpClient,
 			baseURL+SecGroupServiceGetSecGroupForAddressProcedure,
-			connect.WithSchema(secGroupServiceGetSecGroupForAddressMethodDescriptor),
+			connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -341,94 +322,95 @@ type SecGroupServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	secGroupServiceMethods := sgroups.File_sgroups_api_proto.Services().ByName("SecGroupService").Methods()
 	secGroupServiceSyncHandler := connect.NewUnaryHandler(
 		SecGroupServiceSyncProcedure,
 		svc.Sync,
-		connect.WithSchema(secGroupServiceSyncMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("Sync")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceSyncStatusHandler := connect.NewUnaryHandler(
 		SecGroupServiceSyncStatusProcedure,
 		svc.SyncStatus,
-		connect.WithSchema(secGroupServiceSyncStatusMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("SyncStatus")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceSyncStatusesHandler := connect.NewServerStreamHandler(
 		SecGroupServiceSyncStatusesProcedure,
 		svc.SyncStatuses,
-		connect.WithSchema(secGroupServiceSyncStatusesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("SyncStatuses")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceListNetworksHandler := connect.NewUnaryHandler(
 		SecGroupServiceListNetworksProcedure,
 		svc.ListNetworks,
-		connect.WithSchema(secGroupServiceListNetworksMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("ListNetworks")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceListSecurityGroupsHandler := connect.NewUnaryHandler(
 		SecGroupServiceListSecurityGroupsProcedure,
 		svc.ListSecurityGroups,
-		connect.WithSchema(secGroupServiceListSecurityGroupsMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("ListSecurityGroups")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceGetSgSubnetsHandler := connect.NewUnaryHandler(
 		SecGroupServiceGetSgSubnetsProcedure,
 		svc.GetSgSubnets,
-		connect.WithSchema(secGroupServiceGetSgSubnetsMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("GetSgSubnets")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindSgSgRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindSgSgRulesProcedure,
 		svc.FindSgSgRules,
-		connect.WithSchema(secGroupServiceFindSgSgRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindSgSgRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindFqdnRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindFqdnRulesProcedure,
 		svc.FindFqdnRules,
-		connect.WithSchema(secGroupServiceFindFqdnRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindFqdnRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindSgIcmpRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindSgIcmpRulesProcedure,
 		svc.FindSgIcmpRules,
-		connect.WithSchema(secGroupServiceFindSgIcmpRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindSgIcmpRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindSgSgIcmpRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindSgSgIcmpRulesProcedure,
 		svc.FindSgSgIcmpRules,
-		connect.WithSchema(secGroupServiceFindSgSgIcmpRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindSgSgIcmpRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindIECidrSgRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindIECidrSgRulesProcedure,
 		svc.FindIECidrSgRules,
-		connect.WithSchema(secGroupServiceFindIECidrSgRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindIESgSgRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindIESgSgRulesProcedure,
 		svc.FindIESgSgRules,
-		connect.WithSchema(secGroupServiceFindIESgSgRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindIESgSgRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindIESgSgIcmpRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindIESgSgIcmpRulesProcedure,
 		svc.FindIESgSgIcmpRules,
-		connect.WithSchema(secGroupServiceFindIESgSgIcmpRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindIESgSgIcmpRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindIECidrSgIcmpRulesHandler := connect.NewUnaryHandler(
 		SecGroupServiceFindIECidrSgIcmpRulesProcedure,
 		svc.FindIECidrSgIcmpRules,
-		connect.WithSchema(secGroupServiceFindIECidrSgIcmpRulesMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceGetSecGroupForAddressHandler := connect.NewUnaryHandler(
 		SecGroupServiceGetSecGroupForAddressProcedure,
 		svc.GetSecGroupForAddress,
-		connect.WithSchema(secGroupServiceGetSecGroupForAddressMethodDescriptor),
+		connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/hbf.v2.sgroups.SecGroupService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

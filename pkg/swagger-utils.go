@@ -7,9 +7,9 @@ import (
 	"io/ioutil"
 	"reflect"
 
-	"github.com/H-BF/protos/pkg/api/sgroups"
 	"github.com/go-openapi/spec"
 	"github.com/pkg/errors"
+	"protos/pkg/api/sgroups"
 )
 
 var (
@@ -22,14 +22,14 @@ var (
 	ErrSwaggerNotExist = errors.New("swagger doc is no exist")
 )
 
-//SwaggerUtil ...
+// SwaggerUtil ...
 type SwaggerUtil[T any] struct{}
 
 func (u SwaggerUtil[T]) reg(p string) {
 	swaggerPaths[reflect.TypeOf((*T)(nil)).Elem()] = p
 }
 
-//GetSpec ...
+// GetSpec ...
 func (u SwaggerUtil[T]) GetSpec() (*spec.Swagger, error) {
 	res := new(spec.Swagger)
 	ty := reflect.TypeOf((*T)(nil)).Elem()
@@ -40,7 +40,7 @@ func (u SwaggerUtil[T]) GetSpec() (*spec.Swagger, error) {
 	return res, err
 }
 
-//GetRaw ...
+// GetRaw ...
 func (u SwaggerUtil[T]) GetRaw() (json.RawMessage, error) {
 	var ret json.RawMessage
 	ty := reflect.TypeOf((*T)(nil)).Elem()

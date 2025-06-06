@@ -5,25 +5,25 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/H-BF/protos/pkg/api/sgroups"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
+	"protos/pkg/api/sgroups"
 )
 
-//ClosableClient closable client
+// ClosableClient closable client
 type ClosableClient[T any] struct {
 	C     T
 	close func() error
 }
 
-//MustInit panics when Init returns error
+// MustInit panics when Init returns error
 func (sc *ClosableClient[T]) MustInit(conn grpc.ClientConnInterface) {
 	if err := sc.Init(conn); err != nil {
 		panic(err)
 	}
 }
 
-//Init initialize closable client
+// Init initialize closable client
 func (sc *ClosableClient[T]) Init(conn grpc.ClientConnInterface) error {
 	if cc := (clientConstructor[T])(nil); cc.load() {
 		sc.C = cc(conn)
@@ -42,7 +42,7 @@ func (sc *ClosableClient[T]) Init(conn grpc.ClientConnInterface) error {
 		reflect.TypeOf(sc).Elem().Name())
 }
 
-//Close impl Closable
+// Close impl Closable
 func (sc ClosableClient[T]) Close() error {
 	return sc.close()
 }

@@ -72,11 +72,11 @@ endif
 
 proto_dirs := sgroups common
 .PHONY: generate-api
-generate-api: | .grpc-plugins
+generate-api: | .grpc-plugins go-deps
 	@(\
 	apis=$(CURDIR)/api && \
 	dest=$(CURDIR)/pkg/api && \
-	PATH=$(PATH):$(GOBIN):/usr/include:/usr/local/include && \
+	PATH="$(PATH):$(GOBIN):/usr/include:/usr/local/include" && \
 	rm -rf $$dest 2>/dev/null && \
 	mkdir -p $$dest && \
 	echo generating API in \"$$dest\" ... && \

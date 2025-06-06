@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package hbf.v2.sgroups;
-option go_package = "github.com/H-BF/protos/pkg/api/sgroups;sgroups";
+option go_package = "protos/pkg/api/sgroups;sgroups";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
@@ -16,7 +16,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     version: "2.0";    
   };
   external_docs: {
-    url: "https://h-bf.github.io/sgroups/";
+    url: "https://h-bf.prorobotech.ru";
     description: "Documentation";
   }
   schemes: [HTTP];

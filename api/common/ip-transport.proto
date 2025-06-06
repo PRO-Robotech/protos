@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package common;
-option go_package = "github.com/H-BF/protos/pkg/api/common;common";
+option go_package = "protos/pkg/api/common;common";
 
 import "google/protobuf/descriptor.proto";
 
