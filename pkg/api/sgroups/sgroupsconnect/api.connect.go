@@ -8,7 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	empty "github.com/golang/protobuf/ptypes/empty"
 	http "net/http"
 	sgroups "protos/pkg/api/sgroups"
 	strings "strings"
@@ -78,13 +78,25 @@ const (
 	// SecGroupServiceGetSecGroupForAddressProcedure is the fully-qualified name of the
 	// SecGroupService's GetSecGroupForAddress RPC.
 	SecGroupServiceGetSecGroupForAddressProcedure = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
+	// SecGroupServiceFindHostsProcedure is the fully-qualified name of the SecGroupService's FindHosts
+	// RPC.
+	SecGroupServiceFindHostsProcedure = "/hbf.v2.sgroups.SecGroupService/FindHosts"
+	// SecGroupServiceRegisterHostProcedure is the fully-qualified name of the SecGroupService's
+	// RegisterHost RPC.
+	SecGroupServiceRegisterHostProcedure = "/hbf.v2.sgroups.SecGroupService/RegisterHost"
+	// SecGroupServiceUpdateHostIPsetProcedure is the fully-qualified name of the SecGroupService's
+	// UpdateHostIPset RPC.
+	SecGroupServiceUpdateHostIPsetProcedure = "/hbf.v2.sgroups.SecGroupService/UpdateHostIPset"
+	// SecGroupServiceDeleteHostProcedure is the fully-qualified name of the SecGroupService's
+	// DeleteHost RPC.
+	SecGroupServiceDeleteHostProcedure = "/hbf.v2.sgroups.SecGroupService/DeleteHost"
 )
 
 // SecGroupServiceClient is a client for the hbf.v2.sgroups.SecGroupService service.
 type SecGroupServiceClient interface {
-	Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[emptypb.Empty], error)
-	SyncStatus(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[sgroups.SyncStatusResp], error)
-	SyncStatuses(context.Context, *connect.Request[emptypb.Empty]) (*connect.ServerStreamForClient[sgroups.SyncStatusResp], error)
+	Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[empty.Empty], error)
+	SyncStatus(context.Context, *connect.Request[empty.Empty]) (*connect.Response[sgroups.SyncStatusResp], error)
+	SyncStatuses(context.Context, *connect.Request[empty.Empty]) (*connect.ServerStreamForClient[sgroups.SyncStatusResp], error)
 	ListNetworks(context.Context, *connect.Request[sgroups.ListNetworksReq]) (*connect.Response[sgroups.ListNetworksResp], error)
 	ListSecurityGroups(context.Context, *connect.Request[sgroups.ListSecurityGroupsReq]) (*connect.Response[sgroups.ListSecurityGroupsResp], error)
 	GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error)
@@ -97,6 +109,10 @@ type SecGroupServiceClient interface {
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
 	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
+	FindHosts(context.Context, *connect.Request[sgroups.FindHostsReq]) (*connect.Response[sgroups.HostList], error)
+	RegisterHost(context.Context, *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error)
+	UpdateHostIPset(context.Context, *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error)
+	DeleteHost(context.Context, *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error)
 }
 
 // NewSecGroupServiceClient constructs a client for the hbf.v2.sgroups.SecGroupService service. By
@@ -110,19 +126,19 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 	baseURL = strings.TrimRight(baseURL, "/")
 	secGroupServiceMethods := sgroups.File_sgroups_api_proto.Services().ByName("SecGroupService").Methods()
 	return &secGroupServiceClient{
-		sync: connect.NewClient[sgroups.SyncReq, emptypb.Empty](
+		sync: connect.NewClient[sgroups.SyncReq, empty.Empty](
 			httpClient,
 			baseURL+SecGroupServiceSyncProcedure,
 			connect.WithSchema(secGroupServiceMethods.ByName("Sync")),
 			connect.WithClientOptions(opts...),
 		),
-		syncStatus: connect.NewClient[emptypb.Empty, sgroups.SyncStatusResp](
+		syncStatus: connect.NewClient[empty.Empty, sgroups.SyncStatusResp](
 			httpClient,
 			baseURL+SecGroupServiceSyncStatusProcedure,
 			connect.WithSchema(secGroupServiceMethods.ByName("SyncStatus")),
 			connect.WithClientOptions(opts...),
 		),
-		syncStatuses: connect.NewClient[emptypb.Empty, sgroups.SyncStatusResp](
+		syncStatuses: connect.NewClient[empty.Empty, sgroups.SyncStatusResp](
 			httpClient,
 			baseURL+SecGroupServiceSyncStatusesProcedure,
 			connect.WithSchema(secGroupServiceMethods.ByName("SyncStatuses")),
@@ -200,14 +216,38 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
 			connect.WithClientOptions(opts...),
 		),
+		findHosts: connect.NewClient[sgroups.FindHostsReq, sgroups.HostList](
+			httpClient,
+			baseURL+SecGroupServiceFindHostsProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("FindHosts")),
+			connect.WithClientOptions(opts...),
+		),
+		registerHost: connect.NewClient[sgroups.RegisterHostReq, empty.Empty](
+			httpClient,
+			baseURL+SecGroupServiceRegisterHostProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("RegisterHost")),
+			connect.WithClientOptions(opts...),
+		),
+		updateHostIPset: connect.NewClient[sgroups.UpdateHostIPReq, empty.Empty](
+			httpClient,
+			baseURL+SecGroupServiceUpdateHostIPsetProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("UpdateHostIPset")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteHost: connect.NewClient[sgroups.DeleteHostReq, empty.Empty](
+			httpClient,
+			baseURL+SecGroupServiceDeleteHostProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("DeleteHost")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // secGroupServiceClient implements SecGroupServiceClient.
 type secGroupServiceClient struct {
-	sync                  *connect.Client[sgroups.SyncReq, emptypb.Empty]
-	syncStatus            *connect.Client[emptypb.Empty, sgroups.SyncStatusResp]
-	syncStatuses          *connect.Client[emptypb.Empty, sgroups.SyncStatusResp]
+	sync                  *connect.Client[sgroups.SyncReq, empty.Empty]
+	syncStatus            *connect.Client[empty.Empty, sgroups.SyncStatusResp]
+	syncStatuses          *connect.Client[empty.Empty, sgroups.SyncStatusResp]
 	listNetworks          *connect.Client[sgroups.ListNetworksReq, sgroups.ListNetworksResp]
 	listSecurityGroups    *connect.Client[sgroups.ListSecurityGroupsReq, sgroups.ListSecurityGroupsResp]
 	getSgSubnets          *connect.Client[sgroups.GetSgSubnetsReq, sgroups.GetSgSubnetsResp]
@@ -220,20 +260,24 @@ type secGroupServiceClient struct {
 	findIESgSgIcmpRules   *connect.Client[sgroups.FindIESgSgIcmpRulesReq, sgroups.IESgSgIcmpRulesResp]
 	findIECidrSgIcmpRules *connect.Client[sgroups.FindIECidrSgIcmpRulesReq, sgroups.IECidrSgIcmpRulesResp]
 	getSecGroupForAddress *connect.Client[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup]
+	findHosts             *connect.Client[sgroups.FindHostsReq, sgroups.HostList]
+	registerHost          *connect.Client[sgroups.RegisterHostReq, empty.Empty]
+	updateHostIPset       *connect.Client[sgroups.UpdateHostIPReq, empty.Empty]
+	deleteHost            *connect.Client[sgroups.DeleteHostReq, empty.Empty]
 }
 
 // Sync calls hbf.v2.sgroups.SecGroupService.Sync.
-func (c *secGroupServiceClient) Sync(ctx context.Context, req *connect.Request[sgroups.SyncReq]) (*connect.Response[emptypb.Empty], error) {
+func (c *secGroupServiceClient) Sync(ctx context.Context, req *connect.Request[sgroups.SyncReq]) (*connect.Response[empty.Empty], error) {
 	return c.sync.CallUnary(ctx, req)
 }
 
 // SyncStatus calls hbf.v2.sgroups.SecGroupService.SyncStatus.
-func (c *secGroupServiceClient) SyncStatus(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.Response[sgroups.SyncStatusResp], error) {
+func (c *secGroupServiceClient) SyncStatus(ctx context.Context, req *connect.Request[empty.Empty]) (*connect.Response[sgroups.SyncStatusResp], error) {
 	return c.syncStatus.CallUnary(ctx, req)
 }
 
 // SyncStatuses calls hbf.v2.sgroups.SecGroupService.SyncStatuses.
-func (c *secGroupServiceClient) SyncStatuses(ctx context.Context, req *connect.Request[emptypb.Empty]) (*connect.ServerStreamForClient[sgroups.SyncStatusResp], error) {
+func (c *secGroupServiceClient) SyncStatuses(ctx context.Context, req *connect.Request[empty.Empty]) (*connect.ServerStreamForClient[sgroups.SyncStatusResp], error) {
 	return c.syncStatuses.CallServerStream(ctx, req)
 }
 
@@ -297,11 +341,31 @@ func (c *secGroupServiceClient) GetSecGroupForAddress(ctx context.Context, req *
 	return c.getSecGroupForAddress.CallUnary(ctx, req)
 }
 
+// FindHosts calls hbf.v2.sgroups.SecGroupService.FindHosts.
+func (c *secGroupServiceClient) FindHosts(ctx context.Context, req *connect.Request[sgroups.FindHostsReq]) (*connect.Response[sgroups.HostList], error) {
+	return c.findHosts.CallUnary(ctx, req)
+}
+
+// RegisterHost calls hbf.v2.sgroups.SecGroupService.RegisterHost.
+func (c *secGroupServiceClient) RegisterHost(ctx context.Context, req *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error) {
+	return c.registerHost.CallUnary(ctx, req)
+}
+
+// UpdateHostIPset calls hbf.v2.sgroups.SecGroupService.UpdateHostIPset.
+func (c *secGroupServiceClient) UpdateHostIPset(ctx context.Context, req *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error) {
+	return c.updateHostIPset.CallUnary(ctx, req)
+}
+
+// DeleteHost calls hbf.v2.sgroups.SecGroupService.DeleteHost.
+func (c *secGroupServiceClient) DeleteHost(ctx context.Context, req *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error) {
+	return c.deleteHost.CallUnary(ctx, req)
+}
+
 // SecGroupServiceHandler is an implementation of the hbf.v2.sgroups.SecGroupService service.
 type SecGroupServiceHandler interface {
-	Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[emptypb.Empty], error)
-	SyncStatus(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[sgroups.SyncStatusResp], error)
-	SyncStatuses(context.Context, *connect.Request[emptypb.Empty], *connect.ServerStream[sgroups.SyncStatusResp]) error
+	Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[empty.Empty], error)
+	SyncStatus(context.Context, *connect.Request[empty.Empty]) (*connect.Response[sgroups.SyncStatusResp], error)
+	SyncStatuses(context.Context, *connect.Request[empty.Empty], *connect.ServerStream[sgroups.SyncStatusResp]) error
 	ListNetworks(context.Context, *connect.Request[sgroups.ListNetworksReq]) (*connect.Response[sgroups.ListNetworksResp], error)
 	ListSecurityGroups(context.Context, *connect.Request[sgroups.ListSecurityGroupsReq]) (*connect.Response[sgroups.ListSecurityGroupsResp], error)
 	GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error)
@@ -314,6 +378,10 @@ type SecGroupServiceHandler interface {
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
 	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
+	FindHosts(context.Context, *connect.Request[sgroups.FindHostsReq]) (*connect.Response[sgroups.HostList], error)
+	RegisterHost(context.Context, *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error)
+	UpdateHostIPset(context.Context, *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error)
+	DeleteHost(context.Context, *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error)
 }
 
 // NewSecGroupServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -413,6 +481,30 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 		connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
 		connect.WithHandlerOptions(opts...),
 	)
+	secGroupServiceFindHostsHandler := connect.NewUnaryHandler(
+		SecGroupServiceFindHostsProcedure,
+		svc.FindHosts,
+		connect.WithSchema(secGroupServiceMethods.ByName("FindHosts")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceRegisterHostHandler := connect.NewUnaryHandler(
+		SecGroupServiceRegisterHostProcedure,
+		svc.RegisterHost,
+		connect.WithSchema(secGroupServiceMethods.ByName("RegisterHost")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceUpdateHostIPsetHandler := connect.NewUnaryHandler(
+		SecGroupServiceUpdateHostIPsetProcedure,
+		svc.UpdateHostIPset,
+		connect.WithSchema(secGroupServiceMethods.ByName("UpdateHostIPset")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceDeleteHostHandler := connect.NewUnaryHandler(
+		SecGroupServiceDeleteHostProcedure,
+		svc.DeleteHost,
+		connect.WithSchema(secGroupServiceMethods.ByName("DeleteHost")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/hbf.v2.sgroups.SecGroupService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case SecGroupServiceSyncProcedure:
@@ -445,6 +537,14 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 			secGroupServiceFindIECidrSgIcmpRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceGetSecGroupForAddressProcedure:
 			secGroupServiceGetSecGroupForAddressHandler.ServeHTTP(w, r)
+		case SecGroupServiceFindHostsProcedure:
+			secGroupServiceFindHostsHandler.ServeHTTP(w, r)
+		case SecGroupServiceRegisterHostProcedure:
+			secGroupServiceRegisterHostHandler.ServeHTTP(w, r)
+		case SecGroupServiceUpdateHostIPsetProcedure:
+			secGroupServiceUpdateHostIPsetHandler.ServeHTTP(w, r)
+		case SecGroupServiceDeleteHostProcedure:
+			secGroupServiceDeleteHostHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -454,15 +554,15 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 // UnimplementedSecGroupServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedSecGroupServiceHandler struct{}
 
-func (UnimplementedSecGroupServiceHandler) Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[emptypb.Empty], error) {
+func (UnimplementedSecGroupServiceHandler) Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[empty.Empty], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.Sync is not implemented"))
 }
 
-func (UnimplementedSecGroupServiceHandler) SyncStatus(context.Context, *connect.Request[emptypb.Empty]) (*connect.Response[sgroups.SyncStatusResp], error) {
+func (UnimplementedSecGroupServiceHandler) SyncStatus(context.Context, *connect.Request[empty.Empty]) (*connect.Response[sgroups.SyncStatusResp], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.SyncStatus is not implemented"))
 }
 
-func (UnimplementedSecGroupServiceHandler) SyncStatuses(context.Context, *connect.Request[emptypb.Empty], *connect.ServerStream[sgroups.SyncStatusResp]) error {
+func (UnimplementedSecGroupServiceHandler) SyncStatuses(context.Context, *connect.Request[empty.Empty], *connect.ServerStream[sgroups.SyncStatusResp]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.SyncStatuses is not implemented"))
 }
 
@@ -512,4 +612,20 @@ func (UnimplementedSecGroupServiceHandler) FindIECidrSgIcmpRules(context.Context
 
 func (UnimplementedSecGroupServiceHandler) GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) FindHosts(context.Context, *connect.Request[sgroups.FindHostsReq]) (*connect.Response[sgroups.HostList], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.FindHosts is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) RegisterHost(context.Context, *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.RegisterHost is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) UpdateHostIPset(context.Context, *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.UpdateHostIPset is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) DeleteHost(context.Context, *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.DeleteHost is not implemented"))
 }

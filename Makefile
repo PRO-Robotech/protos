@@ -70,9 +70,9 @@ ifeq ($(wildcard $(GOBIN)/protoc-gen-connect-go),)
 	$(GO) install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
 endif
 
-proto_dirs := sgroups common
+proto_dirs := common agent/v1 sgroups
 .PHONY: generate-api
-generate-api: | .grpc-plugins go-deps
+generate-api: | .grpc-plugins
 	@(\
 	apis=$(CURDIR)/api && \
 	dest=$(CURDIR)/pkg/api && \
@@ -86,6 +86,7 @@ generate-api: | .grpc-plugins go-deps
 			protoc \
 				-I $(CURDIR)/vendor/github.com/grpc-ecosystem/grpc-gateway/v2/ \
 				-I $(CURDIR)/3d-party \
+				-I $(CURDIR)/api \
 				--go_opt=paths=source_relative \
 				--go-grpc_opt=paths=source_relative \
 				--go_out $$dest \
