@@ -7,8 +7,8 @@
 package sgroups
 
 import (
-	v1 "github.com/H-BF/protos/pkg/api/agent/v1"
-	common "github.com/H-BF/protos/pkg/api/common"
+	v1 "github.com/PRO-Robotech/protos/pkg/api/agent/v1"
+	common "github.com/PRO-Robotech/protos/pkg/api/common"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
@@ -4168,9 +4168,9 @@ const file_sgroups_api_proto_rawDesc = "" +
 	"\fRegisterHost\x12\x1f.hbf.v2.sgroups.RegisterHostReq\x1a\x16.google.protobuf.Empty\"W\x92A8\x1a6RegisterHost: creates Host resource and fills it IPSet\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v2/register-host\x12\xa2\x01\n" +
 	"\x0fUpdateHostIPset\x12\x1f.hbf.v2.sgroups.UpdateHostIPReq\x1a\x16.google.protobuf.Empty\"V\x92A3\x1a1UpdateHostIPSet: updates Host ip set by host name\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v2/update-host-ipset\x12\x85\x01\n" +
 	"\n" +
-	"DeleteHost\x12\x1d.hbf.v2.sgroups.DeleteHostReq\x1a\x16.google.protobuf.Empty\"@\x92A#\x1a!DeleteHost: deletes Host resource\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v2/delete-host\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xa4\x01\x92Aq\x12\x1a\n" +
+	"DeleteHost\x12\x1d.hbf.v2.sgroups.DeleteHostReq\x1a\x16.google.protobuf.Empty\"@\x92A#\x1a!DeleteHost: deletes Host resource\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v2/delete-host\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xac\x01\x92Aq\x12\x1a\n" +
 	"\x13Host Based Firewall2\x032.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
-	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ.github.com/H-BF/protos/pkg/api/sgroups;sgroupsb\x06proto3"
+	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
 var (
 	file_sgroups_api_proto_rawDescOnce sync.Once

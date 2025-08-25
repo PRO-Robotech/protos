@@ -1,10 +1,9 @@
-module github.com/H-BF/protos/v2
+module github.com/PRO-Robotech/protos
 
 go 1.23
 
 require (
 	connectrpc.com/connect v1.16.2
-	github.com/H-BF/protos v0.0.0-00010101000000-000000000000
 	github.com/go-openapi/spec v0.20.6
 	github.com/golang/protobuf v1.5.4
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
@@ -16,8 +15,6 @@ require (
 	google.golang.org/protobuf v1.34.2
 )
 
-replace github.com/H-BF/protos => ./
-
 require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
@@ -26,6 +23,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
+	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	golang.org/x/net v0.26.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
