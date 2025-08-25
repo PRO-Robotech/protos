@@ -8,8 +8,8 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
+	v1 "github.com/H-BF/protos/pkg/api/agent/v1"
 	http "net/http"
-	v1 "protos/pkg/api/agent/v1"
 	strings "strings"
 )
 

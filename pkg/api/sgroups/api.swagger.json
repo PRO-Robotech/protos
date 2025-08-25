@@ -878,7 +878,7 @@
           "items": {
             "type": "string"
           },
-          "title": "scope GS name item(s)"
+          "title": "scope SG name item(s)"
         }
       },
       "title": "FindIECidrSgRulesReq: req to find all CIRD-SG-[INGRESS|EGRESS] Rule(s) scoped by SG(s) variety",
@@ -894,14 +894,14 @@
           "items": {
             "type": "string"
           },
-          "title": "scope Sg name item(s)"
+          "title": "scope SG name item(s)"
         },
         "sgLocal": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "scope SgLocal name item(s)"
+          "title": "scope SGLocal name item(s)"
         }
       },
       "title": "FindIESgSgIcmpRulesReq: req to find all SG-SG-[INGRESS|EGRESS]:ICMP rule(s)",
@@ -918,14 +918,14 @@
           "items": {
             "type": "string"
           },
-          "title": "scope Sg name item(s)"
+          "title": "scope SG name item(s)"
         },
         "sgLocal": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "scope SgLocal name item(s)"
+          "title": "scope SGLocal name item(s)"
         }
       },
       "title": "FindIESgSgRulesReq: req to find all SG-SG-[INGRESS|EGRESS] rule(s)",
@@ -958,14 +958,14 @@
           "items": {
             "type": "string"
           },
-          "title": "scope GS-from name item(s)"
+          "title": "scope SG-from name item(s)"
         },
         "sgTo": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "scope GS-to name item(s)"
+          "title": "scope SG-to name item(s)"
         }
       },
       "title": "FindSgSgIcmpRulesReq: req to find all SG-SG:ICMP Rule(s) scoped by SG(s) variety",
@@ -982,14 +982,14 @@
           "items": {
             "type": "string"
           },
-          "title": "scope GS name 'from' items"
+          "title": "scope SG name 'from' items"
         },
         "sgTo": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "scope  GS name 'to' items"
+          "title": "scope SG name 'to' items"
         }
       },
       "title": "FindSgSgRulesReq: req to find all SecGroup(s) Rule(s) scoped by variety('from') --\u003e variety('to') SG(s)",

@@ -7,14 +7,14 @@
 package sgroups
 
 import (
+	v1 "github.com/H-BF/protos/pkg/api/agent/v1"
+	common "github.com/H-BF/protos/pkg/api/common"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	v1 "protos/pkg/api/agent/v1"
-	common "protos/pkg/api/common"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -2365,9 +2365,9 @@ func (x *GetSgSgRulesReq) GetSgTo() string {
 // FindSgSgRulesReq: req to find all SecGroup(s) Rule(s) scoped by variety('from') --> variety('to') SG(s)
 type FindSgSgRulesReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// scope GS name 'from' items
+	// scope SG name 'from' items
 	SgFrom []string `protobuf:"bytes,1,rep,name=sg_from,json=sgFrom,proto3" json:"sg_from,omitempty"`
-	// scope  GS name 'to' items
+	// scope SG name 'to' items
 	SgTo          []string `protobuf:"bytes,2,rep,name=sg_to,json=sgTo,proto3" json:"sg_to,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2650,9 +2650,9 @@ func (x *SgIcmpRulesResp) GetRules() []*SgIcmpRule {
 // FindSgSgIcmpRulesReq: req to find all SG-SG:ICMP Rule(s) scoped by SG(s) variety
 type FindSgSgIcmpRulesReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// scope GS-from name item(s)
+	// scope SG-from name item(s)
 	SgFrom []string `protobuf:"bytes,1,rep,name=sg_from,json=sgFrom,proto3" json:"sg_from,omitempty"`
-	// scope GS-to name item(s)
+	// scope SG-to name item(s)
 	SgTo          []string `protobuf:"bytes,2,rep,name=sg_to,json=sgTo,proto3" json:"sg_to,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2751,7 +2751,7 @@ func (x *SgSgIcmpRulesResp) GetRules() []*SgSgIcmpRule {
 // FindIECidrSgRulesReq: req to find all CIRD-SG-[INGRESS|EGRESS] Rule(s) scoped by SG(s) variety
 type FindIECidrSgRulesReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// scope GS name item(s)
+	// scope SG name item(s)
 	SG            []string `protobuf:"bytes,1,rep,name=SG,proto3" json:"SG,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2843,9 +2843,9 @@ func (x *IECidrSgRulesResp) GetRules() []*IECidrSgRule {
 // FindIESgSgRulesReq: req to find all SG-SG-[INGRESS|EGRESS] rule(s)
 type FindIESgSgRulesReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// scope Sg name item(s)
+	// scope SG name item(s)
 	SG []string `protobuf:"bytes,1,rep,name=SG,proto3" json:"SG,omitempty"`
-	// scope SgLocal name item(s)
+	// scope SGLocal name item(s)
 	SgLocal       []string `protobuf:"bytes,2,rep,name=sg_local,json=sgLocal,proto3" json:"sg_local,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2944,9 +2944,9 @@ func (x *IESgSgRulesResp) GetRules() []*IESgSgRule {
 // FindIESgSgIcmpRulesReq: req to find all SG-SG-[INGRESS|EGRESS]:ICMP rule(s)
 type FindIESgSgIcmpRulesReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// scope Sg name item(s)
+	// scope SG name item(s)
 	SG []string `protobuf:"bytes,1,rep,name=SG,proto3" json:"SG,omitempty"`
-	// scope SgLocal name item(s)
+	// scope SGLocal name item(s)
 	SgLocal       []string `protobuf:"bytes,2,rep,name=sg_local,json=sgLocal,proto3" json:"sg_local,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -4168,9 +4168,9 @@ const file_sgroups_api_proto_rawDesc = "" +
 	"\fRegisterHost\x12\x1f.hbf.v2.sgroups.RegisterHostReq\x1a\x16.google.protobuf.Empty\"W\x92A8\x1a6RegisterHost: creates Host resource and fills it IPSet\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v2/register-host\x12\xa2\x01\n" +
 	"\x0fUpdateHostIPset\x12\x1f.hbf.v2.sgroups.UpdateHostIPReq\x1a\x16.google.protobuf.Empty\"V\x92A3\x1a1UpdateHostIPSet: updates Host ip set by host name\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v2/update-host-ipset\x12\x85\x01\n" +
 	"\n" +
-	"DeleteHost\x12\x1d.hbf.v2.sgroups.DeleteHostReq\x1a\x16.google.protobuf.Empty\"@\x92A#\x1a!DeleteHost: deletes Host resource\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v2/delete-host\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\x94\x01\x92Aq\x12\x1a\n" +
+	"DeleteHost\x12\x1d.hbf.v2.sgroups.DeleteHostReq\x1a\x16.google.protobuf.Empty\"@\x92A#\x1a!DeleteHost: deletes Host resource\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v2/delete-host\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xa4\x01\x92Aq\x12\x1a\n" +
 	"\x13Host Based Firewall2\x032.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
-	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ\x1eprotos/pkg/api/sgroups;sgroupsb\x06proto3"
+	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ.github.com/H-BF/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
 var (
 	file_sgroups_api_proto_rawDescOnce sync.Once

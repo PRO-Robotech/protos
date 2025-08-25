@@ -281,7 +281,7 @@ const file_agent_v1_messages_proto_rawDesc = "" +
 	"\n" +
 	"RegInfoReq\x12|\n" +
 	"\tcondition\x18\x01 \x01(\v2\x18.hbf.v1.agent.OwnerCheckBD\x92AA*\tcondition24Ownership verification method (empty or secret data)R\tcondition:~\x92A{\n" +
-	"y*\x17RegistrationInfoRequest2RRequest object for fetching registration info with optional ownership verification\xd2\x01\tconditionB!Z\x1fprotos/pkg/api/agent/v1;agentv1b\x06proto3"
+	"y*\x17RegistrationInfoRequest2RRequest object for fetching registration info with optional ownership verification\xd2\x01\tconditionB1Z/github.com/H-BF/protos/pkg/api/agent/v1;agentv1b\x06proto3"
 
 var (
 	file_agent_v1_messages_proto_rawDescOnce sync.Once

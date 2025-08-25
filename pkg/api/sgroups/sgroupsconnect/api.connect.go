@@ -8,9 +8,9 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
+	sgroups "github.com/H-BF/protos/pkg/api/sgroups"
 	empty "github.com/golang/protobuf/ptypes/empty"
 	http "net/http"
-	sgroups "protos/pkg/api/sgroups"
 	strings "strings"
 )
 

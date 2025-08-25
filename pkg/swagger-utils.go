@@ -7,9 +7,9 @@ import (
 	"io/ioutil"
 	"reflect"
 
+	"github.com/H-BF/protos/pkg/api/sgroups"
 	"github.com/go-openapi/spec"
 	"github.com/pkg/errors"
-	"protos/pkg/api/sgroups"
 )
 
 var (

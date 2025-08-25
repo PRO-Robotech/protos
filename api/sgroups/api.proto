@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package hbf.v2.sgroups;
-option go_package = "protos/pkg/api/sgroups;sgroups";
+option go_package = "github.com/H-BF/protos/pkg/api/sgroups;sgroups";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";

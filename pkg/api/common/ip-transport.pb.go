@@ -385,7 +385,7 @@ const file_common_ip_transport_proto_rawDesc = "" +
 	"\x05Undef\x10\x00\x12\v\n" +
 	"\aIngress\x10\x01\x12\n" +
 	"\n" +
-	"\x06Egress\x10\x02B\x1eZ\x1cprotos/pkg/api/common;commonb\x06proto3"
+	"\x06Egress\x10\x02B.Z,github.com/H-BF/protos/pkg/api/common;commonb\x06proto3"
 
 var (
 	file_common_ip_transport_proto_rawDescOnce sync.Once

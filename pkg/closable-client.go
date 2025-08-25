@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"sync"
 
+	"github.com/H-BF/protos/pkg/api/sgroups"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
-	"protos/pkg/api/sgroups"
 )
 
 // ClosableClient closable client
