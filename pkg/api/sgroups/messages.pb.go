@@ -2,14 +2,14 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v3.6.1
-// source: sgroups/api.proto
+// source: sgroups/messages.proto
 
 package sgroups
 
 import (
 	v1 "github.com/PRO-Robotech/protos/pkg/api/agent/v1"
 	common "github.com/PRO-Robotech/protos/pkg/api/common"
-	empty "github.com/golang/protobuf/ptypes/empty"
+	_ "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -64,11 +64,11 @@ func (x RuleAction) String() string {
 }
 
 func (RuleAction) Descriptor() protoreflect.EnumDescriptor {
-	return file_sgroups_api_proto_enumTypes[0].Descriptor()
+	return file_sgroups_messages_proto_enumTypes[0].Descriptor()
 }
 
 func (RuleAction) Type() protoreflect.EnumType {
-	return &file_sgroups_api_proto_enumTypes[0]
+	return &file_sgroups_messages_proto_enumTypes[0]
 }
 
 func (x RuleAction) Number() protoreflect.EnumNumber {
@@ -77,7 +77,7 @@ func (x RuleAction) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RuleAction.Descriptor instead.
 func (RuleAction) EnumDescriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{0}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{0}
 }
 
 // DefaultAction: represents default action at end of chains for Security Gpoup
@@ -117,11 +117,11 @@ func (x SecGroup_DefaultAction) String() string {
 }
 
 func (SecGroup_DefaultAction) Descriptor() protoreflect.EnumDescriptor {
-	return file_sgroups_api_proto_enumTypes[1].Descriptor()
+	return file_sgroups_messages_proto_enumTypes[1].Descriptor()
 }
 
 func (SecGroup_DefaultAction) Type() protoreflect.EnumType {
-	return &file_sgroups_api_proto_enumTypes[1]
+	return &file_sgroups_messages_proto_enumTypes[1]
 }
 
 func (x SecGroup_DefaultAction) Number() protoreflect.EnumNumber {
@@ -130,7 +130,7 @@ func (x SecGroup_DefaultAction) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SecGroup_DefaultAction.Descriptor instead.
 func (SecGroup_DefaultAction) EnumDescriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{1, 0}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{1, 0}
 }
 
 // SyncOp: sync operation
@@ -174,11 +174,11 @@ func (x SyncReq_SyncOp) String() string {
 }
 
 func (SyncReq_SyncOp) Descriptor() protoreflect.EnumDescriptor {
-	return file_sgroups_api_proto_enumTypes[2].Descriptor()
+	return file_sgroups_messages_proto_enumTypes[2].Descriptor()
 }
 
 func (SyncReq_SyncOp) Type() protoreflect.EnumType {
-	return &file_sgroups_api_proto_enumTypes[2]
+	return &file_sgroups_messages_proto_enumTypes[2]
 }
 
 func (x SyncReq_SyncOp) Number() protoreflect.EnumNumber {
@@ -187,7 +187,7 @@ func (x SyncReq_SyncOp) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SyncReq_SyncOp.Descriptor instead.
 func (SyncReq_SyncOp) EnumDescriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{27, 0}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{27, 0}
 }
 
 // Network: represents a named IP network
@@ -203,7 +203,7 @@ type Network struct {
 
 func (x *Network) Reset() {
 	*x = Network{}
-	mi := &file_sgroups_api_proto_msgTypes[0]
+	mi := &file_sgroups_messages_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -215,7 +215,7 @@ func (x *Network) String() string {
 func (*Network) ProtoMessage() {}
 
 func (x *Network) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[0]
+	mi := &file_sgroups_messages_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -228,7 +228,7 @@ func (x *Network) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Network.ProtoReflect.Descriptor instead.
 func (*Network) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{0}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Network) GetName() string {
@@ -266,7 +266,7 @@ type SecGroup struct {
 
 func (x *SecGroup) Reset() {
 	*x = SecGroup{}
-	mi := &file_sgroups_api_proto_msgTypes[1]
+	mi := &file_sgroups_messages_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +278,7 @@ func (x *SecGroup) String() string {
 func (*SecGroup) ProtoMessage() {}
 
 func (x *SecGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[1]
+	mi := &file_sgroups_messages_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +291,7 @@ func (x *SecGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SecGroup.ProtoReflect.Descriptor instead.
 func (*SecGroup) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{1}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SecGroup) GetName() string {
@@ -349,7 +349,7 @@ type AccPorts struct {
 
 func (x *AccPorts) Reset() {
 	*x = AccPorts{}
-	mi := &file_sgroups_api_proto_msgTypes[2]
+	mi := &file_sgroups_messages_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -361,7 +361,7 @@ func (x *AccPorts) String() string {
 func (*AccPorts) ProtoMessage() {}
 
 func (x *AccPorts) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[2]
+	mi := &file_sgroups_messages_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -374,7 +374,7 @@ func (x *AccPorts) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AccPorts.ProtoReflect.Descriptor instead.
 func (*AccPorts) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{2}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AccPorts) GetS() string {
@@ -404,7 +404,7 @@ type RulePriority struct {
 
 func (x *RulePriority) Reset() {
 	*x = RulePriority{}
-	mi := &file_sgroups_api_proto_msgTypes[3]
+	mi := &file_sgroups_messages_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -416,7 +416,7 @@ func (x *RulePriority) String() string {
 func (*RulePriority) ProtoMessage() {}
 
 func (x *RulePriority) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[3]
+	mi := &file_sgroups_messages_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -429,7 +429,7 @@ func (x *RulePriority) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RulePriority.ProtoReflect.Descriptor instead.
 func (*RulePriority) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{3}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RulePriority) GetValue() isRulePriority_Value {
@@ -481,7 +481,7 @@ type SgSgRule struct {
 
 func (x *SgSgRule) Reset() {
 	*x = SgSgRule{}
-	mi := &file_sgroups_api_proto_msgTypes[4]
+	mi := &file_sgroups_messages_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -493,7 +493,7 @@ func (x *SgSgRule) String() string {
 func (*SgSgRule) ProtoMessage() {}
 
 func (x *SgSgRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[4]
+	mi := &file_sgroups_messages_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -506,7 +506,7 @@ func (x *SgSgRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgSgRule.ProtoReflect.Descriptor instead.
 func (*SgSgRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{4}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SgSgRule) GetSgFrom() string {
@@ -583,7 +583,7 @@ type FqdnRule struct {
 
 func (x *FqdnRule) Reset() {
 	*x = FqdnRule{}
-	mi := &file_sgroups_api_proto_msgTypes[5]
+	mi := &file_sgroups_messages_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -595,7 +595,7 @@ func (x *FqdnRule) String() string {
 func (*FqdnRule) ProtoMessage() {}
 
 func (x *FqdnRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[5]
+	mi := &file_sgroups_messages_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -608,7 +608,7 @@ func (x *FqdnRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FqdnRule.ProtoReflect.Descriptor instead.
 func (*FqdnRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{5}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *FqdnRule) GetSgFrom() string {
@@ -679,7 +679,7 @@ type SgIcmpRule struct {
 
 func (x *SgIcmpRule) Reset() {
 	*x = SgIcmpRule{}
-	mi := &file_sgroups_api_proto_msgTypes[6]
+	mi := &file_sgroups_messages_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -691,7 +691,7 @@ func (x *SgIcmpRule) String() string {
 func (*SgIcmpRule) ProtoMessage() {}
 
 func (x *SgIcmpRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[6]
+	mi := &file_sgroups_messages_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -704,7 +704,7 @@ func (x *SgIcmpRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgIcmpRule.ProtoReflect.Descriptor instead.
 func (*SgIcmpRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{6}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SgIcmpRule) GetSG() string {
@@ -765,7 +765,7 @@ type SgSgIcmpRule struct {
 
 func (x *SgSgIcmpRule) Reset() {
 	*x = SgSgIcmpRule{}
-	mi := &file_sgroups_api_proto_msgTypes[7]
+	mi := &file_sgroups_messages_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -777,7 +777,7 @@ func (x *SgSgIcmpRule) String() string {
 func (*SgSgIcmpRule) ProtoMessage() {}
 
 func (x *SgSgIcmpRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[7]
+	mi := &file_sgroups_messages_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -790,7 +790,7 @@ func (x *SgSgIcmpRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgSgIcmpRule.ProtoReflect.Descriptor instead.
 func (*SgSgIcmpRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{7}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SgSgIcmpRule) GetSgFrom() string {
@@ -869,7 +869,7 @@ type IECidrSgRule struct {
 
 func (x *IECidrSgRule) Reset() {
 	*x = IECidrSgRule{}
-	mi := &file_sgroups_api_proto_msgTypes[8]
+	mi := &file_sgroups_messages_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -881,7 +881,7 @@ func (x *IECidrSgRule) String() string {
 func (*IECidrSgRule) ProtoMessage() {}
 
 func (x *IECidrSgRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[8]
+	mi := &file_sgroups_messages_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -894,7 +894,7 @@ func (x *IECidrSgRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IECidrSgRule.ProtoReflect.Descriptor instead.
 func (*IECidrSgRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{8}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *IECidrSgRule) GetTransport() common.Networks_NetIP_Transport {
@@ -985,7 +985,7 @@ type IECidrSgIcmpRule struct {
 
 func (x *IECidrSgIcmpRule) Reset() {
 	*x = IECidrSgIcmpRule{}
-	mi := &file_sgroups_api_proto_msgTypes[9]
+	mi := &file_sgroups_messages_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -997,7 +997,7 @@ func (x *IECidrSgIcmpRule) String() string {
 func (*IECidrSgIcmpRule) ProtoMessage() {}
 
 func (x *IECidrSgIcmpRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[9]
+	mi := &file_sgroups_messages_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1010,7 +1010,7 @@ func (x *IECidrSgIcmpRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IECidrSgIcmpRule.ProtoReflect.Descriptor instead.
 func (*IECidrSgIcmpRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{9}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *IECidrSgIcmpRule) GetCIDR() string {
@@ -1096,7 +1096,7 @@ type IESgSgRule struct {
 
 func (x *IESgSgRule) Reset() {
 	*x = IESgSgRule{}
-	mi := &file_sgroups_api_proto_msgTypes[10]
+	mi := &file_sgroups_messages_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1108,7 +1108,7 @@ func (x *IESgSgRule) String() string {
 func (*IESgSgRule) ProtoMessage() {}
 
 func (x *IESgSgRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[10]
+	mi := &file_sgroups_messages_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1121,7 +1121,7 @@ func (x *IESgSgRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgRule.ProtoReflect.Descriptor instead.
 func (*IESgSgRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{10}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *IESgSgRule) GetTransport() common.Networks_NetIP_Transport {
@@ -1212,7 +1212,7 @@ type IESgSgIcmpRule struct {
 
 func (x *IESgSgIcmpRule) Reset() {
 	*x = IESgSgIcmpRule{}
-	mi := &file_sgroups_api_proto_msgTypes[11]
+	mi := &file_sgroups_messages_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1224,7 +1224,7 @@ func (x *IESgSgIcmpRule) String() string {
 func (*IESgSgIcmpRule) ProtoMessage() {}
 
 func (x *IESgSgIcmpRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[11]
+	mi := &file_sgroups_messages_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1237,7 +1237,7 @@ func (x *IESgSgIcmpRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgIcmpRule.ProtoReflect.Descriptor instead.
 func (*IESgSgIcmpRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{11}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *IESgSgIcmpRule) GetSG() string {
@@ -1307,7 +1307,7 @@ type SyncStatusResp struct {
 
 func (x *SyncStatusResp) Reset() {
 	*x = SyncStatusResp{}
-	mi := &file_sgroups_api_proto_msgTypes[12]
+	mi := &file_sgroups_messages_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1319,7 +1319,7 @@ func (x *SyncStatusResp) String() string {
 func (*SyncStatusResp) ProtoMessage() {}
 
 func (x *SyncStatusResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[12]
+	mi := &file_sgroups_messages_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1332,7 +1332,7 @@ func (x *SyncStatusResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncStatusResp.ProtoReflect.Descriptor instead.
 func (*SyncStatusResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{12}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SyncStatusResp) GetUpdatedAt() *timestamp.Timestamp {
@@ -1353,7 +1353,7 @@ type SyncSgSgRules struct {
 
 func (x *SyncSgSgRules) Reset() {
 	*x = SyncSgSgRules{}
-	mi := &file_sgroups_api_proto_msgTypes[13]
+	mi := &file_sgroups_messages_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1365,7 +1365,7 @@ func (x *SyncSgSgRules) String() string {
 func (*SyncSgSgRules) ProtoMessage() {}
 
 func (x *SyncSgSgRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[13]
+	mi := &file_sgroups_messages_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1378,7 +1378,7 @@ func (x *SyncSgSgRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSgSgRules.ProtoReflect.Descriptor instead.
 func (*SyncSgSgRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{13}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SyncSgSgRules) GetRules() []*SgSgRule {
@@ -1399,7 +1399,7 @@ type SyncFqdnRules struct {
 
 func (x *SyncFqdnRules) Reset() {
 	*x = SyncFqdnRules{}
-	mi := &file_sgroups_api_proto_msgTypes[14]
+	mi := &file_sgroups_messages_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1411,7 +1411,7 @@ func (x *SyncFqdnRules) String() string {
 func (*SyncFqdnRules) ProtoMessage() {}
 
 func (x *SyncFqdnRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[14]
+	mi := &file_sgroups_messages_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1424,7 +1424,7 @@ func (x *SyncFqdnRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncFqdnRules.ProtoReflect.Descriptor instead.
 func (*SyncFqdnRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{14}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SyncFqdnRules) GetRules() []*FqdnRule {
@@ -1445,7 +1445,7 @@ type SyncSecurityGroups struct {
 
 func (x *SyncSecurityGroups) Reset() {
 	*x = SyncSecurityGroups{}
-	mi := &file_sgroups_api_proto_msgTypes[15]
+	mi := &file_sgroups_messages_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1457,7 +1457,7 @@ func (x *SyncSecurityGroups) String() string {
 func (*SyncSecurityGroups) ProtoMessage() {}
 
 func (x *SyncSecurityGroups) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[15]
+	mi := &file_sgroups_messages_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1470,7 +1470,7 @@ func (x *SyncSecurityGroups) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSecurityGroups.ProtoReflect.Descriptor instead.
 func (*SyncSecurityGroups) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{15}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SyncSecurityGroups) GetGroups() []*SecGroup {
@@ -1491,7 +1491,7 @@ type SyncNetworks struct {
 
 func (x *SyncNetworks) Reset() {
 	*x = SyncNetworks{}
-	mi := &file_sgroups_api_proto_msgTypes[16]
+	mi := &file_sgroups_messages_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1503,7 +1503,7 @@ func (x *SyncNetworks) String() string {
 func (*SyncNetworks) ProtoMessage() {}
 
 func (x *SyncNetworks) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[16]
+	mi := &file_sgroups_messages_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1516,7 +1516,7 @@ func (x *SyncNetworks) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncNetworks.ProtoReflect.Descriptor instead.
 func (*SyncNetworks) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{16}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *SyncNetworks) GetNetworks() []*Network {
@@ -1536,7 +1536,7 @@ type SyncSgIcmpRules struct {
 
 func (x *SyncSgIcmpRules) Reset() {
 	*x = SyncSgIcmpRules{}
-	mi := &file_sgroups_api_proto_msgTypes[17]
+	mi := &file_sgroups_messages_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1548,7 +1548,7 @@ func (x *SyncSgIcmpRules) String() string {
 func (*SyncSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[17]
+	mi := &file_sgroups_messages_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1561,7 +1561,7 @@ func (x *SyncSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{17}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *SyncSgIcmpRules) GetRules() []*SgIcmpRule {
@@ -1581,7 +1581,7 @@ type SyncSgSgIcmpRules struct {
 
 func (x *SyncSgSgIcmpRules) Reset() {
 	*x = SyncSgSgIcmpRules{}
-	mi := &file_sgroups_api_proto_msgTypes[18]
+	mi := &file_sgroups_messages_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1593,7 +1593,7 @@ func (x *SyncSgSgIcmpRules) String() string {
 func (*SyncSgSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncSgSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[18]
+	mi := &file_sgroups_messages_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1606,7 +1606,7 @@ func (x *SyncSgSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSgSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncSgSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{18}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *SyncSgSgIcmpRules) GetRules() []*SgSgIcmpRule {
@@ -1626,7 +1626,7 @@ type SyncIECidrSgRules struct {
 
 func (x *SyncIECidrSgRules) Reset() {
 	*x = SyncIECidrSgRules{}
-	mi := &file_sgroups_api_proto_msgTypes[19]
+	mi := &file_sgroups_messages_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1638,7 +1638,7 @@ func (x *SyncIECidrSgRules) String() string {
 func (*SyncIECidrSgRules) ProtoMessage() {}
 
 func (x *SyncIECidrSgRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[19]
+	mi := &file_sgroups_messages_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1651,7 +1651,7 @@ func (x *SyncIECidrSgRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIECidrSgRules.ProtoReflect.Descriptor instead.
 func (*SyncIECidrSgRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{19}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SyncIECidrSgRules) GetRules() []*IECidrSgRule {
@@ -1672,7 +1672,7 @@ type SyncIESgSgRules struct {
 
 func (x *SyncIESgSgRules) Reset() {
 	*x = SyncIESgSgRules{}
-	mi := &file_sgroups_api_proto_msgTypes[20]
+	mi := &file_sgroups_messages_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1684,7 +1684,7 @@ func (x *SyncIESgSgRules) String() string {
 func (*SyncIESgSgRules) ProtoMessage() {}
 
 func (x *SyncIESgSgRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[20]
+	mi := &file_sgroups_messages_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1697,7 +1697,7 @@ func (x *SyncIESgSgRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIESgSgRules.ProtoReflect.Descriptor instead.
 func (*SyncIESgSgRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{20}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SyncIESgSgRules) GetRules() []*IESgSgRule {
@@ -1718,7 +1718,7 @@ type SyncIESgSgIcmpRules struct {
 
 func (x *SyncIESgSgIcmpRules) Reset() {
 	*x = SyncIESgSgIcmpRules{}
-	mi := &file_sgroups_api_proto_msgTypes[21]
+	mi := &file_sgroups_messages_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1730,7 +1730,7 @@ func (x *SyncIESgSgIcmpRules) String() string {
 func (*SyncIESgSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncIESgSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[21]
+	mi := &file_sgroups_messages_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1743,7 +1743,7 @@ func (x *SyncIESgSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIESgSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncIESgSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{21}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *SyncIESgSgIcmpRules) GetRules() []*IESgSgIcmpRule {
@@ -1764,7 +1764,7 @@ type SyncIECidrSgIcmpRules struct {
 
 func (x *SyncIECidrSgIcmpRules) Reset() {
 	*x = SyncIECidrSgIcmpRules{}
-	mi := &file_sgroups_api_proto_msgTypes[22]
+	mi := &file_sgroups_messages_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1776,7 +1776,7 @@ func (x *SyncIECidrSgIcmpRules) String() string {
 func (*SyncIECidrSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncIECidrSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[22]
+	mi := &file_sgroups_messages_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1789,7 +1789,7 @@ func (x *SyncIECidrSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIECidrSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncIECidrSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{22}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *SyncIECidrSgIcmpRules) GetRules() []*IECidrSgIcmpRule {
@@ -1810,7 +1810,7 @@ type ListNetworksReq struct {
 
 func (x *ListNetworksReq) Reset() {
 	*x = ListNetworksReq{}
-	mi := &file_sgroups_api_proto_msgTypes[23]
+	mi := &file_sgroups_messages_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1822,7 +1822,7 @@ func (x *ListNetworksReq) String() string {
 func (*ListNetworksReq) ProtoMessage() {}
 
 func (x *ListNetworksReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[23]
+	mi := &file_sgroups_messages_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1835,7 +1835,7 @@ func (x *ListNetworksReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNetworksReq.ProtoReflect.Descriptor instead.
 func (*ListNetworksReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{23}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ListNetworksReq) GetNetworkNames() []string {
@@ -1856,7 +1856,7 @@ type ListNetworksResp struct {
 
 func (x *ListNetworksResp) Reset() {
 	*x = ListNetworksResp{}
-	mi := &file_sgroups_api_proto_msgTypes[24]
+	mi := &file_sgroups_messages_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1868,7 +1868,7 @@ func (x *ListNetworksResp) String() string {
 func (*ListNetworksResp) ProtoMessage() {}
 
 func (x *ListNetworksResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[24]
+	mi := &file_sgroups_messages_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1881,7 +1881,7 @@ func (x *ListNetworksResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNetworksResp.ProtoReflect.Descriptor instead.
 func (*ListNetworksResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{24}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ListNetworksResp) GetNetworks() []*Network {
@@ -1902,7 +1902,7 @@ type ListSecurityGroupsReq struct {
 
 func (x *ListSecurityGroupsReq) Reset() {
 	*x = ListSecurityGroupsReq{}
-	mi := &file_sgroups_api_proto_msgTypes[25]
+	mi := &file_sgroups_messages_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1914,7 +1914,7 @@ func (x *ListSecurityGroupsReq) String() string {
 func (*ListSecurityGroupsReq) ProtoMessage() {}
 
 func (x *ListSecurityGroupsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[25]
+	mi := &file_sgroups_messages_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1927,7 +1927,7 @@ func (x *ListSecurityGroupsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSecurityGroupsReq.ProtoReflect.Descriptor instead.
 func (*ListSecurityGroupsReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{25}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ListSecurityGroupsReq) GetSgNames() []string {
@@ -1948,7 +1948,7 @@ type ListSecurityGroupsResp struct {
 
 func (x *ListSecurityGroupsResp) Reset() {
 	*x = ListSecurityGroupsResp{}
-	mi := &file_sgroups_api_proto_msgTypes[26]
+	mi := &file_sgroups_messages_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1960,7 +1960,7 @@ func (x *ListSecurityGroupsResp) String() string {
 func (*ListSecurityGroupsResp) ProtoMessage() {}
 
 func (x *ListSecurityGroupsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[26]
+	mi := &file_sgroups_messages_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1973,7 +1973,7 @@ func (x *ListSecurityGroupsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSecurityGroupsResp.ProtoReflect.Descriptor instead.
 func (*ListSecurityGroupsResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{26}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ListSecurityGroupsResp) GetGroups() []*SecGroup {
@@ -2009,7 +2009,7 @@ type SyncReq struct {
 
 func (x *SyncReq) Reset() {
 	*x = SyncReq{}
-	mi := &file_sgroups_api_proto_msgTypes[27]
+	mi := &file_sgroups_messages_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2021,7 +2021,7 @@ func (x *SyncReq) String() string {
 func (*SyncReq) ProtoMessage() {}
 
 func (x *SyncReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[27]
+	mi := &file_sgroups_messages_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2034,7 +2034,7 @@ func (x *SyncReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncReq.ProtoReflect.Descriptor instead.
 func (*SyncReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{27}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *SyncReq) GetSyncOp() SyncReq_SyncOp {
@@ -2226,7 +2226,7 @@ type GetSgSubnetsReq struct {
 
 func (x *GetSgSubnetsReq) Reset() {
 	*x = GetSgSubnetsReq{}
-	mi := &file_sgroups_api_proto_msgTypes[28]
+	mi := &file_sgroups_messages_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2238,7 +2238,7 @@ func (x *GetSgSubnetsReq) String() string {
 func (*GetSgSubnetsReq) ProtoMessage() {}
 
 func (x *GetSgSubnetsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[28]
+	mi := &file_sgroups_messages_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2251,7 +2251,7 @@ func (x *GetSgSubnetsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSgSubnetsReq.ProtoReflect.Descriptor instead.
 func (*GetSgSubnetsReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{28}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *GetSgSubnetsReq) GetSgName() string {
@@ -2272,7 +2272,7 @@ type GetSgSubnetsResp struct {
 
 func (x *GetSgSubnetsResp) Reset() {
 	*x = GetSgSubnetsResp{}
-	mi := &file_sgroups_api_proto_msgTypes[29]
+	mi := &file_sgroups_messages_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2284,7 +2284,7 @@ func (x *GetSgSubnetsResp) String() string {
 func (*GetSgSubnetsResp) ProtoMessage() {}
 
 func (x *GetSgSubnetsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[29]
+	mi := &file_sgroups_messages_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2297,7 +2297,7 @@ func (x *GetSgSubnetsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSgSubnetsResp.ProtoReflect.Descriptor instead.
 func (*GetSgSubnetsResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{29}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *GetSgSubnetsResp) GetNetworks() []*Network {
@@ -2320,7 +2320,7 @@ type GetSgSgRulesReq struct {
 
 func (x *GetSgSgRulesReq) Reset() {
 	*x = GetSgSgRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[30]
+	mi := &file_sgroups_messages_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2332,7 +2332,7 @@ func (x *GetSgSgRulesReq) String() string {
 func (*GetSgSgRulesReq) ProtoMessage() {}
 
 func (x *GetSgSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[30]
+	mi := &file_sgroups_messages_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2345,7 +2345,7 @@ func (x *GetSgSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSgSgRulesReq.ProtoReflect.Descriptor instead.
 func (*GetSgSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{30}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *GetSgSgRulesReq) GetSgFrom() string {
@@ -2375,7 +2375,7 @@ type FindSgSgRulesReq struct {
 
 func (x *FindSgSgRulesReq) Reset() {
 	*x = FindSgSgRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[31]
+	mi := &file_sgroups_messages_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2387,7 +2387,7 @@ func (x *FindSgSgRulesReq) String() string {
 func (*FindSgSgRulesReq) ProtoMessage() {}
 
 func (x *FindSgSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[31]
+	mi := &file_sgroups_messages_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2400,7 +2400,7 @@ func (x *FindSgSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSgSgRulesReq.ProtoReflect.Descriptor instead.
 func (*FindSgSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{31}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *FindSgSgRulesReq) GetSgFrom() []string {
@@ -2428,7 +2428,7 @@ type SgSgRulesResp struct {
 
 func (x *SgSgRulesResp) Reset() {
 	*x = SgSgRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[32]
+	mi := &file_sgroups_messages_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2440,7 +2440,7 @@ func (x *SgSgRulesResp) String() string {
 func (*SgSgRulesResp) ProtoMessage() {}
 
 func (x *SgSgRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[32]
+	mi := &file_sgroups_messages_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2453,7 +2453,7 @@ func (x *SgSgRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgSgRulesResp.ProtoReflect.Descriptor instead.
 func (*SgSgRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{32}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *SgSgRulesResp) GetRules() []*SgSgRule {
@@ -2474,7 +2474,7 @@ type FindFqdnRulesReq struct {
 
 func (x *FindFqdnRulesReq) Reset() {
 	*x = FindFqdnRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[33]
+	mi := &file_sgroups_messages_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2486,7 +2486,7 @@ func (x *FindFqdnRulesReq) String() string {
 func (*FindFqdnRulesReq) ProtoMessage() {}
 
 func (x *FindFqdnRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[33]
+	mi := &file_sgroups_messages_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2499,7 +2499,7 @@ func (x *FindFqdnRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindFqdnRulesReq.ProtoReflect.Descriptor instead.
 func (*FindFqdnRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{33}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *FindFqdnRulesReq) GetSgFrom() []string {
@@ -2520,7 +2520,7 @@ type FqdnRulesResp struct {
 
 func (x *FqdnRulesResp) Reset() {
 	*x = FqdnRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[34]
+	mi := &file_sgroups_messages_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2532,7 +2532,7 @@ func (x *FqdnRulesResp) String() string {
 func (*FqdnRulesResp) ProtoMessage() {}
 
 func (x *FqdnRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[34]
+	mi := &file_sgroups_messages_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2545,7 +2545,7 @@ func (x *FqdnRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FqdnRulesResp.ProtoReflect.Descriptor instead.
 func (*FqdnRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{34}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *FqdnRulesResp) GetRules() []*FqdnRule {
@@ -2566,7 +2566,7 @@ type FindSgIcmpRulesReq struct {
 
 func (x *FindSgIcmpRulesReq) Reset() {
 	*x = FindSgIcmpRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[35]
+	mi := &file_sgroups_messages_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2578,7 +2578,7 @@ func (x *FindSgIcmpRulesReq) String() string {
 func (*FindSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[35]
+	mi := &file_sgroups_messages_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2591,7 +2591,7 @@ func (x *FindSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{35}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *FindSgIcmpRulesReq) GetSG() []string {
@@ -2612,7 +2612,7 @@ type SgIcmpRulesResp struct {
 
 func (x *SgIcmpRulesResp) Reset() {
 	*x = SgIcmpRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[36]
+	mi := &file_sgroups_messages_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2624,7 +2624,7 @@ func (x *SgIcmpRulesResp) String() string {
 func (*SgIcmpRulesResp) ProtoMessage() {}
 
 func (x *SgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[36]
+	mi := &file_sgroups_messages_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2637,7 +2637,7 @@ func (x *SgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*SgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{36}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *SgIcmpRulesResp) GetRules() []*SgIcmpRule {
@@ -2660,7 +2660,7 @@ type FindSgSgIcmpRulesReq struct {
 
 func (x *FindSgSgIcmpRulesReq) Reset() {
 	*x = FindSgSgIcmpRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[37]
+	mi := &file_sgroups_messages_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2672,7 +2672,7 @@ func (x *FindSgSgIcmpRulesReq) String() string {
 func (*FindSgSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindSgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[37]
+	mi := &file_sgroups_messages_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2685,7 +2685,7 @@ func (x *FindSgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSgSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindSgSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{37}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *FindSgSgIcmpRulesReq) GetSgFrom() []string {
@@ -2713,7 +2713,7 @@ type SgSgIcmpRulesResp struct {
 
 func (x *SgSgIcmpRulesResp) Reset() {
 	*x = SgSgIcmpRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[38]
+	mi := &file_sgroups_messages_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2725,7 +2725,7 @@ func (x *SgSgIcmpRulesResp) String() string {
 func (*SgSgIcmpRulesResp) ProtoMessage() {}
 
 func (x *SgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[38]
+	mi := &file_sgroups_messages_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2738,7 +2738,7 @@ func (x *SgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgSgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*SgSgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{38}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *SgSgIcmpRulesResp) GetRules() []*SgSgIcmpRule {
@@ -2759,7 +2759,7 @@ type FindIECidrSgRulesReq struct {
 
 func (x *FindIECidrSgRulesReq) Reset() {
 	*x = FindIECidrSgRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[39]
+	mi := &file_sgroups_messages_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2771,7 +2771,7 @@ func (x *FindIECidrSgRulesReq) String() string {
 func (*FindIECidrSgRulesReq) ProtoMessage() {}
 
 func (x *FindIECidrSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[39]
+	mi := &file_sgroups_messages_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2784,7 +2784,7 @@ func (x *FindIECidrSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIECidrSgRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIECidrSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{39}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *FindIECidrSgRulesReq) GetSG() []string {
@@ -2805,7 +2805,7 @@ type IECidrSgRulesResp struct {
 
 func (x *IECidrSgRulesResp) Reset() {
 	*x = IECidrSgRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[40]
+	mi := &file_sgroups_messages_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2817,7 +2817,7 @@ func (x *IECidrSgRulesResp) String() string {
 func (*IECidrSgRulesResp) ProtoMessage() {}
 
 func (x *IECidrSgRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[40]
+	mi := &file_sgroups_messages_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2830,7 +2830,7 @@ func (x *IECidrSgRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IECidrSgRulesResp.ProtoReflect.Descriptor instead.
 func (*IECidrSgRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{40}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *IECidrSgRulesResp) GetRules() []*IECidrSgRule {
@@ -2853,7 +2853,7 @@ type FindIESgSgRulesReq struct {
 
 func (x *FindIESgSgRulesReq) Reset() {
 	*x = FindIESgSgRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[41]
+	mi := &file_sgroups_messages_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2865,7 +2865,7 @@ func (x *FindIESgSgRulesReq) String() string {
 func (*FindIESgSgRulesReq) ProtoMessage() {}
 
 func (x *FindIESgSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[41]
+	mi := &file_sgroups_messages_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2878,7 +2878,7 @@ func (x *FindIESgSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIESgSgRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIESgSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{41}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *FindIESgSgRulesReq) GetSG() []string {
@@ -2906,7 +2906,7 @@ type IESgSgRulesResp struct {
 
 func (x *IESgSgRulesResp) Reset() {
 	*x = IESgSgRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[42]
+	mi := &file_sgroups_messages_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2918,7 +2918,7 @@ func (x *IESgSgRulesResp) String() string {
 func (*IESgSgRulesResp) ProtoMessage() {}
 
 func (x *IESgSgRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[42]
+	mi := &file_sgroups_messages_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2931,7 +2931,7 @@ func (x *IESgSgRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgRulesResp.ProtoReflect.Descriptor instead.
 func (*IESgSgRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{42}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *IESgSgRulesResp) GetRules() []*IESgSgRule {
@@ -2954,7 +2954,7 @@ type FindIESgSgIcmpRulesReq struct {
 
 func (x *FindIESgSgIcmpRulesReq) Reset() {
 	*x = FindIESgSgIcmpRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[43]
+	mi := &file_sgroups_messages_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2966,7 +2966,7 @@ func (x *FindIESgSgIcmpRulesReq) String() string {
 func (*FindIESgSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindIESgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[43]
+	mi := &file_sgroups_messages_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2979,7 +2979,7 @@ func (x *FindIESgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIESgSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIESgSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{43}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *FindIESgSgIcmpRulesReq) GetSG() []string {
@@ -3007,7 +3007,7 @@ type IESgSgIcmpRulesResp struct {
 
 func (x *IESgSgIcmpRulesResp) Reset() {
 	*x = IESgSgIcmpRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[44]
+	mi := &file_sgroups_messages_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3019,7 +3019,7 @@ func (x *IESgSgIcmpRulesResp) String() string {
 func (*IESgSgIcmpRulesResp) ProtoMessage() {}
 
 func (x *IESgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[44]
+	mi := &file_sgroups_messages_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3032,7 +3032,7 @@ func (x *IESgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*IESgSgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{44}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *IESgSgIcmpRulesResp) GetRules() []*IESgSgIcmpRule {
@@ -3053,7 +3053,7 @@ type FindIECidrSgIcmpRulesReq struct {
 
 func (x *FindIECidrSgIcmpRulesReq) Reset() {
 	*x = FindIECidrSgIcmpRulesReq{}
-	mi := &file_sgroups_api_proto_msgTypes[45]
+	mi := &file_sgroups_messages_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3065,7 +3065,7 @@ func (x *FindIECidrSgIcmpRulesReq) String() string {
 func (*FindIECidrSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindIECidrSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[45]
+	mi := &file_sgroups_messages_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3078,7 +3078,7 @@ func (x *FindIECidrSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIECidrSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIECidrSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{45}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *FindIECidrSgIcmpRulesReq) GetSG() []string {
@@ -3099,7 +3099,7 @@ type IECidrSgIcmpRulesResp struct {
 
 func (x *IECidrSgIcmpRulesResp) Reset() {
 	*x = IECidrSgIcmpRulesResp{}
-	mi := &file_sgroups_api_proto_msgTypes[46]
+	mi := &file_sgroups_messages_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3111,7 +3111,7 @@ func (x *IECidrSgIcmpRulesResp) String() string {
 func (*IECidrSgIcmpRulesResp) ProtoMessage() {}
 
 func (x *IECidrSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[46]
+	mi := &file_sgroups_messages_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3124,7 +3124,7 @@ func (x *IECidrSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IECidrSgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*IECidrSgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{46}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *IECidrSgIcmpRulesResp) GetRules() []*IECidrSgIcmpRule {
@@ -3145,7 +3145,7 @@ type GetSecGroupForAddressReq struct {
 
 func (x *GetSecGroupForAddressReq) Reset() {
 	*x = GetSecGroupForAddressReq{}
-	mi := &file_sgroups_api_proto_msgTypes[47]
+	mi := &file_sgroups_messages_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3157,7 +3157,7 @@ func (x *GetSecGroupForAddressReq) String() string {
 func (*GetSecGroupForAddressReq) ProtoMessage() {}
 
 func (x *GetSecGroupForAddressReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[47]
+	mi := &file_sgroups_messages_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3170,7 +3170,7 @@ func (x *GetSecGroupForAddressReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSecGroupForAddressReq.ProtoReflect.Descriptor instead.
 func (*GetSecGroupForAddressReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{47}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *GetSecGroupForAddressReq) GetAddress() string {
@@ -3180,12 +3180,65 @@ func (x *GetSecGroupForAddressReq) GetAddress() string {
 	return ""
 }
 
+// GetSecGroupForHostReq: req to get Security Group by host info
+type GetSecGroupForHostReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	HostUuid      string                 `protobuf:"bytes,1,opt,name=host_uuid,json=hostUuid,proto3" json:"host_uuid,omitempty"`
+	HostName      string                 `protobuf:"bytes,2,opt,name=host_name,json=hostName,proto3" json:"host_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSecGroupForHostReq) Reset() {
+	*x = GetSecGroupForHostReq{}
+	mi := &file_sgroups_messages_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSecGroupForHostReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSecGroupForHostReq) ProtoMessage() {}
+
+func (x *GetSecGroupForHostReq) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSecGroupForHostReq.ProtoReflect.Descriptor instead.
+func (*GetSecGroupForHostReq) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *GetSecGroupForHostReq) GetHostUuid() string {
+	if x != nil {
+		return x.HostUuid
+	}
+	return ""
+}
+
+func (x *GetSecGroupForHostReq) GetHostName() string {
+	if x != nil {
+		return x.HostName
+	}
+	return ""
+}
+
 // Host: represents a host with its name, UUID, and IPs related to Security Group(s)
 type Host struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	SgNames       []string               `protobuf:"bytes,3,rep,name=sg_names,json=sgNames,proto3" json:"sg_names,omitempty"`
+	SgName        string                 `protobuf:"bytes,3,opt,name=sg_name,json=sgName,proto3" json:"sg_name,omitempty"`
 	IpList        *IPList                `protobuf:"bytes,4,opt,name=ip_list,json=ipList,proto3" json:"ip_list,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -3193,7 +3246,7 @@ type Host struct {
 
 func (x *Host) Reset() {
 	*x = Host{}
-	mi := &file_sgroups_api_proto_msgTypes[48]
+	mi := &file_sgroups_messages_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3205,7 +3258,7 @@ func (x *Host) String() string {
 func (*Host) ProtoMessage() {}
 
 func (x *Host) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[48]
+	mi := &file_sgroups_messages_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3218,7 +3271,7 @@ func (x *Host) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Host.ProtoReflect.Descriptor instead.
 func (*Host) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{48}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *Host) GetName() string {
@@ -3235,11 +3288,11 @@ func (x *Host) GetUuid() string {
 	return ""
 }
 
-func (x *Host) GetSgNames() []string {
+func (x *Host) GetSgName() string {
 	if x != nil {
-		return x.SgNames
+		return x.SgName
 	}
-	return nil
+	return ""
 }
 
 func (x *Host) GetIpList() *IPList {
@@ -3259,7 +3312,7 @@ type HostList struct {
 
 func (x *HostList) Reset() {
 	*x = HostList{}
-	mi := &file_sgroups_api_proto_msgTypes[49]
+	mi := &file_sgroups_messages_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3271,7 +3324,7 @@ func (x *HostList) String() string {
 func (*HostList) ProtoMessage() {}
 
 func (x *HostList) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[49]
+	mi := &file_sgroups_messages_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3284,7 +3337,7 @@ func (x *HostList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HostList.ProtoReflect.Descriptor instead.
 func (*HostList) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{49}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *HostList) GetHosts() []*Host {
@@ -3304,7 +3357,7 @@ type IPList struct {
 
 func (x *IPList) Reset() {
 	*x = IPList{}
-	mi := &file_sgroups_api_proto_msgTypes[50]
+	mi := &file_sgroups_messages_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3316,7 +3369,7 @@ func (x *IPList) String() string {
 func (*IPList) ProtoMessage() {}
 
 func (x *IPList) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[50]
+	mi := &file_sgroups_messages_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3329,7 +3382,7 @@ func (x *IPList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IPList.ProtoReflect.Descriptor instead.
 func (*IPList) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{50}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *IPList) GetIPs() []string {
@@ -3355,7 +3408,7 @@ type FindHostsReq struct {
 
 func (x *FindHostsReq) Reset() {
 	*x = FindHostsReq{}
-	mi := &file_sgroups_api_proto_msgTypes[51]
+	mi := &file_sgroups_messages_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3367,7 +3420,7 @@ func (x *FindHostsReq) String() string {
 func (*FindHostsReq) ProtoMessage() {}
 
 func (x *FindHostsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[51]
+	mi := &file_sgroups_messages_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3380,7 +3433,7 @@ func (x *FindHostsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindHostsReq.ProtoReflect.Descriptor instead.
 func (*FindHostsReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{51}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *FindHostsReq) GetCriteria() isFindHostsReq_Criteria {
@@ -3461,8 +3514,8 @@ type AgentInfoReq struct {
 	Secret *v1.SecretData `protobuf:"bytes,1,opt,name=secret,proto3" json:"secret,omitempty"`
 	// list of IPs related to host
 	IpList *IPList `protobuf:"bytes,2,opt,name=ip_list,json=ipList,proto3" json:"ip_list,omitempty"`
-	// list of Security Groups related to host
-	SgNames []string `protobuf:"bytes,3,rep,name=sg_names,json=sgNames,proto3" json:"sg_names,omitempty"`
+	// SG related to host
+	SgName string `protobuf:"bytes,3,opt,name=sg_name,json=sgName,proto3" json:"sg_name,omitempty"`
 	// address to connect to agent
 	AgentAddress  string `protobuf:"bytes,4,opt,name=agent_address,json=agentAddress,proto3" json:"agent_address,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -3471,7 +3524,7 @@ type AgentInfoReq struct {
 
 func (x *AgentInfoReq) Reset() {
 	*x = AgentInfoReq{}
-	mi := &file_sgroups_api_proto_msgTypes[52]
+	mi := &file_sgroups_messages_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3483,7 +3536,7 @@ func (x *AgentInfoReq) String() string {
 func (*AgentInfoReq) ProtoMessage() {}
 
 func (x *AgentInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[52]
+	mi := &file_sgroups_messages_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3496,7 +3549,7 @@ func (x *AgentInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AgentInfoReq.ProtoReflect.Descriptor instead.
 func (*AgentInfoReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{52}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *AgentInfoReq) GetSecret() *v1.SecretData {
@@ -3513,11 +3566,11 @@ func (x *AgentInfoReq) GetIpList() *IPList {
 	return nil
 }
 
-func (x *AgentInfoReq) GetSgNames() []string {
+func (x *AgentInfoReq) GetSgName() string {
 	if x != nil {
-		return x.SgNames
+		return x.SgName
 	}
-	return nil
+	return ""
 }
 
 func (x *AgentInfoReq) GetAgentAddress() string {
@@ -3541,7 +3594,7 @@ type RegisterHostReq struct {
 
 func (x *RegisterHostReq) Reset() {
 	*x = RegisterHostReq{}
-	mi := &file_sgroups_api_proto_msgTypes[53]
+	mi := &file_sgroups_messages_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3553,7 +3606,7 @@ func (x *RegisterHostReq) String() string {
 func (*RegisterHostReq) ProtoMessage() {}
 
 func (x *RegisterHostReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[53]
+	mi := &file_sgroups_messages_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3566,7 +3619,7 @@ func (x *RegisterHostReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterHostReq.ProtoReflect.Descriptor instead.
 func (*RegisterHostReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{53}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *RegisterHostReq) GetMethod() isRegisterHostReq_Method {
@@ -3622,7 +3675,7 @@ type DeleteHostReq struct {
 
 func (x *DeleteHostReq) Reset() {
 	*x = DeleteHostReq{}
-	mi := &file_sgroups_api_proto_msgTypes[54]
+	mi := &file_sgroups_messages_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3634,7 +3687,7 @@ func (x *DeleteHostReq) String() string {
 func (*DeleteHostReq) ProtoMessage() {}
 
 func (x *DeleteHostReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[54]
+	mi := &file_sgroups_messages_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3647,7 +3700,7 @@ func (x *DeleteHostReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteHostReq.ProtoReflect.Descriptor instead.
 func (*DeleteHostReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{54}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *DeleteHostReq) GetHost() *Host {
@@ -3660,15 +3713,16 @@ func (x *DeleteHostReq) GetHost() *Host {
 // UpdateHostIPReq update IP set for a specific host
 type UpdateHostIPReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	HostName      string                 `protobuf:"bytes,1,opt,name=host_name,json=hostName,proto3" json:"host_name,omitempty"`
-	IpSet         *IPList                `protobuf:"bytes,2,opt,name=ip_set,json=ipSet,proto3" json:"ip_set,omitempty"`
+	HostUuid      string                 `protobuf:"bytes,1,opt,name=host_uuid,json=hostUuid,proto3" json:"host_uuid,omitempty"`
+	HostName      string                 `protobuf:"bytes,2,opt,name=host_name,json=hostName,proto3" json:"host_name,omitempty"`
+	IpSet         *IPList                `protobuf:"bytes,3,opt,name=ip_set,json=ipSet,proto3" json:"ip_set,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UpdateHostIPReq) Reset() {
 	*x = UpdateHostIPReq{}
-	mi := &file_sgroups_api_proto_msgTypes[55]
+	mi := &file_sgroups_messages_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3680,7 +3734,7 @@ func (x *UpdateHostIPReq) String() string {
 func (*UpdateHostIPReq) ProtoMessage() {}
 
 func (x *UpdateHostIPReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[55]
+	mi := &file_sgroups_messages_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3693,7 +3747,14 @@ func (x *UpdateHostIPReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateHostIPReq.ProtoReflect.Descriptor instead.
 func (*UpdateHostIPReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{55}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{56}
+}
+
+func (x *UpdateHostIPReq) GetHostUuid() string {
+	if x != nil {
+		return x.HostUuid
+	}
+	return ""
 }
 
 func (x *UpdateHostIPReq) GetHostName() string {
@@ -3719,7 +3780,7 @@ type FindHostsReq_NoFilter struct {
 
 func (x *FindHostsReq_NoFilter) Reset() {
 	*x = FindHostsReq_NoFilter{}
-	mi := &file_sgroups_api_proto_msgTypes[56]
+	mi := &file_sgroups_messages_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3731,7 +3792,7 @@ func (x *FindHostsReq_NoFilter) String() string {
 func (*FindHostsReq_NoFilter) ProtoMessage() {}
 
 func (x *FindHostsReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[56]
+	mi := &file_sgroups_messages_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3744,7 +3805,7 @@ func (x *FindHostsReq_NoFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindHostsReq_NoFilter.ProtoReflect.Descriptor instead.
 func (*FindHostsReq_NoFilter) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{51, 0}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{52, 0}
 }
 
 // Filter by unique identifiers
@@ -3757,7 +3818,7 @@ type FindHostsReq_ByUID struct {
 
 func (x *FindHostsReq_ByUID) Reset() {
 	*x = FindHostsReq_ByUID{}
-	mi := &file_sgroups_api_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3769,7 +3830,7 @@ func (x *FindHostsReq_ByUID) String() string {
 func (*FindHostsReq_ByUID) ProtoMessage() {}
 
 func (x *FindHostsReq_ByUID) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3782,7 +3843,7 @@ func (x *FindHostsReq_ByUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindHostsReq_ByUID.ProtoReflect.Descriptor instead.
 func (*FindHostsReq_ByUID) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{51, 1}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{52, 1}
 }
 
 func (x *FindHostsReq_ByUID) GetUIDs() []string {
@@ -3802,7 +3863,7 @@ type FindHostsReq_ByHostName struct {
 
 func (x *FindHostsReq_ByHostName) Reset() {
 	*x = FindHostsReq_ByHostName{}
-	mi := &file_sgroups_api_proto_msgTypes[58]
+	mi := &file_sgroups_messages_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3814,7 +3875,7 @@ func (x *FindHostsReq_ByHostName) String() string {
 func (*FindHostsReq_ByHostName) ProtoMessage() {}
 
 func (x *FindHostsReq_ByHostName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[58]
+	mi := &file_sgroups_messages_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3827,7 +3888,7 @@ func (x *FindHostsReq_ByHostName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindHostsReq_ByHostName.ProtoReflect.Descriptor instead.
 func (*FindHostsReq_ByHostName) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{51, 2}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{52, 2}
 }
 
 func (x *FindHostsReq_ByHostName) GetNames() []string {
@@ -3847,7 +3908,7 @@ type FindHostsReq_BySG struct {
 
 func (x *FindHostsReq_BySG) Reset() {
 	*x = FindHostsReq_BySG{}
-	mi := &file_sgroups_api_proto_msgTypes[59]
+	mi := &file_sgroups_messages_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3859,7 +3920,7 @@ func (x *FindHostsReq_BySG) String() string {
 func (*FindHostsReq_BySG) ProtoMessage() {}
 
 func (x *FindHostsReq_BySG) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_api_proto_msgTypes[59]
+	mi := &file_sgroups_messages_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3872,7 +3933,7 @@ func (x *FindHostsReq_BySG) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindHostsReq_BySG.ProtoReflect.Descriptor instead.
 func (*FindHostsReq_BySG) Descriptor() ([]byte, []int) {
-	return file_sgroups_api_proto_rawDescGZIP(), []int{51, 3}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{52, 3}
 }
 
 func (x *FindHostsReq_BySG) GetNames() []string {
@@ -3882,11 +3943,11 @@ func (x *FindHostsReq_BySG) GetNames() []string {
 	return nil
 }
 
-var File_sgroups_api_proto protoreflect.FileDescriptor
+var File_sgroups_messages_proto protoreflect.FileDescriptor
 
-const file_sgroups_api_proto_rawDesc = "" +
+const file_sgroups_messages_proto_rawDesc = "" +
 	"\n" +
-	"\x11sgroups/api.proto\x12\x0ehbf.v2.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x19common/ip-transport.proto\x1a\x17agent/v1/messages.proto\"]\n" +
+	"\x16sgroups/messages.proto\x12\x0ehbf.v2.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x19common/ip-transport.proto\x1a\x17agent/v1/messages.proto\"]\n" +
 	"\aNetwork\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x120\n" +
 	"\anetwork\x18\x02 \x01(\v2\x16.common.Networks.NetIPR\anetwork:\f\x92A\t\n" +
@@ -4098,11 +4159,15 @@ const file_sgroups_api_proto_rawDesc = "" +
 	"\x18GetSecGroupForAddressReq\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress:\x0f\x92A\f\n" +
 	"\n" +
-	"\xd2\x01\aaddress\"z\n" +
+	"\xd2\x01\aaddress\"p\n" +
+	"\x15GetSecGroupForHostReq\x12\x1b\n" +
+	"\thost_uuid\x18\x01 \x01(\tR\bhostUuid\x12\x1b\n" +
+	"\thost_name\x18\x02 \x01(\tR\bhostName:\x1d\x92A\x1a\n" +
+	"\x18\xd2\x01\thost_uuid\xd2\x01\thost_name\"x\n" +
 	"\x04Host\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x19\n" +
-	"\bsg_names\x18\x03 \x03(\tR\asgNames\x12/\n" +
+	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x17\n" +
+	"\asg_name\x18\x03 \x01(\tR\x06sgName\x12/\n" +
 	"\aip_list\x18\x04 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\"6\n" +
 	"\bHostList\x12*\n" +
 	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts\"\x1a\n" +
@@ -4125,68 +4190,45 @@ const file_sgroups_api_proto_rawDesc = "" +
 	"\x04BySG\x12\x14\n" +
 	"\x05names\x18\x01 \x03(\tR\x05namesB\n" +
 	"\n" +
-	"\bcriteria\"\xb1\x01\n" +
+	"\bcriteria\"\xaf\x01\n" +
 	"\fAgentInfoReq\x120\n" +
 	"\x06secret\x18\x01 \x01(\v2\x18.hbf.v1.agent.SecretDataR\x06secret\x12/\n" +
-	"\aip_list\x18\x02 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\x12\x19\n" +
-	"\bsg_names\x18\x03 \x03(\tR\asgNames\x12#\n" +
+	"\aip_list\x18\x02 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\x12\x17\n" +
+	"\asg_name\x18\x03 \x01(\tR\x06sgName\x12#\n" +
 	"\ragent_address\x18\x04 \x01(\tR\fagentAddress\"\x88\x01\n" +
 	"\x0fRegisterHostReq\x12.\n" +
 	"\x06direct\x18\x01 \x01(\v2\x14.hbf.v2.sgroups.HostH\x00R\x06direct\x12;\n" +
 	"\tvia_agent\x18\x02 \x01(\v2\x1c.hbf.v2.sgroups.AgentInfoReqH\x00R\bviaAgentB\b\n" +
 	"\x06method\"9\n" +
 	"\rDeleteHostReq\x12(\n" +
-	"\x04host\x18\x01 \x01(\v2\x14.hbf.v2.sgroups.HostR\x04host\"\xb7\x01\n" +
+	"\x04host\x18\x01 \x01(\v2\x14.hbf.v2.sgroups.HostR\x04host\"\xe0\x01\n" +
 	"\x0fUpdateHostIPReq\x12\x1b\n" +
-	"\thost_name\x18\x01 \x01(\tR\bhostName\x12-\n" +
-	"\x06ip_set\x18\x02 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x05ipSet:X\x92AU\n" +
-	"S*\x0fUpdateHostIPReq24UpdateHostIPReq - updates IP set for a specific host\xd2\x01\thost_name*-\n" +
+	"\thost_uuid\x18\x01 \x01(\tR\bhostUuid\x12\x1b\n" +
+	"\thost_name\x18\x02 \x01(\tR\bhostName\x12-\n" +
+	"\x06ip_set\x18\x03 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x05ipSet:d\x92Aa\n" +
+	"_*\x0fUpdateHostIPReq24UpdateHostIPReq - updates IP set for a specific host\xd2\x01\thost_uuid\xd2\x01\thost_name*-\n" +
 	"\n" +
 	"RuleAction\x12\t\n" +
 	"\x05UNDEF\x10\x00\x12\b\n" +
 	"\x04DROP\x10\x01\x12\n" +
 	"\n" +
-	"\x06ACCEPT\x10\x022\x83\x1a\n" +
-	"\x0fSecGroupService\x12j\n" +
-	"\x04Sync\x12\x17.hbf.v2.sgroups.SyncReq\x1a\x16.google.protobuf.Empty\"1\x92A\x1b\x1a\x19Sync: makes changes in DB\x82\xd3\xe4\x93\x02\r:\x01*\"\b/v2/sync\x12\x92\x01\n" +
-	"\n" +
-	"SyncStatus\x12\x16.google.protobuf.Empty\x1a\x1e.hbf.v2.sgroups.SyncStatusResp\"L\x92A2\x1a0SyncStatus: gets last succeeded update DB status\x82\xd3\xe4\x93\x02\x11\x12\x0f/v2/sync/status\x12J\n" +
-	"\fSyncStatuses\x12\x16.google.protobuf.Empty\x1a\x1e.hbf.v2.sgroups.SyncStatusResp\"\x000\x01\x12\x97\x01\n" +
-	"\fListNetworks\x12\x1f.hbf.v2.sgroups.ListNetworksReq\x1a .hbf.v2.sgroups.ListNetworksResp\"D\x92A%\x1a#ListNetworks: shows list of Network\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v2/list-networks\x12\xbe\x01\n" +
-	"\x12ListSecurityGroups\x12%.hbf.v2.sgroups.ListSecurityGroupsReq\x1a&.hbf.v2.sgroups.ListSecurityGroupsResp\"Y\x92A3\x1a1ListSecurityGroups: shows list of Security Groups\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v2/list-security-groups\x12\xa1\x01\n" +
-	"\fGetSgSubnets\x12\x1f.hbf.v2.sgroups.GetSgSubnetsReq\x1a .hbf.v2.sgroups.GetSgSubnetsResp\"N\x92A+\x1a)GetSgSubnets: gets Networks related to SG\x82\xd3\xe4\x93\x02\x1a\x12\x18/v2/sg/{sg_name}/subnets\x12\xba\x01\n" +
-	"\rFindSgSgRules\x12 .hbf.v2.sgroups.FindSgSgRulesReq\x1a\x1d.hbf.v2.sgroups.SgSgRulesResp\"h\x92AK\x1aIFindSgSgRules: finds SG-SG Rule(s) scoped by variety pairs 'SG '->'to SG'\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v2/sg-sg-rules\x12\xad\x01\n" +
-	"\rFindFqdnRules\x12 .hbf.v2.sgroups.FindFqdnRulesReq\x1a\x1d.hbf.v2.sgroups.FqdnRulesResp\"[\x92A?\x1a=FindFqgnRules: finds FQDN Rule(s) scoped by variety SG 'from'\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v2/fqdn-rules\x12\xb4\x01\n" +
-	"\x0fFindSgIcmpRules\x12\".hbf.v2.sgroups.FindSgIcmpRulesReq\x1a\x1f.hbf.v2.sgroups.SgIcmpRulesResp\"\\\x92A=\x1a;FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v2/sg-icmp-rules\x12\xcb\x01\n" +
-	"\x11FindSgSgIcmpRules\x12$.hbf.v2.sgroups.FindSgSgIcmpRulesReq\x1a!.hbf.v2.sgroups.SgSgIcmpRulesResp\"m\x92AK\x1aIFindSgSgIcmpRules: finds SG-SG:ICMP Rule(s) scoped by variety SG<FROM-TO>\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v2/sg-sg-icmp-rules\x12\xd0\x01\n" +
-	"\x11FindIECidrSgRules\x12$.hbf.v2.sgroups.FindIECidrSgRulesReq\x1a!.hbf.v2.sgroups.IECidrSgRulesResp\"r\x92AP\x1aNFindIECidrSgRules: finds CIDR-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v2/ie-cidr-sg-rules\x12\xce\x01\n" +
-	"\x0fFindIESgSgRules\x12\".hbf.v2.sgroups.FindIESgSgRulesReq\x1a\x1f.hbf.v2.sgroups.IESgSgRulesResp\"v\x92AV\x1aTFindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-<FROM|TO>\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v2/ie-sg-sg-rules\x12\xe7\x01\n" +
-	"\x13FindIESgSgIcmpRules\x12&.hbf.v2.sgroups.FindIESgSgIcmpRulesReq\x1a#.hbf.v2.sgroups.IESgSgIcmpRulesResp\"\x82\x01\x92A]\x1a[FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-<FROM|TO>\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v2/ie-sg-sg-icmp-rules\x12\xeb\x01\n" +
-	"\x15FindIECidrSgIcmpRules\x12(.hbf.v2.sgroups.FindIECidrSgIcmpRulesReq\x1a%.hbf.v2.sgroups.IECidrSgIcmpRulesResp\"\x80\x01\x92AY\x1aWFindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v2/ie-cidr-sg-icmp-rules\x12\xb2\x01\n" +
-	"\x15GetSecGroupForAddress\x12(.hbf.v2.sgroups.GetSecGroupForAddressReq\x1a\x18.hbf.v2.sgroups.SecGroup\"U\x92A:\x1a8GetSecGroupForAddress: gets Security Group by IP or CIDR\x82\xd3\xe4\x93\x02\x12\x12\x10/v2/{address}/sg\x12\x8e\x01\n" +
-	"\tFindHosts\x12\x1c.hbf.v2.sgroups.FindHostsReq\x1a\x18.hbf.v2.sgroups.HostList\"I\x92A-\x1a+FindHosts: finds hosts by variety of scopes\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v2/find-hosts\x12\xa0\x01\n" +
-	"\fRegisterHost\x12\x1f.hbf.v2.sgroups.RegisterHostReq\x1a\x16.google.protobuf.Empty\"W\x92A8\x1a6RegisterHost: creates Host resource and fills it IPSet\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v2/register-host\x12\xa2\x01\n" +
-	"\x0fUpdateHostIPset\x12\x1f.hbf.v2.sgroups.UpdateHostIPReq\x1a\x16.google.protobuf.Empty\"V\x92A3\x1a1UpdateHostIPSet: updates Host ip set by host name\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v2/update-host-ipset\x12\x85\x01\n" +
-	"\n" +
-	"DeleteHost\x12\x1d.hbf.v2.sgroups.DeleteHostReq\x1a\x16.google.protobuf.Empty\"@\x92A#\x1a!DeleteHost: deletes Host resource\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v2/delete-host\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xac\x01\x92Aq\x12\x1a\n" +
-	"\x13Host Based Firewall2\x032.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
-	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
+	"\x06ACCEPT\x10\x02B8Z6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
 var (
-	file_sgroups_api_proto_rawDescOnce sync.Once
-	file_sgroups_api_proto_rawDescData []byte
+	file_sgroups_messages_proto_rawDescOnce sync.Once
+	file_sgroups_messages_proto_rawDescData []byte
 )
 
-func file_sgroups_api_proto_rawDescGZIP() []byte {
-	file_sgroups_api_proto_rawDescOnce.Do(func() {
-		file_sgroups_api_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_sgroups_api_proto_rawDesc), len(file_sgroups_api_proto_rawDesc)))
+func file_sgroups_messages_proto_rawDescGZIP() []byte {
+	file_sgroups_messages_proto_rawDescOnce.Do(func() {
+		file_sgroups_messages_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_sgroups_messages_proto_rawDesc), len(file_sgroups_messages_proto_rawDesc)))
 	})
-	return file_sgroups_api_proto_rawDescData
+	return file_sgroups_messages_proto_rawDescData
 }
 
-var file_sgroups_api_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_sgroups_api_proto_msgTypes = make([]protoimpl.MessageInfo, 60)
-var file_sgroups_api_proto_goTypes = []any{
+var file_sgroups_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_sgroups_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 61)
+var file_sgroups_messages_proto_goTypes = []any{
 	(RuleAction)(0),                      // 0: hbf.v2.sgroups.RuleAction
 	(SecGroup_DefaultAction)(0),          // 1: hbf.v2.sgroups.SecGroup.DefaultAction
 	(SyncReq_SyncOp)(0),                  // 2: hbf.v2.sgroups.SyncReq.SyncOp
@@ -4238,61 +4280,61 @@ var file_sgroups_api_proto_goTypes = []any{
 	(*FindIECidrSgIcmpRulesReq)(nil),     // 48: hbf.v2.sgroups.FindIECidrSgIcmpRulesReq
 	(*IECidrSgIcmpRulesResp)(nil),        // 49: hbf.v2.sgroups.IECidrSgIcmpRulesResp
 	(*GetSecGroupForAddressReq)(nil),     // 50: hbf.v2.sgroups.GetSecGroupForAddressReq
-	(*Host)(nil),                         // 51: hbf.v2.sgroups.Host
-	(*HostList)(nil),                     // 52: hbf.v2.sgroups.HostList
-	(*IPList)(nil),                       // 53: hbf.v2.sgroups.IPList
-	(*FindHostsReq)(nil),                 // 54: hbf.v2.sgroups.FindHostsReq
-	(*AgentInfoReq)(nil),                 // 55: hbf.v2.sgroups.AgentInfoReq
-	(*RegisterHostReq)(nil),              // 56: hbf.v2.sgroups.RegisterHostReq
-	(*DeleteHostReq)(nil),                // 57: hbf.v2.sgroups.DeleteHostReq
-	(*UpdateHostIPReq)(nil),              // 58: hbf.v2.sgroups.UpdateHostIPReq
-	(*FindHostsReq_NoFilter)(nil),        // 59: hbf.v2.sgroups.FindHostsReq.NoFilter
-	(*FindHostsReq_ByUID)(nil),           // 60: hbf.v2.sgroups.FindHostsReq.ByUID
-	(*FindHostsReq_ByHostName)(nil),      // 61: hbf.v2.sgroups.FindHostsReq.ByHostName
-	(*FindHostsReq_BySG)(nil),            // 62: hbf.v2.sgroups.FindHostsReq.BySG
-	(*common.Networks_NetIP)(nil),        // 63: common.Networks.NetIP
-	(common.Networks_NetIP_Transport)(0), // 64: common.Networks.NetIP.Transport
-	(*common.ICMP)(nil),                  // 65: common.ICMP
-	(common.Traffic)(0),                  // 66: common.Traffic
-	(*timestamp.Timestamp)(nil),          // 67: google.protobuf.Timestamp
-	(*v1.SecretData)(nil),                // 68: hbf.v1.agent.SecretData
-	(*empty.Empty)(nil),                  // 69: google.protobuf.Empty
+	(*GetSecGroupForHostReq)(nil),        // 51: hbf.v2.sgroups.GetSecGroupForHostReq
+	(*Host)(nil),                         // 52: hbf.v2.sgroups.Host
+	(*HostList)(nil),                     // 53: hbf.v2.sgroups.HostList
+	(*IPList)(nil),                       // 54: hbf.v2.sgroups.IPList
+	(*FindHostsReq)(nil),                 // 55: hbf.v2.sgroups.FindHostsReq
+	(*AgentInfoReq)(nil),                 // 56: hbf.v2.sgroups.AgentInfoReq
+	(*RegisterHostReq)(nil),              // 57: hbf.v2.sgroups.RegisterHostReq
+	(*DeleteHostReq)(nil),                // 58: hbf.v2.sgroups.DeleteHostReq
+	(*UpdateHostIPReq)(nil),              // 59: hbf.v2.sgroups.UpdateHostIPReq
+	(*FindHostsReq_NoFilter)(nil),        // 60: hbf.v2.sgroups.FindHostsReq.NoFilter
+	(*FindHostsReq_ByUID)(nil),           // 61: hbf.v2.sgroups.FindHostsReq.ByUID
+	(*FindHostsReq_ByHostName)(nil),      // 62: hbf.v2.sgroups.FindHostsReq.ByHostName
+	(*FindHostsReq_BySG)(nil),            // 63: hbf.v2.sgroups.FindHostsReq.BySG
+	(*common.Networks_NetIP)(nil),        // 64: common.Networks.NetIP
+	(common.Networks_NetIP_Transport)(0), // 65: common.Networks.NetIP.Transport
+	(*common.ICMP)(nil),                  // 66: common.ICMP
+	(common.Traffic)(0),                  // 67: common.Traffic
+	(*timestamp.Timestamp)(nil),          // 68: google.protobuf.Timestamp
+	(*v1.SecretData)(nil),                // 69: hbf.v1.agent.SecretData
 }
-var file_sgroups_api_proto_depIdxs = []int32{
-	63, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
+var file_sgroups_messages_proto_depIdxs = []int32{
+	64, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
 	1,  // 1: hbf.v2.sgroups.SecGroup.default_action:type_name -> hbf.v2.sgroups.SecGroup.DefaultAction
-	64, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	65, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 3: hbf.v2.sgroups.SgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 4: hbf.v2.sgroups.SgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 5: hbf.v2.sgroups.SgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	64, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
+	65, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 7: hbf.v2.sgroups.FqdnRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 8: hbf.v2.sgroups.FqdnRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 9: hbf.v2.sgroups.FqdnRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	65, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
+	66, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 11: hbf.v2.sgroups.SgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
-	65, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
+	66, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 13: hbf.v2.sgroups.SgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 14: hbf.v2.sgroups.SgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	64, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	66, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
+	65, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	67, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
 	5,  // 17: hbf.v2.sgroups.IECidrSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 18: hbf.v2.sgroups.IECidrSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 19: hbf.v2.sgroups.IECidrSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	66, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
-	65, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
+	67, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
+	66, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 22: hbf.v2.sgroups.IECidrSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 23: hbf.v2.sgroups.IECidrSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	64, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	66, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
+	65, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	67, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
 	5,  // 26: hbf.v2.sgroups.IESgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 27: hbf.v2.sgroups.IESgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 28: hbf.v2.sgroups.IESgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	66, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
-	65, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
+	67, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
+	66, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 31: hbf.v2.sgroups.IESgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 32: hbf.v2.sgroups.IESgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	67, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
+	68, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
 	7,  // 34: hbf.v2.sgroups.SyncSgSgRules.rules:type_name -> hbf.v2.sgroups.SgSgRule
 	8,  // 35: hbf.v2.sgroups.SyncFqdnRules.rules:type_name -> hbf.v2.sgroups.FqdnRule
 	4,  // 36: hbf.v2.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v2.sgroups.SecGroup
@@ -4325,72 +4367,34 @@ var file_sgroups_api_proto_depIdxs = []int32{
 	13, // 63: hbf.v2.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgRule
 	14, // 64: hbf.v2.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
 	12, // 65: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
-	53, // 66: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
-	51, // 67: hbf.v2.sgroups.HostList.hosts:type_name -> hbf.v2.sgroups.Host
-	59, // 68: hbf.v2.sgroups.FindHostsReq.none:type_name -> hbf.v2.sgroups.FindHostsReq.NoFilter
-	60, // 69: hbf.v2.sgroups.FindHostsReq.by_uuid:type_name -> hbf.v2.sgroups.FindHostsReq.ByUID
-	61, // 70: hbf.v2.sgroups.FindHostsReq.by_hostname:type_name -> hbf.v2.sgroups.FindHostsReq.ByHostName
-	62, // 71: hbf.v2.sgroups.FindHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.FindHostsReq.BySG
-	68, // 72: hbf.v2.sgroups.AgentInfoReq.secret:type_name -> hbf.v1.agent.SecretData
-	53, // 73: hbf.v2.sgroups.AgentInfoReq.ip_list:type_name -> hbf.v2.sgroups.IPList
-	51, // 74: hbf.v2.sgroups.RegisterHostReq.direct:type_name -> hbf.v2.sgroups.Host
-	55, // 75: hbf.v2.sgroups.RegisterHostReq.via_agent:type_name -> hbf.v2.sgroups.AgentInfoReq
-	51, // 76: hbf.v2.sgroups.DeleteHostReq.host:type_name -> hbf.v2.sgroups.Host
-	53, // 77: hbf.v2.sgroups.UpdateHostIPReq.ip_set:type_name -> hbf.v2.sgroups.IPList
-	30, // 78: hbf.v2.sgroups.SecGroupService.Sync:input_type -> hbf.v2.sgroups.SyncReq
-	69, // 79: hbf.v2.sgroups.SecGroupService.SyncStatus:input_type -> google.protobuf.Empty
-	69, // 80: hbf.v2.sgroups.SecGroupService.SyncStatuses:input_type -> google.protobuf.Empty
-	26, // 81: hbf.v2.sgroups.SecGroupService.ListNetworks:input_type -> hbf.v2.sgroups.ListNetworksReq
-	28, // 82: hbf.v2.sgroups.SecGroupService.ListSecurityGroups:input_type -> hbf.v2.sgroups.ListSecurityGroupsReq
-	31, // 83: hbf.v2.sgroups.SecGroupService.GetSgSubnets:input_type -> hbf.v2.sgroups.GetSgSubnetsReq
-	34, // 84: hbf.v2.sgroups.SecGroupService.FindSgSgRules:input_type -> hbf.v2.sgroups.FindSgSgRulesReq
-	36, // 85: hbf.v2.sgroups.SecGroupService.FindFqdnRules:input_type -> hbf.v2.sgroups.FindFqdnRulesReq
-	38, // 86: hbf.v2.sgroups.SecGroupService.FindSgIcmpRules:input_type -> hbf.v2.sgroups.FindSgIcmpRulesReq
-	40, // 87: hbf.v2.sgroups.SecGroupService.FindSgSgIcmpRules:input_type -> hbf.v2.sgroups.FindSgSgIcmpRulesReq
-	42, // 88: hbf.v2.sgroups.SecGroupService.FindIECidrSgRules:input_type -> hbf.v2.sgroups.FindIECidrSgRulesReq
-	44, // 89: hbf.v2.sgroups.SecGroupService.FindIESgSgRules:input_type -> hbf.v2.sgroups.FindIESgSgRulesReq
-	46, // 90: hbf.v2.sgroups.SecGroupService.FindIESgSgIcmpRules:input_type -> hbf.v2.sgroups.FindIESgSgIcmpRulesReq
-	48, // 91: hbf.v2.sgroups.SecGroupService.FindIECidrSgIcmpRules:input_type -> hbf.v2.sgroups.FindIECidrSgIcmpRulesReq
-	50, // 92: hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress:input_type -> hbf.v2.sgroups.GetSecGroupForAddressReq
-	54, // 93: hbf.v2.sgroups.SecGroupService.FindHosts:input_type -> hbf.v2.sgroups.FindHostsReq
-	56, // 94: hbf.v2.sgroups.SecGroupService.RegisterHost:input_type -> hbf.v2.sgroups.RegisterHostReq
-	58, // 95: hbf.v2.sgroups.SecGroupService.UpdateHostIPset:input_type -> hbf.v2.sgroups.UpdateHostIPReq
-	57, // 96: hbf.v2.sgroups.SecGroupService.DeleteHost:input_type -> hbf.v2.sgroups.DeleteHostReq
-	69, // 97: hbf.v2.sgroups.SecGroupService.Sync:output_type -> google.protobuf.Empty
-	15, // 98: hbf.v2.sgroups.SecGroupService.SyncStatus:output_type -> hbf.v2.sgroups.SyncStatusResp
-	15, // 99: hbf.v2.sgroups.SecGroupService.SyncStatuses:output_type -> hbf.v2.sgroups.SyncStatusResp
-	27, // 100: hbf.v2.sgroups.SecGroupService.ListNetworks:output_type -> hbf.v2.sgroups.ListNetworksResp
-	29, // 101: hbf.v2.sgroups.SecGroupService.ListSecurityGroups:output_type -> hbf.v2.sgroups.ListSecurityGroupsResp
-	32, // 102: hbf.v2.sgroups.SecGroupService.GetSgSubnets:output_type -> hbf.v2.sgroups.GetSgSubnetsResp
-	35, // 103: hbf.v2.sgroups.SecGroupService.FindSgSgRules:output_type -> hbf.v2.sgroups.SgSgRulesResp
-	37, // 104: hbf.v2.sgroups.SecGroupService.FindFqdnRules:output_type -> hbf.v2.sgroups.FqdnRulesResp
-	39, // 105: hbf.v2.sgroups.SecGroupService.FindSgIcmpRules:output_type -> hbf.v2.sgroups.SgIcmpRulesResp
-	41, // 106: hbf.v2.sgroups.SecGroupService.FindSgSgIcmpRules:output_type -> hbf.v2.sgroups.SgSgIcmpRulesResp
-	43, // 107: hbf.v2.sgroups.SecGroupService.FindIECidrSgRules:output_type -> hbf.v2.sgroups.IECidrSgRulesResp
-	45, // 108: hbf.v2.sgroups.SecGroupService.FindIESgSgRules:output_type -> hbf.v2.sgroups.IESgSgRulesResp
-	47, // 109: hbf.v2.sgroups.SecGroupService.FindIESgSgIcmpRules:output_type -> hbf.v2.sgroups.IESgSgIcmpRulesResp
-	49, // 110: hbf.v2.sgroups.SecGroupService.FindIECidrSgIcmpRules:output_type -> hbf.v2.sgroups.IECidrSgIcmpRulesResp
-	4,  // 111: hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress:output_type -> hbf.v2.sgroups.SecGroup
-	52, // 112: hbf.v2.sgroups.SecGroupService.FindHosts:output_type -> hbf.v2.sgroups.HostList
-	69, // 113: hbf.v2.sgroups.SecGroupService.RegisterHost:output_type -> google.protobuf.Empty
-	69, // 114: hbf.v2.sgroups.SecGroupService.UpdateHostIPset:output_type -> google.protobuf.Empty
-	69, // 115: hbf.v2.sgroups.SecGroupService.DeleteHost:output_type -> google.protobuf.Empty
-	97, // [97:116] is the sub-list for method output_type
-	78, // [78:97] is the sub-list for method input_type
+	54, // 66: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
+	52, // 67: hbf.v2.sgroups.HostList.hosts:type_name -> hbf.v2.sgroups.Host
+	60, // 68: hbf.v2.sgroups.FindHostsReq.none:type_name -> hbf.v2.sgroups.FindHostsReq.NoFilter
+	61, // 69: hbf.v2.sgroups.FindHostsReq.by_uuid:type_name -> hbf.v2.sgroups.FindHostsReq.ByUID
+	62, // 70: hbf.v2.sgroups.FindHostsReq.by_hostname:type_name -> hbf.v2.sgroups.FindHostsReq.ByHostName
+	63, // 71: hbf.v2.sgroups.FindHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.FindHostsReq.BySG
+	69, // 72: hbf.v2.sgroups.AgentInfoReq.secret:type_name -> hbf.v1.agent.SecretData
+	54, // 73: hbf.v2.sgroups.AgentInfoReq.ip_list:type_name -> hbf.v2.sgroups.IPList
+	52, // 74: hbf.v2.sgroups.RegisterHostReq.direct:type_name -> hbf.v2.sgroups.Host
+	56, // 75: hbf.v2.sgroups.RegisterHostReq.via_agent:type_name -> hbf.v2.sgroups.AgentInfoReq
+	52, // 76: hbf.v2.sgroups.DeleteHostReq.host:type_name -> hbf.v2.sgroups.Host
+	54, // 77: hbf.v2.sgroups.UpdateHostIPReq.ip_set:type_name -> hbf.v2.sgroups.IPList
+	78, // [78:78] is the sub-list for method output_type
+	78, // [78:78] is the sub-list for method input_type
 	78, // [78:78] is the sub-list for extension type_name
 	78, // [78:78] is the sub-list for extension extendee
 	0,  // [0:78] is the sub-list for field type_name
 }
 
-func init() { file_sgroups_api_proto_init() }
-func file_sgroups_api_proto_init() {
-	if File_sgroups_api_proto != nil {
+func init() { file_sgroups_messages_proto_init() }
+func file_sgroups_messages_proto_init() {
+	if File_sgroups_messages_proto != nil {
 		return
 	}
-	file_sgroups_api_proto_msgTypes[3].OneofWrappers = []any{
+	file_sgroups_messages_proto_msgTypes[3].OneofWrappers = []any{
 		(*RulePriority_Some)(nil),
 	}
-	file_sgroups_api_proto_msgTypes[27].OneofWrappers = []any{
+	file_sgroups_messages_proto_msgTypes[27].OneofWrappers = []any{
 		(*SyncReq_Groups)(nil),
 		(*SyncReq_Networks)(nil),
 		(*SyncReq_SgSgRules)(nil),
@@ -4402,13 +4406,13 @@ func file_sgroups_api_proto_init() {
 		(*SyncReq_IeSgSgIcmpRules)(nil),
 		(*SyncReq_IeCidrSgIcmpRules)(nil),
 	}
-	file_sgroups_api_proto_msgTypes[51].OneofWrappers = []any{
+	file_sgroups_messages_proto_msgTypes[52].OneofWrappers = []any{
 		(*FindHostsReq_None)(nil),
 		(*FindHostsReq_ByUuid)(nil),
 		(*FindHostsReq_ByHostname)(nil),
 		(*FindHostsReq_BySgName)(nil),
 	}
-	file_sgroups_api_proto_msgTypes[53].OneofWrappers = []any{
+	file_sgroups_messages_proto_msgTypes[54].OneofWrappers = []any{
 		(*RegisterHostReq_Direct)(nil),
 		(*RegisterHostReq_ViaAgent)(nil),
 	}
@@ -4416,18 +4420,18 @@ func file_sgroups_api_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_api_proto_rawDesc), len(file_sgroups_api_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_messages_proto_rawDesc), len(file_sgroups_messages_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   60,
+			NumMessages:   61,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
-		GoTypes:           file_sgroups_api_proto_goTypes,
-		DependencyIndexes: file_sgroups_api_proto_depIdxs,
-		EnumInfos:         file_sgroups_api_proto_enumTypes,
-		MessageInfos:      file_sgroups_api_proto_msgTypes,
+		GoTypes:           file_sgroups_messages_proto_goTypes,
+		DependencyIndexes: file_sgroups_messages_proto_depIdxs,
+		EnumInfos:         file_sgroups_messages_proto_enumTypes,
+		MessageInfos:      file_sgroups_messages_proto_msgTypes,
 	}.Build()
-	File_sgroups_api_proto = out.File
-	file_sgroups_api_proto_goTypes = nil
-	file_sgroups_api_proto_depIdxs = nil
+	File_sgroups_messages_proto = out.File
+	file_sgroups_messages_proto_goTypes = nil
+	file_sgroups_messages_proto_depIdxs = nil
 }

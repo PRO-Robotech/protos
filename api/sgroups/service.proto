@@ -1,0 +1,219 @@
+syntax = "proto3";
+
+package hbf.v2.sgroups;
+option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroups";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "sgroups/messages.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Host Based Firewall";
+    version: "2.0";    
+  };
+  external_docs: {
+    url: "https://h-bf.prorobotech.ru";
+    description: "Documentation";
+  }
+  schemes: [HTTP];
+  consumes: "application/json";
+  produces: "application/json";
+};
+
+
+service SecGroupService {
+   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = { 
+       description: "Security Groups API service"
+   };
+
+   rpc Sync(SyncReq) returns (google.protobuf.Empty) {
+     option (google.api.http) = {
+        post: "/v2/sync"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "Sync: makes changes in DB";
+     };
+   }
+
+   rpc SyncStatus(google.protobuf.Empty) returns(SyncStatusResp){
+     option (google.api.http) = {
+        get: "/v2/sync/status"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "SyncStatus: gets last succeeded update DB status";
+     };
+   }
+
+   rpc SyncStatuses(google.protobuf.Empty) returns(stream SyncStatusResp){}
+
+   rpc ListNetworks(ListNetworksReq) returns (ListNetworksResp) {
+     option (google.api.http) = {
+        post: "/v2/list-networks"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "ListNetworks: shows list of Network";
+     };
+   }
+
+   rpc ListSecurityGroups(ListSecurityGroupsReq) returns (ListSecurityGroupsResp) {
+     option (google.api.http) = {
+        post: "/v2/list-security-groups"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "ListSecurityGroups: shows list of Security Groups";
+     };
+   }
+
+   rpc GetSgSubnets(GetSgSubnetsReq) returns (GetSgSubnetsResp){
+     option (google.api.http) = {
+        get: "/v2/sg/{sg_name}/subnets"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "GetSgSubnets: gets Networks related to SG";
+     };
+   };
+
+   rpc FindSgSgRules(FindSgSgRulesReq) returns (SgSgRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/sg-sg-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "FindSgSgRules: finds SG-SG Rule(s) scoped by variety pairs 'SG '->'to SG'";
+     };
+   };
+
+   rpc FindFqdnRules(FindFqdnRulesReq) returns (FqdnRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/fqdn-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "FindFqdnRules: finds FQDN Rule(s) scoped by variety SG 'from'";
+     };
+   };
+
+   rpc FindSgIcmpRules(FindSgIcmpRulesReq) returns (SgIcmpRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/sg-icmp-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG";
+     };
+   };
+
+   rpc FindSgSgIcmpRules(FindSgSgIcmpRulesReq) returns (SgSgIcmpRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/sg-sg-icmp-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "FindSgSgIcmpRules: finds SG-SG:ICMP Rule(s) scoped by variety SG<FROM-TO>";
+     };
+   };
+
+   rpc FindIECidrSgRules(FindIECidrSgRulesReq) returns (IECidrSgRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/ie-cidr-sg-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "FindIECidrSgRules: finds CIDR-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG";
+     };
+   };
+
+   rpc FindIESgSgRules(FindIESgSgRulesReq) returns (IESgSgRulesResp) {
+    option (google.api.http) = {
+        post: "/v2/ie-sg-sg-rules"
+        body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "FindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-<FROM|TO>"
+    };
+   };
+
+   rpc FindIESgSgIcmpRules(FindIESgSgIcmpRulesReq) returns (IESgSgIcmpRulesResp) {
+     option (google.api.http) = {
+       post: "/v2/ie-sg-sg-icmp-rules"
+       body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+       description: "FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-<FROM|TO>"
+     };
+   };
+
+   rpc FindIECidrSgIcmpRules(FindIECidrSgIcmpRulesReq) returns (IECidrSgIcmpRulesResp) {
+     option (google.api.http) = {
+       post: "/v2/ie-cidr-sg-icmp-rules"
+       body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+       description: "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG"
+     };
+   }
+
+   rpc GetSecGroupForAddress(GetSecGroupForAddressReq) returns (SecGroup) {
+     option (google.api.http) = {
+        get: "/v2/{address}/sg"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "GetSecGroupForAddress: gets Security Group by IP or CIDR";
+     };
+   };
+
+   rpc GetSecGroupForHost(GetSecGroupForHostReq) returns (SecGroup) {
+     option (google.api.http) = {
+        get: "/v2/{host_name}/{host_uuid}/sg"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "GetSecGroupForHost: gets Security Group by host info";
+     };
+   };
+
+   rpc FindHosts(FindHostsReq) returns (HostList) {
+     option (google.api.http) = {
+         post: "/v2/find-hosts"
+         body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+         description: "FindHosts: finds hosts by variety of scopes";
+     };
+   };
+
+   rpc RegisterHost(RegisterHostReq) returns (google.protobuf.Empty) {
+     option (google.api.http) = {
+       post: "/v2/register-host"
+       body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+       description: "RegisterHost: creates Host resource and fills it IPSet"
+     };
+   };
+
+   rpc UpdateHostIPset(UpdateHostIPReq) returns (google.protobuf.Empty) {
+     option (google.api.http) = {
+       post: "/v2/update-host-ipset"
+       body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+       description: "UpdateHostIPSet: updates Host ip set by host info"
+     };
+   };
+
+   rpc DeleteHost(DeleteHostReq) returns (google.protobuf.Empty) {
+     option (google.api.http) = {
+       post: "/v2/delete-host"
+       body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+       description: "DeleteHost: deletes Host resource"
+     };
+   };
+}

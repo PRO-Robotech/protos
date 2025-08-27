@@ -11,27 +11,13 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 import "common/ip-transport.proto";
 import "agent/v1/messages.proto";
 
-option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-  info: {
-    title: "Host Based Firewall";
-    version: "2.0";    
-  };
-  external_docs: {
-    url: "https://h-bf.prorobotech.ru";
-    description: "Documentation";
-  }
-  schemes: [HTTP];
-  consumes: "application/json";
-  produces: "application/json";
-};
-
 // Network: represents a named IP network
-message Network {            
+message Network {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["name"]
-    }    
-  };  
+    }
+  };
   //the name of network
   string name = 1;
   //network in CIDR form
@@ -41,9 +27,9 @@ message Network {
 // SecGroup: represents a security group
 message SecGroup {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["name"]
-    }    
+    }
   };
   // DefaultAction: represents default action at end of chains for Security Gpoup
   enum DefaultAction {
@@ -63,7 +49,7 @@ message SecGroup {
   //default_action: represents default rula action
   DefaultAction default_action = 3;
   //trace: set or unset 'nftrace' flag
-  bool trace = 4; 
+  bool trace = 4;
   //logs: switch-{ON|OFF} logs in chain
   bool logs = 5;
   //hosts: names of hosts related to security group
@@ -94,7 +80,7 @@ enum RuleAction {
 message RulePriority {
   oneof value {
     int32 some = 1;
-  }  
+  }
 }
 
 // SgSgRule: represents Security Groups Rule
@@ -109,7 +95,7 @@ message SgSgRule {
    //security group at server
    string sg_to = 2;
    //ip net transport
-   common.Networks.NetIP.Transport transport = 3;   
+   common.Networks.NetIP.Transport transport = 3;
    //access ports set
    repeated AccPorts ports = 4;
    //logs: switch-{ON|OFF} logs in rules
@@ -163,7 +149,7 @@ message SgIcmpRule {
 message SgSgIcmpRule {
   // Security group name
   string sgFrom = 1;
-  // Security group name 
+  // Security group name
   string sgTo = 2;
   // ICMP spec
   common.ICMP ICMP = 3;
@@ -178,18 +164,18 @@ message SgSgIcmpRule {
 }
 
 // CIDR-SG NET-SG Ingress Egress type rule
-message IECidrSgRule {  
+message IECidrSgRule {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
     json_schema: { 
       required: ["CIDR", "SG", "transport", "traffic"]
-    }    
+    }
   };
   // ip net transport [TCP, UDP]
   common.Networks.NetIP.Transport transport = 1;
   // CIDR subnetwork IPv4|IPv6
   string CIDR = 2;
   // SG security group name
-  string SG = 3;  
+  string SG = 3;
   // traffic direction [INGERSS, EGRESS]
   common.Traffic traffic = 4;
   // AccPorts: access port set(s)
@@ -232,9 +218,9 @@ message IECidrSgIcmpRule {
 // SG-SG <in|e>gress type rule
 message IESgSgRule {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: { 
+    json_schema: {
       required: ["SG", "sgLocal", "transport", "traffic"]
-    }    
+    }
   };
   // ip net transport [TCP, UDP]
   common.Networks.NetIP.Transport transport = 1;
@@ -305,13 +291,13 @@ message SyncSecurityGroups{
   repeated SecGroup groups = 1;
 }
 
-// SyncNetworks: subject of Networks to Sync 
+// SyncNetworks: subject of Networks to Sync
 message SyncNetworks{
   // network items
   repeated Network networks = 1;
 }
 
-// SyncSgIcmpRules: subject of SG:ICMP to Sync 
+// SyncSgIcmpRules: subject of SG:ICMP to Sync
 message SyncSgIcmpRules {
   repeated SgIcmpRule rules = 1;
 }
@@ -389,7 +375,7 @@ message SyncReq {
   // sync operation to apply to
   SyncOp sync_op = 1;
   // one of subject
-  oneof subject {      
+  oneof subject {
       // subject of Security Grpup(s)
       SyncSecurityGroups groups = 2;
       // subject of Network(s)
@@ -416,9 +402,9 @@ message SyncReq {
 // GetSgSubnetsReq: req to get Networks related to Security Group
 message GetSgSubnetsReq {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["sgName"]
-    }    
+    }
   };
   // security group name
   string sg_name = 1;
@@ -433,9 +419,9 @@ message GetSgSubnetsResp {
 // GetSgSgRulesReq; req to get Rules scoped by SecGroup pair 'from' --> 'to'
 message GetSgSgRulesReq {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["sgFrom", "sgTo"]
-    }    
+    }
   };
   // name of security groups 'from'
   string sg_from = 1;
@@ -446,9 +432,9 @@ message GetSgSgRulesReq {
 // FindSgSgRulesReq: req to find all SecGroup(s) Rule(s) scoped by variety('from') --> variety('to') SG(s)
 message FindSgSgRulesReq {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["sgFrom", "sgTo"]
-    }    
+    }
   };
   // scope SG name 'from' items
   repeated string sg_from = 1;
@@ -465,12 +451,12 @@ message SgSgRulesResp {
 // FindFqdnRulesReq: req to find all FQDN Rule(s) scoped by variety 'from' SG(s)
 message FindFqdnRulesReq {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["sgFrom"]
-    }    
+    }
   };
   // scope GS name 'from' items
-  repeated string sg_from = 1;  
+  repeated string sg_from = 1;
 }
 
 // FqdnRulesResp: FQDN Rule(s) resp
@@ -482,9 +468,9 @@ message FqdnRulesResp {
 // FindSgIcmpRulesReq: req to find all SG:ICMP Rule(s) scoped by SG(s) variety
 message FindSgIcmpRulesReq {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["SG"]
-    }    
+    }
   };
   // scope GS name item(s)
   repeated string SG = 1;
@@ -499,9 +485,9 @@ message SgIcmpRulesResp {
 // FindSgSgIcmpRulesReq: req to find all SG-SG:ICMP Rule(s) scoped by SG(s) variety
 message FindSgSgIcmpRulesReq {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["sgFrom", "sgTo"]
-    }    
+    }
   };
   // scope SG-from name item(s)
   repeated string sg_from = 1;
@@ -590,19 +576,31 @@ message IECidrSgIcmpRulesResp {
 // GetSecGroupForAddressReq: req to get Security Group by IP or CIDR
 message GetSecGroupForAddressReq{
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {      
+    json_schema: {
       required: ["address"]
-    }    
+    }
   };
   //an IP or CIDR
   string address = 1;
+}
+
+// GetSecGroupForHostReq: req to get Security Group by host info
+message GetSecGroupForHostReq{
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["host_uuid", "host_name"]
+    }
+  };
+
+  string host_uuid = 1;
+  string host_name = 2;
 }
 
 // Host: represents a host with its name, UUID, and IPs related to Security Group(s)
 message Host {
    string name = 1;
    string uuid = 2;
-   repeated string sg_names = 3;
+   string sg_name = 3;
    IPList ip_list = 4;
 }
 
@@ -647,8 +645,8 @@ message AgentInfoReq {
     hbf.v1.agent.SecretData secret = 1;
     // list of IPs related to host
     IPList ip_list = 2;
-    // list of Security Groups related to host
-    repeated string sg_names = 3;
+    // SG related to host
+    string sg_name = 3;
     // address to connect to agent
     string agent_address = 4;
 }
@@ -674,195 +672,10 @@ message UpdateHostIPReq {
       json_schema: {
         title: "UpdateHostIPReq"
         description: "UpdateHostIPReq - updates IP set for a specific host"
-        required: ["host_name"]
+        required: ["host_uuid", "host_name"]
       }
     };
-    string host_name = 1;
-    IPList ip_set = 2;
-}
-
-
-service SecGroupService {   
-   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = { 
-       description: "Security Groups API service"     
-   };
-   
-   rpc Sync(SyncReq) returns (google.protobuf.Empty) {
-     option (google.api.http) = {
-        post: "/v2/sync"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "Sync: makes changes in DB";       
-     };
-   }
-
-   rpc SyncStatus(google.protobuf.Empty) returns(SyncStatusResp){
-     option (google.api.http) = {
-        get: "/v2/sync/status"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "SyncStatus: gets last succeeded update DB status";       
-     };
-   }
-
-   rpc SyncStatuses(google.protobuf.Empty) returns(stream SyncStatusResp){}
-   
-   rpc ListNetworks(ListNetworksReq) returns (ListNetworksResp) {
-     option (google.api.http) = {
-        post: "/v2/list-networks"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "ListNetworks: shows list of Network";       
-     };
-   }
-   
-   rpc ListSecurityGroups(ListSecurityGroupsReq) returns (ListSecurityGroupsResp) {
-     option (google.api.http) = {
-        post: "/v2/list-security-groups"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "ListSecurityGroups: shows list of Security Groups";       
-     };
-   }
-   
-   rpc GetSgSubnets(GetSgSubnetsReq) returns (GetSgSubnetsResp){
-     option (google.api.http) = {
-        get: "/v2/sg/{sg_name}/subnets"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "GetSgSubnets: gets Networks related to SG";       
-     };
-   };
-   
-   rpc FindSgSgRules(FindSgSgRulesReq) returns (SgSgRulesResp) {
-     option (google.api.http) = {
-        post: "/v2/sg-sg-rules"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "FindSgSgRules: finds SG-SG Rule(s) scoped by variety pairs 'SG '->'to SG'";       
-     };
-   };
-
-   rpc FindFqdnRules(FindFqdnRulesReq) returns (FqdnRulesResp) {
-     option (google.api.http) = {
-        post: "/v2/fqdn-rules"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "FindFqgnRules: finds FQDN Rule(s) scoped by variety SG 'from'";       
-     };
-   };
-
-   rpc FindSgIcmpRules(FindSgIcmpRulesReq) returns (SgIcmpRulesResp) {
-     option (google.api.http) = {
-        post: "/v2/sg-icmp-rules"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG";       
-     };
-   };
-
-   rpc FindSgSgIcmpRules(FindSgSgIcmpRulesReq) returns (SgSgIcmpRulesResp) {
-     option (google.api.http) = {
-        post: "/v2/sg-sg-icmp-rules"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "FindSgSgIcmpRules: finds SG-SG:ICMP Rule(s) scoped by variety SG<FROM-TO>";       
-     };
-   };
-
-   rpc FindIECidrSgRules(FindIECidrSgRulesReq) returns (IECidrSgRulesResp) {
-     option (google.api.http) = {
-        post: "/v2/ie-cidr-sg-rules"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "FindIECidrSgRules: finds CIDR-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG";       
-     };
-   };
-
-   rpc FindIESgSgRules(FindIESgSgRulesReq) returns (IESgSgRulesResp) {
-    option (google.api.http) = {
-        post: "/v2/ie-sg-sg-rules"
-        body: "*"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      description: "FindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-<FROM|TO>"
-    };
-   };
-
-   rpc FindIESgSgIcmpRules(FindIESgSgIcmpRulesReq) returns (IESgSgIcmpRulesResp) {
-     option (google.api.http) = {
-       post: "/v2/ie-sg-sg-icmp-rules"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-<FROM|TO>"
-     };
-   };
-
-   rpc FindIECidrSgIcmpRules(FindIECidrSgIcmpRulesReq) returns (IECidrSgIcmpRulesResp) {
-     option (google.api.http) = {
-       post: "/v2/ie-cidr-sg-icmp-rules"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG"
-     };
-   }
-   
-   rpc GetSecGroupForAddress(GetSecGroupForAddressReq) returns (SecGroup) {
-     option (google.api.http) = {
-        get: "/v2/{address}/sg"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "GetSecGroupForAddress: gets Security Group by IP or CIDR";       
-     };
-   };
-
-   rpc FindHosts(FindHostsReq) returns (HostList) {
-     option (google.api.http) = {
-         post: "/v2/find-hosts"
-         body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-         description: "FindHosts: finds hosts by variety of scopes";       
-     };
-   };
-
-   rpc RegisterHost(RegisterHostReq) returns (google.protobuf.Empty) {
-     option (google.api.http) = {
-       post: "/v2/register-host"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "RegisterHost: creates Host resource and fills it IPSet"
-     };
-   };
-
-   rpc UpdateHostIPset(UpdateHostIPReq) returns (google.protobuf.Empty) {
-     option (google.api.http) = {
-       post: "/v2/update-host-ipset"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "UpdateHostIPSet: updates Host ip set by host name"
-     };
-   };
-
-   rpc DeleteHost(DeleteHostReq) returns (google.protobuf.Empty) {
-     option (google.api.http) = {
-       post: "/v2/delete-host"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "DeleteHost: deletes Host resource"
-     };
-   };
+    string host_uuid = 1;
+    string host_name = 2;
+    IPList ip_set = 3;
 }

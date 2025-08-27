@@ -89,7 +89,7 @@
     },
     "/v2/fqdn-rules": {
       "post": {
-        "description": "FindFqgnRules: finds FQDN Rule(s) scoped by variety SG 'from'",
+        "description": "FindFqdnRules: finds FQDN Rule(s) scoped by variety SG 'from'",
         "operationId": "SecGroupService_FindFqdnRules",
         "responses": {
           "200": {
@@ -542,7 +542,7 @@
     },
     "/v2/update-host-ipset": {
       "post": {
-        "description": "UpdateHostIPSet: updates Host ip set by host name",
+        "description": "UpdateHostIPSet: updates Host ip set by host info",
         "operationId": "SecGroupService_UpdateHostIPset",
         "responses": {
           "200": {
@@ -597,6 +597,43 @@
           {
             "name": "address",
             "description": "an IP or CIDR",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/{hostName}/{hostUuid}/sg": {
+      "get": {
+        "description": "GetSecGroupForHost: gets Security Group by host info",
+        "operationId": "SecGroupService_GetSecGroupForHost",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsSecGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hostName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "hostUuid",
             "in": "path",
             "required": true,
             "type": "string"
@@ -797,12 +834,9 @@
           "$ref": "#/definitions/sgroupsIPList",
           "title": "list of IPs related to host"
         },
-        "sgNames": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "list of Security Groups related to host"
+        "sgName": {
+          "type": "string",
+          "title": "SG related to host"
         },
         "agentAddress": {
           "type": "string",
@@ -1078,11 +1112,8 @@
         "uuid": {
           "type": "string"
         },
-        "sgNames": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "sgName": {
+          "type": "string"
         },
         "ipList": {
           "$ref": "#/definitions/sgroupsIPList"
@@ -1854,6 +1885,9 @@
     "sgroupsUpdateHostIPReq": {
       "type": "object",
       "properties": {
+        "hostUuid": {
+          "type": "string"
+        },
         "hostName": {
           "type": "string"
         },
@@ -1864,6 +1898,7 @@
       "description": "UpdateHostIPReq - updates IP set for a specific host",
       "title": "UpdateHostIPReq",
       "required": [
+        "hostUuid",
         "hostName"
       ]
     }
