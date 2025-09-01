@@ -604,8 +604,8 @@ message Host {
    IPList ip_list = 4;
 }
 
-// ListHostResp: returned list of hosts
-message ListHostResp {
+// ListHostsResp: returned list of hosts
+message ListHostsResp {
    repeated Host hosts = 1;
 }
 

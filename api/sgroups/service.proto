@@ -177,7 +177,7 @@ service SecGroupService {
      };
    };
 
-   rpc ListHosts(ListHostsReq) returns (ListHostResp) {
+   rpc ListHosts(ListHostsReq) returns (ListHostsResp) {
      option (google.api.http) = {
          post: "/v2/list-hosts"
          body: "*"
