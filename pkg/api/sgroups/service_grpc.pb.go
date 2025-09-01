@@ -62,7 +62,7 @@ type SecGroupServiceClient interface {
 	FindIECidrSgIcmpRules(ctx context.Context, in *FindIECidrSgIcmpRulesReq, opts ...grpc.CallOption) (*IECidrSgIcmpRulesResp, error)
 	GetSecGroupForAddress(ctx context.Context, in *GetSecGroupForAddressReq, opts ...grpc.CallOption) (*SecGroup, error)
 	GetSecGroupForHost(ctx context.Context, in *GetSecGroupForHostReq, opts ...grpc.CallOption) (*SecGroup, error)
-	ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostResp, error)
+	ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostsResp, error)
 	RegisterHost(ctx context.Context, in *RegisterHostReq, opts ...grpc.CallOption) (*empty.Empty, error)
 	UpdateHostIPset(ctx context.Context, in *UpdateHostIPReq, opts ...grpc.CallOption) (*empty.Empty, error)
 	DeleteHost(ctx context.Context, in *DeleteHostReq, opts ...grpc.CallOption) (*empty.Empty, error)
@@ -245,9 +245,9 @@ func (c *secGroupServiceClient) GetSecGroupForHost(ctx context.Context, in *GetS
 	return out, nil
 }
 
-func (c *secGroupServiceClient) ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostResp, error) {
+func (c *secGroupServiceClient) ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostsResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListHostResp)
+	out := new(ListHostsResp)
 	err := c.cc.Invoke(ctx, SecGroupService_ListHosts_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -305,7 +305,7 @@ type SecGroupServiceServer interface {
 	FindIECidrSgIcmpRules(context.Context, *FindIECidrSgIcmpRulesReq) (*IECidrSgIcmpRulesResp, error)
 	GetSecGroupForAddress(context.Context, *GetSecGroupForAddressReq) (*SecGroup, error)
 	GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error)
-	ListHosts(context.Context, *ListHostsReq) (*ListHostResp, error)
+	ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error)
 	RegisterHost(context.Context, *RegisterHostReq) (*empty.Empty, error)
 	UpdateHostIPset(context.Context, *UpdateHostIPReq) (*empty.Empty, error)
 	DeleteHost(context.Context, *DeleteHostReq) (*empty.Empty, error)
@@ -367,7 +367,7 @@ func (UnimplementedSecGroupServiceServer) GetSecGroupForAddress(context.Context,
 func (UnimplementedSecGroupServiceServer) GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSecGroupForHost not implemented")
 }
-func (UnimplementedSecGroupServiceServer) ListHosts(context.Context, *ListHostsReq) (*ListHostResp, error) {
+func (UnimplementedSecGroupServiceServer) ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListHosts not implemented")
 }
 func (UnimplementedSecGroupServiceServer) RegisterHost(context.Context, *RegisterHostReq) (*empty.Empty, error) {

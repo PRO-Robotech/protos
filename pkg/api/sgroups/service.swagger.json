@@ -227,7 +227,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/sgroupsListHostResp"
+              "$ref": "#/definitions/sgroupsListHostsResp"
             }
           },
           "default": {
@@ -1363,19 +1363,6 @@
       },
       "title": "IPList : list of hosts IPs"
     },
-    "sgroupsListHostResp": {
-      "type": "object",
-      "properties": {
-        "hosts": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sgroupsHost"
-          }
-        }
-      },
-      "title": "ListHostResp: returned list of hosts"
-    },
     "sgroupsListHostsReq": {
       "type": "object",
       "properties": {
@@ -1393,6 +1380,19 @@
         }
       },
       "title": "ListHostsReq: request to find hosts by variety of scopes"
+    },
+    "sgroupsListHostsResp": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsHost"
+          }
+        }
+      },
+      "title": "ListHostsResp: returned list of hosts"
     },
     "sgroupsListNetworksReq": {
       "type": "object",

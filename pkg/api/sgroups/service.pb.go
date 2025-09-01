@@ -27,7 +27,7 @@ var File_sgroups_service_proto protoreflect.FileDescriptor
 
 const file_sgroups_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15sgroups/service.proto\x12\x0ehbf.v2.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x16sgroups/messages.proto2\xbf\x1b\n" +
+	"\x15sgroups/service.proto\x12\x0ehbf.v2.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x16sgroups/messages.proto2\xc0\x1b\n" +
 	"\x0fSecGroupService\x12j\n" +
 	"\x04Sync\x12\x17.hbf.v2.sgroups.SyncReq\x1a\x16.google.protobuf.Empty\"1\x92A\x1b\x1a\x19Sync: makes changes in DB\x82\xd3\xe4\x93\x02\r:\x01*\"\b/v2/sync\x12\x92\x01\n" +
 	"\n" +
@@ -45,8 +45,8 @@ const file_sgroups_service_proto_rawDesc = "" +
 	"\x13FindIESgSgIcmpRules\x12&.hbf.v2.sgroups.FindIESgSgIcmpRulesReq\x1a#.hbf.v2.sgroups.IESgSgIcmpRulesResp\"\x82\x01\x92A]\x1a[FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-<FROM|TO>\x82\xd3\xe4\x93\x02\x1c:\x01*\"\x17/v2/ie-sg-sg-icmp-rules\x12\xeb\x01\n" +
 	"\x15FindIECidrSgIcmpRules\x12(.hbf.v2.sgroups.FindIECidrSgIcmpRulesReq\x1a%.hbf.v2.sgroups.IECidrSgIcmpRulesResp\"\x80\x01\x92AY\x1aWFindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v2/ie-cidr-sg-icmp-rules\x12\xb2\x01\n" +
 	"\x15GetSecGroupForAddress\x12(.hbf.v2.sgroups.GetSecGroupForAddressReq\x1a\x18.hbf.v2.sgroups.SecGroup\"U\x92A:\x1a8GetSecGroupForAddress: gets Security Group by IP or CIDR\x82\xd3\xe4\x93\x02\x12\x12\x10/v2/{address}/sg\x12\xb6\x01\n" +
-	"\x12GetSecGroupForHost\x12%.hbf.v2.sgroups.GetSecGroupForHostReq\x1a\x18.hbf.v2.sgroups.SecGroup\"_\x92A6\x1a4GetSecGroupForHost: gets Security Group by host info\x82\xd3\xe4\x93\x02 \x12\x1e/v2/{host_name}/{host_uuid}/sg\x12\x91\x01\n" +
-	"\tListHosts\x12\x1c.hbf.v2.sgroups.ListHostsReq\x1a\x1c.hbf.v2.sgroups.ListHostResp\"H\x92A,\x1a*ListHosts: list hosts by variety of scopes\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v2/list-hosts\x12\xa0\x01\n" +
+	"\x12GetSecGroupForHost\x12%.hbf.v2.sgroups.GetSecGroupForHostReq\x1a\x18.hbf.v2.sgroups.SecGroup\"_\x92A6\x1a4GetSecGroupForHost: gets Security Group by host info\x82\xd3\xe4\x93\x02 \x12\x1e/v2/{host_name}/{host_uuid}/sg\x12\x92\x01\n" +
+	"\tListHosts\x12\x1c.hbf.v2.sgroups.ListHostsReq\x1a\x1d.hbf.v2.sgroups.ListHostsResp\"H\x92A,\x1a*ListHosts: list hosts by variety of scopes\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v2/list-hosts\x12\xa0\x01\n" +
 	"\fRegisterHost\x12\x1f.hbf.v2.sgroups.RegisterHostReq\x1a\x16.google.protobuf.Empty\"W\x92A8\x1a6RegisterHost: creates Host resource and fills it IPSet\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v2/register-host\x12\xa2\x01\n" +
 	"\x0fUpdateHostIPset\x12\x1f.hbf.v2.sgroups.UpdateHostIPReq\x1a\x16.google.protobuf.Empty\"V\x92A3\x1a1UpdateHostIPSet: updates Host ip set by host info\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/v2/update-host-ipset\x12\x85\x01\n" +
 	"\n" +
@@ -87,7 +87,7 @@ var file_sgroups_service_proto_goTypes = []any{
 	(*IESgSgIcmpRulesResp)(nil),      // 29: hbf.v2.sgroups.IESgSgIcmpRulesResp
 	(*IECidrSgIcmpRulesResp)(nil),    // 30: hbf.v2.sgroups.IECidrSgIcmpRulesResp
 	(*SecGroup)(nil),                 // 31: hbf.v2.sgroups.SecGroup
-	(*ListHostResp)(nil),             // 32: hbf.v2.sgroups.ListHostResp
+	(*ListHostsResp)(nil),            // 32: hbf.v2.sgroups.ListHostsResp
 }
 var file_sgroups_service_proto_depIdxs = []int32{
 	0,  // 0: hbf.v2.sgroups.SecGroupService.Sync:input_type -> hbf.v2.sgroups.SyncReq
@@ -126,7 +126,7 @@ var file_sgroups_service_proto_depIdxs = []int32{
 	30, // 33: hbf.v2.sgroups.SecGroupService.FindIECidrSgIcmpRules:output_type -> hbf.v2.sgroups.IECidrSgIcmpRulesResp
 	31, // 34: hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress:output_type -> hbf.v2.sgroups.SecGroup
 	31, // 35: hbf.v2.sgroups.SecGroupService.GetSecGroupForHost:output_type -> hbf.v2.sgroups.SecGroup
-	32, // 36: hbf.v2.sgroups.SecGroupService.ListHosts:output_type -> hbf.v2.sgroups.ListHostResp
+	32, // 36: hbf.v2.sgroups.SecGroupService.ListHosts:output_type -> hbf.v2.sgroups.ListHostsResp
 	1,  // 37: hbf.v2.sgroups.SecGroupService.RegisterHost:output_type -> google.protobuf.Empty
 	1,  // 38: hbf.v2.sgroups.SecGroupService.UpdateHostIPset:output_type -> google.protobuf.Empty
 	1,  // 39: hbf.v2.sgroups.SecGroupService.DeleteHost:output_type -> google.protobuf.Empty

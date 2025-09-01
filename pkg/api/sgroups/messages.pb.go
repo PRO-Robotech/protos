@@ -3302,28 +3302,28 @@ func (x *Host) GetIpList() *IPList {
 	return nil
 }
 
-// ListHostResp: returned list of hosts
-type ListHostResp struct {
+// ListHostsResp: returned list of hosts
+type ListHostsResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Hosts         []*Host                `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListHostResp) Reset() {
-	*x = ListHostResp{}
+func (x *ListHostsResp) Reset() {
+	*x = ListHostsResp{}
 	mi := &file_sgroups_messages_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListHostResp) String() string {
+func (x *ListHostsResp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListHostResp) ProtoMessage() {}
+func (*ListHostsResp) ProtoMessage() {}
 
-func (x *ListHostResp) ProtoReflect() protoreflect.Message {
+func (x *ListHostsResp) ProtoReflect() protoreflect.Message {
 	mi := &file_sgroups_messages_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3335,12 +3335,12 @@ func (x *ListHostResp) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListHostResp.ProtoReflect.Descriptor instead.
-func (*ListHostResp) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListHostsResp.ProtoReflect.Descriptor instead.
+func (*ListHostsResp) Descriptor() ([]byte, []int) {
 	return file_sgroups_messages_proto_rawDescGZIP(), []int{50}
 }
 
-func (x *ListHostResp) GetHosts() []*Host {
+func (x *ListHostsResp) GetHosts() []*Host {
 	if x != nil {
 		return x.Hosts
 	}
@@ -4168,8 +4168,8 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x17\n" +
 	"\asg_name\x18\x03 \x01(\tR\x06sgName\x12/\n" +
-	"\aip_list\x18\x04 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\":\n" +
-	"\fListHostResp\x12*\n" +
+	"\aip_list\x18\x04 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\";\n" +
+	"\rListHostsResp\x12*\n" +
 	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts\"\x1a\n" +
 	"\x06IPList\x12\x10\n" +
 	"\x03IPs\x18\x01 \x03(\tR\x03IPs\"\x90\x03\n" +
@@ -4282,7 +4282,7 @@ var file_sgroups_messages_proto_goTypes = []any{
 	(*GetSecGroupForAddressReq)(nil),     // 50: hbf.v2.sgroups.GetSecGroupForAddressReq
 	(*GetSecGroupForHostReq)(nil),        // 51: hbf.v2.sgroups.GetSecGroupForHostReq
 	(*Host)(nil),                         // 52: hbf.v2.sgroups.Host
-	(*ListHostResp)(nil),                 // 53: hbf.v2.sgroups.ListHostResp
+	(*ListHostsResp)(nil),                // 53: hbf.v2.sgroups.ListHostsResp
 	(*IPList)(nil),                       // 54: hbf.v2.sgroups.IPList
 	(*ListHostsReq)(nil),                 // 55: hbf.v2.sgroups.ListHostsReq
 	(*AgentInfoReq)(nil),                 // 56: hbf.v2.sgroups.AgentInfoReq
@@ -4368,7 +4368,7 @@ var file_sgroups_messages_proto_depIdxs = []int32{
 	14, // 64: hbf.v2.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
 	12, // 65: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
 	54, // 66: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
-	52, // 67: hbf.v2.sgroups.ListHostResp.hosts:type_name -> hbf.v2.sgroups.Host
+	52, // 67: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
 	60, // 68: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
 	61, // 69: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
 	62, // 70: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
