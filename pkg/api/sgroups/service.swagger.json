@@ -54,39 +54,6 @@
         ]
       }
     },
-    "/v2/find-hosts": {
-      "post": {
-        "description": "FindHosts: finds hosts by variety of scopes",
-        "operationId": "SecGroupService_FindHosts",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/sgroupsHostList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sgroupsFindHostsReq"
-            }
-          }
-        ],
-        "tags": [
-          "SecGroupService"
-        ]
-      }
-    },
     "/v2/fqdn-rules": {
       "post": {
         "description": "FindFqdnRules: finds FQDN Rule(s) scoped by variety SG 'from'",
@@ -244,6 +211,39 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/sgroupsFindIESgSgRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-hosts": {
+      "post": {
+        "description": "ListHosts: list hosts by variety of scopes",
+        "operationId": "SecGroupService_ListHosts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListHostResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListHostsReq"
             }
           }
         ],
@@ -646,7 +646,7 @@
     }
   },
   "definitions": {
-    "FindHostsReqByHostName": {
+    "ListHostsReqByHostName": {
       "type": "object",
       "properties": {
         "names": {
@@ -658,7 +658,7 @@
       },
       "title": "Filter by hostnames"
     },
-    "FindHostsReqBySG": {
+    "ListHostsReqBySG": {
       "type": "object",
       "properties": {
         "names": {
@@ -670,7 +670,7 @@
       },
       "title": "Filter by security group names"
     },
-    "FindHostsReqByUID": {
+    "ListHostsReqByUID": {
       "type": "object",
       "properties": {
         "UIDs": {
@@ -682,7 +682,7 @@
       },
       "title": "Filter by unique identifiers"
     },
-    "FindHostsReqNoFilter": {
+    "ListHostsReqNoFilter": {
       "type": "object",
       "title": "No filtering: return all hosts"
     },
@@ -869,24 +869,6 @@
       "required": [
         "sgFrom"
       ]
-    },
-    "sgroupsFindHostsReq": {
-      "type": "object",
-      "properties": {
-        "none": {
-          "$ref": "#/definitions/FindHostsReqNoFilter"
-        },
-        "byUuid": {
-          "$ref": "#/definitions/FindHostsReqByUID"
-        },
-        "byHostname": {
-          "$ref": "#/definitions/FindHostsReqByHostName"
-        },
-        "bySgName": {
-          "$ref": "#/definitions/FindHostsReqBySG"
-        }
-      },
-      "title": "FindHostsReq: request to find hosts by variety of scopes"
     },
     "sgroupsFindIECidrSgIcmpRulesReq": {
       "type": "object",
@@ -1120,19 +1102,6 @@
         }
       },
       "title": "Host: represents a host with its name, UUID, and IPs related to Security Group(s)"
-    },
-    "sgroupsHostList": {
-      "type": "object",
-      "properties": {
-        "hosts": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sgroupsHost"
-          }
-        }
-      },
-      "title": "HostList: returned list of hosts"
     },
     "sgroupsIECidrSgIcmpRule": {
       "type": "object",
@@ -1394,6 +1363,37 @@
       },
       "title": "IPList : list of hosts IPs"
     },
+    "sgroupsListHostResp": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsHost"
+          }
+        }
+      },
+      "title": "ListHostResp: returned list of hosts"
+    },
+    "sgroupsListHostsReq": {
+      "type": "object",
+      "properties": {
+        "none": {
+          "$ref": "#/definitions/ListHostsReqNoFilter"
+        },
+        "byUuid": {
+          "$ref": "#/definitions/ListHostsReqByUID"
+        },
+        "byHostname": {
+          "$ref": "#/definitions/ListHostsReqByHostName"
+        },
+        "bySgName": {
+          "$ref": "#/definitions/ListHostsReqBySG"
+        }
+      },
+      "title": "ListHostsReq: request to find hosts by variety of scopes"
+    },
     "sgroupsListNetworksReq": {
       "type": "object",
       "properties": {
@@ -1526,12 +1526,9 @@
           "type": "boolean",
           "title": "logs: switch-{ON|OFF} logs in chain"
         },
-        "hosts": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "hosts: names of hosts related to security group"
+        "host": {
+          "type": "string",
+          "title": "host: name of host related to security group"
         }
       },
       "title": "SecGroup: represents a security group",

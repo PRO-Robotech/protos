@@ -52,8 +52,8 @@ message SecGroup {
   bool trace = 4;
   //logs: switch-{ON|OFF} logs in chain
   bool logs = 5;
-  //hosts: names of hosts related to security group
-  repeated string hosts = 6;
+  //host: name of host related to security group
+  string host = 6;
 }
 
 // AccPorts: represents Security Group Rule access source-dest ports
@@ -604,8 +604,8 @@ message Host {
    IPList ip_list = 4;
 }
 
-// HostList: returned list of hosts
-message HostList {
+// ListHostResp: returned list of hosts
+message ListHostResp {
    repeated Host hosts = 1;
 }
 
@@ -614,8 +614,8 @@ message IPList {
    repeated string IPs = 1;
 }
 
-// FindHostsReq: request to find hosts by variety of scopes
-message FindHostsReq {
+// ListHostsReq: request to find hosts by variety of scopes
+message ListHostsReq {
     // No filtering: return all hosts
     message NoFilter {}
     // Filter by unique identifiers

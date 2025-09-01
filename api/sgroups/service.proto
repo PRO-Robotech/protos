@@ -177,13 +177,13 @@ service SecGroupService {
      };
    };
 
-   rpc FindHosts(FindHostsReq) returns (HostList) {
+   rpc ListHosts(ListHostsReq) returns (ListHostResp) {
      option (google.api.http) = {
-         post: "/v2/find-hosts"
+         post: "/v2/list-hosts"
          body: "*"
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-         description: "FindHosts: finds hosts by variety of scopes";
+         description: "ListHosts: list hosts by variety of scopes";
      };
    };
 

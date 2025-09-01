@@ -512,28 +512,28 @@ func local_request_SecGroupService_GetSecGroupForHost_0(ctx context.Context, mar
 
 }
 
-func request_SecGroupService_FindHosts_0(ctx context.Context, marshaler runtime.Marshaler, client SecGroupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FindHostsReq
+func request_SecGroupService_ListHosts_0(ctx context.Context, marshaler runtime.Marshaler, client SecGroupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListHostsReq
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.FindHosts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListHosts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_SecGroupService_FindHosts_0(ctx context.Context, marshaler runtime.Marshaler, server SecGroupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq FindHostsReq
+func local_request_SecGroupService_ListHosts_0(ctx context.Context, marshaler runtime.Marshaler, server SecGroupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListHostsReq
 	var metadata runtime.ServerMetadata
 
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.FindHosts(ctx, &protoReq)
+	msg, err := server.ListHosts(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -997,7 +997,7 @@ func RegisterSecGroupServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_SecGroupService_FindHosts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SecGroupService_ListHosts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -1005,12 +1005,12 @@ func RegisterSecGroupServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/FindHosts", runtime.WithHTTPPathPattern("/v2/find-hosts"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/ListHosts", runtime.WithHTTPPathPattern("/v2/list-hosts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SecGroupService_FindHosts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SecGroupService_ListHosts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -1018,7 +1018,7 @@ func RegisterSecGroupServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 			return
 		}
 
-		forward_SecGroupService_FindHosts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SecGroupService_ListHosts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1468,25 +1468,25 @@ func RegisterSecGroupServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_SecGroupService_FindHosts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_SecGroupService_ListHosts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/FindHosts", runtime.WithHTTPPathPattern("/v2/find-hosts"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/ListHosts", runtime.WithHTTPPathPattern("/v2/list-hosts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SecGroupService_FindHosts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SecGroupService_ListHosts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SecGroupService_FindHosts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SecGroupService_ListHosts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1590,7 +1590,7 @@ var (
 
 	pattern_SecGroupService_GetSecGroupForHost_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v2", "host_name", "host_uuid", "sg"}, ""))
 
-	pattern_SecGroupService_FindHosts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "find-hosts"}, ""))
+	pattern_SecGroupService_ListHosts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "list-hosts"}, ""))
 
 	pattern_SecGroupService_RegisterHost_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "register-host"}, ""))
 
@@ -1630,7 +1630,7 @@ var (
 
 	forward_SecGroupService_GetSecGroupForHost_0 = runtime.ForwardResponseMessage
 
-	forward_SecGroupService_FindHosts_0 = runtime.ForwardResponseMessage
+	forward_SecGroupService_ListHosts_0 = runtime.ForwardResponseMessage
 
 	forward_SecGroupService_RegisterHost_0 = runtime.ForwardResponseMessage
 
