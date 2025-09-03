@@ -67,7 +67,7 @@ func whenFindSwagger(p string, f func(reader io.Reader) error) error {
 
 func init() {
 	const (
-		apiSGroups = "api/sgroups/api.swagger.json"
+		apiSGroups = "api/sgroups/service.swagger.json"
 	)
 
 	SwaggerUtil[sgroups.SecGroupServiceServer]{}.
