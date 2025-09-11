@@ -396,6 +396,8 @@ message SyncReq {
       SyncIESgSgIcmpRules ie_sg_sg_icmp_rules = 10;
       // subject of CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s)
       SyncIECidrSgIcmpRules ie_cidr_sg_icmp_rules = 11;
+      // subject of Host(s)
+      SyncHosts hosts = 12;
   }
 }
 
@@ -672,10 +674,16 @@ message UpdateHostIPReq {
       json_schema: {
         title: "UpdateHostIPReq"
         description: "UpdateHostIPReq - updates IP set for a specific host"
-        required: ["host_uuid", "host_name"]
+        required: ["host_uuid"]
       }
     };
     string host_uuid = 1;
     string host_name = 2;
     IPList ip_set = 3;
+}
+
+// SyncHosts: subject of Hosts to Sync
+message SyncHosts{
+  // host items
+  repeated Host hosts = 1;
 }

@@ -2002,6 +2002,7 @@ type SyncReq struct {
 	//	*SyncReq_IeSgSgRules
 	//	*SyncReq_IeSgSgIcmpRules
 	//	*SyncReq_IeCidrSgIcmpRules
+	//	*SyncReq_Hosts
 	Subject       isSyncReq_Subject `protobuf_oneof:"subject"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2141,6 +2142,15 @@ func (x *SyncReq) GetIeCidrSgIcmpRules() *SyncIECidrSgIcmpRules {
 	return nil
 }
 
+func (x *SyncReq) GetHosts() *SyncHosts {
+	if x != nil {
+		if x, ok := x.Subject.(*SyncReq_Hosts); ok {
+			return x.Hosts
+		}
+	}
+	return nil
+}
+
 type isSyncReq_Subject interface {
 	isSyncReq_Subject()
 }
@@ -2195,6 +2205,11 @@ type SyncReq_IeCidrSgIcmpRules struct {
 	IeCidrSgIcmpRules *SyncIECidrSgIcmpRules `protobuf:"bytes,11,opt,name=ie_cidr_sg_icmp_rules,json=ieCidrSgIcmpRules,proto3,oneof"`
 }
 
+type SyncReq_Hosts struct {
+	// subject of Host(s)
+	Hosts *SyncHosts `protobuf:"bytes,12,opt,name=hosts,proto3,oneof"`
+}
+
 func (*SyncReq_Groups) isSyncReq_Subject() {}
 
 func (*SyncReq_Networks) isSyncReq_Subject() {}
@@ -2214,6 +2229,8 @@ func (*SyncReq_IeSgSgRules) isSyncReq_Subject() {}
 func (*SyncReq_IeSgSgIcmpRules) isSyncReq_Subject() {}
 
 func (*SyncReq_IeCidrSgIcmpRules) isSyncReq_Subject() {}
+
+func (*SyncReq_Hosts) isSyncReq_Subject() {}
 
 // GetSgSubnetsReq: req to get Networks related to Security Group
 type GetSgSubnetsReq struct {
@@ -3771,6 +3788,52 @@ func (x *UpdateHostIPReq) GetIpSet() *IPList {
 	return nil
 }
 
+// SyncHosts: subject of Hosts to Sync
+type SyncHosts struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// host items
+	Hosts         []*Host `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SyncHosts) Reset() {
+	*x = SyncHosts{}
+	mi := &file_sgroups_messages_proto_msgTypes[57]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncHosts) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncHosts) ProtoMessage() {}
+
+func (x *SyncHosts) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[57]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncHosts.ProtoReflect.Descriptor instead.
+func (*SyncHosts) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{57}
+}
+
+func (x *SyncHosts) GetHosts() []*Host {
+	if x != nil {
+		return x.Hosts
+	}
+	return nil
+}
+
 // No filtering: return all hosts
 type ListHostsReq_NoFilter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -3780,7 +3843,7 @@ type ListHostsReq_NoFilter struct {
 
 func (x *ListHostsReq_NoFilter) Reset() {
 	*x = ListHostsReq_NoFilter{}
-	mi := &file_sgroups_messages_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3792,7 +3855,7 @@ func (x *ListHostsReq_NoFilter) String() string {
 func (*ListHostsReq_NoFilter) ProtoMessage() {}
 
 func (x *ListHostsReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3818,7 +3881,7 @@ type ListHostsReq_ByUID struct {
 
 func (x *ListHostsReq_ByUID) Reset() {
 	*x = ListHostsReq_ByUID{}
-	mi := &file_sgroups_messages_proto_msgTypes[58]
+	mi := &file_sgroups_messages_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3830,7 +3893,7 @@ func (x *ListHostsReq_ByUID) String() string {
 func (*ListHostsReq_ByUID) ProtoMessage() {}
 
 func (x *ListHostsReq_ByUID) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[58]
+	mi := &file_sgroups_messages_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3863,7 +3926,7 @@ type ListHostsReq_ByHostName struct {
 
 func (x *ListHostsReq_ByHostName) Reset() {
 	*x = ListHostsReq_ByHostName{}
-	mi := &file_sgroups_messages_proto_msgTypes[59]
+	mi := &file_sgroups_messages_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3875,7 +3938,7 @@ func (x *ListHostsReq_ByHostName) String() string {
 func (*ListHostsReq_ByHostName) ProtoMessage() {}
 
 func (x *ListHostsReq_ByHostName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[59]
+	mi := &file_sgroups_messages_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3908,7 +3971,7 @@ type ListHostsReq_BySG struct {
 
 func (x *ListHostsReq_BySG) Reset() {
 	*x = ListHostsReq_BySG{}
-	mi := &file_sgroups_messages_proto_msgTypes[60]
+	mi := &file_sgroups_messages_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3920,7 +3983,7 @@ func (x *ListHostsReq_BySG) String() string {
 func (*ListHostsReq_BySG) ProtoMessage() {}
 
 func (x *ListHostsReq_BySG) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[60]
+	mi := &file_sgroups_messages_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4077,7 +4140,7 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\x15ListSecurityGroupsReq\x12\x19\n" +
 	"\bsg_names\x18\x01 \x03(\tR\asgNames\"J\n" +
 	"\x16ListSecurityGroupsResp\x120\n" +
-	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"\xe3\x06\n" +
+	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"\x96\a\n" +
 	"\aSyncReq\x127\n" +
 	"\async_op\x18\x01 \x01(\x0e2\x1e.hbf.v2.sgroups.SyncReq.SyncOpR\x06syncOp\x12<\n" +
 	"\x06groups\x18\x02 \x01(\v2\".hbf.v2.sgroups.SyncSecurityGroupsH\x00R\x06groups\x12:\n" +
@@ -4091,7 +4154,8 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\x0eie_sg_sg_rules\x18\t \x01(\v2\x1f.hbf.v2.sgroups.SyncIESgSgRulesH\x00R\vieSgSgRules\x12S\n" +
 	"\x13ie_sg_sg_icmp_rules\x18\n" +
 	" \x01(\v2#.hbf.v2.sgroups.SyncIESgSgIcmpRulesH\x00R\x0fieSgSgIcmpRules\x12Y\n" +
-	"\x15ie_cidr_sg_icmp_rules\x18\v \x01(\v2%.hbf.v2.sgroups.SyncIECidrSgIcmpRulesH\x00R\x11ieCidrSgIcmpRules\">\n" +
+	"\x15ie_cidr_sg_icmp_rules\x18\v \x01(\v2%.hbf.v2.sgroups.SyncIECidrSgIcmpRulesH\x00R\x11ieCidrSgIcmpRules\x121\n" +
+	"\x05hosts\x18\f \x01(\v2\x19.hbf.v2.sgroups.SyncHostsH\x00R\x05hosts\">\n" +
 	"\x06SyncOp\x12\b\n" +
 	"\x04NoOp\x10\x00\x12\f\n" +
 	"\bFullSync\x10\x04\x12\n" +
@@ -4201,12 +4265,14 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\tvia_agent\x18\x02 \x01(\v2\x1c.hbf.v2.sgroups.AgentInfoReqH\x00R\bviaAgentB\b\n" +
 	"\x06method\"9\n" +
 	"\rDeleteHostReq\x12(\n" +
-	"\x04host\x18\x01 \x01(\v2\x14.hbf.v2.sgroups.HostR\x04host\"\xe0\x01\n" +
+	"\x04host\x18\x01 \x01(\v2\x14.hbf.v2.sgroups.HostR\x04host\"\xd4\x01\n" +
 	"\x0fUpdateHostIPReq\x12\x1b\n" +
 	"\thost_uuid\x18\x01 \x01(\tR\bhostUuid\x12\x1b\n" +
 	"\thost_name\x18\x02 \x01(\tR\bhostName\x12-\n" +
-	"\x06ip_set\x18\x03 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x05ipSet:d\x92Aa\n" +
-	"_*\x0fUpdateHostIPReq24UpdateHostIPReq - updates IP set for a specific host\xd2\x01\thost_uuid\xd2\x01\thost_name*-\n" +
+	"\x06ip_set\x18\x03 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x05ipSet:X\x92AU\n" +
+	"S*\x0fUpdateHostIPReq24UpdateHostIPReq - updates IP set for a specific host\xd2\x01\thost_uuid\"7\n" +
+	"\tSyncHosts\x12*\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts*-\n" +
 	"\n" +
 	"RuleAction\x12\t\n" +
 	"\x05UNDEF\x10\x00\x12\b\n" +
@@ -4227,7 +4293,7 @@ func file_sgroups_messages_proto_rawDescGZIP() []byte {
 }
 
 var file_sgroups_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_sgroups_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 61)
+var file_sgroups_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
 var file_sgroups_messages_proto_goTypes = []any{
 	(RuleAction)(0),                      // 0: hbf.v2.sgroups.RuleAction
 	(SecGroup_DefaultAction)(0),          // 1: hbf.v2.sgroups.SecGroup.DefaultAction
@@ -4289,52 +4355,53 @@ var file_sgroups_messages_proto_goTypes = []any{
 	(*RegisterHostReq)(nil),              // 57: hbf.v2.sgroups.RegisterHostReq
 	(*DeleteHostReq)(nil),                // 58: hbf.v2.sgroups.DeleteHostReq
 	(*UpdateHostIPReq)(nil),              // 59: hbf.v2.sgroups.UpdateHostIPReq
-	(*ListHostsReq_NoFilter)(nil),        // 60: hbf.v2.sgroups.ListHostsReq.NoFilter
-	(*ListHostsReq_ByUID)(nil),           // 61: hbf.v2.sgroups.ListHostsReq.ByUID
-	(*ListHostsReq_ByHostName)(nil),      // 62: hbf.v2.sgroups.ListHostsReq.ByHostName
-	(*ListHostsReq_BySG)(nil),            // 63: hbf.v2.sgroups.ListHostsReq.BySG
-	(*common.Networks_NetIP)(nil),        // 64: common.Networks.NetIP
-	(common.Networks_NetIP_Transport)(0), // 65: common.Networks.NetIP.Transport
-	(*common.ICMP)(nil),                  // 66: common.ICMP
-	(common.Traffic)(0),                  // 67: common.Traffic
-	(*timestamp.Timestamp)(nil),          // 68: google.protobuf.Timestamp
-	(*v1.SecretData)(nil),                // 69: hbf.v1.agent.SecretData
+	(*SyncHosts)(nil),                    // 60: hbf.v2.sgroups.SyncHosts
+	(*ListHostsReq_NoFilter)(nil),        // 61: hbf.v2.sgroups.ListHostsReq.NoFilter
+	(*ListHostsReq_ByUID)(nil),           // 62: hbf.v2.sgroups.ListHostsReq.ByUID
+	(*ListHostsReq_ByHostName)(nil),      // 63: hbf.v2.sgroups.ListHostsReq.ByHostName
+	(*ListHostsReq_BySG)(nil),            // 64: hbf.v2.sgroups.ListHostsReq.BySG
+	(*common.Networks_NetIP)(nil),        // 65: common.Networks.NetIP
+	(common.Networks_NetIP_Transport)(0), // 66: common.Networks.NetIP.Transport
+	(*common.ICMP)(nil),                  // 67: common.ICMP
+	(common.Traffic)(0),                  // 68: common.Traffic
+	(*timestamp.Timestamp)(nil),          // 69: google.protobuf.Timestamp
+	(*v1.SecretData)(nil),                // 70: hbf.v1.agent.SecretData
 }
 var file_sgroups_messages_proto_depIdxs = []int32{
-	64, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
+	65, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
 	1,  // 1: hbf.v2.sgroups.SecGroup.default_action:type_name -> hbf.v2.sgroups.SecGroup.DefaultAction
-	65, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	66, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 3: hbf.v2.sgroups.SgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 4: hbf.v2.sgroups.SgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 5: hbf.v2.sgroups.SgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	65, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
+	66, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 7: hbf.v2.sgroups.FqdnRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 8: hbf.v2.sgroups.FqdnRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 9: hbf.v2.sgroups.FqdnRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	66, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
+	67, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 11: hbf.v2.sgroups.SgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
-	66, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
+	67, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 13: hbf.v2.sgroups.SgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 14: hbf.v2.sgroups.SgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	65, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	67, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
+	66, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	68, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
 	5,  // 17: hbf.v2.sgroups.IECidrSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 18: hbf.v2.sgroups.IECidrSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 19: hbf.v2.sgroups.IECidrSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	67, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
-	66, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
+	68, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
+	67, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 22: hbf.v2.sgroups.IECidrSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 23: hbf.v2.sgroups.IECidrSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	65, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	67, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
+	66, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	68, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
 	5,  // 26: hbf.v2.sgroups.IESgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 27: hbf.v2.sgroups.IESgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 28: hbf.v2.sgroups.IESgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	67, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
-	66, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
+	68, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
+	67, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 31: hbf.v2.sgroups.IESgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 32: hbf.v2.sgroups.IESgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	68, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
+	69, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
 	7,  // 34: hbf.v2.sgroups.SyncSgSgRules.rules:type_name -> hbf.v2.sgroups.SgSgRule
 	8,  // 35: hbf.v2.sgroups.SyncFqdnRules.rules:type_name -> hbf.v2.sgroups.FqdnRule
 	4,  // 36: hbf.v2.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v2.sgroups.SecGroup
@@ -4358,32 +4425,34 @@ var file_sgroups_messages_proto_depIdxs = []int32{
 	23, // 54: hbf.v2.sgroups.SyncReq.ie_sg_sg_rules:type_name -> hbf.v2.sgroups.SyncIESgSgRules
 	24, // 55: hbf.v2.sgroups.SyncReq.ie_sg_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIESgSgIcmpRules
 	25, // 56: hbf.v2.sgroups.SyncReq.ie_cidr_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIECidrSgIcmpRules
-	3,  // 57: hbf.v2.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v2.sgroups.Network
-	7,  // 58: hbf.v2.sgroups.SgSgRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgRule
-	8,  // 59: hbf.v2.sgroups.FqdnRulesResp.rules:type_name -> hbf.v2.sgroups.FqdnRule
-	9,  // 60: hbf.v2.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgIcmpRule
-	10, // 61: hbf.v2.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgIcmpRule
-	11, // 62: hbf.v2.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgRule
-	13, // 63: hbf.v2.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgRule
-	14, // 64: hbf.v2.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
-	12, // 65: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
-	54, // 66: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
-	52, // 67: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
-	60, // 68: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
-	61, // 69: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
-	62, // 70: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
-	63, // 71: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
-	69, // 72: hbf.v2.sgroups.AgentInfoReq.secret:type_name -> hbf.v1.agent.SecretData
-	54, // 73: hbf.v2.sgroups.AgentInfoReq.ip_list:type_name -> hbf.v2.sgroups.IPList
-	52, // 74: hbf.v2.sgroups.RegisterHostReq.direct:type_name -> hbf.v2.sgroups.Host
-	56, // 75: hbf.v2.sgroups.RegisterHostReq.via_agent:type_name -> hbf.v2.sgroups.AgentInfoReq
-	52, // 76: hbf.v2.sgroups.DeleteHostReq.host:type_name -> hbf.v2.sgroups.Host
-	54, // 77: hbf.v2.sgroups.UpdateHostIPReq.ip_set:type_name -> hbf.v2.sgroups.IPList
-	78, // [78:78] is the sub-list for method output_type
-	78, // [78:78] is the sub-list for method input_type
-	78, // [78:78] is the sub-list for extension type_name
-	78, // [78:78] is the sub-list for extension extendee
-	0,  // [0:78] is the sub-list for field type_name
+	60, // 57: hbf.v2.sgroups.SyncReq.hosts:type_name -> hbf.v2.sgroups.SyncHosts
+	3,  // 58: hbf.v2.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v2.sgroups.Network
+	7,  // 59: hbf.v2.sgroups.SgSgRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgRule
+	8,  // 60: hbf.v2.sgroups.FqdnRulesResp.rules:type_name -> hbf.v2.sgroups.FqdnRule
+	9,  // 61: hbf.v2.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgIcmpRule
+	10, // 62: hbf.v2.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgIcmpRule
+	11, // 63: hbf.v2.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgRule
+	13, // 64: hbf.v2.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgRule
+	14, // 65: hbf.v2.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
+	12, // 66: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
+	54, // 67: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
+	52, // 68: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
+	61, // 69: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
+	62, // 70: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
+	63, // 71: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
+	64, // 72: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
+	70, // 73: hbf.v2.sgroups.AgentInfoReq.secret:type_name -> hbf.v1.agent.SecretData
+	54, // 74: hbf.v2.sgroups.AgentInfoReq.ip_list:type_name -> hbf.v2.sgroups.IPList
+	52, // 75: hbf.v2.sgroups.RegisterHostReq.direct:type_name -> hbf.v2.sgroups.Host
+	56, // 76: hbf.v2.sgroups.RegisterHostReq.via_agent:type_name -> hbf.v2.sgroups.AgentInfoReq
+	52, // 77: hbf.v2.sgroups.DeleteHostReq.host:type_name -> hbf.v2.sgroups.Host
+	54, // 78: hbf.v2.sgroups.UpdateHostIPReq.ip_set:type_name -> hbf.v2.sgroups.IPList
+	52, // 79: hbf.v2.sgroups.SyncHosts.hosts:type_name -> hbf.v2.sgroups.Host
+	80, // [80:80] is the sub-list for method output_type
+	80, // [80:80] is the sub-list for method input_type
+	80, // [80:80] is the sub-list for extension type_name
+	80, // [80:80] is the sub-list for extension extendee
+	0,  // [0:80] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_messages_proto_init() }
@@ -4405,6 +4474,7 @@ func file_sgroups_messages_proto_init() {
 		(*SyncReq_IeSgSgRules)(nil),
 		(*SyncReq_IeSgSgIcmpRules)(nil),
 		(*SyncReq_IeCidrSgIcmpRules)(nil),
+		(*SyncReq_Hosts)(nil),
 	}
 	file_sgroups_messages_proto_msgTypes[52].OneofWrappers = []any{
 		(*ListHostsReq_None)(nil),
@@ -4422,7 +4492,7 @@ func file_sgroups_messages_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_messages_proto_rawDesc), len(file_sgroups_messages_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   61,
+			NumMessages:   62,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

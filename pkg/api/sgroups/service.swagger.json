@@ -1695,6 +1695,20 @@
       },
       "title": "SyncFqdnRules: subject of Security Group Rules to Sync"
     },
+    "sgroupsSyncHosts": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsHost"
+          },
+          "title": "host items"
+        }
+      },
+      "title": "SyncHosts: subject of Hosts to Sync"
+    },
     "sgroupsSyncIECidrSgIcmpRules": {
       "type": "object",
       "properties": {
@@ -1810,6 +1824,10 @@
         "ieCidrSgIcmpRules": {
           "$ref": "#/definitions/sgroupsSyncIECidrSgIcmpRules",
           "title": "subject of CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s)"
+        },
+        "hosts": {
+          "$ref": "#/definitions/sgroupsSyncHosts",
+          "title": "subject of Host(s)"
         }
       },
       "title": "SyncReq: request to apply changes in DB for one of subject [Networks|Sucurity Groups|Security Grpups Rules]"
@@ -1895,8 +1913,7 @@
       "description": "UpdateHostIPReq - updates IP set for a specific host",
       "title": "UpdateHostIPReq",
       "required": [
-        "hostUuid",
-        "hostName"
+        "hostUuid"
       ]
     }
   },
