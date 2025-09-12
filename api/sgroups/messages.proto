@@ -641,47 +641,6 @@ message ListHostsReq {
     }
 }
 
-// AgentInfoReq registration from agent
-message AgentInfoReq {
-    // authentication data
-    hbf.v1.agent.SecretData secret = 1;
-    // list of IPs related to host
-    IPList ip_list = 2;
-    // SG related to host
-    string sg_name = 3;
-    // address to connect to agent
-    string agent_address = 4;
-}
-
-// RegisterHostReq register a host
-message RegisterHostReq {
-    oneof method {
-       // Provide host data directly
-       Host direct = 1;
-       // Retrieve host data from agent
-       AgentInfoReq via_agent = 2;
-    }
-}
-
-// DeleteHostReq removes a host from the system
-message DeleteHostReq {
-    Host host = 1;
-}
-
-// UpdateHostIPReq update IP set for a specific host
-message UpdateHostIPReq {
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-      json_schema: {
-        title: "UpdateHostIPReq"
-        description: "UpdateHostIPReq - updates IP set for a specific host"
-        required: ["host_uuid"]
-      }
-    };
-    string host_uuid = 1;
-    string host_name = 2;
-    IPList ip_set = 3;
-}
-
 // SyncHosts: subject of Hosts to Sync
 message SyncHosts{
   // host items

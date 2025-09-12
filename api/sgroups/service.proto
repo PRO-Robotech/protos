@@ -186,34 +186,4 @@ service SecGroupService {
          description: "ListHosts: list hosts by variety of scopes";
      };
    };
-
-   rpc RegisterHost(RegisterHostReq) returns (google.protobuf.Empty) {
-     option (google.api.http) = {
-       post: "/v2/register-host"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "RegisterHost: creates Host resource and fills it IPSet"
-     };
-   };
-
-   rpc UpdateHostIPset(UpdateHostIPReq) returns (google.protobuf.Empty) {
-     option (google.api.http) = {
-       post: "/v2/update-host-ipset"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "UpdateHostIPSet: updates Host ip set by host info"
-     };
-   };
-
-   rpc DeleteHost(DeleteHostReq) returns (google.protobuf.Empty) {
-     option (google.api.http) = {
-       post: "/v2/delete-host"
-       body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-       description: "DeleteHost: deletes Host resource"
-     };
-   };
 }

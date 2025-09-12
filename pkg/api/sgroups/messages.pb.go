@@ -7,7 +7,7 @@
 package sgroups
 
 import (
-	v1 "github.com/PRO-Robotech/protos/pkg/api/agent/v1"
+	_ "github.com/PRO-Robotech/protos/pkg/api/agent/v1"
 	common "github.com/PRO-Robotech/protos/pkg/api/common"
 	_ "github.com/golang/protobuf/ptypes/empty"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
@@ -3524,270 +3524,6 @@ func (*ListHostsReq_ByHostname) isListHostsReq_Criteria() {}
 
 func (*ListHostsReq_BySgName) isListHostsReq_Criteria() {}
 
-// AgentInfoReq registration from agent
-type AgentInfoReq struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// authentication data
-	Secret *v1.SecretData `protobuf:"bytes,1,opt,name=secret,proto3" json:"secret,omitempty"`
-	// list of IPs related to host
-	IpList *IPList `protobuf:"bytes,2,opt,name=ip_list,json=ipList,proto3" json:"ip_list,omitempty"`
-	// SG related to host
-	SgName string `protobuf:"bytes,3,opt,name=sg_name,json=sgName,proto3" json:"sg_name,omitempty"`
-	// address to connect to agent
-	AgentAddress  string `protobuf:"bytes,4,opt,name=agent_address,json=agentAddress,proto3" json:"agent_address,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AgentInfoReq) Reset() {
-	*x = AgentInfoReq{}
-	mi := &file_sgroups_messages_proto_msgTypes[53]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AgentInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AgentInfoReq) ProtoMessage() {}
-
-func (x *AgentInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[53]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AgentInfoReq.ProtoReflect.Descriptor instead.
-func (*AgentInfoReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_messages_proto_rawDescGZIP(), []int{53}
-}
-
-func (x *AgentInfoReq) GetSecret() *v1.SecretData {
-	if x != nil {
-		return x.Secret
-	}
-	return nil
-}
-
-func (x *AgentInfoReq) GetIpList() *IPList {
-	if x != nil {
-		return x.IpList
-	}
-	return nil
-}
-
-func (x *AgentInfoReq) GetSgName() string {
-	if x != nil {
-		return x.SgName
-	}
-	return ""
-}
-
-func (x *AgentInfoReq) GetAgentAddress() string {
-	if x != nil {
-		return x.AgentAddress
-	}
-	return ""
-}
-
-// RegisterHostReq register a host
-type RegisterHostReq struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Method:
-	//
-	//	*RegisterHostReq_Direct
-	//	*RegisterHostReq_ViaAgent
-	Method        isRegisterHostReq_Method `protobuf_oneof:"method"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RegisterHostReq) Reset() {
-	*x = RegisterHostReq{}
-	mi := &file_sgroups_messages_proto_msgTypes[54]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RegisterHostReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegisterHostReq) ProtoMessage() {}
-
-func (x *RegisterHostReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[54]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegisterHostReq.ProtoReflect.Descriptor instead.
-func (*RegisterHostReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_messages_proto_rawDescGZIP(), []int{54}
-}
-
-func (x *RegisterHostReq) GetMethod() isRegisterHostReq_Method {
-	if x != nil {
-		return x.Method
-	}
-	return nil
-}
-
-func (x *RegisterHostReq) GetDirect() *Host {
-	if x != nil {
-		if x, ok := x.Method.(*RegisterHostReq_Direct); ok {
-			return x.Direct
-		}
-	}
-	return nil
-}
-
-func (x *RegisterHostReq) GetViaAgent() *AgentInfoReq {
-	if x != nil {
-		if x, ok := x.Method.(*RegisterHostReq_ViaAgent); ok {
-			return x.ViaAgent
-		}
-	}
-	return nil
-}
-
-type isRegisterHostReq_Method interface {
-	isRegisterHostReq_Method()
-}
-
-type RegisterHostReq_Direct struct {
-	// Provide host data directly
-	Direct *Host `protobuf:"bytes,1,opt,name=direct,proto3,oneof"`
-}
-
-type RegisterHostReq_ViaAgent struct {
-	// Retrieve host data from agent
-	ViaAgent *AgentInfoReq `protobuf:"bytes,2,opt,name=via_agent,json=viaAgent,proto3,oneof"`
-}
-
-func (*RegisterHostReq_Direct) isRegisterHostReq_Method() {}
-
-func (*RegisterHostReq_ViaAgent) isRegisterHostReq_Method() {}
-
-// DeleteHostReq removes a host from the system
-type DeleteHostReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Host          *Host                  `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteHostReq) Reset() {
-	*x = DeleteHostReq{}
-	mi := &file_sgroups_messages_proto_msgTypes[55]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteHostReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteHostReq) ProtoMessage() {}
-
-func (x *DeleteHostReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[55]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteHostReq.ProtoReflect.Descriptor instead.
-func (*DeleteHostReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_messages_proto_rawDescGZIP(), []int{55}
-}
-
-func (x *DeleteHostReq) GetHost() *Host {
-	if x != nil {
-		return x.Host
-	}
-	return nil
-}
-
-// UpdateHostIPReq update IP set for a specific host
-type UpdateHostIPReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	HostUuid      string                 `protobuf:"bytes,1,opt,name=host_uuid,json=hostUuid,proto3" json:"host_uuid,omitempty"`
-	HostName      string                 `protobuf:"bytes,2,opt,name=host_name,json=hostName,proto3" json:"host_name,omitempty"`
-	IpSet         *IPList                `protobuf:"bytes,3,opt,name=ip_set,json=ipSet,proto3" json:"ip_set,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateHostIPReq) Reset() {
-	*x = UpdateHostIPReq{}
-	mi := &file_sgroups_messages_proto_msgTypes[56]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateHostIPReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateHostIPReq) ProtoMessage() {}
-
-func (x *UpdateHostIPReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[56]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateHostIPReq.ProtoReflect.Descriptor instead.
-func (*UpdateHostIPReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_messages_proto_rawDescGZIP(), []int{56}
-}
-
-func (x *UpdateHostIPReq) GetHostUuid() string {
-	if x != nil {
-		return x.HostUuid
-	}
-	return ""
-}
-
-func (x *UpdateHostIPReq) GetHostName() string {
-	if x != nil {
-		return x.HostName
-	}
-	return ""
-}
-
-func (x *UpdateHostIPReq) GetIpSet() *IPList {
-	if x != nil {
-		return x.IpSet
-	}
-	return nil
-}
-
 // SyncHosts: subject of Hosts to Sync
 type SyncHosts struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -3799,7 +3535,7 @@ type SyncHosts struct {
 
 func (x *SyncHosts) Reset() {
 	*x = SyncHosts{}
-	mi := &file_sgroups_messages_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3811,7 +3547,7 @@ func (x *SyncHosts) String() string {
 func (*SyncHosts) ProtoMessage() {}
 
 func (x *SyncHosts) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3824,7 +3560,7 @@ func (x *SyncHosts) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncHosts.ProtoReflect.Descriptor instead.
 func (*SyncHosts) Descriptor() ([]byte, []int) {
-	return file_sgroups_messages_proto_rawDescGZIP(), []int{57}
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *SyncHosts) GetHosts() []*Host {
@@ -3843,7 +3579,7 @@ type ListHostsReq_NoFilter struct {
 
 func (x *ListHostsReq_NoFilter) Reset() {
 	*x = ListHostsReq_NoFilter{}
-	mi := &file_sgroups_messages_proto_msgTypes[58]
+	mi := &file_sgroups_messages_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3855,7 +3591,7 @@ func (x *ListHostsReq_NoFilter) String() string {
 func (*ListHostsReq_NoFilter) ProtoMessage() {}
 
 func (x *ListHostsReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[58]
+	mi := &file_sgroups_messages_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3881,7 +3617,7 @@ type ListHostsReq_ByUID struct {
 
 func (x *ListHostsReq_ByUID) Reset() {
 	*x = ListHostsReq_ByUID{}
-	mi := &file_sgroups_messages_proto_msgTypes[59]
+	mi := &file_sgroups_messages_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3893,7 +3629,7 @@ func (x *ListHostsReq_ByUID) String() string {
 func (*ListHostsReq_ByUID) ProtoMessage() {}
 
 func (x *ListHostsReq_ByUID) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[59]
+	mi := &file_sgroups_messages_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3926,7 +3662,7 @@ type ListHostsReq_ByHostName struct {
 
 func (x *ListHostsReq_ByHostName) Reset() {
 	*x = ListHostsReq_ByHostName{}
-	mi := &file_sgroups_messages_proto_msgTypes[60]
+	mi := &file_sgroups_messages_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3938,7 +3674,7 @@ func (x *ListHostsReq_ByHostName) String() string {
 func (*ListHostsReq_ByHostName) ProtoMessage() {}
 
 func (x *ListHostsReq_ByHostName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[60]
+	mi := &file_sgroups_messages_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3971,7 +3707,7 @@ type ListHostsReq_BySG struct {
 
 func (x *ListHostsReq_BySG) Reset() {
 	*x = ListHostsReq_BySG{}
-	mi := &file_sgroups_messages_proto_msgTypes[61]
+	mi := &file_sgroups_messages_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3983,7 +3719,7 @@ func (x *ListHostsReq_BySG) String() string {
 func (*ListHostsReq_BySG) ProtoMessage() {}
 
 func (x *ListHostsReq_BySG) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[61]
+	mi := &file_sgroups_messages_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4254,23 +3990,7 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\x04BySG\x12\x14\n" +
 	"\x05names\x18\x01 \x03(\tR\x05namesB\n" +
 	"\n" +
-	"\bcriteria\"\xaf\x01\n" +
-	"\fAgentInfoReq\x120\n" +
-	"\x06secret\x18\x01 \x01(\v2\x18.hbf.v1.agent.SecretDataR\x06secret\x12/\n" +
-	"\aip_list\x18\x02 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\x12\x17\n" +
-	"\asg_name\x18\x03 \x01(\tR\x06sgName\x12#\n" +
-	"\ragent_address\x18\x04 \x01(\tR\fagentAddress\"\x88\x01\n" +
-	"\x0fRegisterHostReq\x12.\n" +
-	"\x06direct\x18\x01 \x01(\v2\x14.hbf.v2.sgroups.HostH\x00R\x06direct\x12;\n" +
-	"\tvia_agent\x18\x02 \x01(\v2\x1c.hbf.v2.sgroups.AgentInfoReqH\x00R\bviaAgentB\b\n" +
-	"\x06method\"9\n" +
-	"\rDeleteHostReq\x12(\n" +
-	"\x04host\x18\x01 \x01(\v2\x14.hbf.v2.sgroups.HostR\x04host\"\xd4\x01\n" +
-	"\x0fUpdateHostIPReq\x12\x1b\n" +
-	"\thost_uuid\x18\x01 \x01(\tR\bhostUuid\x12\x1b\n" +
-	"\thost_name\x18\x02 \x01(\tR\bhostName\x12-\n" +
-	"\x06ip_set\x18\x03 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x05ipSet:X\x92AU\n" +
-	"S*\x0fUpdateHostIPReq24UpdateHostIPReq - updates IP set for a specific host\xd2\x01\thost_uuid\"7\n" +
+	"\bcriteria\"7\n" +
 	"\tSyncHosts\x12*\n" +
 	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts*-\n" +
 	"\n" +
@@ -4293,7 +4013,7 @@ func file_sgroups_messages_proto_rawDescGZIP() []byte {
 }
 
 var file_sgroups_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_sgroups_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
+var file_sgroups_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 58)
 var file_sgroups_messages_proto_goTypes = []any{
 	(RuleAction)(0),                      // 0: hbf.v2.sgroups.RuleAction
 	(SecGroup_DefaultAction)(0),          // 1: hbf.v2.sgroups.SecGroup.DefaultAction
@@ -4351,57 +4071,52 @@ var file_sgroups_messages_proto_goTypes = []any{
 	(*ListHostsResp)(nil),                // 53: hbf.v2.sgroups.ListHostsResp
 	(*IPList)(nil),                       // 54: hbf.v2.sgroups.IPList
 	(*ListHostsReq)(nil),                 // 55: hbf.v2.sgroups.ListHostsReq
-	(*AgentInfoReq)(nil),                 // 56: hbf.v2.sgroups.AgentInfoReq
-	(*RegisterHostReq)(nil),              // 57: hbf.v2.sgroups.RegisterHostReq
-	(*DeleteHostReq)(nil),                // 58: hbf.v2.sgroups.DeleteHostReq
-	(*UpdateHostIPReq)(nil),              // 59: hbf.v2.sgroups.UpdateHostIPReq
-	(*SyncHosts)(nil),                    // 60: hbf.v2.sgroups.SyncHosts
-	(*ListHostsReq_NoFilter)(nil),        // 61: hbf.v2.sgroups.ListHostsReq.NoFilter
-	(*ListHostsReq_ByUID)(nil),           // 62: hbf.v2.sgroups.ListHostsReq.ByUID
-	(*ListHostsReq_ByHostName)(nil),      // 63: hbf.v2.sgroups.ListHostsReq.ByHostName
-	(*ListHostsReq_BySG)(nil),            // 64: hbf.v2.sgroups.ListHostsReq.BySG
-	(*common.Networks_NetIP)(nil),        // 65: common.Networks.NetIP
-	(common.Networks_NetIP_Transport)(0), // 66: common.Networks.NetIP.Transport
-	(*common.ICMP)(nil),                  // 67: common.ICMP
-	(common.Traffic)(0),                  // 68: common.Traffic
-	(*timestamp.Timestamp)(nil),          // 69: google.protobuf.Timestamp
-	(*v1.SecretData)(nil),                // 70: hbf.v1.agent.SecretData
+	(*SyncHosts)(nil),                    // 56: hbf.v2.sgroups.SyncHosts
+	(*ListHostsReq_NoFilter)(nil),        // 57: hbf.v2.sgroups.ListHostsReq.NoFilter
+	(*ListHostsReq_ByUID)(nil),           // 58: hbf.v2.sgroups.ListHostsReq.ByUID
+	(*ListHostsReq_ByHostName)(nil),      // 59: hbf.v2.sgroups.ListHostsReq.ByHostName
+	(*ListHostsReq_BySG)(nil),            // 60: hbf.v2.sgroups.ListHostsReq.BySG
+	(*common.Networks_NetIP)(nil),        // 61: common.Networks.NetIP
+	(common.Networks_NetIP_Transport)(0), // 62: common.Networks.NetIP.Transport
+	(*common.ICMP)(nil),                  // 63: common.ICMP
+	(common.Traffic)(0),                  // 64: common.Traffic
+	(*timestamp.Timestamp)(nil),          // 65: google.protobuf.Timestamp
 }
 var file_sgroups_messages_proto_depIdxs = []int32{
-	65, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
+	61, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
 	1,  // 1: hbf.v2.sgroups.SecGroup.default_action:type_name -> hbf.v2.sgroups.SecGroup.DefaultAction
-	66, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	62, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 3: hbf.v2.sgroups.SgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 4: hbf.v2.sgroups.SgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 5: hbf.v2.sgroups.SgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	66, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
+	62, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 7: hbf.v2.sgroups.FqdnRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 8: hbf.v2.sgroups.FqdnRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 9: hbf.v2.sgroups.FqdnRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	67, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
+	63, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 11: hbf.v2.sgroups.SgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
-	67, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
+	63, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 13: hbf.v2.sgroups.SgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 14: hbf.v2.sgroups.SgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	66, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	68, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
+	62, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	64, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
 	5,  // 17: hbf.v2.sgroups.IECidrSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 18: hbf.v2.sgroups.IECidrSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 19: hbf.v2.sgroups.IECidrSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	68, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
-	67, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
+	64, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
+	63, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 22: hbf.v2.sgroups.IECidrSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 23: hbf.v2.sgroups.IECidrSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	66, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	68, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
+	62, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	64, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
 	5,  // 26: hbf.v2.sgroups.IESgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 27: hbf.v2.sgroups.IESgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 28: hbf.v2.sgroups.IESgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	68, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
-	67, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
+	64, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
+	63, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 31: hbf.v2.sgroups.IESgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 32: hbf.v2.sgroups.IESgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	69, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
+	65, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
 	7,  // 34: hbf.v2.sgroups.SyncSgSgRules.rules:type_name -> hbf.v2.sgroups.SgSgRule
 	8,  // 35: hbf.v2.sgroups.SyncFqdnRules.rules:type_name -> hbf.v2.sgroups.FqdnRule
 	4,  // 36: hbf.v2.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v2.sgroups.SecGroup
@@ -4425,7 +4140,7 @@ var file_sgroups_messages_proto_depIdxs = []int32{
 	23, // 54: hbf.v2.sgroups.SyncReq.ie_sg_sg_rules:type_name -> hbf.v2.sgroups.SyncIESgSgRules
 	24, // 55: hbf.v2.sgroups.SyncReq.ie_sg_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIESgSgIcmpRules
 	25, // 56: hbf.v2.sgroups.SyncReq.ie_cidr_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIECidrSgIcmpRules
-	60, // 57: hbf.v2.sgroups.SyncReq.hosts:type_name -> hbf.v2.sgroups.SyncHosts
+	56, // 57: hbf.v2.sgroups.SyncReq.hosts:type_name -> hbf.v2.sgroups.SyncHosts
 	3,  // 58: hbf.v2.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v2.sgroups.Network
 	7,  // 59: hbf.v2.sgroups.SgSgRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgRule
 	8,  // 60: hbf.v2.sgroups.FqdnRulesResp.rules:type_name -> hbf.v2.sgroups.FqdnRule
@@ -4437,22 +4152,16 @@ var file_sgroups_messages_proto_depIdxs = []int32{
 	12, // 66: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
 	54, // 67: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
 	52, // 68: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
-	61, // 69: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
-	62, // 70: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
-	63, // 71: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
-	64, // 72: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
-	70, // 73: hbf.v2.sgroups.AgentInfoReq.secret:type_name -> hbf.v1.agent.SecretData
-	54, // 74: hbf.v2.sgroups.AgentInfoReq.ip_list:type_name -> hbf.v2.sgroups.IPList
-	52, // 75: hbf.v2.sgroups.RegisterHostReq.direct:type_name -> hbf.v2.sgroups.Host
-	56, // 76: hbf.v2.sgroups.RegisterHostReq.via_agent:type_name -> hbf.v2.sgroups.AgentInfoReq
-	52, // 77: hbf.v2.sgroups.DeleteHostReq.host:type_name -> hbf.v2.sgroups.Host
-	54, // 78: hbf.v2.sgroups.UpdateHostIPReq.ip_set:type_name -> hbf.v2.sgroups.IPList
-	52, // 79: hbf.v2.sgroups.SyncHosts.hosts:type_name -> hbf.v2.sgroups.Host
-	80, // [80:80] is the sub-list for method output_type
-	80, // [80:80] is the sub-list for method input_type
-	80, // [80:80] is the sub-list for extension type_name
-	80, // [80:80] is the sub-list for extension extendee
-	0,  // [0:80] is the sub-list for field type_name
+	57, // 69: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
+	58, // 70: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
+	59, // 71: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
+	60, // 72: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
+	52, // 73: hbf.v2.sgroups.SyncHosts.hosts:type_name -> hbf.v2.sgroups.Host
+	74, // [74:74] is the sub-list for method output_type
+	74, // [74:74] is the sub-list for method input_type
+	74, // [74:74] is the sub-list for extension type_name
+	74, // [74:74] is the sub-list for extension extendee
+	0,  // [0:74] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_messages_proto_init() }
@@ -4482,17 +4191,13 @@ func file_sgroups_messages_proto_init() {
 		(*ListHostsReq_ByHostname)(nil),
 		(*ListHostsReq_BySgName)(nil),
 	}
-	file_sgroups_messages_proto_msgTypes[54].OneofWrappers = []any{
-		(*RegisterHostReq_Direct)(nil),
-		(*RegisterHostReq_ViaAgent)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_messages_proto_rawDesc), len(file_sgroups_messages_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   62,
+			NumMessages:   58,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

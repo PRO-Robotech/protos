@@ -20,40 +20,6 @@
     "application/json"
   ],
   "paths": {
-    "/v2/delete-host": {
-      "post": {
-        "description": "DeleteHost: deletes Host resource",
-        "operationId": "SecGroupService_DeleteHost",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sgroupsDeleteHostReq"
-            }
-          }
-        ],
-        "tags": [
-          "SecGroupService"
-        ]
-      }
-    },
     "/v2/fqdn-rules": {
       "post": {
         "description": "FindFqdnRules: finds FQDN Rule(s) scoped by variety SG 'from'",
@@ -318,40 +284,6 @@
         ]
       }
     },
-    "/v2/register-host": {
-      "post": {
-        "description": "RegisterHost: creates Host resource and fills it IPSet",
-        "operationId": "SecGroupService_RegisterHost",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sgroupsRegisterHostReq"
-            }
-          }
-        ],
-        "tags": [
-          "SecGroupService"
-        ]
-      }
-    },
     "/v2/sg-icmp-rules": {
       "post": {
         "description": "FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG",
@@ -540,41 +472,6 @@
         ]
       }
     },
-    "/v2/update-host-ipset": {
-      "post": {
-        "description": "UpdateHostIPSet: updates Host ip set by host info",
-        "operationId": "SecGroupService_UpdateHostIPset",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": "UpdateHostIPReq - updates IP set for a specific host",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sgroupsUpdateHostIPReq"
-            }
-          }
-        ],
-        "tags": [
-          "SecGroupService"
-        ]
-      }
-    },
     "/v2/{address}/sg": {
       "get": {
         "description": "GetSecGroupForAddress: gets Security Group by IP or CIDR",
@@ -728,20 +625,6 @@
       "description": "- NoOp: NoOp: it meand there is no operation defined as default\n - FullSync: FullSync: Delete+Insert+Update operations (default)\n - Upsert: Upsert: Insert+Update operations\n - Delete: Delete: Delete operation",
       "title": "SyncOp: sync operation"
     },
-    "agentSecretData": {
-      "type": "object",
-      "properties": {
-        "rawValue": {
-          "type": "string",
-          "title": "Base64-encoded plain value"
-        },
-        "secureValue": {
-          "type": "string",
-          "title": "Base64-encoded encrypted value: BASE64(IV(16 bytes) + ciphertext)"
-        }
-      },
-      "title": "Authentication data"
-    },
     "commonICMP": {
       "type": "object",
       "properties": {
@@ -822,37 +705,6 @@
         }
       },
       "title": "AccPorts: represents Security Group Rule access source-dest ports"
-    },
-    "sgroupsAgentInfoReq": {
-      "type": "object",
-      "properties": {
-        "secret": {
-          "$ref": "#/definitions/agentSecretData",
-          "title": "authentication data"
-        },
-        "ipList": {
-          "$ref": "#/definitions/sgroupsIPList",
-          "title": "list of IPs related to host"
-        },
-        "sgName": {
-          "type": "string",
-          "title": "SG related to host"
-        },
-        "agentAddress": {
-          "type": "string",
-          "title": "address to connect to agent"
-        }
-      },
-      "title": "AgentInfoReq registration from agent"
-    },
-    "sgroupsDeleteHostReq": {
-      "type": "object",
-      "properties": {
-        "host": {
-          "$ref": "#/definitions/sgroupsHost"
-        }
-      },
-      "title": "DeleteHostReq removes a host from the system"
     },
     "sgroupsFindFqdnRulesReq": {
       "type": "object",
@@ -1465,20 +1317,6 @@
         "name"
       ]
     },
-    "sgroupsRegisterHostReq": {
-      "type": "object",
-      "properties": {
-        "direct": {
-          "$ref": "#/definitions/sgroupsHost",
-          "title": "Provide host data directly"
-        },
-        "viaAgent": {
-          "$ref": "#/definitions/sgroupsAgentInfoReq",
-          "title": "Retrieve host data from agent"
-        }
-      },
-      "title": "RegisterHostReq register a host"
-    },
     "sgroupsRuleAction": {
       "type": "string",
       "enum": [
@@ -1896,25 +1734,6 @@
         }
       },
       "title": "SyncStatusResp: db status after last succeeded Sync"
-    },
-    "sgroupsUpdateHostIPReq": {
-      "type": "object",
-      "properties": {
-        "hostUuid": {
-          "type": "string"
-        },
-        "hostName": {
-          "type": "string"
-        },
-        "ipSet": {
-          "$ref": "#/definitions/sgroupsIPList"
-        }
-      },
-      "description": "UpdateHostIPReq - updates IP set for a specific host",
-      "title": "UpdateHostIPReq",
-      "required": [
-        "hostUuid"
-      ]
     }
   },
   "externalDocs": {

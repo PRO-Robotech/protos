@@ -84,15 +84,6 @@ const (
 	// SecGroupServiceListHostsProcedure is the fully-qualified name of the SecGroupService's ListHosts
 	// RPC.
 	SecGroupServiceListHostsProcedure = "/hbf.v2.sgroups.SecGroupService/ListHosts"
-	// SecGroupServiceRegisterHostProcedure is the fully-qualified name of the SecGroupService's
-	// RegisterHost RPC.
-	SecGroupServiceRegisterHostProcedure = "/hbf.v2.sgroups.SecGroupService/RegisterHost"
-	// SecGroupServiceUpdateHostIPsetProcedure is the fully-qualified name of the SecGroupService's
-	// UpdateHostIPset RPC.
-	SecGroupServiceUpdateHostIPsetProcedure = "/hbf.v2.sgroups.SecGroupService/UpdateHostIPset"
-	// SecGroupServiceDeleteHostProcedure is the fully-qualified name of the SecGroupService's
-	// DeleteHost RPC.
-	SecGroupServiceDeleteHostProcedure = "/hbf.v2.sgroups.SecGroupService/DeleteHost"
 )
 
 // SecGroupServiceClient is a client for the hbf.v2.sgroups.SecGroupService service.
@@ -114,9 +105,6 @@ type SecGroupServiceClient interface {
 	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
 	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
 	ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error)
-	RegisterHost(context.Context, *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error)
-	UpdateHostIPset(context.Context, *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error)
-	DeleteHost(context.Context, *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error)
 }
 
 // NewSecGroupServiceClient constructs a client for the hbf.v2.sgroups.SecGroupService service. By
@@ -232,24 +220,6 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(secGroupServiceMethods.ByName("ListHosts")),
 			connect.WithClientOptions(opts...),
 		),
-		registerHost: connect.NewClient[sgroups.RegisterHostReq, empty.Empty](
-			httpClient,
-			baseURL+SecGroupServiceRegisterHostProcedure,
-			connect.WithSchema(secGroupServiceMethods.ByName("RegisterHost")),
-			connect.WithClientOptions(opts...),
-		),
-		updateHostIPset: connect.NewClient[sgroups.UpdateHostIPReq, empty.Empty](
-			httpClient,
-			baseURL+SecGroupServiceUpdateHostIPsetProcedure,
-			connect.WithSchema(secGroupServiceMethods.ByName("UpdateHostIPset")),
-			connect.WithClientOptions(opts...),
-		),
-		deleteHost: connect.NewClient[sgroups.DeleteHostReq, empty.Empty](
-			httpClient,
-			baseURL+SecGroupServiceDeleteHostProcedure,
-			connect.WithSchema(secGroupServiceMethods.ByName("DeleteHost")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
@@ -272,9 +242,6 @@ type secGroupServiceClient struct {
 	getSecGroupForAddress *connect.Client[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup]
 	getSecGroupForHost    *connect.Client[sgroups.GetSecGroupForHostReq, sgroups.SecGroup]
 	listHosts             *connect.Client[sgroups.ListHostsReq, sgroups.ListHostsResp]
-	registerHost          *connect.Client[sgroups.RegisterHostReq, empty.Empty]
-	updateHostIPset       *connect.Client[sgroups.UpdateHostIPReq, empty.Empty]
-	deleteHost            *connect.Client[sgroups.DeleteHostReq, empty.Empty]
 }
 
 // Sync calls hbf.v2.sgroups.SecGroupService.Sync.
@@ -362,21 +329,6 @@ func (c *secGroupServiceClient) ListHosts(ctx context.Context, req *connect.Requ
 	return c.listHosts.CallUnary(ctx, req)
 }
 
-// RegisterHost calls hbf.v2.sgroups.SecGroupService.RegisterHost.
-func (c *secGroupServiceClient) RegisterHost(ctx context.Context, req *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error) {
-	return c.registerHost.CallUnary(ctx, req)
-}
-
-// UpdateHostIPset calls hbf.v2.sgroups.SecGroupService.UpdateHostIPset.
-func (c *secGroupServiceClient) UpdateHostIPset(ctx context.Context, req *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error) {
-	return c.updateHostIPset.CallUnary(ctx, req)
-}
-
-// DeleteHost calls hbf.v2.sgroups.SecGroupService.DeleteHost.
-func (c *secGroupServiceClient) DeleteHost(ctx context.Context, req *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error) {
-	return c.deleteHost.CallUnary(ctx, req)
-}
-
 // SecGroupServiceHandler is an implementation of the hbf.v2.sgroups.SecGroupService service.
 type SecGroupServiceHandler interface {
 	Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[empty.Empty], error)
@@ -396,9 +348,6 @@ type SecGroupServiceHandler interface {
 	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
 	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
 	ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error)
-	RegisterHost(context.Context, *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error)
-	UpdateHostIPset(context.Context, *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error)
-	DeleteHost(context.Context, *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error)
 }
 
 // NewSecGroupServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -510,24 +459,6 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 		connect.WithSchema(secGroupServiceMethods.ByName("ListHosts")),
 		connect.WithHandlerOptions(opts...),
 	)
-	secGroupServiceRegisterHostHandler := connect.NewUnaryHandler(
-		SecGroupServiceRegisterHostProcedure,
-		svc.RegisterHost,
-		connect.WithSchema(secGroupServiceMethods.ByName("RegisterHost")),
-		connect.WithHandlerOptions(opts...),
-	)
-	secGroupServiceUpdateHostIPsetHandler := connect.NewUnaryHandler(
-		SecGroupServiceUpdateHostIPsetProcedure,
-		svc.UpdateHostIPset,
-		connect.WithSchema(secGroupServiceMethods.ByName("UpdateHostIPset")),
-		connect.WithHandlerOptions(opts...),
-	)
-	secGroupServiceDeleteHostHandler := connect.NewUnaryHandler(
-		SecGroupServiceDeleteHostProcedure,
-		svc.DeleteHost,
-		connect.WithSchema(secGroupServiceMethods.ByName("DeleteHost")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/hbf.v2.sgroups.SecGroupService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case SecGroupServiceSyncProcedure:
@@ -564,12 +495,6 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 			secGroupServiceGetSecGroupForHostHandler.ServeHTTP(w, r)
 		case SecGroupServiceListHostsProcedure:
 			secGroupServiceListHostsHandler.ServeHTTP(w, r)
-		case SecGroupServiceRegisterHostProcedure:
-			secGroupServiceRegisterHostHandler.ServeHTTP(w, r)
-		case SecGroupServiceUpdateHostIPsetProcedure:
-			secGroupServiceUpdateHostIPsetHandler.ServeHTTP(w, r)
-		case SecGroupServiceDeleteHostProcedure:
-			secGroupServiceDeleteHostHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -645,16 +570,4 @@ func (UnimplementedSecGroupServiceHandler) GetSecGroupForHost(context.Context, *
 
 func (UnimplementedSecGroupServiceHandler) ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.ListHosts is not implemented"))
-}
-
-func (UnimplementedSecGroupServiceHandler) RegisterHost(context.Context, *connect.Request[sgroups.RegisterHostReq]) (*connect.Response[empty.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.RegisterHost is not implemented"))
-}
-
-func (UnimplementedSecGroupServiceHandler) UpdateHostIPset(context.Context, *connect.Request[sgroups.UpdateHostIPReq]) (*connect.Response[empty.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.UpdateHostIPset is not implemented"))
-}
-
-func (UnimplementedSecGroupServiceHandler) DeleteHost(context.Context, *connect.Request[sgroups.DeleteHostReq]) (*connect.Response[empty.Empty], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.DeleteHost is not implemented"))
 }
