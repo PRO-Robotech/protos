@@ -1364,7 +1364,7 @@
           "type": "boolean",
           "title": "logs: switch-{ON|OFF} logs in chain"
         },
-        "host": {
+        "hosts": {
           "type": "array",
           "items": {
             "type": "string"

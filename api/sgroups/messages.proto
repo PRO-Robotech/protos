@@ -53,7 +53,7 @@ message SecGroup {
   //logs: switch-{ON|OFF} logs in chain
   bool logs = 5;
   //host: related to security group host names
-  repeated string host = 6;
+  repeated string hosts = 6;
 }
 
 // AccPorts: represents Security Group Rule access source-dest ports
