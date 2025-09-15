@@ -258,8 +258,8 @@ type SecGroup struct {
 	Trace bool `protobuf:"varint,4,opt,name=trace,proto3" json:"trace,omitempty"`
 	// logs: switch-{ON|OFF} logs in chain
 	Logs bool `protobuf:"varint,5,opt,name=logs,proto3" json:"logs,omitempty"`
-	// host: name of host related to security group
-	Host          string `protobuf:"bytes,6,opt,name=host,proto3" json:"host,omitempty"`
+	// host: related to security group host names
+	Host          []string `protobuf:"bytes,6,rep,name=host,proto3" json:"host,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -329,11 +329,11 @@ func (x *SecGroup) GetLogs() bool {
 	return false
 }
 
-func (x *SecGroup) GetHost() string {
+func (x *SecGroup) GetHost() []string {
 	if x != nil {
 		return x.Host
 	}
-	return ""
+	return nil
 }
 
 // AccPorts: represents Security Group Rule access source-dest ports
@@ -3757,7 +3757,7 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\x0edefault_action\x18\x03 \x01(\x0e2&.hbf.v2.sgroups.SecGroup.DefaultActionR\rdefaultAction\x12\x14\n" +
 	"\x05trace\x18\x04 \x01(\bR\x05trace\x12\x12\n" +
 	"\x04logs\x18\x05 \x01(\bR\x04logs\x12\x12\n" +
-	"\x04host\x18\x06 \x01(\tR\x04host\"2\n" +
+	"\x04host\x18\x06 \x03(\tR\x04host\"2\n" +
 	"\rDefaultAction\x12\v\n" +
 	"\aDEFAULT\x10\x00\x12\b\n" +
 	"\x04DROP\x10\x01\x12\n" +

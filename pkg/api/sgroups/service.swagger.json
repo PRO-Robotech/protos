@@ -1365,8 +1365,11 @@
           "title": "logs: switch-{ON|OFF} logs in chain"
         },
         "host": {
-          "type": "string",
-          "title": "host: name of host related to security group"
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "host: related to security group host names"
         }
       },
       "title": "SecGroup: represents a security group",

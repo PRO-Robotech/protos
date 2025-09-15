@@ -52,8 +52,8 @@ message SecGroup {
   bool trace = 4;
   //logs: switch-{ON|OFF} logs in chain
   bool logs = 5;
-  //host: name of host related to security group
-  string host = 6;
+  //host: related to security group host names
+  repeated string host = 6;
 }
 
 // AccPorts: represents Security Group Rule access source-dest ports
