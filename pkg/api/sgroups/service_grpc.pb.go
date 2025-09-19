@@ -37,6 +37,8 @@ const (
 	SecGroupService_GetSecGroupForAddress_FullMethodName = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
 	SecGroupService_GetSecGroupForHost_FullMethodName    = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForHost"
 	SecGroupService_ListHosts_FullMethodName             = "/hbf.v2.sgroups.SecGroupService/ListHosts"
+	SecGroupService_ListServices_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/ListServices"
+	SecGroupService_FindSvcSvcRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/FindSvcSvcRules"
 )
 
 // SecGroupServiceClient is the client API for SecGroupService service.
@@ -60,6 +62,8 @@ type SecGroupServiceClient interface {
 	GetSecGroupForAddress(ctx context.Context, in *GetSecGroupForAddressReq, opts ...grpc.CallOption) (*SecGroup, error)
 	GetSecGroupForHost(ctx context.Context, in *GetSecGroupForHostReq, opts ...grpc.CallOption) (*SecGroup, error)
 	ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostsResp, error)
+	ListServices(ctx context.Context, in *ListServicesReq, opts ...grpc.CallOption) (*ListServicesResp, error)
+	FindSvcSvcRules(ctx context.Context, in *FindSvcSvcRulesReq, opts ...grpc.CallOption) (*SvcSvcRulesResp, error)
 }
 
 type secGroupServiceClient struct {
@@ -249,6 +253,26 @@ func (c *secGroupServiceClient) ListHosts(ctx context.Context, in *ListHostsReq,
 	return out, nil
 }
 
+func (c *secGroupServiceClient) ListServices(ctx context.Context, in *ListServicesReq, opts ...grpc.CallOption) (*ListServicesResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListServicesResp)
+	err := c.cc.Invoke(ctx, SecGroupService_ListServices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secGroupServiceClient) FindSvcSvcRules(ctx context.Context, in *FindSvcSvcRulesReq, opts ...grpc.CallOption) (*SvcSvcRulesResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SvcSvcRulesResp)
+	err := c.cc.Invoke(ctx, SecGroupService_FindSvcSvcRules_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SecGroupServiceServer is the server API for SecGroupService service.
 // All implementations must embed UnimplementedSecGroupServiceServer
 // for forward compatibility.
@@ -270,6 +294,8 @@ type SecGroupServiceServer interface {
 	GetSecGroupForAddress(context.Context, *GetSecGroupForAddressReq) (*SecGroup, error)
 	GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error)
 	ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error)
+	ListServices(context.Context, *ListServicesReq) (*ListServicesResp, error)
+	FindSvcSvcRules(context.Context, *FindSvcSvcRulesReq) (*SvcSvcRulesResp, error)
 	mustEmbedUnimplementedSecGroupServiceServer()
 }
 
@@ -330,6 +356,12 @@ func (UnimplementedSecGroupServiceServer) GetSecGroupForHost(context.Context, *G
 }
 func (UnimplementedSecGroupServiceServer) ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListHosts not implemented")
+}
+func (UnimplementedSecGroupServiceServer) ListServices(context.Context, *ListServicesReq) (*ListServicesResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListServices not implemented")
+}
+func (UnimplementedSecGroupServiceServer) FindSvcSvcRules(context.Context, *FindSvcSvcRulesReq) (*SvcSvcRulesResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindSvcSvcRules not implemented")
 }
 func (UnimplementedSecGroupServiceServer) mustEmbedUnimplementedSecGroupServiceServer() {}
 func (UnimplementedSecGroupServiceServer) testEmbeddedByValue()                         {}
@@ -651,6 +683,42 @@ func _SecGroupService_ListHosts_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SecGroupService_ListServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListServicesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).ListServices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_ListServices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).ListServices(ctx, req.(*ListServicesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SecGroupService_FindSvcSvcRules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindSvcSvcRulesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).FindSvcSvcRules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_FindSvcSvcRules_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).FindSvcSvcRules(ctx, req.(*FindSvcSvcRulesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SecGroupService_ServiceDesc is the grpc.ServiceDesc for SecGroupService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -721,6 +789,14 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListHosts",
 			Handler:    _SecGroupService_ListHosts_Handler,
+		},
+		{
+			MethodName: "ListServices",
+			Handler:    _SecGroupService_ListServices_Handler,
+		},
+		{
+			MethodName: "FindSvcSvcRules",
+			Handler:    _SecGroupService_FindSvcSvcRules_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

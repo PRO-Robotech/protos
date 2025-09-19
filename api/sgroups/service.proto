@@ -186,4 +186,24 @@ service SecGroupService {
          description: "ListHosts: list hosts by variety of scopes";
      };
    };
+
+   rpc ListServices(ListServicesReq) returns (ListServicesResp) {
+     option (google.api.http) = {
+        post: "/v2/list-services"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "ListServices: shows list of Services";
+     };
+   }
+
+   rpc FindSvcSvcRules(FindSvcSvcRulesReq) returns (SvcSvcRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/svc-svc-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "FindSvcSvcRules: finds Service-to-Service Rule(s) scoped by variety pairs 'Service '->'to Service'";
+     };
+   };
 }

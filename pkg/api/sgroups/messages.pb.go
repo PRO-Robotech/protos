@@ -252,7 +252,7 @@ type SecGroup struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// related to security gpoup network(s)
 	Networks []string `protobuf:"bytes,2,rep,name=networks,proto3" json:"networks,omitempty"`
-	// default_action: represents default rula action
+	// default_action: represents default rule action
 	DefaultAction SecGroup_DefaultAction `protobuf:"varint,3,opt,name=default_action,json=defaultAction,proto3,enum=hbf.v2.sgroups.SecGroup_DefaultAction" json:"default_action,omitempty"`
 	// trace: set or unset 'nftrace' flag
 	Trace bool `protobuf:"varint,4,opt,name=trace,proto3" json:"trace,omitempty"`
@@ -2003,6 +2003,8 @@ type SyncReq struct {
 	//	*SyncReq_IeSgSgIcmpRules
 	//	*SyncReq_IeCidrSgIcmpRules
 	//	*SyncReq_Hosts
+	//	*SyncReq_Services
+	//	*SyncReq_SvcSvcRules
 	Subject       isSyncReq_Subject `protobuf_oneof:"subject"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2151,6 +2153,24 @@ func (x *SyncReq) GetHosts() *SyncHosts {
 	return nil
 }
 
+func (x *SyncReq) GetServices() *SyncServices {
+	if x != nil {
+		if x, ok := x.Subject.(*SyncReq_Services); ok {
+			return x.Services
+		}
+	}
+	return nil
+}
+
+func (x *SyncReq) GetSvcSvcRules() *SyncSvcSvcRules {
+	if x != nil {
+		if x, ok := x.Subject.(*SyncReq_SvcSvcRules); ok {
+			return x.SvcSvcRules
+		}
+	}
+	return nil
+}
+
 type isSyncReq_Subject interface {
 	isSyncReq_Subject()
 }
@@ -2210,6 +2230,16 @@ type SyncReq_Hosts struct {
 	Hosts *SyncHosts `protobuf:"bytes,12,opt,name=hosts,proto3,oneof"`
 }
 
+type SyncReq_Services struct {
+	// subject of Service(s)
+	Services *SyncServices `protobuf:"bytes,13,opt,name=services,proto3,oneof"`
+}
+
+type SyncReq_SvcSvcRules struct {
+	// subject of Service-to-Service Rule(s)
+	SvcSvcRules *SyncSvcSvcRules `protobuf:"bytes,14,opt,name=svc_svc_rules,json=svcSvcRules,proto3,oneof"`
+}
+
 func (*SyncReq_Groups) isSyncReq_Subject() {}
 
 func (*SyncReq_Networks) isSyncReq_Subject() {}
@@ -2231,6 +2261,10 @@ func (*SyncReq_IeSgSgIcmpRules) isSyncReq_Subject() {}
 func (*SyncReq_IeCidrSgIcmpRules) isSyncReq_Subject() {}
 
 func (*SyncReq_Hosts) isSyncReq_Subject() {}
+
+func (*SyncReq_Services) isSyncReq_Subject() {}
+
+func (*SyncReq_SvcSvcRules) isSyncReq_Subject() {}
 
 // GetSgSubnetsReq: req to get Networks related to Security Group
 type GetSgSubnetsReq struct {
@@ -3570,6 +3604,499 @@ func (x *SyncHosts) GetHosts() []*Host {
 	return nil
 }
 
+// Service: represents a service
+type Service struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// name of service
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// ip net transport [TCP, UDP]
+	Transport common.Networks_NetIP_Transport `protobuf:"varint,2,opt,name=transport,proto3,enum=common.Networks_NetIP_Transport" json:"transport,omitempty"`
+	// AccPorts: access port set(s)
+	Ports []*AccPorts `protobuf:"bytes,3,rep,name=ports,proto3" json:"ports,omitempty"`
+	// trace: switch-{ON|OFF} logs in rules
+	Trace bool `protobuf:"varint,4,opt,name=trace,proto3" json:"trace,omitempty"`
+	// logs: switch-{ON|OFF} logs in chain
+	Logs          bool `protobuf:"varint,5,opt,name=logs,proto3" json:"logs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Service) Reset() {
+	*x = Service{}
+	mi := &file_sgroups_messages_proto_msgTypes[54]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Service) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Service) ProtoMessage() {}
+
+func (x *Service) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[54]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Service.ProtoReflect.Descriptor instead.
+func (*Service) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *Service) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Service) GetTransport() common.Networks_NetIP_Transport {
+	if x != nil {
+		return x.Transport
+	}
+	return common.Networks_NetIP_Transport(0)
+}
+
+func (x *Service) GetPorts() []*AccPorts {
+	if x != nil {
+		return x.Ports
+	}
+	return nil
+}
+
+func (x *Service) GetTrace() bool {
+	if x != nil {
+		return x.Trace
+	}
+	return false
+}
+
+func (x *Service) GetLogs() bool {
+	if x != nil {
+		return x.Logs
+	}
+	return false
+}
+
+// SvcSvcRule: represents Service-to-Service Rule
+type SvcSvcRule struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// service at client
+	SvcFrom string `protobuf:"bytes,1,opt,name=svc_from,json=svcFrom,proto3" json:"svc_from,omitempty"`
+	// service at server
+	SvcTo string `protobuf:"bytes,2,opt,name=svc_to,json=svcTo,proto3" json:"svc_to,omitempty"`
+	// action: represents rule action
+	Action RuleAction `protobuf:"varint,3,opt,name=action,proto3,enum=hbf.v2.sgroups.RuleAction" json:"action,omitempty"`
+	// priority: rule priority affects on rule pos in its rule list
+	Priority      *RulePriority `protobuf:"bytes,4,opt,name=priority,proto3" json:"priority,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SvcSvcRule) Reset() {
+	*x = SvcSvcRule{}
+	mi := &file_sgroups_messages_proto_msgTypes[55]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SvcSvcRule) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SvcSvcRule) ProtoMessage() {}
+
+func (x *SvcSvcRule) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[55]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SvcSvcRule.ProtoReflect.Descriptor instead.
+func (*SvcSvcRule) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *SvcSvcRule) GetSvcFrom() string {
+	if x != nil {
+		return x.SvcFrom
+	}
+	return ""
+}
+
+func (x *SvcSvcRule) GetSvcTo() string {
+	if x != nil {
+		return x.SvcTo
+	}
+	return ""
+}
+
+func (x *SvcSvcRule) GetAction() RuleAction {
+	if x != nil {
+		return x.Action
+	}
+	return RuleAction_UNDEF
+}
+
+func (x *SvcSvcRule) GetPriority() *RulePriority {
+	if x != nil {
+		return x.Priority
+	}
+	return nil
+}
+
+// ListServicesReq: request to list services by variety of scopes
+type ListServicesReq struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Criteria:
+	//
+	//	*ListServicesReq_None
+	//	*ListServicesReq_BySvcName
+	//	*ListServicesReq_BySgName
+	Criteria      isListServicesReq_Criteria `protobuf_oneof:"criteria"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListServicesReq) Reset() {
+	*x = ListServicesReq{}
+	mi := &file_sgroups_messages_proto_msgTypes[56]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListServicesReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListServicesReq) ProtoMessage() {}
+
+func (x *ListServicesReq) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[56]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListServicesReq.ProtoReflect.Descriptor instead.
+func (*ListServicesReq) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{56}
+}
+
+func (x *ListServicesReq) GetCriteria() isListServicesReq_Criteria {
+	if x != nil {
+		return x.Criteria
+	}
+	return nil
+}
+
+func (x *ListServicesReq) GetNone() *ListServicesReq_NoFilter {
+	if x != nil {
+		if x, ok := x.Criteria.(*ListServicesReq_None); ok {
+			return x.None
+		}
+	}
+	return nil
+}
+
+func (x *ListServicesReq) GetBySvcName() *ListServicesReq_BySVCName {
+	if x != nil {
+		if x, ok := x.Criteria.(*ListServicesReq_BySvcName); ok {
+			return x.BySvcName
+		}
+	}
+	return nil
+}
+
+func (x *ListServicesReq) GetBySgName() *ListServicesReq_BySG {
+	if x != nil {
+		if x, ok := x.Criteria.(*ListServicesReq_BySgName); ok {
+			return x.BySgName
+		}
+	}
+	return nil
+}
+
+type isListServicesReq_Criteria interface {
+	isListServicesReq_Criteria()
+}
+
+type ListServicesReq_None struct {
+	None *ListServicesReq_NoFilter `protobuf:"bytes,1,opt,name=none,proto3,oneof"`
+}
+
+type ListServicesReq_BySvcName struct {
+	BySvcName *ListServicesReq_BySVCName `protobuf:"bytes,2,opt,name=by_svc_name,json=bySvcName,proto3,oneof"`
+}
+
+type ListServicesReq_BySgName struct {
+	BySgName *ListServicesReq_BySG `protobuf:"bytes,3,opt,name=by_sg_name,json=bySgName,proto3,oneof"`
+}
+
+func (*ListServicesReq_None) isListServicesReq_Criteria() {}
+
+func (*ListServicesReq_BySvcName) isListServicesReq_Criteria() {}
+
+func (*ListServicesReq_BySgName) isListServicesReq_Criteria() {}
+
+// ListSecurityGroupsResp: Security Groups list resp
+type ListServicesResp struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// service items
+	Services      []*Service `protobuf:"bytes,1,rep,name=services,proto3" json:"services,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListServicesResp) Reset() {
+	*x = ListServicesResp{}
+	mi := &file_sgroups_messages_proto_msgTypes[57]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListServicesResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListServicesResp) ProtoMessage() {}
+
+func (x *ListServicesResp) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[57]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListServicesResp.ProtoReflect.Descriptor instead.
+func (*ListServicesResp) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{57}
+}
+
+func (x *ListServicesResp) GetServices() []*Service {
+	if x != nil {
+		return x.Services
+	}
+	return nil
+}
+
+// SyncServices: subject of Services to Sync
+type SyncServices struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// service items
+	Services      []*Service `protobuf:"bytes,1,rep,name=services,proto3" json:"services,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SyncServices) Reset() {
+	*x = SyncServices{}
+	mi := &file_sgroups_messages_proto_msgTypes[58]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncServices) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncServices) ProtoMessage() {}
+
+func (x *SyncServices) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[58]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncServices.ProtoReflect.Descriptor instead.
+func (*SyncServices) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{58}
+}
+
+func (x *SyncServices) GetServices() []*Service {
+	if x != nil {
+		return x.Services
+	}
+	return nil
+}
+
+// FindSvcSvcRulesReq: req to find all Service(s) Rule(s) scoped by variety('from') --> variety('to') Service(s)
+type FindSvcSvcRulesReq struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// scope Service name 'from' items
+	SvcFrom []string `protobuf:"bytes,1,rep,name=svc_from,json=svcFrom,proto3" json:"svc_from,omitempty"`
+	// scope Service name 'to' items
+	SvcTo         []string `protobuf:"bytes,2,rep,name=svc_to,json=svcTo,proto3" json:"svc_to,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FindSvcSvcRulesReq) Reset() {
+	*x = FindSvcSvcRulesReq{}
+	mi := &file_sgroups_messages_proto_msgTypes[59]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindSvcSvcRulesReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindSvcSvcRulesReq) ProtoMessage() {}
+
+func (x *FindSvcSvcRulesReq) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[59]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindSvcSvcRulesReq.ProtoReflect.Descriptor instead.
+func (*FindSvcSvcRulesReq) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{59}
+}
+
+func (x *FindSvcSvcRulesReq) GetSvcFrom() []string {
+	if x != nil {
+		return x.SvcFrom
+	}
+	return nil
+}
+
+func (x *FindSvcSvcRulesReq) GetSvcTo() []string {
+	if x != nil {
+		return x.SvcTo
+	}
+	return nil
+}
+
+// SvcSvcRulesResp: Service(s) Rule(s) resp
+type SvcSvcRulesResp struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Service rule(s) items
+	Rules         []*SvcSvcRule `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SvcSvcRulesResp) Reset() {
+	*x = SvcSvcRulesResp{}
+	mi := &file_sgroups_messages_proto_msgTypes[60]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SvcSvcRulesResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SvcSvcRulesResp) ProtoMessage() {}
+
+func (x *SvcSvcRulesResp) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[60]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SvcSvcRulesResp.ProtoReflect.Descriptor instead.
+func (*SvcSvcRulesResp) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{60}
+}
+
+func (x *SvcSvcRulesResp) GetRules() []*SvcSvcRule {
+	if x != nil {
+		return x.Rules
+	}
+	return nil
+}
+
+// SyncSvcSvcRules: subject of Service-to-Service Rules to Sync
+type SyncSvcSvcRules struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// service-to-service rules items
+	Rules         []*SvcSvcRule `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SyncSvcSvcRules) Reset() {
+	*x = SyncSvcSvcRules{}
+	mi := &file_sgroups_messages_proto_msgTypes[61]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncSvcSvcRules) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncSvcSvcRules) ProtoMessage() {}
+
+func (x *SyncSvcSvcRules) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[61]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncSvcSvcRules.ProtoReflect.Descriptor instead.
+func (*SyncSvcSvcRules) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{61}
+}
+
+func (x *SyncSvcSvcRules) GetRules() []*SvcSvcRule {
+	if x != nil {
+		return x.Rules
+	}
+	return nil
+}
+
 // No filtering: return all hosts
 type ListHostsReq_NoFilter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -3579,7 +4106,7 @@ type ListHostsReq_NoFilter struct {
 
 func (x *ListHostsReq_NoFilter) Reset() {
 	*x = ListHostsReq_NoFilter{}
-	mi := &file_sgroups_messages_proto_msgTypes[54]
+	mi := &file_sgroups_messages_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3591,7 +4118,7 @@ func (x *ListHostsReq_NoFilter) String() string {
 func (*ListHostsReq_NoFilter) ProtoMessage() {}
 
 func (x *ListHostsReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[54]
+	mi := &file_sgroups_messages_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3617,7 +4144,7 @@ type ListHostsReq_ByUID struct {
 
 func (x *ListHostsReq_ByUID) Reset() {
 	*x = ListHostsReq_ByUID{}
-	mi := &file_sgroups_messages_proto_msgTypes[55]
+	mi := &file_sgroups_messages_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3629,7 +4156,7 @@ func (x *ListHostsReq_ByUID) String() string {
 func (*ListHostsReq_ByUID) ProtoMessage() {}
 
 func (x *ListHostsReq_ByUID) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[55]
+	mi := &file_sgroups_messages_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3662,7 +4189,7 @@ type ListHostsReq_ByHostName struct {
 
 func (x *ListHostsReq_ByHostName) Reset() {
 	*x = ListHostsReq_ByHostName{}
-	mi := &file_sgroups_messages_proto_msgTypes[56]
+	mi := &file_sgroups_messages_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3674,7 +4201,7 @@ func (x *ListHostsReq_ByHostName) String() string {
 func (*ListHostsReq_ByHostName) ProtoMessage() {}
 
 func (x *ListHostsReq_ByHostName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[56]
+	mi := &file_sgroups_messages_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3707,7 +4234,7 @@ type ListHostsReq_BySG struct {
 
 func (x *ListHostsReq_BySG) Reset() {
 	*x = ListHostsReq_BySG{}
-	mi := &file_sgroups_messages_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3719,7 +4246,7 @@ func (x *ListHostsReq_BySG) String() string {
 func (*ListHostsReq_BySG) ProtoMessage() {}
 
 func (x *ListHostsReq_BySG) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_messages_proto_msgTypes[57]
+	mi := &file_sgroups_messages_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3736,6 +4263,133 @@ func (*ListHostsReq_BySG) Descriptor() ([]byte, []int) {
 }
 
 func (x *ListHostsReq_BySG) GetNames() []string {
+	if x != nil {
+		return x.Names
+	}
+	return nil
+}
+
+// No filtering: return all services
+type ListServicesReq_NoFilter struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListServicesReq_NoFilter) Reset() {
+	*x = ListServicesReq_NoFilter{}
+	mi := &file_sgroups_messages_proto_msgTypes[66]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListServicesReq_NoFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListServicesReq_NoFilter) ProtoMessage() {}
+
+func (x *ListServicesReq_NoFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[66]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListServicesReq_NoFilter.ProtoReflect.Descriptor instead.
+func (*ListServicesReq_NoFilter) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{56, 0}
+}
+
+// Filter by service names
+type ListServicesReq_BySVCName struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Names         []string               `protobuf:"bytes,1,rep,name=names,proto3" json:"names,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListServicesReq_BySVCName) Reset() {
+	*x = ListServicesReq_BySVCName{}
+	mi := &file_sgroups_messages_proto_msgTypes[67]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListServicesReq_BySVCName) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListServicesReq_BySVCName) ProtoMessage() {}
+
+func (x *ListServicesReq_BySVCName) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[67]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListServicesReq_BySVCName.ProtoReflect.Descriptor instead.
+func (*ListServicesReq_BySVCName) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{56, 1}
+}
+
+func (x *ListServicesReq_BySVCName) GetNames() []string {
+	if x != nil {
+		return x.Names
+	}
+	return nil
+}
+
+// Filter by security group names
+type ListServicesReq_BySG struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Names         []string               `protobuf:"bytes,1,rep,name=names,proto3" json:"names,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListServicesReq_BySG) Reset() {
+	*x = ListServicesReq_BySG{}
+	mi := &file_sgroups_messages_proto_msgTypes[68]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListServicesReq_BySG) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListServicesReq_BySG) ProtoMessage() {}
+
+func (x *ListServicesReq_BySG) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_messages_proto_msgTypes[68]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListServicesReq_BySG.ProtoReflect.Descriptor instead.
+func (*ListServicesReq_BySG) Descriptor() ([]byte, []int) {
+	return file_sgroups_messages_proto_rawDescGZIP(), []int{56, 2}
+}
+
+func (x *ListServicesReq_BySG) GetNames() []string {
 	if x != nil {
 		return x.Names
 	}
@@ -3876,7 +4530,7 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\x15ListSecurityGroupsReq\x12\x19\n" +
 	"\bsg_names\x18\x01 \x03(\tR\asgNames\"J\n" +
 	"\x16ListSecurityGroupsResp\x120\n" +
-	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"\x96\a\n" +
+	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"\x99\b\n" +
 	"\aSyncReq\x127\n" +
 	"\async_op\x18\x01 \x01(\x0e2\x1e.hbf.v2.sgroups.SyncReq.SyncOpR\x06syncOp\x12<\n" +
 	"\x06groups\x18\x02 \x01(\v2\".hbf.v2.sgroups.SyncSecurityGroupsH\x00R\x06groups\x12:\n" +
@@ -3891,7 +4545,9 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\x13ie_sg_sg_icmp_rules\x18\n" +
 	" \x01(\v2#.hbf.v2.sgroups.SyncIESgSgIcmpRulesH\x00R\x0fieSgSgIcmpRules\x12Y\n" +
 	"\x15ie_cidr_sg_icmp_rules\x18\v \x01(\v2%.hbf.v2.sgroups.SyncIECidrSgIcmpRulesH\x00R\x11ieCidrSgIcmpRules\x121\n" +
-	"\x05hosts\x18\f \x01(\v2\x19.hbf.v2.sgroups.SyncHostsH\x00R\x05hosts\">\n" +
+	"\x05hosts\x18\f \x01(\v2\x19.hbf.v2.sgroups.SyncHostsH\x00R\x05hosts\x12:\n" +
+	"\bservices\x18\r \x01(\v2\x1c.hbf.v2.sgroups.SyncServicesH\x00R\bservices\x12E\n" +
+	"\rsvc_svc_rules\x18\x0e \x01(\v2\x1f.hbf.v2.sgroups.SyncSvcSvcRulesH\x00R\vsvcSvcRules\">\n" +
 	"\x06SyncOp\x12\b\n" +
 	"\x04NoOp\x10\x00\x12\f\n" +
 	"\bFullSync\x10\x04\x12\n" +
@@ -3992,7 +4648,46 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\"7\n" +
 	"\tSyncHosts\x12*\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts*-\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts\"\xc5\x01\n" +
+	"\aService\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12>\n" +
+	"\ttransport\x18\x02 \x01(\x0e2 .common.Networks.NetIP.TransportR\ttransport\x12.\n" +
+	"\x05ports\x18\x03 \x03(\v2\x18.hbf.v2.sgroups.AccPortsR\x05ports\x12\x14\n" +
+	"\x05trace\x18\x04 \x01(\bR\x05trace\x12\x12\n" +
+	"\x04logs\x18\x05 \x01(\bR\x04logs:\f\x92A\t\n" +
+	"\a\xd2\x01\x04name\"\xc5\x01\n" +
+	"\n" +
+	"SvcSvcRule\x12\x19\n" +
+	"\bsvc_from\x18\x01 \x01(\tR\asvcFrom\x12\x15\n" +
+	"\x06svc_to\x18\x02 \x01(\tR\x05svcTo\x122\n" +
+	"\x06action\x18\x03 \x01(\x0e2\x1a.hbf.v2.sgroups.RuleActionR\x06action\x128\n" +
+	"\bpriority\x18\x04 \x01(\v2\x1c.hbf.v2.sgroups.RulePriorityR\bpriority:\x17\x92A\x14\n" +
+	"\x12\xd2\x01\asvcFrom\xd2\x01\x05svcTo\"\xbd\x02\n" +
+	"\x0fListServicesReq\x12>\n" +
+	"\x04none\x18\x01 \x01(\v2(.hbf.v2.sgroups.ListServicesReq.NoFilterH\x00R\x04none\x12K\n" +
+	"\vby_svc_name\x18\x02 \x01(\v2).hbf.v2.sgroups.ListServicesReq.BySVCNameH\x00R\tbySvcName\x12D\n" +
+	"\n" +
+	"by_sg_name\x18\x03 \x01(\v2$.hbf.v2.sgroups.ListServicesReq.BySGH\x00R\bbySgName\x1a\n" +
+	"\n" +
+	"\bNoFilter\x1a!\n" +
+	"\tBySVCName\x12\x14\n" +
+	"\x05names\x18\x01 \x03(\tR\x05names\x1a\x1c\n" +
+	"\x04BySG\x12\x14\n" +
+	"\x05names\x18\x01 \x03(\tR\x05namesB\n" +
+	"\n" +
+	"\bcriteria\"G\n" +
+	"\x10ListServicesResp\x123\n" +
+	"\bservices\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.ServiceR\bservices\"C\n" +
+	"\fSyncServices\x123\n" +
+	"\bservices\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.ServiceR\bservices\"_\n" +
+	"\x12FindSvcSvcRulesReq\x12\x19\n" +
+	"\bsvc_from\x18\x01 \x03(\tR\asvcFrom\x12\x15\n" +
+	"\x06svc_to\x18\x02 \x03(\tR\x05svcTo:\x17\x92A\x14\n" +
+	"\x12\xd2\x01\asvcFrom\xd2\x01\x05svcTo\"C\n" +
+	"\x0fSvcSvcRulesResp\x120\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SvcSvcRuleR\x05rules\"C\n" +
+	"\x0fSyncSvcSvcRules\x120\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SvcSvcRuleR\x05rules*-\n" +
 	"\n" +
 	"RuleAction\x12\t\n" +
 	"\x05UNDEF\x10\x00\x12\b\n" +
@@ -4013,7 +4708,7 @@ func file_sgroups_messages_proto_rawDescGZIP() []byte {
 }
 
 var file_sgroups_messages_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_sgroups_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 58)
+var file_sgroups_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 69)
 var file_sgroups_messages_proto_goTypes = []any{
 	(RuleAction)(0),                      // 0: hbf.v2.sgroups.RuleAction
 	(SecGroup_DefaultAction)(0),          // 1: hbf.v2.sgroups.SecGroup.DefaultAction
@@ -4072,51 +4767,62 @@ var file_sgroups_messages_proto_goTypes = []any{
 	(*IPList)(nil),                       // 54: hbf.v2.sgroups.IPList
 	(*ListHostsReq)(nil),                 // 55: hbf.v2.sgroups.ListHostsReq
 	(*SyncHosts)(nil),                    // 56: hbf.v2.sgroups.SyncHosts
-	(*ListHostsReq_NoFilter)(nil),        // 57: hbf.v2.sgroups.ListHostsReq.NoFilter
-	(*ListHostsReq_ByUID)(nil),           // 58: hbf.v2.sgroups.ListHostsReq.ByUID
-	(*ListHostsReq_ByHostName)(nil),      // 59: hbf.v2.sgroups.ListHostsReq.ByHostName
-	(*ListHostsReq_BySG)(nil),            // 60: hbf.v2.sgroups.ListHostsReq.BySG
-	(*common.Networks_NetIP)(nil),        // 61: common.Networks.NetIP
-	(common.Networks_NetIP_Transport)(0), // 62: common.Networks.NetIP.Transport
-	(*common.ICMP)(nil),                  // 63: common.ICMP
-	(common.Traffic)(0),                  // 64: common.Traffic
-	(*timestamp.Timestamp)(nil),          // 65: google.protobuf.Timestamp
+	(*Service)(nil),                      // 57: hbf.v2.sgroups.Service
+	(*SvcSvcRule)(nil),                   // 58: hbf.v2.sgroups.SvcSvcRule
+	(*ListServicesReq)(nil),              // 59: hbf.v2.sgroups.ListServicesReq
+	(*ListServicesResp)(nil),             // 60: hbf.v2.sgroups.ListServicesResp
+	(*SyncServices)(nil),                 // 61: hbf.v2.sgroups.SyncServices
+	(*FindSvcSvcRulesReq)(nil),           // 62: hbf.v2.sgroups.FindSvcSvcRulesReq
+	(*SvcSvcRulesResp)(nil),              // 63: hbf.v2.sgroups.SvcSvcRulesResp
+	(*SyncSvcSvcRules)(nil),              // 64: hbf.v2.sgroups.SyncSvcSvcRules
+	(*ListHostsReq_NoFilter)(nil),        // 65: hbf.v2.sgroups.ListHostsReq.NoFilter
+	(*ListHostsReq_ByUID)(nil),           // 66: hbf.v2.sgroups.ListHostsReq.ByUID
+	(*ListHostsReq_ByHostName)(nil),      // 67: hbf.v2.sgroups.ListHostsReq.ByHostName
+	(*ListHostsReq_BySG)(nil),            // 68: hbf.v2.sgroups.ListHostsReq.BySG
+	(*ListServicesReq_NoFilter)(nil),     // 69: hbf.v2.sgroups.ListServicesReq.NoFilter
+	(*ListServicesReq_BySVCName)(nil),    // 70: hbf.v2.sgroups.ListServicesReq.BySVCName
+	(*ListServicesReq_BySG)(nil),         // 71: hbf.v2.sgroups.ListServicesReq.BySG
+	(*common.Networks_NetIP)(nil),        // 72: common.Networks.NetIP
+	(common.Networks_NetIP_Transport)(0), // 73: common.Networks.NetIP.Transport
+	(*common.ICMP)(nil),                  // 74: common.ICMP
+	(common.Traffic)(0),                  // 75: common.Traffic
+	(*timestamp.Timestamp)(nil),          // 76: google.protobuf.Timestamp
 }
 var file_sgroups_messages_proto_depIdxs = []int32{
-	61, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
+	72, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
 	1,  // 1: hbf.v2.sgroups.SecGroup.default_action:type_name -> hbf.v2.sgroups.SecGroup.DefaultAction
-	62, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	73, // 2: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 3: hbf.v2.sgroups.SgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 4: hbf.v2.sgroups.SgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 5: hbf.v2.sgroups.SgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	62, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
+	73, // 6: hbf.v2.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
 	5,  // 7: hbf.v2.sgroups.FqdnRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 8: hbf.v2.sgroups.FqdnRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 9: hbf.v2.sgroups.FqdnRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	63, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
+	74, // 10: hbf.v2.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 11: hbf.v2.sgroups.SgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
-	63, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
+	74, // 12: hbf.v2.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 13: hbf.v2.sgroups.SgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 14: hbf.v2.sgroups.SgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	62, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	64, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
+	73, // 15: hbf.v2.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	75, // 16: hbf.v2.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
 	5,  // 17: hbf.v2.sgroups.IECidrSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 18: hbf.v2.sgroups.IECidrSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 19: hbf.v2.sgroups.IECidrSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	64, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
-	63, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
+	75, // 20: hbf.v2.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
+	74, // 21: hbf.v2.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 22: hbf.v2.sgroups.IECidrSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 23: hbf.v2.sgroups.IECidrSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	62, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	64, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
+	73, // 24: hbf.v2.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	75, // 25: hbf.v2.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
 	5,  // 26: hbf.v2.sgroups.IESgSgRule.ports:type_name -> hbf.v2.sgroups.AccPorts
 	0,  // 27: hbf.v2.sgroups.IESgSgRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 28: hbf.v2.sgroups.IESgSgRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	64, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
-	63, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
+	75, // 29: hbf.v2.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
+	74, // 30: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 31: hbf.v2.sgroups.IESgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	6,  // 32: hbf.v2.sgroups.IESgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	65, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
+	76, // 33: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
 	7,  // 34: hbf.v2.sgroups.SyncSgSgRules.rules:type_name -> hbf.v2.sgroups.SgSgRule
 	8,  // 35: hbf.v2.sgroups.SyncFqdnRules.rules:type_name -> hbf.v2.sgroups.FqdnRule
 	4,  // 36: hbf.v2.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v2.sgroups.SecGroup
@@ -4141,27 +4847,40 @@ var file_sgroups_messages_proto_depIdxs = []int32{
 	24, // 55: hbf.v2.sgroups.SyncReq.ie_sg_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIESgSgIcmpRules
 	25, // 56: hbf.v2.sgroups.SyncReq.ie_cidr_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIECidrSgIcmpRules
 	56, // 57: hbf.v2.sgroups.SyncReq.hosts:type_name -> hbf.v2.sgroups.SyncHosts
-	3,  // 58: hbf.v2.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v2.sgroups.Network
-	7,  // 59: hbf.v2.sgroups.SgSgRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgRule
-	8,  // 60: hbf.v2.sgroups.FqdnRulesResp.rules:type_name -> hbf.v2.sgroups.FqdnRule
-	9,  // 61: hbf.v2.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgIcmpRule
-	10, // 62: hbf.v2.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgIcmpRule
-	11, // 63: hbf.v2.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgRule
-	13, // 64: hbf.v2.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgRule
-	14, // 65: hbf.v2.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
-	12, // 66: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
-	54, // 67: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
-	52, // 68: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
-	57, // 69: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
-	58, // 70: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
-	59, // 71: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
-	60, // 72: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
-	52, // 73: hbf.v2.sgroups.SyncHosts.hosts:type_name -> hbf.v2.sgroups.Host
-	74, // [74:74] is the sub-list for method output_type
-	74, // [74:74] is the sub-list for method input_type
-	74, // [74:74] is the sub-list for extension type_name
-	74, // [74:74] is the sub-list for extension extendee
-	0,  // [0:74] is the sub-list for field type_name
+	61, // 58: hbf.v2.sgroups.SyncReq.services:type_name -> hbf.v2.sgroups.SyncServices
+	64, // 59: hbf.v2.sgroups.SyncReq.svc_svc_rules:type_name -> hbf.v2.sgroups.SyncSvcSvcRules
+	3,  // 60: hbf.v2.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v2.sgroups.Network
+	7,  // 61: hbf.v2.sgroups.SgSgRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgRule
+	8,  // 62: hbf.v2.sgroups.FqdnRulesResp.rules:type_name -> hbf.v2.sgroups.FqdnRule
+	9,  // 63: hbf.v2.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgIcmpRule
+	10, // 64: hbf.v2.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgIcmpRule
+	11, // 65: hbf.v2.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgRule
+	13, // 66: hbf.v2.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgRule
+	14, // 67: hbf.v2.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
+	12, // 68: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
+	54, // 69: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
+	52, // 70: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
+	65, // 71: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
+	66, // 72: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
+	67, // 73: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
+	68, // 74: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
+	52, // 75: hbf.v2.sgroups.SyncHosts.hosts:type_name -> hbf.v2.sgroups.Host
+	73, // 76: hbf.v2.sgroups.Service.transport:type_name -> common.Networks.NetIP.Transport
+	5,  // 77: hbf.v2.sgroups.Service.ports:type_name -> hbf.v2.sgroups.AccPorts
+	0,  // 78: hbf.v2.sgroups.SvcSvcRule.action:type_name -> hbf.v2.sgroups.RuleAction
+	6,  // 79: hbf.v2.sgroups.SvcSvcRule.priority:type_name -> hbf.v2.sgroups.RulePriority
+	69, // 80: hbf.v2.sgroups.ListServicesReq.none:type_name -> hbf.v2.sgroups.ListServicesReq.NoFilter
+	70, // 81: hbf.v2.sgroups.ListServicesReq.by_svc_name:type_name -> hbf.v2.sgroups.ListServicesReq.BySVCName
+	71, // 82: hbf.v2.sgroups.ListServicesReq.by_sg_name:type_name -> hbf.v2.sgroups.ListServicesReq.BySG
+	57, // 83: hbf.v2.sgroups.ListServicesResp.services:type_name -> hbf.v2.sgroups.Service
+	57, // 84: hbf.v2.sgroups.SyncServices.services:type_name -> hbf.v2.sgroups.Service
+	58, // 85: hbf.v2.sgroups.SvcSvcRulesResp.rules:type_name -> hbf.v2.sgroups.SvcSvcRule
+	58, // 86: hbf.v2.sgroups.SyncSvcSvcRules.rules:type_name -> hbf.v2.sgroups.SvcSvcRule
+	87, // [87:87] is the sub-list for method output_type
+	87, // [87:87] is the sub-list for method input_type
+	87, // [87:87] is the sub-list for extension type_name
+	87, // [87:87] is the sub-list for extension extendee
+	0,  // [0:87] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_messages_proto_init() }
@@ -4184,6 +4903,8 @@ func file_sgroups_messages_proto_init() {
 		(*SyncReq_IeSgSgIcmpRules)(nil),
 		(*SyncReq_IeCidrSgIcmpRules)(nil),
 		(*SyncReq_Hosts)(nil),
+		(*SyncReq_Services)(nil),
+		(*SyncReq_SvcSvcRules)(nil),
 	}
 	file_sgroups_messages_proto_msgTypes[52].OneofWrappers = []any{
 		(*ListHostsReq_None)(nil),
@@ -4191,13 +4912,18 @@ func file_sgroups_messages_proto_init() {
 		(*ListHostsReq_ByHostname)(nil),
 		(*ListHostsReq_BySgName)(nil),
 	}
+	file_sgroups_messages_proto_msgTypes[56].OneofWrappers = []any{
+		(*ListServicesReq_None)(nil),
+		(*ListServicesReq_BySvcName)(nil),
+		(*ListServicesReq_BySgName)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_messages_proto_rawDesc), len(file_sgroups_messages_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   58,
+			NumMessages:   69,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

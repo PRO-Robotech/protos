@@ -46,7 +46,7 @@ message SecGroup {
   string name = 1;
   //related to security gpoup network(s)
   repeated string networks = 2;
-  //default_action: represents default rula action
+  //default_action: represents default rule action
   DefaultAction default_action = 3;
   //trace: set or unset 'nftrace' flag
   bool trace = 4;
@@ -398,6 +398,10 @@ message SyncReq {
       SyncIECidrSgIcmpRules ie_cidr_sg_icmp_rules = 11;
       // subject of Host(s)
       SyncHosts hosts = 12;
+      // subject of Service(s)
+      SyncServices services = 13;
+      // subject of Service-to-Service Rule(s)
+      SyncSvcSvcRules svc_svc_rules = 14;
   }
 }
 
@@ -646,3 +650,98 @@ message SyncHosts{
   // host items
   repeated Host hosts = 1;
 }
+
+// Service: represents a service
+message Service {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["name"]
+    }
+  };
+
+  // name of service
+  string name = 1;
+  // ip net transport [TCP, UDP]
+  common.Networks.NetIP.Transport transport = 2;
+  // AccPorts: access port set(s)
+  repeated AccPorts ports = 3;
+  // trace: switch-{ON|OFF} logs in rules
+  bool trace = 4;
+  // logs: switch-{ON|OFF} logs in chain
+  bool logs = 5;
+}
+
+// SvcSvcRule: represents Service-to-Service Rule
+message SvcSvcRule {
+   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+      json_schema: {
+        required: ["svcFrom", "svcTo"]
+      }
+   };
+   //service at client
+   string svc_from = 1;
+   //service at server
+   string svc_to = 2;
+   //action: represents rule action
+   RuleAction action = 3;
+   //priority: rule priority affects on rule pos in its rule list
+   RulePriority priority = 4;
+}
+
+// ListServicesReq: request to list services by variety of scopes
+message ListServicesReq {
+    // No filtering: return all services
+    message NoFilter {}
+    // Filter by service names
+    message BySVCName {
+        repeated string names = 1;
+    };
+    // Filter by security group names
+    message BySG {
+        repeated string names = 1;
+    }
+
+    oneof criteria {
+        NoFilter none = 1;
+        BySVCName by_svc_name = 2;
+        BySG by_sg_name = 3;
+    }
+}
+
+// ListSecurityGroupsResp: Security Groups list resp
+message ListServicesResp{
+  // service items
+  repeated Service services = 1;
+}
+
+// SyncServices: subject of Services to Sync
+message SyncServices{
+  // service items
+  repeated Service services = 1;
+}
+
+// FindSvcSvcRulesReq: req to find all Service(s) Rule(s) scoped by variety('from') --> variety('to') Service(s)
+message FindSvcSvcRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["svcFrom", "svcTo"]
+    }
+  };
+  // scope Service name 'from' items
+  repeated string svc_from = 1;
+  // scope Service name 'to' items
+  repeated string svc_to = 2;
+}
+
+// SvcSvcRulesResp: Service(s) Rule(s) resp
+message SvcSvcRulesResp {
+  // Service rule(s) items
+  repeated SvcSvcRule rules = 1;
+}
+
+// SyncSvcSvcRules: subject of Service-to-Service Rules to Sync
+message SyncSvcSvcRules{
+  // service-to-service rules items
+  repeated SvcSvcRule rules = 1;
+}
+
