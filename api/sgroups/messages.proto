@@ -669,6 +669,8 @@ message Service {
   bool trace = 4;
   // logs: switch-{ON|OFF} logs in chain
   bool logs = 5;
+  // related to security group name(s)
+  repeated string sg_names = 6;
 }
 
 // SvcSvcRule: represents Service-to-Service Rule

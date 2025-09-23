@@ -3616,7 +3616,9 @@ type Service struct {
 	// trace: switch-{ON|OFF} logs in rules
 	Trace bool `protobuf:"varint,4,opt,name=trace,proto3" json:"trace,omitempty"`
 	// logs: switch-{ON|OFF} logs in chain
-	Logs          bool `protobuf:"varint,5,opt,name=logs,proto3" json:"logs,omitempty"`
+	Logs bool `protobuf:"varint,5,opt,name=logs,proto3" json:"logs,omitempty"`
+	// related to security group name(s)
+	SgNames       []string `protobuf:"bytes,6,rep,name=sg_names,json=sgNames,proto3" json:"sg_names,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3684,6 +3686,13 @@ func (x *Service) GetLogs() bool {
 		return x.Logs
 	}
 	return false
+}
+
+func (x *Service) GetSgNames() []string {
+	if x != nil {
+		return x.SgNames
+	}
+	return nil
 }
 
 // SvcSvcRule: represents Service-to-Service Rule
@@ -4648,13 +4657,14 @@ const file_sgroups_messages_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\"7\n" +
 	"\tSyncHosts\x12*\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts\"\xc5\x01\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts\"\xe0\x01\n" +
 	"\aService\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12>\n" +
 	"\ttransport\x18\x02 \x01(\x0e2 .common.Networks.NetIP.TransportR\ttransport\x12.\n" +
 	"\x05ports\x18\x03 \x03(\v2\x18.hbf.v2.sgroups.AccPortsR\x05ports\x12\x14\n" +
 	"\x05trace\x18\x04 \x01(\bR\x05trace\x12\x12\n" +
-	"\x04logs\x18\x05 \x01(\bR\x04logs:\f\x92A\t\n" +
+	"\x04logs\x18\x05 \x01(\bR\x04logs\x12\x19\n" +
+	"\bsg_names\x18\x06 \x03(\tR\asgNames:\f\x92A\t\n" +
 	"\a\xd2\x01\x04name\"\xc5\x01\n" +
 	"\n" +
 	"SvcSvcRule\x12\x19\n" +
