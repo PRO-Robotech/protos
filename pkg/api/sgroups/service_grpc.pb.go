@@ -25,7 +25,11 @@ const (
 	SecGroupService_SyncStatuses_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/SyncStatuses"
 	SecGroupService_ListNetworks_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/ListNetworks"
 	SecGroupService_ListSecurityGroups_FullMethodName    = "/hbf.v2.sgroups.SecGroupService/ListSecurityGroups"
+	SecGroupService_ListHosts_FullMethodName             = "/hbf.v2.sgroups.SecGroupService/ListHosts"
+	SecGroupService_ListServices_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/ListServices"
 	SecGroupService_GetSgSubnets_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/GetSgSubnets"
+	SecGroupService_GetSecGroupForAddress_FullMethodName = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
+	SecGroupService_GetSecGroupForHost_FullMethodName    = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForHost"
 	SecGroupService_FindSgSgRules_FullMethodName         = "/hbf.v2.sgroups.SecGroupService/FindSgSgRules"
 	SecGroupService_FindFqdnRules_FullMethodName         = "/hbf.v2.sgroups.SecGroupService/FindFqdnRules"
 	SecGroupService_FindSgIcmpRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/FindSgIcmpRules"
@@ -34,10 +38,6 @@ const (
 	SecGroupService_FindIESgSgRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/FindIESgSgRules"
 	SecGroupService_FindIESgSgIcmpRules_FullMethodName   = "/hbf.v2.sgroups.SecGroupService/FindIESgSgIcmpRules"
 	SecGroupService_FindIECidrSgIcmpRules_FullMethodName = "/hbf.v2.sgroups.SecGroupService/FindIECidrSgIcmpRules"
-	SecGroupService_GetSecGroupForAddress_FullMethodName = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
-	SecGroupService_GetSecGroupForHost_FullMethodName    = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForHost"
-	SecGroupService_ListHosts_FullMethodName             = "/hbf.v2.sgroups.SecGroupService/ListHosts"
-	SecGroupService_ListServices_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/ListServices"
 	SecGroupService_FindSvcSvcRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/FindSvcSvcRules"
 )
 
@@ -50,7 +50,11 @@ type SecGroupServiceClient interface {
 	SyncStatuses(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[SyncStatusResp], error)
 	ListNetworks(ctx context.Context, in *ListNetworksReq, opts ...grpc.CallOption) (*ListNetworksResp, error)
 	ListSecurityGroups(ctx context.Context, in *ListSecurityGroupsReq, opts ...grpc.CallOption) (*ListSecurityGroupsResp, error)
+	ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostsResp, error)
+	ListServices(ctx context.Context, in *ListServicesReq, opts ...grpc.CallOption) (*ListServicesResp, error)
 	GetSgSubnets(ctx context.Context, in *GetSgSubnetsReq, opts ...grpc.CallOption) (*GetSgSubnetsResp, error)
+	GetSecGroupForAddress(ctx context.Context, in *GetSecGroupForAddressReq, opts ...grpc.CallOption) (*SecGroup, error)
+	GetSecGroupForHost(ctx context.Context, in *GetSecGroupForHostReq, opts ...grpc.CallOption) (*SecGroup, error)
 	FindSgSgRules(ctx context.Context, in *FindSgSgRulesReq, opts ...grpc.CallOption) (*SgSgRulesResp, error)
 	FindFqdnRules(ctx context.Context, in *FindFqdnRulesReq, opts ...grpc.CallOption) (*FqdnRulesResp, error)
 	FindSgIcmpRules(ctx context.Context, in *FindSgIcmpRulesReq, opts ...grpc.CallOption) (*SgIcmpRulesResp, error)
@@ -59,10 +63,6 @@ type SecGroupServiceClient interface {
 	FindIESgSgRules(ctx context.Context, in *FindIESgSgRulesReq, opts ...grpc.CallOption) (*IESgSgRulesResp, error)
 	FindIESgSgIcmpRules(ctx context.Context, in *FindIESgSgIcmpRulesReq, opts ...grpc.CallOption) (*IESgSgIcmpRulesResp, error)
 	FindIECidrSgIcmpRules(ctx context.Context, in *FindIECidrSgIcmpRulesReq, opts ...grpc.CallOption) (*IECidrSgIcmpRulesResp, error)
-	GetSecGroupForAddress(ctx context.Context, in *GetSecGroupForAddressReq, opts ...grpc.CallOption) (*SecGroup, error)
-	GetSecGroupForHost(ctx context.Context, in *GetSecGroupForHostReq, opts ...grpc.CallOption) (*SecGroup, error)
-	ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostsResp, error)
-	ListServices(ctx context.Context, in *ListServicesReq, opts ...grpc.CallOption) (*ListServicesResp, error)
 	FindSvcSvcRules(ctx context.Context, in *FindSvcSvcRulesReq, opts ...grpc.CallOption) (*SvcSvcRulesResp, error)
 }
 
@@ -133,10 +133,50 @@ func (c *secGroupServiceClient) ListSecurityGroups(ctx context.Context, in *List
 	return out, nil
 }
 
+func (c *secGroupServiceClient) ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostsResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListHostsResp)
+	err := c.cc.Invoke(ctx, SecGroupService_ListHosts_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secGroupServiceClient) ListServices(ctx context.Context, in *ListServicesReq, opts ...grpc.CallOption) (*ListServicesResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListServicesResp)
+	err := c.cc.Invoke(ctx, SecGroupService_ListServices_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *secGroupServiceClient) GetSgSubnets(ctx context.Context, in *GetSgSubnetsReq, opts ...grpc.CallOption) (*GetSgSubnetsResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetSgSubnetsResp)
 	err := c.cc.Invoke(ctx, SecGroupService_GetSgSubnets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secGroupServiceClient) GetSecGroupForAddress(ctx context.Context, in *GetSecGroupForAddressReq, opts ...grpc.CallOption) (*SecGroup, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SecGroup)
+	err := c.cc.Invoke(ctx, SecGroupService_GetSecGroupForAddress_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secGroupServiceClient) GetSecGroupForHost(ctx context.Context, in *GetSecGroupForHostReq, opts ...grpc.CallOption) (*SecGroup, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SecGroup)
+	err := c.cc.Invoke(ctx, SecGroupService_GetSecGroupForHost_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -223,46 +263,6 @@ func (c *secGroupServiceClient) FindIECidrSgIcmpRules(ctx context.Context, in *F
 	return out, nil
 }
 
-func (c *secGroupServiceClient) GetSecGroupForAddress(ctx context.Context, in *GetSecGroupForAddressReq, opts ...grpc.CallOption) (*SecGroup, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SecGroup)
-	err := c.cc.Invoke(ctx, SecGroupService_GetSecGroupForAddress_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *secGroupServiceClient) GetSecGroupForHost(ctx context.Context, in *GetSecGroupForHostReq, opts ...grpc.CallOption) (*SecGroup, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SecGroup)
-	err := c.cc.Invoke(ctx, SecGroupService_GetSecGroupForHost_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *secGroupServiceClient) ListHosts(ctx context.Context, in *ListHostsReq, opts ...grpc.CallOption) (*ListHostsResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListHostsResp)
-	err := c.cc.Invoke(ctx, SecGroupService_ListHosts_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *secGroupServiceClient) ListServices(ctx context.Context, in *ListServicesReq, opts ...grpc.CallOption) (*ListServicesResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListServicesResp)
-	err := c.cc.Invoke(ctx, SecGroupService_ListServices_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *secGroupServiceClient) FindSvcSvcRules(ctx context.Context, in *FindSvcSvcRulesReq, opts ...grpc.CallOption) (*SvcSvcRulesResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SvcSvcRulesResp)
@@ -282,7 +282,11 @@ type SecGroupServiceServer interface {
 	SyncStatuses(*empty.Empty, grpc.ServerStreamingServer[SyncStatusResp]) error
 	ListNetworks(context.Context, *ListNetworksReq) (*ListNetworksResp, error)
 	ListSecurityGroups(context.Context, *ListSecurityGroupsReq) (*ListSecurityGroupsResp, error)
+	ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error)
+	ListServices(context.Context, *ListServicesReq) (*ListServicesResp, error)
 	GetSgSubnets(context.Context, *GetSgSubnetsReq) (*GetSgSubnetsResp, error)
+	GetSecGroupForAddress(context.Context, *GetSecGroupForAddressReq) (*SecGroup, error)
+	GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error)
 	FindSgSgRules(context.Context, *FindSgSgRulesReq) (*SgSgRulesResp, error)
 	FindFqdnRules(context.Context, *FindFqdnRulesReq) (*FqdnRulesResp, error)
 	FindSgIcmpRules(context.Context, *FindSgIcmpRulesReq) (*SgIcmpRulesResp, error)
@@ -291,10 +295,6 @@ type SecGroupServiceServer interface {
 	FindIESgSgRules(context.Context, *FindIESgSgRulesReq) (*IESgSgRulesResp, error)
 	FindIESgSgIcmpRules(context.Context, *FindIESgSgIcmpRulesReq) (*IESgSgIcmpRulesResp, error)
 	FindIECidrSgIcmpRules(context.Context, *FindIECidrSgIcmpRulesReq) (*IECidrSgIcmpRulesResp, error)
-	GetSecGroupForAddress(context.Context, *GetSecGroupForAddressReq) (*SecGroup, error)
-	GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error)
-	ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error)
-	ListServices(context.Context, *ListServicesReq) (*ListServicesResp, error)
 	FindSvcSvcRules(context.Context, *FindSvcSvcRulesReq) (*SvcSvcRulesResp, error)
 	mustEmbedUnimplementedSecGroupServiceServer()
 }
@@ -321,8 +321,20 @@ func (UnimplementedSecGroupServiceServer) ListNetworks(context.Context, *ListNet
 func (UnimplementedSecGroupServiceServer) ListSecurityGroups(context.Context, *ListSecurityGroupsReq) (*ListSecurityGroupsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSecurityGroups not implemented")
 }
+func (UnimplementedSecGroupServiceServer) ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListHosts not implemented")
+}
+func (UnimplementedSecGroupServiceServer) ListServices(context.Context, *ListServicesReq) (*ListServicesResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListServices not implemented")
+}
 func (UnimplementedSecGroupServiceServer) GetSgSubnets(context.Context, *GetSgSubnetsReq) (*GetSgSubnetsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSgSubnets not implemented")
+}
+func (UnimplementedSecGroupServiceServer) GetSecGroupForAddress(context.Context, *GetSecGroupForAddressReq) (*SecGroup, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSecGroupForAddress not implemented")
+}
+func (UnimplementedSecGroupServiceServer) GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSecGroupForHost not implemented")
 }
 func (UnimplementedSecGroupServiceServer) FindSgSgRules(context.Context, *FindSgSgRulesReq) (*SgSgRulesResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindSgSgRules not implemented")
@@ -347,18 +359,6 @@ func (UnimplementedSecGroupServiceServer) FindIESgSgIcmpRules(context.Context, *
 }
 func (UnimplementedSecGroupServiceServer) FindIECidrSgIcmpRules(context.Context, *FindIECidrSgIcmpRulesReq) (*IECidrSgIcmpRulesResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindIECidrSgIcmpRules not implemented")
-}
-func (UnimplementedSecGroupServiceServer) GetSecGroupForAddress(context.Context, *GetSecGroupForAddressReq) (*SecGroup, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSecGroupForAddress not implemented")
-}
-func (UnimplementedSecGroupServiceServer) GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSecGroupForHost not implemented")
-}
-func (UnimplementedSecGroupServiceServer) ListHosts(context.Context, *ListHostsReq) (*ListHostsResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListHosts not implemented")
-}
-func (UnimplementedSecGroupServiceServer) ListServices(context.Context, *ListServicesReq) (*ListServicesResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListServices not implemented")
 }
 func (UnimplementedSecGroupServiceServer) FindSvcSvcRules(context.Context, *FindSvcSvcRulesReq) (*SvcSvcRulesResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindSvcSvcRules not implemented")
@@ -467,6 +467,42 @@ func _SecGroupService_ListSecurityGroups_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SecGroupService_ListHosts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListHostsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).ListHosts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_ListHosts_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).ListHosts(ctx, req.(*ListHostsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SecGroupService_ListServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListServicesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).ListServices(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_ListServices_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).ListServices(ctx, req.(*ListServicesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SecGroupService_GetSgSubnets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSgSubnetsReq)
 	if err := dec(in); err != nil {
@@ -481,6 +517,42 @@ func _SecGroupService_GetSgSubnets_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SecGroupServiceServer).GetSgSubnets(ctx, req.(*GetSgSubnetsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SecGroupService_GetSecGroupForAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSecGroupForAddressReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).GetSecGroupForAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_GetSecGroupForAddress_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).GetSecGroupForAddress(ctx, req.(*GetSecGroupForAddressReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SecGroupService_GetSecGroupForHost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSecGroupForHostReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).GetSecGroupForHost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_GetSecGroupForHost_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).GetSecGroupForHost(ctx, req.(*GetSecGroupForHostReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -629,78 +701,6 @@ func _SecGroupService_FindIECidrSgIcmpRules_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SecGroupService_GetSecGroupForAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSecGroupForAddressReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecGroupServiceServer).GetSecGroupForAddress(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SecGroupService_GetSecGroupForAddress_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecGroupServiceServer).GetSecGroupForAddress(ctx, req.(*GetSecGroupForAddressReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SecGroupService_GetSecGroupForHost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSecGroupForHostReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecGroupServiceServer).GetSecGroupForHost(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SecGroupService_GetSecGroupForHost_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecGroupServiceServer).GetSecGroupForHost(ctx, req.(*GetSecGroupForHostReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SecGroupService_ListHosts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListHostsReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecGroupServiceServer).ListHosts(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SecGroupService_ListHosts_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecGroupServiceServer).ListHosts(ctx, req.(*ListHostsReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SecGroupService_ListServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListServicesReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SecGroupServiceServer).ListServices(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SecGroupService_ListServices_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SecGroupServiceServer).ListServices(ctx, req.(*ListServicesReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _SecGroupService_FindSvcSvcRules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindSvcSvcRulesReq)
 	if err := dec(in); err != nil {
@@ -743,8 +743,24 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SecGroupService_ListSecurityGroups_Handler,
 		},
 		{
+			MethodName: "ListHosts",
+			Handler:    _SecGroupService_ListHosts_Handler,
+		},
+		{
+			MethodName: "ListServices",
+			Handler:    _SecGroupService_ListServices_Handler,
+		},
+		{
 			MethodName: "GetSgSubnets",
 			Handler:    _SecGroupService_GetSgSubnets_Handler,
+		},
+		{
+			MethodName: "GetSecGroupForAddress",
+			Handler:    _SecGroupService_GetSecGroupForAddress_Handler,
+		},
+		{
+			MethodName: "GetSecGroupForHost",
+			Handler:    _SecGroupService_GetSecGroupForHost_Handler,
 		},
 		{
 			MethodName: "FindSgSgRules",
@@ -777,22 +793,6 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindIECidrSgIcmpRules",
 			Handler:    _SecGroupService_FindIECidrSgIcmpRules_Handler,
-		},
-		{
-			MethodName: "GetSecGroupForAddress",
-			Handler:    _SecGroupService_GetSecGroupForAddress_Handler,
-		},
-		{
-			MethodName: "GetSecGroupForHost",
-			Handler:    _SecGroupService_GetSecGroupForHost_Handler,
-		},
-		{
-			MethodName: "ListHosts",
-			Handler:    _SecGroupService_ListHosts_Handler,
-		},
-		{
-			MethodName: "ListServices",
-			Handler:    _SecGroupService_ListServices_Handler,
 		},
 		{
 			MethodName: "FindSvcSvcRules",

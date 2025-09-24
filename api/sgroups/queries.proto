@@ -1,0 +1,438 @@
+syntax = "proto3";
+
+package hbf.v2.sgroups;
+option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroups";
+
+import "google/protobuf/timestamp.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+import "sgroups/domains.proto";
+
+// SyncStatusResp: db status after last succeeded Sync
+message SyncStatusResp {
+  // last succeeded updated DB timestamp
+  google.protobuf.Timestamp updated_at = 1;
+}
+
+// SyncSgSgRules: subject of Security Group Rules to Sync
+message SyncSgSgRules{
+  // security group rules items
+  repeated SgSgRule rules = 1;
+}
+
+// SyncFqdnRules: subject of Security Group Rules to Sync
+message SyncFqdnRules{
+  // fqdn rules items
+  repeated FqdnRule rules = 1;
+}
+
+// SyncSecurityGroups: subject of Security Groups to Sync
+message SyncSecurityGroups{
+  // security group items
+  repeated SecGroup groups = 1;
+}
+
+// SyncNetworks: subject of Networks to Sync
+message SyncNetworks{
+  // network items
+  repeated Network networks = 1;
+}
+
+// SyncSgIcmpRules: subject of SG:ICMP to Sync
+message SyncSgIcmpRules {
+  repeated SgIcmpRule rules = 1;
+}
+
+// SyncSgSgIcmpRules: subject of SG-SG:ICMP to Sync
+message SyncSgSgIcmpRules {
+  repeated SgSgIcmpRule rules = 1;
+}
+
+// SyncIECidrSgRules: subject of CIDR-SG-[INGRESS|EGRESS] to Sync
+message SyncIECidrSgRules {
+  repeated IECidrSgRule rules = 1;
+}
+
+// SyncIESgSgRules: subject of SG-SG-[INGRESS|EGRESS] to Sync
+message SyncIESgSgRules {
+  // SG-SG rules
+  repeated IESgSgRule rules = 1;
+}
+
+// SyncIESgSgIcmpRules: subject of SG-SG-[INGRESS|EGRESS]:ICMP to Sync
+message SyncIESgSgIcmpRules {
+  // SG-SG icmp rules
+  repeated IESgSgIcmpRule rules = 1;
+}
+
+// SyncIECidrSgIcmpRules: subject of CIDR-SG-[INGRESS|EGRESS]:ICMP to Sync
+message SyncIECidrSgIcmpRules {
+  // CIDR-SG icmp rules
+  repeated IECidrSgIcmpRule rules = 1;
+}
+
+// SyncHosts: subject of Hosts to Sync
+message SyncHosts{
+  // host items
+  repeated Host hosts = 1;
+}
+
+// SyncServices: subject of Services to Sync
+message SyncServices{
+  // service items
+  repeated Service services = 1;
+}
+
+// SyncSvcSvcRules: subject of Service-to-Service Rules to Sync
+message SyncSvcSvcRules{
+  // service-to-service rules items
+  repeated SvcSvcRule rules = 1;
+}
+
+// SyncReq: request to apply changes in DB for one of subject [Networks|Sucurity Groups|Security Grpups Rules]
+message SyncReq {
+  // SyncOp: sync operation
+  enum SyncOp {
+    // NoOp: it meand there is no operation defined as default
+    NoOp = 0;
+
+    reserved 1 to 3;
+
+    // FullSync: Delete+Insert+Update operations (default)
+    FullSync = 4;
+
+    // Upsert: Insert+Update operations
+    Upsert = 5;
+
+    // Delete: Delete operation
+    Delete = 6;
+  }
+  // sync operation to apply to
+  SyncOp sync_op = 1;
+  // one of subject
+  oneof subject {
+      // subject of Security Grpup(s)
+      SyncSecurityGroups groups = 2;
+      // subject of Network(s)
+      SyncNetworks networks = 3;
+      // subject of Security Grpup(s) rule(s)
+      SyncSgSgRules sg_sg_rules = 4;
+      // subject of FQDN rule(s)
+      SyncFqdnRules fqdn_rules = 5;
+      // subject of SG:ICMP rule(s)
+      SyncSgIcmpRules sg_icmp_rules = 6;
+      // subject of SG-SG:ICMP rule(s)
+      SyncSgSgIcmpRules sg_sg_icmp_rules = 7;
+      // subject of CIDR-SG-[INGERSS,EGRESS] rule(s)
+      SyncIECidrSgRules ie_cidr_sg_rules = 8;
+      // subject of SG-SG-[INGERSS,EGRESS] rule(s)
+      SyncIESgSgRules ie_sg_sg_rules = 9;
+      // subject of SG-SG-[INGRESS,EGRESS]:ICMP rule(s)
+      SyncIESgSgIcmpRules ie_sg_sg_icmp_rules = 10;
+      // subject of CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s)
+      SyncIECidrSgIcmpRules ie_cidr_sg_icmp_rules = 11;
+      // subject of Host(s)
+      SyncHosts hosts = 12;
+      // subject of Service(s)
+      SyncServices services = 13;
+      // subject of Service-to-Service Rule(s)
+      SyncSvcSvcRules svc_svc_rules = 14;
+  }
+}
+
+// ListNetworksReq: req to list Networks
+message ListNetworksReq {
+  // network names scope; if none then list all netrworks
+  repeated string network_names = 1;
+}
+
+// ListNetworksResp: Network list resp
+message ListNetworksResp {
+  // network items
+  repeated Network networks = 1;
+}
+
+// ListSecurityGroupsReq: req to list Seocurity Groups
+message ListSecurityGroupsReq {
+  // SG names scope; if none then list all SGs
+  repeated string sg_names = 1;
+}
+
+// ListSecurityGroupsResp: Security Groups list resp
+message ListSecurityGroupsResp{
+  // security group items
+  repeated SecGroup groups = 1;
+}
+
+// ListHostsReq: request to find hosts by variety of scopes
+message ListHostsReq {
+    // No filtering: return all hosts
+    message NoFilter {}
+    // Filter by unique identifiers
+    message ByUID {
+        repeated string UIDs = 1;
+    };
+    // Filter by hostnames
+    message ByHostName {
+        repeated string names = 1;
+    };
+    // Filter by security group names
+    message BySG {
+        repeated string names = 1;
+    }
+
+    oneof criteria {
+        NoFilter none = 1;
+        ByUID by_uuid = 2;
+        ByHostName by_hostname = 3;
+        BySG by_sg_name = 4;
+    }
+}
+
+// ListHostsResp: returned list of hosts
+message ListHostsResp {
+   repeated Host hosts = 1;
+}
+
+// ListServicesReq: request to list services by variety of scopes
+message ListServicesReq {
+    // No filtering: return all services
+    message NoFilter {}
+    // Filter by service names
+    message BySVCName {
+        repeated string names = 1;
+    };
+    // Filter by security group names
+    message BySG {
+        repeated string names = 1;
+    }
+
+    oneof criteria {
+        NoFilter none = 1;
+        BySVCName by_svc_name = 2;
+        BySG by_sg_name = 3;
+    }
+}
+
+// ListSecurityGroupsResp: Security Groups list resp
+message ListServicesResp{
+  // service items
+  repeated Service services = 1;
+}
+
+// GetSgSubnetsReq: req to get Networks related to Security Group
+message GetSgSubnetsReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["sgName"]
+    }
+  };
+  // security group name
+  string sg_name = 1;
+}
+
+// GetSgSubnetsResp: Networks related to Security Group resp
+message GetSgSubnetsResp {
+  // network items
+  repeated Network networks = 1;
+}
+
+// GetSgSgRulesReq; req to get Rules scoped by SecGroup pair 'from' --> 'to'
+message GetSgSgRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["sgFrom", "sgTo"]
+    }
+  };
+  // name of security groups 'from'
+  string sg_from = 1;
+  // name of security groups 'to'
+  string sg_to = 2;
+}
+
+// FindSgSgRulesReq: req to find all SecGroup(s) Rule(s) scoped by variety('from') --> variety('to') SG(s)
+message FindSgSgRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["sgFrom", "sgTo"]
+    }
+  };
+  // scope SG name 'from' items
+  repeated string sg_from = 1;
+  // scope SG name 'to' items
+  repeated string sg_to = 2;
+}
+
+// SgSgRulesResp: Security Group(s) Rule(s) resp
+message SgSgRulesResp {
+  // SG rule(s) items
+  repeated SgSgRule rules = 1;
+}
+
+// FindFqdnRulesReq: req to find all FQDN Rule(s) scoped by variety 'from' SG(s)
+message FindFqdnRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["sgFrom"]
+    }
+  };
+  // scope GS name 'from' items
+  repeated string sg_from = 1;
+}
+
+// FqdnRulesResp: FQDN Rule(s) resp
+message FqdnRulesResp {
+  // FQDN rule(s) items
+  repeated FqdnRule rules = 1;
+}
+
+// FindSgIcmpRulesReq: req to find all SG:ICMP Rule(s) scoped by SG(s) variety
+message FindSgIcmpRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["SG"]
+    }
+  };
+  // scope GS name item(s)
+  repeated string SG = 1;
+}
+
+// FindSgIcmpRulesResp: SG:ICMP Rule(s) resp
+message SgIcmpRulesResp {
+  // SgIcmp rule item(s)
+  repeated SgIcmpRule rules = 1;
+}
+
+// FindSgSgIcmpRulesReq: req to find all SG-SG:ICMP Rule(s) scoped by SG(s) variety
+message FindSgSgIcmpRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["sgFrom", "sgTo"]
+    }
+  };
+  // scope SG-from name item(s)
+  repeated string sg_from = 1;
+  // scope SG-to name item(s)
+  repeated string sg_to = 2;
+}
+
+// SgSgIcmpRulesResp: SG-SG:ICMP Rule(s) resp
+message SgSgIcmpRulesResp {
+  // SgSgIcmp rule item(s)
+  repeated SgSgIcmpRule rules = 1;
+}
+
+// FindIECidrSgRulesReq: req to find all CIRD-SG-[INGRESS|EGRESS] Rule(s) scoped by SG(s) variety
+message FindIECidrSgRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["SG"]
+    }
+  };
+  // scope SG name item(s)
+  repeated string SG = 1;
+}
+
+// СidrSgRulesResp: CIDR-SG-[INGRESS, EGRESS] rule(s) resp
+message IECidrSgRulesResp {
+  // СidrSgRules rule item(s)
+  repeated IECidrSgRule rules = 1;
+}
+
+// FindIESgSgRulesReq: req to find all SG-SG-[INGRESS|EGRESS] rule(s)
+message FindIESgSgRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["SG", "sgLocal"]
+    }
+  };
+  // scope SG name item(s)
+  repeated string SG = 1;
+  // scope SGLocal name item(s)
+  repeated string sg_local = 2;
+}
+
+// IESgSgRulesResp: SG-SG-[INGRESS, EGRESS] rule(s) resp
+message IESgSgRulesResp {
+  // IESgSgRule rule item(s)
+  repeated IESgSgRule rules = 1;
+}
+
+// FindIESgSgIcmpRulesReq: req to find all SG-SG-[INGRESS|EGRESS]:ICMP rule(s)
+message FindIESgSgIcmpRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["SG", "sgLocal"]
+    }
+  };
+  // scope SG name item(s)
+  repeated string SG = 1;
+  // scope SGLocal name item(s)
+  repeated string sg_local = 2;
+}
+
+// IESgSgIcmpRulesResp: SG-SG-[INGRESS|EGRESS]:ICMP rule(s) resp
+message IESgSgIcmpRulesResp {
+  // IESgSgRule rule item(s)
+  repeated IESgSgIcmpRule rules = 1;
+}
+
+// FindIECidrSgIcmpRulesReq: req to find all CIDR-SG-[INGRESS|EGRESS]:ICMP rules(s) scoped by SG(s) variety
+message FindIECidrSgIcmpRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["SG"]
+    }
+  };
+  // scope SG name item(s)
+  repeated string SG = 1;
+}
+
+// IECidrSgIcmpRulesResp: CIDR-SG-[INGRESS|EGRESS]:ICMP rules(s) resp
+message IECidrSgIcmpRulesResp {
+  // IECidrSgIcmpRule rule item(s)
+  repeated IECidrSgIcmpRule rules = 1;
+}
+
+// GetSecGroupForAddressReq: req to get Security Group by IP or CIDR
+message GetSecGroupForAddressReq{
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["address"]
+    }
+  };
+  //an IP or CIDR
+  string address = 1;
+}
+
+// GetSecGroupForHostReq: req to get Security Group by host info
+message GetSecGroupForHostReq{
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["host_uuid", "host_name"]
+    }
+  };
+
+  string host_uuid = 1;
+  string host_name = 2;
+}
+
+// FindSvcSvcRulesReq: req to find all Service(s) Rule(s) scoped by variety('from') --> variety('to') Service(s)
+message FindSvcSvcRulesReq {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["svcFrom", "svcTo"]
+    }
+  };
+  // scope Service name 'from' items
+  repeated string svc_from = 1;
+  // scope Service name 'to' items
+  repeated string svc_to = 2;
+}
+
+// SvcSvcRulesResp: Service(s) Rule(s) resp
+message SvcSvcRulesResp {
+  // Service rule(s) items
+  repeated SvcSvcRule rules = 1;
+}
+

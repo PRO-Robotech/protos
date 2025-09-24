@@ -7,12 +7,13 @@ import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-import "sgroups/messages.proto";
+import "sgroups/queries.proto";
+import "sgroups/domains.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
     title: "Host Based Firewall";
-    version: "2.0";    
+    version: "2.0";
   };
   external_docs: {
     url: "https://h-bf.prorobotech.ru";
@@ -70,12 +71,50 @@ service SecGroupService {
      };
    }
 
+   rpc ListHosts(ListHostsReq) returns (ListHostsResp) {
+     option (google.api.http) = {
+         post: "/v2/list-hosts"
+         body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+         description: "ListHosts: list hosts by variety of scopes";
+     };
+   };
+
+   rpc ListServices(ListServicesReq) returns (ListServicesResp) {
+     option (google.api.http) = {
+        post: "/v2/list-services"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "ListServices: shows list of Services";
+     };
+   }
+
    rpc GetSgSubnets(GetSgSubnetsReq) returns (GetSgSubnetsResp){
      option (google.api.http) = {
         get: "/v2/sg/{sg_name}/subnets"
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "GetSgSubnets: gets Networks related to SG";
+     };
+   };
+
+   rpc GetSecGroupForAddress(GetSecGroupForAddressReq) returns (SecGroup) {
+     option (google.api.http) = {
+        get: "/v2/{address}/sg"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "GetSecGroupForAddress: gets Security Group by IP or CIDR";
+     };
+   };
+
+   rpc GetSecGroupForHost(GetSecGroupForHostReq) returns (SecGroup) {
+     option (google.api.http) = {
+        get: "/v2/{host_name}/{host_uuid}/sg"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "GetSecGroupForHost: gets Security Group by host info";
      };
    };
 
@@ -156,44 +195,6 @@ service SecGroupService {
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
        description: "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG"
-     };
-   }
-
-   rpc GetSecGroupForAddress(GetSecGroupForAddressReq) returns (SecGroup) {
-     option (google.api.http) = {
-        get: "/v2/{address}/sg"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "GetSecGroupForAddress: gets Security Group by IP or CIDR";
-     };
-   };
-
-   rpc GetSecGroupForHost(GetSecGroupForHostReq) returns (SecGroup) {
-     option (google.api.http) = {
-        get: "/v2/{host_name}/{host_uuid}/sg"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "GetSecGroupForHost: gets Security Group by host info";
-     };
-   };
-
-   rpc ListHosts(ListHostsReq) returns (ListHostsResp) {
-     option (google.api.http) = {
-         post: "/v2/list-hosts"
-         body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-         description: "ListHosts: list hosts by variety of scopes";
-     };
-   };
-
-   rpc ListServices(ListServicesReq) returns (ListServicesResp) {
-     option (google.api.http) = {
-        post: "/v2/list-services"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "ListServices: shows list of Services";
      };
    }
 

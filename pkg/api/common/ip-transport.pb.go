@@ -7,7 +7,6 @@
 package common
 
 import (
-	_ "github.com/golang/protobuf/protoc-gen-go/descriptor"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -364,7 +363,7 @@ var File_common_ip_transport_proto protoreflect.FileDescriptor
 
 const file_common_ip_transport_proto_rawDesc = "" +
 	"\n" +
-	"\x19common/ip-transport.proto\x12\x06common\x1a google/protobuf/descriptor.proto\"w\n" +
+	"\x19common/ip-transport.proto\x12\x06common\"w\n" +
 	"\bNetworks\x1ak\n" +
 	"\x05NetIP\x12\x12\n" +
 	"\x04CIDR\x18\x01 \x01(\tR\x04CIDR\x1a/\n" +

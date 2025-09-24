@@ -3,7 +3,6 @@ syntax = "proto3";
 package common;
 option go_package = "github.com/PRO-Robotech/protos/pkg/api/common;common";
 
-import "google/protobuf/descriptor.proto";
 
 //Networks: represents network types
 message Networks {
