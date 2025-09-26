@@ -1556,11 +1556,7 @@
           "title": "name of service"
         },
         "ports": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sgroupsTransportSpec"
-          },
+          "$ref": "#/definitions/sgroupsTransportSpec",
           "title": "TransportSpec: port set(s)"
         },
         "sgNames": {

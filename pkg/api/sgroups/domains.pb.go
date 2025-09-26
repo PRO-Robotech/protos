@@ -590,7 +590,7 @@ type Service struct {
 	// name of service
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// TransportSpec: port set(s)
-	Ports []*TransportSpec `protobuf:"bytes,2,rep,name=ports,proto3" json:"ports,omitempty"`
+	Ports *TransportSpec `protobuf:"bytes,2,opt,name=ports,proto3" json:"ports,omitempty"`
 	// related to security group name(s)
 	SgNames       []string `protobuf:"bytes,3,rep,name=sg_names,json=sgNames,proto3" json:"sg_names,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -634,7 +634,7 @@ func (x *Service) GetName() string {
 	return ""
 }
 
-func (x *Service) GetPorts() []*TransportSpec {
+func (x *Service) GetPorts() *TransportSpec {
 	if x != nil {
 		return x.Ports
 	}
@@ -1711,7 +1711,7 @@ const file_sgroups_domains_proto_rawDesc = "" +
 	"\x05types\x18\x01 \x03(\x05R\x05types\"{\n" +
 	"\aService\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x123\n" +
-	"\x05ports\x18\x02 \x03(\v2\x1d.hbf.v2.sgroups.TransportSpecR\x05ports\x12\x19\n" +
+	"\x05ports\x18\x02 \x01(\v2\x1d.hbf.v2.sgroups.TransportSpecR\x05ports\x12\x19\n" +
 	"\bsg_names\x18\x03 \x03(\tR\asgNames:\f\x92A\t\n" +
 	"\a\xd2\x01\x04name\"\xef\x01\n" +
 	"\n" +

@@ -121,7 +121,7 @@ message Service {
   // name of service
   string name = 1;
   // TransportSpec: port set(s)
-  repeated TransportSpec ports = 2;
+  TransportSpec ports = 2;
   // related to security group name(s)
   repeated string sg_names = 3;
 }
