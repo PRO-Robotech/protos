@@ -417,21 +417,33 @@ message GetSecGroupForHostReq{
   string host_name = 2;
 }
 
-// FindSvcSvcRulesReq: req to find all Service(s) Rule(s) scoped by variety('from') --> variety('to') Service(s)
-message FindSvcSvcRulesReq {
-  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
-    json_schema: {
-      required: ["svcFrom", "svcTo"]
-    }
+// ListSvcSvcRulesReq: req to list all Service(s) Rule(s) by variety of scopes
+message ListSvcSvcRulesReq {
+  // No filtering: return all services
+  message NoFilter {}
+  // Filter by service rule names
+  message ByRuleName {
+    repeated string names = 1;
   };
-  // scope Service name 'from' items
-  repeated string svc_from = 1;
-  // scope Service name 'to' items
-  repeated string svc_to = 2;
+  // Filter by service names 'from' -> 'to'
+  message BySvcFromTo {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+      json_schema: {
+        required: ["svcFrom", "svcTo"]
+      }
+    };
+    repeated string svc_from = 1;
+    repeated string svc_to = 2;
+  };
+  oneof criteria {
+    NoFilter none = 1;
+    ByRuleName by_rule_name = 2;
+    BySvcFromTo by_svc_from_to = 3;
+  }
 }
 
-// SvcSvcRulesResp: Service(s) Rule(s) resp
-message SvcSvcRulesResp {
+// ListSvcSvcRulesResp: Service(s) Rule(s) resp
+message ListSvcSvcRulesResp {
   // Service rule(s) items
   repeated SvcSvcRule rules = 1;
 }

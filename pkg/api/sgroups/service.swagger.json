@@ -286,7 +286,7 @@
     },
     "/v2/list-services": {
       "post": {
-        "description": "ListServices: shows list of Services",
+        "description": "ListServices: list services by variety of scopes",
         "operationId": "SecGroupService_ListServices",
         "responses": {
           "200": {
@@ -309,6 +309,39 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/sgroupsListServicesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-svc-svc-rules": {
+      "post": {
+        "description": "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListSvcSvcRules",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesReq"
             }
           }
         ],
@@ -441,39 +474,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "SecGroupService"
-        ]
-      }
-    },
-    "/v2/svc-svc-rules": {
-      "post": {
-        "description": "FindSvcSvcRules: finds Service-to-Service Rule(s) scoped by variety pairs 'Service '-\u003e'to Service'",
-        "operationId": "SecGroupService_FindSvcSvcRules",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/sgroupsSvcSvcRulesResp"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sgroupsFindSvcSvcRulesReq"
-            }
           }
         ],
         "tags": [
@@ -644,6 +644,40 @@
         }
       },
       "title": "Filter by service names"
+    },
+    "ListSvcSvcRulesReqByRuleName": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by service rule names"
+    },
+    "ListSvcSvcRulesReqBySvcFromTo": {
+      "type": "object",
+      "properties": {
+        "svcFrom": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "svcTo": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by service names 'from' -\u003e 'to'",
+      "required": [
+        "svcFrom",
+        "svcTo"
+      ]
     },
     "NetIPTransport": {
       "type": "string",
@@ -950,30 +984,6 @@
       "required": [
         "sgFrom",
         "sgTo"
-      ]
-    },
-    "sgroupsFindSvcSvcRulesReq": {
-      "type": "object",
-      "properties": {
-        "svcFrom": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "scope Service name 'from' items"
-        },
-        "svcTo": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "scope Service name 'to' items"
-        }
-      },
-      "title": "FindSvcSvcRulesReq: req to find all Service(s) Rule(s) scoped by variety('from') --\u003e variety('to') Service(s)",
-      "required": [
-        "svcFrom",
-        "svcTo"
       ]
     },
     "sgroupsFqdnRule": {
@@ -1471,6 +1481,39 @@
       },
       "title": "ListSecurityGroupsResp: Security Groups list resp"
     },
+    "sgroupsListSvcSvcRulesReq": {
+      "type": "object",
+      "properties": {
+        "none": {
+          "$ref": "#/definitions/sgroupsListSvcSvcRulesReqNoFilter"
+        },
+        "byRuleName": {
+          "$ref": "#/definitions/ListSvcSvcRulesReqByRuleName"
+        },
+        "bySvcFromTo": {
+          "$ref": "#/definitions/ListSvcSvcRulesReqBySvcFromTo"
+        }
+      },
+      "title": "ListSvcSvcRulesReq: req to list all Service(s) Rule(s) by variety of scopes"
+    },
+    "sgroupsListSvcSvcRulesReqNoFilter": {
+      "type": "object",
+      "title": "No filtering: return all services"
+    },
+    "sgroupsListSvcSvcRulesResp": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsSvcSvcRule"
+          },
+          "title": "Service rule(s) items"
+        }
+      },
+      "title": "ListSvcSvcRulesResp: Service(s) Rule(s) resp"
+    },
     "sgroupsNetwork": {
       "type": "object",
       "properties": {
@@ -1720,6 +1763,10 @@
     "sgroupsSvcSvcRule": {
       "type": "object",
       "properties": {
+        "name": {
+          "type": "string",
+          "title": "name of service"
+        },
         "svcFrom": {
           "type": "string",
           "title": "service at client"
@@ -1747,23 +1794,10 @@
       },
       "title": "SvcSvcRule: represents Service-to-Service Rule",
       "required": [
+        "name",
         "svcFrom",
         "svcTo"
       ]
-    },
-    "sgroupsSvcSvcRulesResp": {
-      "type": "object",
-      "properties": {
-        "rules": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sgroupsSvcSvcRule"
-          },
-          "title": "Service rule(s) items"
-        }
-      },
-      "title": "SvcSvcRulesResp: Service(s) Rule(s) resp"
     },
     "sgroupsSyncFqdnRules": {
       "type": "object",

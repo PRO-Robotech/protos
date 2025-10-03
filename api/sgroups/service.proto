@@ -87,9 +87,19 @@ service SecGroupService {
         body: "*"
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "ListServices: shows list of Services";
+        description: "ListServices: list services by variety of scopes";
      };
    }
+
+   rpc ListSvcSvcRules(ListSvcSvcRulesReq) returns (ListSvcSvcRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/list-svc-svc-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'";
+     };
+   };
 
    rpc GetSgSubnets(GetSgSubnetsReq) returns (GetSgSubnetsResp){
      option (google.api.http) = {
@@ -197,14 +207,4 @@ service SecGroupService {
        description: "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG"
      };
    }
-
-   rpc FindSvcSvcRules(FindSvcSvcRulesReq) returns (SvcSvcRulesResp) {
-     option (google.api.http) = {
-        post: "/v2/svc-svc-rules"
-        body: "*"
-     };
-     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        description: "FindSvcSvcRules: finds Service-to-Service Rule(s) scoped by variety pairs 'Service '->'to Service'";
-     };
-   };
 }
