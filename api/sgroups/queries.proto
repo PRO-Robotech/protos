@@ -136,7 +136,7 @@ message SyncReq {
       // subject of Service(s)
       SyncServices services = 13;
       // subject of Service-to-Service Rule(s)
-      SyncSvcSvcRules svc_svc_rules = 14;
+      SyncSvcSvcRules service_rules = 14;
   }
 }
 

@@ -754,7 +754,7 @@ func RegisterSecGroupServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/ListSvcSvcRules", runtime.WithHTTPPathPattern("/v2/list-svc-svc-rules"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/ListSvcSvcRules", runtime.WithHTTPPathPattern("/v2/list-service-rules"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1225,7 +1225,7 @@ func RegisterSecGroupServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/ListSvcSvcRules", runtime.WithHTTPPathPattern("/v2/list-svc-svc-rules"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/hbf.v2.sgroups.SecGroupService/ListSvcSvcRules", runtime.WithHTTPPathPattern("/v2/list-service-rules"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1499,7 +1499,7 @@ var (
 
 	pattern_SecGroupService_ListServices_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "list-services"}, ""))
 
-	pattern_SecGroupService_ListSvcSvcRules_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "list-svc-svc-rules"}, ""))
+	pattern_SecGroupService_ListSvcSvcRules_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "list-service-rules"}, ""))
 
 	pattern_SecGroupService_GetSgSubnets_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v2", "sg", "sg_name", "subnets"}, ""))
 

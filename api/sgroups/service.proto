@@ -93,7 +93,7 @@ service SecGroupService {
 
    rpc ListSvcSvcRules(ListSvcSvcRulesReq) returns (ListSvcSvcRulesResp) {
      option (google.api.http) = {
-        post: "/v2/list-svc-svc-rules"
+        post: "/v2/list-service-rules"
         body: "*"
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {

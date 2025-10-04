@@ -284,6 +284,39 @@
         ]
       }
     },
+    "/v2/list-service-rules": {
+      "post": {
+        "description": "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListSvcSvcRules",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
     "/v2/list-services": {
       "post": {
         "description": "ListServices: list services by variety of scopes",
@@ -309,39 +342,6 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/sgroupsListServicesReq"
-            }
-          }
-        ],
-        "tags": [
-          "SecGroupService"
-        ]
-      }
-    },
-    "/v2/list-svc-svc-rules": {
-      "post": {
-        "description": "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'",
-        "operationId": "SecGroupService_ListSvcSvcRules",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/sgroupsListSvcSvcRulesResp"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/sgroupsListSvcSvcRulesReq"
             }
           }
         ],
@@ -1951,7 +1951,7 @@
           "$ref": "#/definitions/sgroupsSyncServices",
           "title": "subject of Service(s)"
         },
-        "svcSvcRules": {
+        "serviceRules": {
           "$ref": "#/definitions/sgroupsSyncSvcSvcRules",
           "title": "subject of Service-to-Service Rule(s)"
         }

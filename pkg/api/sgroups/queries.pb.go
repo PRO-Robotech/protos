@@ -742,7 +742,7 @@ type SyncReq struct {
 	//	*SyncReq_IeCidrSgIcmpRules
 	//	*SyncReq_Hosts
 	//	*SyncReq_Services
-	//	*SyncReq_SvcSvcRules
+	//	*SyncReq_ServiceRules
 	Subject       isSyncReq_Subject `protobuf_oneof:"subject"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -900,10 +900,10 @@ func (x *SyncReq) GetServices() *SyncServices {
 	return nil
 }
 
-func (x *SyncReq) GetSvcSvcRules() *SyncSvcSvcRules {
+func (x *SyncReq) GetServiceRules() *SyncSvcSvcRules {
 	if x != nil {
-		if x, ok := x.Subject.(*SyncReq_SvcSvcRules); ok {
-			return x.SvcSvcRules
+		if x, ok := x.Subject.(*SyncReq_ServiceRules); ok {
+			return x.ServiceRules
 		}
 	}
 	return nil
@@ -973,9 +973,9 @@ type SyncReq_Services struct {
 	Services *SyncServices `protobuf:"bytes,13,opt,name=services,proto3,oneof"`
 }
 
-type SyncReq_SvcSvcRules struct {
+type SyncReq_ServiceRules struct {
 	// subject of Service-to-Service Rule(s)
-	SvcSvcRules *SyncSvcSvcRules `protobuf:"bytes,14,opt,name=svc_svc_rules,json=svcSvcRules,proto3,oneof"`
+	ServiceRules *SyncSvcSvcRules `protobuf:"bytes,14,opt,name=service_rules,json=serviceRules,proto3,oneof"`
 }
 
 func (*SyncReq_Groups) isSyncReq_Subject() {}
@@ -1002,7 +1002,7 @@ func (*SyncReq_Hosts) isSyncReq_Subject() {}
 
 func (*SyncReq_Services) isSyncReq_Subject() {}
 
-func (*SyncReq_SvcSvcRules) isSyncReq_Subject() {}
+func (*SyncReq_ServiceRules) isSyncReq_Subject() {}
 
 // ListNetworksReq: req to list Networks
 type ListNetworksReq struct {
@@ -3123,7 +3123,7 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\fSyncServices\x123\n" +
 	"\bservices\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.ServiceR\bservices\"C\n" +
 	"\x0fSyncSvcSvcRules\x120\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SvcSvcRuleR\x05rules\"\x99\b\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SvcSvcRuleR\x05rules\"\x9a\b\n" +
 	"\aSyncReq\x127\n" +
 	"\async_op\x18\x01 \x01(\x0e2\x1e.hbf.v2.sgroups.SyncReq.SyncOpR\x06syncOp\x12<\n" +
 	"\x06groups\x18\x02 \x01(\v2\".hbf.v2.sgroups.SyncSecurityGroupsH\x00R\x06groups\x12:\n" +
@@ -3139,8 +3139,8 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	" \x01(\v2#.hbf.v2.sgroups.SyncIESgSgIcmpRulesH\x00R\x0fieSgSgIcmpRules\x12Y\n" +
 	"\x15ie_cidr_sg_icmp_rules\x18\v \x01(\v2%.hbf.v2.sgroups.SyncIECidrSgIcmpRulesH\x00R\x11ieCidrSgIcmpRules\x121\n" +
 	"\x05hosts\x18\f \x01(\v2\x19.hbf.v2.sgroups.SyncHostsH\x00R\x05hosts\x12:\n" +
-	"\bservices\x18\r \x01(\v2\x1c.hbf.v2.sgroups.SyncServicesH\x00R\bservices\x12E\n" +
-	"\rsvc_svc_rules\x18\x0e \x01(\v2\x1f.hbf.v2.sgroups.SyncSvcSvcRulesH\x00R\vsvcSvcRules\">\n" +
+	"\bservices\x18\r \x01(\v2\x1c.hbf.v2.sgroups.SyncServicesH\x00R\bservices\x12F\n" +
+	"\rservice_rules\x18\x0e \x01(\v2\x1f.hbf.v2.sgroups.SyncSvcSvcRulesH\x00R\fserviceRules\">\n" +
 	"\x06SyncOp\x12\b\n" +
 	"\x04NoOp\x10\x00\x12\f\n" +
 	"\bFullSync\x10\x04\x12\n" +
@@ -3390,7 +3390,7 @@ var file_sgroups_queries_proto_depIdxs = []int32{
 	11, // 24: hbf.v2.sgroups.SyncReq.ie_cidr_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIECidrSgIcmpRules
 	12, // 25: hbf.v2.sgroups.SyncReq.hosts:type_name -> hbf.v2.sgroups.SyncHosts
 	13, // 26: hbf.v2.sgroups.SyncReq.services:type_name -> hbf.v2.sgroups.SyncServices
-	14, // 27: hbf.v2.sgroups.SyncReq.svc_svc_rules:type_name -> hbf.v2.sgroups.SyncSvcSvcRules
+	14, // 27: hbf.v2.sgroups.SyncReq.service_rules:type_name -> hbf.v2.sgroups.SyncSvcSvcRules
 	61, // 28: hbf.v2.sgroups.ListNetworksResp.networks:type_name -> hbf.v2.sgroups.Network
 	60, // 29: hbf.v2.sgroups.ListSecurityGroupsResp.groups:type_name -> hbf.v2.sgroups.SecGroup
 	47, // 30: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
@@ -3441,7 +3441,7 @@ func file_sgroups_queries_proto_init() {
 		(*SyncReq_IeCidrSgIcmpRules)(nil),
 		(*SyncReq_Hosts)(nil),
 		(*SyncReq_Services)(nil),
-		(*SyncReq_SvcSvcRules)(nil),
+		(*SyncReq_ServiceRules)(nil),
 	}
 	file_sgroups_queries_proto_msgTypes[19].OneofWrappers = []any{
 		(*ListHostsReq_None)(nil),
