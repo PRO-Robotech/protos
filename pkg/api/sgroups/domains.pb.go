@@ -320,7 +320,9 @@ type SecGroup struct {
 	// logs: switch-{ON|OFF} logs in chain
 	Logs bool `protobuf:"varint,5,opt,name=logs,proto3" json:"logs,omitempty"`
 	// host: related to security group host names
-	Hosts         []string `protobuf:"bytes,6,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	Hosts []string `protobuf:"bytes,6,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	// services: related to security group service names
+	Services      []string `protobuf:"bytes,7,rep,name=services,proto3" json:"services,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -393,6 +395,13 @@ func (x *SecGroup) GetLogs() bool {
 func (x *SecGroup) GetHosts() []string {
 	if x != nil {
 		return x.Hosts
+	}
+	return nil
+}
+
+func (x *SecGroup) GetServices() []string {
+	if x != nil {
+		return x.Services
 	}
 	return nil
 }
@@ -1688,14 +1697,15 @@ const file_sgroups_domains_proto_rawDesc = "" +
 	"\aNetwork\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x120\n" +
 	"\anetwork\x18\x02 \x01(\v2\x16.common.Networks.NetIPR\anetwork:\f\x92A\t\n" +
-	"\a\xd2\x01\x04name\"\x8b\x02\n" +
+	"\a\xd2\x01\x04name\"\xa7\x02\n" +
 	"\bSecGroup\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
 	"\bnetworks\x18\x02 \x03(\tR\bnetworks\x12M\n" +
 	"\x0edefault_action\x18\x03 \x01(\x0e2&.hbf.v2.sgroups.SecGroup.DefaultActionR\rdefaultAction\x12\x14\n" +
 	"\x05trace\x18\x04 \x01(\bR\x05trace\x12\x12\n" +
 	"\x04logs\x18\x05 \x01(\bR\x04logs\x12\x14\n" +
-	"\x05hosts\x18\x06 \x03(\tR\x05hosts\"2\n" +
+	"\x05hosts\x18\x06 \x03(\tR\x05hosts\x12\x1a\n" +
+	"\bservices\x18\a \x03(\tR\bservices\"2\n" +
 	"\rDefaultAction\x12\v\n" +
 	"\aDEFAULT\x10\x00\x12\b\n" +
 	"\x04DROP\x10\x01\x12\n" +

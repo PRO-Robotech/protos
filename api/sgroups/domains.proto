@@ -77,6 +77,8 @@ message SecGroup {
   bool logs = 5;
   //host: related to security group host names
   repeated string hosts = 6;
+  //services: related to security group service names
+  repeated string services = 7;
 }
 
 // IPList : list of hosts IPs

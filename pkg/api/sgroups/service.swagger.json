@@ -1584,6 +1584,13 @@
             "type": "string"
           },
           "title": "host: related to security group host names"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "services: related to security group service names"
         }
       },
       "title": "SecGroup: represents a security group",
