@@ -520,35 +520,35 @@ func (x *Host) GetIpList() *IPList {
 	return nil
 }
 
-// TransportSpec: represents transport specification (ports, icmp types)
-type TransportSpec struct {
+// ProtoSpec: represents protocols specification (ports, icmp types)
+type ProtoSpec struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// tcp ports
-	Tcp *TransportSpec_Ports `protobuf:"bytes,1,opt,name=tcp,proto3" json:"tcp,omitempty"`
+	Tcp *ProtoSpec_Ports `protobuf:"bytes,1,opt,name=tcp,proto3" json:"tcp,omitempty"`
 	// udp ports
-	Udp *TransportSpec_Ports `protobuf:"bytes,2,opt,name=udp,proto3" json:"udp,omitempty"`
+	Udp *ProtoSpec_Ports `protobuf:"bytes,2,opt,name=udp,proto3" json:"udp,omitempty"`
 	// icmpv4 types
-	Icmpv4 *TransportSpec_IcmpTypes `protobuf:"bytes,3,opt,name=icmpv4,proto3" json:"icmpv4,omitempty"`
+	Icmpv4 *ProtoSpec_IcmpTypes `protobuf:"bytes,3,opt,name=icmpv4,proto3" json:"icmpv4,omitempty"`
 	// icmpv6 types
-	Icmpv6        *TransportSpec_IcmpTypes `protobuf:"bytes,4,opt,name=icmpv6,proto3" json:"icmpv6,omitempty"`
+	Icmpv6        *ProtoSpec_IcmpTypes `protobuf:"bytes,4,opt,name=icmpv6,proto3" json:"icmpv6,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TransportSpec) Reset() {
-	*x = TransportSpec{}
+func (x *ProtoSpec) Reset() {
+	*x = ProtoSpec{}
 	mi := &file_sgroups_domains_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TransportSpec) String() string {
+func (x *ProtoSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TransportSpec) ProtoMessage() {}
+func (*ProtoSpec) ProtoMessage() {}
 
-func (x *TransportSpec) ProtoReflect() protoreflect.Message {
+func (x *ProtoSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_sgroups_domains_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -560,33 +560,33 @@ func (x *TransportSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TransportSpec.ProtoReflect.Descriptor instead.
-func (*TransportSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProtoSpec.ProtoReflect.Descriptor instead.
+func (*ProtoSpec) Descriptor() ([]byte, []int) {
 	return file_sgroups_domains_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *TransportSpec) GetTcp() *TransportSpec_Ports {
+func (x *ProtoSpec) GetTcp() *ProtoSpec_Ports {
 	if x != nil {
 		return x.Tcp
 	}
 	return nil
 }
 
-func (x *TransportSpec) GetUdp() *TransportSpec_Ports {
+func (x *ProtoSpec) GetUdp() *ProtoSpec_Ports {
 	if x != nil {
 		return x.Udp
 	}
 	return nil
 }
 
-func (x *TransportSpec) GetIcmpv4() *TransportSpec_IcmpTypes {
+func (x *ProtoSpec) GetIcmpv4() *ProtoSpec_IcmpTypes {
 	if x != nil {
 		return x.Icmpv4
 	}
 	return nil
 }
 
-func (x *TransportSpec) GetIcmpv6() *TransportSpec_IcmpTypes {
+func (x *ProtoSpec) GetIcmpv6() *ProtoSpec_IcmpTypes {
 	if x != nil {
 		return x.Icmpv6
 	}
@@ -598,8 +598,8 @@ type Service struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// name of service
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// TransportSpec: port set(s)
-	Ports *TransportSpec `protobuf:"bytes,2,opt,name=ports,proto3" json:"ports,omitempty"`
+	// protocols specification (ports, icmp types)
+	Protocols *ProtoSpec `protobuf:"bytes,2,opt,name=protocols,proto3" json:"protocols,omitempty"`
 	// related to security group name(s)
 	SgNames       []string `protobuf:"bytes,3,rep,name=sg_names,json=sgNames,proto3" json:"sg_names,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -643,9 +643,9 @@ func (x *Service) GetName() string {
 	return ""
 }
 
-func (x *Service) GetPorts() *TransportSpec {
+func (x *Service) GetProtocols() *ProtoSpec {
 	if x != nil {
-		return x.Ports
+		return x.Protocols
 	}
 	return nil
 }
@@ -1595,27 +1595,27 @@ func (x *IESgSgIcmpRule) GetPriority() *RulePriority {
 	return nil
 }
 
-type TransportSpec_Ports struct {
+type ProtoSpec_Ports struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Ports         []*AccPorts            `protobuf:"bytes,1,rep,name=ports,proto3" json:"ports,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TransportSpec_Ports) Reset() {
-	*x = TransportSpec_Ports{}
+func (x *ProtoSpec_Ports) Reset() {
+	*x = ProtoSpec_Ports{}
 	mi := &file_sgroups_domains_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TransportSpec_Ports) String() string {
+func (x *ProtoSpec_Ports) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TransportSpec_Ports) ProtoMessage() {}
+func (*ProtoSpec_Ports) ProtoMessage() {}
 
-func (x *TransportSpec_Ports) ProtoReflect() protoreflect.Message {
+func (x *ProtoSpec_Ports) ProtoReflect() protoreflect.Message {
 	mi := &file_sgroups_domains_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1627,39 +1627,39 @@ func (x *TransportSpec_Ports) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TransportSpec_Ports.ProtoReflect.Descriptor instead.
-func (*TransportSpec_Ports) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProtoSpec_Ports.ProtoReflect.Descriptor instead.
+func (*ProtoSpec_Ports) Descriptor() ([]byte, []int) {
 	return file_sgroups_domains_proto_rawDescGZIP(), []int{6, 0}
 }
 
-func (x *TransportSpec_Ports) GetPorts() []*AccPorts {
+func (x *ProtoSpec_Ports) GetPorts() []*AccPorts {
 	if x != nil {
 		return x.Ports
 	}
 	return nil
 }
 
-type TransportSpec_IcmpTypes struct {
+type ProtoSpec_IcmpTypes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Types         []int32                `protobuf:"varint,1,rep,packed,name=types,proto3" json:"types,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TransportSpec_IcmpTypes) Reset() {
-	*x = TransportSpec_IcmpTypes{}
+func (x *ProtoSpec_IcmpTypes) Reset() {
+	*x = ProtoSpec_IcmpTypes{}
 	mi := &file_sgroups_domains_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TransportSpec_IcmpTypes) String() string {
+func (x *ProtoSpec_IcmpTypes) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TransportSpec_IcmpTypes) ProtoMessage() {}
+func (*ProtoSpec_IcmpTypes) ProtoMessage() {}
 
-func (x *TransportSpec_IcmpTypes) ProtoReflect() protoreflect.Message {
+func (x *ProtoSpec_IcmpTypes) ProtoReflect() protoreflect.Message {
 	mi := &file_sgroups_domains_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1671,12 +1671,12 @@ func (x *TransportSpec_IcmpTypes) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TransportSpec_IcmpTypes.ProtoReflect.Descriptor instead.
-func (*TransportSpec_IcmpTypes) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProtoSpec_IcmpTypes.ProtoReflect.Descriptor instead.
+func (*ProtoSpec_IcmpTypes) Descriptor() ([]byte, []int) {
 	return file_sgroups_domains_proto_rawDescGZIP(), []int{6, 1}
 }
 
-func (x *TransportSpec_IcmpTypes) GetTypes() []int32 {
+func (x *ProtoSpec_IcmpTypes) GetTypes() []int32 {
 	if x != nil {
 		return x.Types
 	}
@@ -1718,19 +1718,19 @@ const file_sgroups_domains_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x17\n" +
 	"\asg_name\x18\x03 \x01(\tR\x06sgName\x12/\n" +
-	"\aip_list\x18\x04 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\"\xdb\x02\n" +
-	"\rTransportSpec\x125\n" +
-	"\x03tcp\x18\x01 \x01(\v2#.hbf.v2.sgroups.TransportSpec.PortsR\x03tcp\x125\n" +
-	"\x03udp\x18\x02 \x01(\v2#.hbf.v2.sgroups.TransportSpec.PortsR\x03udp\x12?\n" +
-	"\x06icmpv4\x18\x03 \x01(\v2'.hbf.v2.sgroups.TransportSpec.IcmpTypesR\x06icmpv4\x12?\n" +
-	"\x06icmpv6\x18\x04 \x01(\v2'.hbf.v2.sgroups.TransportSpec.IcmpTypesR\x06icmpv6\x1a7\n" +
+	"\aip_list\x18\x04 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipList\"\xc7\x02\n" +
+	"\tProtoSpec\x121\n" +
+	"\x03tcp\x18\x01 \x01(\v2\x1f.hbf.v2.sgroups.ProtoSpec.PortsR\x03tcp\x121\n" +
+	"\x03udp\x18\x02 \x01(\v2\x1f.hbf.v2.sgroups.ProtoSpec.PortsR\x03udp\x12;\n" +
+	"\x06icmpv4\x18\x03 \x01(\v2#.hbf.v2.sgroups.ProtoSpec.IcmpTypesR\x06icmpv4\x12;\n" +
+	"\x06icmpv6\x18\x04 \x01(\v2#.hbf.v2.sgroups.ProtoSpec.IcmpTypesR\x06icmpv6\x1a7\n" +
 	"\x05Ports\x12.\n" +
 	"\x05ports\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.AccPortsR\x05ports\x1a!\n" +
 	"\tIcmpTypes\x12\x14\n" +
-	"\x05types\x18\x01 \x03(\x05R\x05types\"{\n" +
+	"\x05types\x18\x01 \x03(\x05R\x05types\"\x7f\n" +
 	"\aService\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x123\n" +
-	"\x05ports\x18\x02 \x01(\v2\x1d.hbf.v2.sgroups.TransportSpecR\x05ports\x12\x19\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x127\n" +
+	"\tprotocols\x18\x02 \x01(\v2\x19.hbf.v2.sgroups.ProtoSpecR\tprotocols\x12\x19\n" +
 	"\bsg_names\x18\x03 \x03(\tR\asgNames:\f\x92A\t\n" +
 	"\a\xd2\x01\x04name\"\x8a\x02\n" +
 	"\n" +
@@ -1849,7 +1849,7 @@ var file_sgroups_domains_proto_goTypes = []any{
 	(*SecGroup)(nil),                     // 5: hbf.v2.sgroups.SecGroup
 	(*IPList)(nil),                       // 6: hbf.v2.sgroups.IPList
 	(*Host)(nil),                         // 7: hbf.v2.sgroups.Host
-	(*TransportSpec)(nil),                // 8: hbf.v2.sgroups.TransportSpec
+	(*ProtoSpec)(nil),                    // 8: hbf.v2.sgroups.ProtoSpec
 	(*Service)(nil),                      // 9: hbf.v2.sgroups.Service
 	(*SvcSvcRule)(nil),                   // 10: hbf.v2.sgroups.SvcSvcRule
 	(*SgSgRule)(nil),                     // 11: hbf.v2.sgroups.SgSgRule
@@ -1860,8 +1860,8 @@ var file_sgroups_domains_proto_goTypes = []any{
 	(*IECidrSgIcmpRule)(nil),             // 16: hbf.v2.sgroups.IECidrSgIcmpRule
 	(*IESgSgRule)(nil),                   // 17: hbf.v2.sgroups.IESgSgRule
 	(*IESgSgIcmpRule)(nil),               // 18: hbf.v2.sgroups.IESgSgIcmpRule
-	(*TransportSpec_Ports)(nil),          // 19: hbf.v2.sgroups.TransportSpec.Ports
-	(*TransportSpec_IcmpTypes)(nil),      // 20: hbf.v2.sgroups.TransportSpec.IcmpTypes
+	(*ProtoSpec_Ports)(nil),              // 19: hbf.v2.sgroups.ProtoSpec.Ports
+	(*ProtoSpec_IcmpTypes)(nil),          // 20: hbf.v2.sgroups.ProtoSpec.IcmpTypes
 	(*common.Networks_NetIP)(nil),        // 21: common.Networks.NetIP
 	(common.Networks_NetIP_Transport)(0), // 22: common.Networks.NetIP.Transport
 	(*common.ICMP)(nil),                  // 23: common.ICMP
@@ -1871,11 +1871,11 @@ var file_sgroups_domains_proto_depIdxs = []int32{
 	21, // 0: hbf.v2.sgroups.Network.network:type_name -> common.Networks.NetIP
 	1,  // 1: hbf.v2.sgroups.SecGroup.default_action:type_name -> hbf.v2.sgroups.SecGroup.DefaultAction
 	6,  // 2: hbf.v2.sgroups.Host.ip_list:type_name -> hbf.v2.sgroups.IPList
-	19, // 3: hbf.v2.sgroups.TransportSpec.tcp:type_name -> hbf.v2.sgroups.TransportSpec.Ports
-	19, // 4: hbf.v2.sgroups.TransportSpec.udp:type_name -> hbf.v2.sgroups.TransportSpec.Ports
-	20, // 5: hbf.v2.sgroups.TransportSpec.icmpv4:type_name -> hbf.v2.sgroups.TransportSpec.IcmpTypes
-	20, // 6: hbf.v2.sgroups.TransportSpec.icmpv6:type_name -> hbf.v2.sgroups.TransportSpec.IcmpTypes
-	8,  // 7: hbf.v2.sgroups.Service.ports:type_name -> hbf.v2.sgroups.TransportSpec
+	19, // 3: hbf.v2.sgroups.ProtoSpec.tcp:type_name -> hbf.v2.sgroups.ProtoSpec.Ports
+	19, // 4: hbf.v2.sgroups.ProtoSpec.udp:type_name -> hbf.v2.sgroups.ProtoSpec.Ports
+	20, // 5: hbf.v2.sgroups.ProtoSpec.icmpv4:type_name -> hbf.v2.sgroups.ProtoSpec.IcmpTypes
+	20, // 6: hbf.v2.sgroups.ProtoSpec.icmpv6:type_name -> hbf.v2.sgroups.ProtoSpec.IcmpTypes
+	8,  // 7: hbf.v2.sgroups.Service.protocols:type_name -> hbf.v2.sgroups.ProtoSpec
 	0,  // 8: hbf.v2.sgroups.SvcSvcRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	3,  // 9: hbf.v2.sgroups.SvcSvcRule.priority:type_name -> hbf.v2.sgroups.RulePriority
 	22, // 10: hbf.v2.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
@@ -1909,7 +1909,7 @@ var file_sgroups_domains_proto_depIdxs = []int32{
 	23, // 38: hbf.v2.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 39: hbf.v2.sgroups.IESgSgIcmpRule.action:type_name -> hbf.v2.sgroups.RuleAction
 	3,  // 40: hbf.v2.sgroups.IESgSgIcmpRule.priority:type_name -> hbf.v2.sgroups.RulePriority
-	2,  // 41: hbf.v2.sgroups.TransportSpec.Ports.ports:type_name -> hbf.v2.sgroups.AccPorts
+	2,  // 41: hbf.v2.sgroups.ProtoSpec.Ports.ports:type_name -> hbf.v2.sgroups.AccPorts
 	42, // [42:42] is the sub-list for method output_type
 	42, // [42:42] is the sub-list for method input_type
 	42, // [42:42] is the sub-list for extension type_name

@@ -698,6 +698,30 @@
       },
       "title": "NetIP: represents IP-Network type (L3)"
     },
+    "ProtoSpecIcmpTypes": {
+      "type": "object",
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "ProtoSpecPorts": {
+      "type": "object",
+      "properties": {
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsAccPorts"
+          }
+        }
+      }
+    },
     "SecGroupDefaultAction": {
       "type": "string",
       "enum": [
@@ -720,30 +744,6 @@
       "default": "NoOp",
       "description": "- NoOp: NoOp: it meand there is no operation defined as default\n - FullSync: FullSync: Delete+Insert+Update operations (default)\n - Upsert: Upsert: Insert+Update operations\n - Delete: Delete: Delete operation",
       "title": "SyncOp: sync operation"
-    },
-    "TransportSpecIcmpTypes": {
-      "type": "object",
-      "properties": {
-        "types": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      }
-    },
-    "TransportSpecPorts": {
-      "type": "object",
-      "properties": {
-        "ports": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/sgroupsAccPorts"
-          }
-        }
-      }
     },
     "commonICMP": {
       "type": "object",
@@ -1531,6 +1531,28 @@
         "name"
       ]
     },
+    "sgroupsProtoSpec": {
+      "type": "object",
+      "properties": {
+        "tcp": {
+          "$ref": "#/definitions/ProtoSpecPorts",
+          "title": "tcp ports"
+        },
+        "udp": {
+          "$ref": "#/definitions/ProtoSpecPorts",
+          "title": "udp ports"
+        },
+        "icmpv4": {
+          "$ref": "#/definitions/ProtoSpecIcmpTypes",
+          "title": "icmpv4 types"
+        },
+        "icmpv6": {
+          "$ref": "#/definitions/ProtoSpecIcmpTypes",
+          "title": "icmpv6 types"
+        }
+      },
+      "title": "ProtoSpec: represents protocols specification (ports, icmp types)"
+    },
     "sgroupsRuleAction": {
       "type": "string",
       "enum": [
@@ -1605,9 +1627,9 @@
           "type": "string",
           "title": "name of service"
         },
-        "ports": {
-          "$ref": "#/definitions/sgroupsTransportSpec",
-          "title": "TransportSpec: port set(s)"
+        "protocols": {
+          "$ref": "#/definitions/sgroupsProtoSpec",
+          "title": "protocols specification (ports, icmp types)"
         },
         "sgNames": {
           "type": "array",
@@ -2057,28 +2079,6 @@
         }
       },
       "title": "SyncSvcSvcRules: subject of Service-to-Service Rules to Sync"
-    },
-    "sgroupsTransportSpec": {
-      "type": "object",
-      "properties": {
-        "tcp": {
-          "$ref": "#/definitions/TransportSpecPorts",
-          "title": "tcp ports"
-        },
-        "udp": {
-          "$ref": "#/definitions/TransportSpecPorts",
-          "title": "udp ports"
-        },
-        "icmpv4": {
-          "$ref": "#/definitions/TransportSpecIcmpTypes",
-          "title": "icmpv4 types"
-        },
-        "icmpv6": {
-          "$ref": "#/definitions/TransportSpecIcmpTypes",
-          "title": "icmpv6 types"
-        }
-      },
-      "title": "TransportSpec: represents transport specification (ports, icmp types)"
     }
   },
   "externalDocs": {
