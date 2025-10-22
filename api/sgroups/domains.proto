@@ -199,6 +199,31 @@ message FqdnRule {
   RulePriority priority = 8;
 }
 
+// SvcFqdnRule: represents Service to FQDN Rule
+message SvcFqdnRule {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+     json_schema: {
+       required: ["svc_from", "FQDN", "transport"]
+     }
+  };
+  // service at client
+  string svc_from = 1;
+  // FQDN full qualified domain name portable for DNS queries
+  string FQDN = 2;
+  // ip net transport
+  common.Networks.NetIP.Transport transport = 3;
+  // access ports set
+  repeated AccPorts ports = 4;
+  // logs: switch-{ON|OFF} logs in rules
+  bool logs = 5;
+  // trace: switch-{ON|OFF} trace in rules
+  bool trace = 6;
+  // action: represents rule action
+  RuleAction action = 7;
+  // priority: rule priority affects on rule pos in its rule list
+  RulePriority priority = 8;
+}
+
 // SG:ICMP type rule
 message SgIcmpRule {
   // Security group name

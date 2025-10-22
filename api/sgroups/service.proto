@@ -101,6 +101,16 @@ service SecGroupService {
      };
    };
 
+   rpc ListSvcFqdnRules(ListSvcFqdnRulesReq) returns (ListSvcFqdnRulesResp) {
+     option (google.api.http) = {
+        post: "/v2/list-service-fqdn-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "ListSvcFqdnRules: lists Service(s) FQDN Rule(s) by variety of scopes'";
+     };
+   };
+
    rpc GetSgSubnets(GetSgSubnetsReq) returns (GetSgSubnetsResp){
      option (google.api.http) = {
         get: "/v2/sg/{sg_name}/subnets"

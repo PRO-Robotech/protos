@@ -284,6 +284,39 @@
         ]
       }
     },
+    "/v2/list-service-fqdn-rules": {
+      "post": {
+        "description": "ListSvcFqdnRules: lists Service(s) FQDN Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListSvcFqdnRules",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcFqdnRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcFqdnRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
     "/v2/list-service-rules": {
       "post": {
         "description": "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'",
@@ -644,6 +677,21 @@
         }
       },
       "title": "Filter by service names"
+    },
+    "ListSvcFqdnRulesReqBySvcFrom": {
+      "type": "object",
+      "properties": {
+        "svcFrom": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by service names 'from'",
+      "required": [
+        "svcFrom"
+      ]
     },
     "ListSvcSvcRulesReqByRuleName": {
       "type": "object",
@@ -1481,6 +1529,36 @@
       },
       "title": "ListSecurityGroupsResp: Security Groups list resp"
     },
+    "sgroupsListSvcFqdnRulesReq": {
+      "type": "object",
+      "properties": {
+        "none": {
+          "$ref": "#/definitions/sgroupsListSvcFqdnRulesReqNoFilter"
+        },
+        "bySvcFrom": {
+          "$ref": "#/definitions/ListSvcFqdnRulesReqBySvcFrom"
+        }
+      },
+      "title": "ListSvcFqdnRulesReq: req to list all Service(s) FQDN Rule(s) by variety of scopes"
+    },
+    "sgroupsListSvcFqdnRulesReqNoFilter": {
+      "type": "object",
+      "title": "No filtering: return all services"
+    },
+    "sgroupsListSvcFqdnRulesResp": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsSvcFqdnRule"
+          },
+          "title": "Service rule(s) items"
+        }
+      },
+      "title": "ListSvcFqdnRulesResp: Service(s) FQDN Rule(s) resp"
+    },
     "sgroupsListSvcSvcRulesReq": {
       "type": "object",
       "properties": {
@@ -1789,6 +1867,53 @@
       },
       "title": "SgSgRulesResp: Security Group(s) Rule(s) resp"
     },
+    "sgroupsSvcFqdnRule": {
+      "type": "object",
+      "properties": {
+        "svcFrom": {
+          "type": "string",
+          "title": "service at client"
+        },
+        "FQDN": {
+          "type": "string",
+          "title": "FQDN full qualified domain name portable for DNS queries"
+        },
+        "transport": {
+          "$ref": "#/definitions/NetIPTransport",
+          "title": "ip net transport"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsAccPorts"
+          },
+          "title": "access ports set"
+        },
+        "logs": {
+          "type": "boolean",
+          "title": "logs: switch-{ON|OFF} logs in rules"
+        },
+        "trace": {
+          "type": "boolean",
+          "title": "trace: switch-{ON|OFF} trace in rules"
+        },
+        "action": {
+          "$ref": "#/definitions/sgroupsRuleAction",
+          "title": "action: represents rule action"
+        },
+        "priority": {
+          "$ref": "#/definitions/sgroupsRulePriority",
+          "title": "priority: rule priority affects on rule pos in its rule list"
+        }
+      },
+      "title": "SvcFqdnRule: represents Service to FQDN Rule",
+      "required": [
+        "svcFrom",
+        "FQDN",
+        "transport"
+      ]
+    },
     "sgroupsSvcSvcRule": {
       "type": "object",
       "properties": {
@@ -1983,6 +2108,10 @@
         "serviceRules": {
           "$ref": "#/definitions/sgroupsSyncSvcSvcRules",
           "title": "subject of Service-to-Service Rule(s)"
+        },
+        "svcFqdnRules": {
+          "$ref": "#/definitions/sgroupsSyncSvcFqdnRules",
+          "title": "subject of Service to FQDN Rule(s)"
         }
       },
       "title": "SyncReq: request to apply changes in DB for one of subject [Networks|Sucurity Groups|Security Grpups Rules]"
@@ -2065,6 +2194,20 @@
         }
       },
       "title": "SyncStatusResp: db status after last succeeded Sync"
+    },
+    "sgroupsSyncSvcFqdnRules": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsSvcFqdnRule"
+          },
+          "title": "fqdn rules items"
+        }
+      },
+      "title": "SyncSvcFqdnRules: subject of Service to FQDN Rules to Sync"
     },
     "sgroupsSyncSvcSvcRules": {
       "type": "object",

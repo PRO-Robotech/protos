@@ -26,6 +26,12 @@ message SyncFqdnRules{
   repeated FqdnRule rules = 1;
 }
 
+// SyncSvcFqdnRules: subject of Service to FQDN Rules to Sync
+message SyncSvcFqdnRules{
+  // fqdn rules items
+  repeated SvcFqdnRule rules = 1;
+}
+
 // SyncSecurityGroups: subject of Security Groups to Sync
 message SyncSecurityGroups{
   // security group items
@@ -137,6 +143,8 @@ message SyncReq {
       SyncServices services = 13;
       // subject of Service-to-Service Rule(s)
       SyncSvcSvcRules service_rules = 14;
+      // subject of Service to FQDN Rule(s)
+      SyncSvcFqdnRules svc_fqdn_rules = 15;
   }
 }
 
@@ -284,6 +292,12 @@ message FindFqdnRulesReq {
 message FqdnRulesResp {
   // FQDN rule(s) items
   repeated FqdnRule rules = 1;
+}
+
+// SvcFqdnRulesResp: FQDN Rule(s) resp
+message SvcFqdnRulesResp {
+  // FQDN rule(s) items
+  repeated SvcFqdnRule rules = 1;
 }
 
 // FindSgIcmpRulesReq: req to find all SG:ICMP Rule(s) scoped by SG(s) variety
@@ -448,3 +462,27 @@ message ListSvcSvcRulesResp {
   repeated SvcSvcRule rules = 1;
 }
 
+// ListSvcFqdnRulesReq: req to list all Service(s) FQDN Rule(s) by variety of scopes
+message ListSvcFqdnRulesReq {
+  // No filtering: return all services
+  message NoFilter {}
+  // Filter by service names 'from'
+  message BySvcFrom {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+      json_schema: {
+        required: ["svcFrom"]
+      }
+    };
+    repeated string svc_from = 1;
+  };
+  oneof criteria {
+    NoFilter none = 1;
+    BySvcFrom by_svc_from = 2;
+  }
+}
+
+// ListSvcFqdnRulesResp: Service(s) FQDN Rule(s) resp
+message ListSvcFqdnRulesResp {
+  // Service rule(s) items
+  repeated SvcFqdnRule rules = 1;
+}
