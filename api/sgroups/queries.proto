@@ -466,6 +466,10 @@ message ListSvcSvcRulesResp {
 message ListSvcFqdnRulesReq {
   // No filtering: return all services
   message NoFilter {}
+  // Filter by rule name
+  message ByRuleName {
+    repeated string names = 1;
+  };
   // Filter by service names 'from'
   message BySvcFrom {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
@@ -477,7 +481,8 @@ message ListSvcFqdnRulesReq {
   };
   oneof criteria {
     NoFilter none = 1;
-    BySvcFrom by_svc_from = 2;
+    ByRuleName by_rule_name = 2;
+    BySvcFrom by_svc_from = 3;
   }
 }
 

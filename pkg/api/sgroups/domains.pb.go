@@ -660,7 +660,7 @@ func (x *Service) GetSgNames() []string {
 // SvcSvcRule: represents Service-to-Service Rule
 type SvcSvcRule struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// name of service
+	// rule name
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// service at client
 	SvcFrom string `protobuf:"bytes,2,opt,name=svc_from,json=svcFrom,proto3" json:"svc_from,omitempty"`
@@ -962,22 +962,24 @@ func (x *FqdnRule) GetPriority() *RulePriority {
 // SvcFqdnRule: represents Service to FQDN Rule
 type SvcFqdnRule struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// rule name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// service at client
-	SvcFrom string `protobuf:"bytes,1,opt,name=svc_from,json=svcFrom,proto3" json:"svc_from,omitempty"`
+	SvcFrom string `protobuf:"bytes,2,opt,name=svc_from,json=svcFrom,proto3" json:"svc_from,omitempty"`
 	// FQDN full qualified domain name portable for DNS queries
-	FQDN string `protobuf:"bytes,2,opt,name=FQDN,proto3" json:"FQDN,omitempty"`
+	FQDN string `protobuf:"bytes,3,opt,name=FQDN,proto3" json:"FQDN,omitempty"`
 	// ip net transport
-	Transport common.Networks_NetIP_Transport `protobuf:"varint,3,opt,name=transport,proto3,enum=common.Networks_NetIP_Transport" json:"transport,omitempty"`
+	Transport common.Networks_NetIP_Transport `protobuf:"varint,4,opt,name=transport,proto3,enum=common.Networks_NetIP_Transport" json:"transport,omitempty"`
 	// access ports set
-	Ports []*AccPorts `protobuf:"bytes,4,rep,name=ports,proto3" json:"ports,omitempty"`
+	Ports []*AccPorts `protobuf:"bytes,5,rep,name=ports,proto3" json:"ports,omitempty"`
 	// logs: switch-{ON|OFF} logs in rules
-	Logs bool `protobuf:"varint,5,opt,name=logs,proto3" json:"logs,omitempty"`
+	Logs bool `protobuf:"varint,6,opt,name=logs,proto3" json:"logs,omitempty"`
 	// trace: switch-{ON|OFF} trace in rules
-	Trace bool `protobuf:"varint,6,opt,name=trace,proto3" json:"trace,omitempty"`
+	Trace bool `protobuf:"varint,7,opt,name=trace,proto3" json:"trace,omitempty"`
 	// action: represents rule action
-	Action RuleAction `protobuf:"varint,7,opt,name=action,proto3,enum=hbf.v2.sgroups.RuleAction" json:"action,omitempty"`
+	Action RuleAction `protobuf:"varint,8,opt,name=action,proto3,enum=hbf.v2.sgroups.RuleAction" json:"action,omitempty"`
 	// priority: rule priority affects on rule pos in its rule list
-	Priority      *RulePriority `protobuf:"bytes,8,opt,name=priority,proto3" json:"priority,omitempty"`
+	Priority      *RulePriority `protobuf:"bytes,9,opt,name=priority,proto3" json:"priority,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1010,6 +1012,13 @@ func (x *SvcFqdnRule) ProtoReflect() protoreflect.Message {
 // Deprecated: Use SvcFqdnRule.ProtoReflect.Descriptor instead.
 func (*SvcFqdnRule) Descriptor() ([]byte, []int) {
 	return file_sgroups_domains_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *SvcFqdnRule) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
 }
 
 func (x *SvcFqdnRule) GetSvcFrom() string {
@@ -1869,17 +1878,18 @@ const file_sgroups_domains_proto_rawDesc = "" +
 	"\x04logs\x18\x05 \x01(\bR\x04logs\x122\n" +
 	"\x06action\x18\a \x01(\x0e2\x1a.hbf.v2.sgroups.RuleActionR\x06action\x128\n" +
 	"\bpriority\x18\b \x01(\v2\x1c.hbf.v2.sgroups.RulePriorityR\bpriority:!\x92A\x1e\n" +
-	"\x1c\xd2\x01\x06sgFrom\xd2\x01\x04FQDN\xd2\x01\ttransport\"\xe9\x02\n" +
-	"\vSvcFqdnRule\x12\x19\n" +
-	"\bsvc_from\x18\x01 \x01(\tR\asvcFrom\x12\x12\n" +
-	"\x04FQDN\x18\x02 \x01(\tR\x04FQDN\x12>\n" +
-	"\ttransport\x18\x03 \x01(\x0e2 .common.Networks.NetIP.TransportR\ttransport\x12.\n" +
-	"\x05ports\x18\x04 \x03(\v2\x18.hbf.v2.sgroups.AccPortsR\x05ports\x12\x12\n" +
-	"\x04logs\x18\x05 \x01(\bR\x04logs\x12\x14\n" +
-	"\x05trace\x18\x06 \x01(\bR\x05trace\x122\n" +
-	"\x06action\x18\a \x01(\x0e2\x1a.hbf.v2.sgroups.RuleActionR\x06action\x128\n" +
-	"\bpriority\x18\b \x01(\v2\x1c.hbf.v2.sgroups.RulePriorityR\bpriority:#\x92A \n" +
-	"\x1e\xd2\x01\bsvc_from\xd2\x01\x04FQDN\xd2\x01\ttransport\"\x9c\x01\n" +
+	"\x1c\xd2\x01\x06sgFrom\xd2\x01\x04FQDN\xd2\x01\ttransport\"\x84\x03\n" +
+	"\vSvcFqdnRule\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x19\n" +
+	"\bsvc_from\x18\x02 \x01(\tR\asvcFrom\x12\x12\n" +
+	"\x04FQDN\x18\x03 \x01(\tR\x04FQDN\x12>\n" +
+	"\ttransport\x18\x04 \x01(\x0e2 .common.Networks.NetIP.TransportR\ttransport\x12.\n" +
+	"\x05ports\x18\x05 \x03(\v2\x18.hbf.v2.sgroups.AccPortsR\x05ports\x12\x12\n" +
+	"\x04logs\x18\x06 \x01(\bR\x04logs\x12\x14\n" +
+	"\x05trace\x18\a \x01(\bR\x05trace\x122\n" +
+	"\x06action\x18\b \x01(\x0e2\x1a.hbf.v2.sgroups.RuleActionR\x06action\x128\n" +
+	"\bpriority\x18\t \x01(\v2\x1c.hbf.v2.sgroups.RulePriorityR\bpriority:*\x92A'\n" +
+	"%\xd2\x01\x04name\xd2\x01\bsvc_from\xd2\x01\x04FQDN\xd2\x01\ttransport\"\x9c\x01\n" +
 	"\n" +
 	"SgIcmpRule\x12\x0e\n" +
 	"\x02SG\x18\x01 \x01(\tR\x02SG\x12 \n" +

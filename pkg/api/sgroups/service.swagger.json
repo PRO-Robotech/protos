@@ -693,18 +693,6 @@
         "svcFrom"
       ]
     },
-    "ListSvcSvcRulesReqByRuleName": {
-      "type": "object",
-      "properties": {
-        "names": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "title": "Filter by service rule names"
-    },
     "ListSvcSvcRulesReqBySvcFromTo": {
       "type": "object",
       "properties": {
@@ -1535,11 +1523,26 @@
         "none": {
           "$ref": "#/definitions/sgroupsListSvcFqdnRulesReqNoFilter"
         },
+        "byRuleName": {
+          "$ref": "#/definitions/sgroupsListSvcFqdnRulesReqByRuleName"
+        },
         "bySvcFrom": {
           "$ref": "#/definitions/ListSvcFqdnRulesReqBySvcFrom"
         }
       },
       "title": "ListSvcFqdnRulesReq: req to list all Service(s) FQDN Rule(s) by variety of scopes"
+    },
+    "sgroupsListSvcFqdnRulesReqByRuleName": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by rule name"
     },
     "sgroupsListSvcFqdnRulesReqNoFilter": {
       "type": "object",
@@ -1566,13 +1569,25 @@
           "$ref": "#/definitions/sgroupsListSvcSvcRulesReqNoFilter"
         },
         "byRuleName": {
-          "$ref": "#/definitions/ListSvcSvcRulesReqByRuleName"
+          "$ref": "#/definitions/sgroupsListSvcSvcRulesReqByRuleName"
         },
         "bySvcFromTo": {
           "$ref": "#/definitions/ListSvcSvcRulesReqBySvcFromTo"
         }
       },
       "title": "ListSvcSvcRulesReq: req to list all Service(s) Rule(s) by variety of scopes"
+    },
+    "sgroupsListSvcSvcRulesReqByRuleName": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by service rule names"
     },
     "sgroupsListSvcSvcRulesReqNoFilter": {
       "type": "object",
@@ -1870,6 +1885,10 @@
     "sgroupsSvcFqdnRule": {
       "type": "object",
       "properties": {
+        "name": {
+          "type": "string",
+          "title": "rule name"
+        },
         "svcFrom": {
           "type": "string",
           "title": "service at client"
@@ -1909,6 +1928,7 @@
       },
       "title": "SvcFqdnRule: represents Service to FQDN Rule",
       "required": [
+        "name",
         "svcFrom",
         "FQDN",
         "transport"
@@ -1919,7 +1939,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "title": "name of service"
+          "title": "rule name"
         },
         "svcFrom": {
           "type": "string",

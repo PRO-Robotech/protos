@@ -135,7 +135,7 @@ message SvcSvcRule {
         required: ["name", "svcFrom", "svcTo"]
       }
    };
-   // name of service
+   // rule name
    string name = 1;
    //service at client
    string svc_from = 2;
@@ -203,25 +203,27 @@ message FqdnRule {
 message SvcFqdnRule {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
      json_schema: {
-       required: ["svc_from", "FQDN", "transport"]
+       required: ["name", "svc_from", "FQDN", "transport"]
      }
   };
+  // rule name
+  string name = 1;
   // service at client
-  string svc_from = 1;
+  string svc_from = 2;
   // FQDN full qualified domain name portable for DNS queries
-  string FQDN = 2;
+  string FQDN = 3;
   // ip net transport
-  common.Networks.NetIP.Transport transport = 3;
+  common.Networks.NetIP.Transport transport = 4;
   // access ports set
-  repeated AccPorts ports = 4;
+  repeated AccPorts ports = 5;
   // logs: switch-{ON|OFF} logs in rules
-  bool logs = 5;
+  bool logs = 6;
   // trace: switch-{ON|OFF} trace in rules
-  bool trace = 6;
+  bool trace = 7;
   // action: represents rule action
-  RuleAction action = 7;
+  RuleAction action = 8;
   // priority: rule priority affects on rule pos in its rule list
-  RulePriority priority = 8;
+  RulePriority priority = 9;
 }
 
 // SG:ICMP type rule
