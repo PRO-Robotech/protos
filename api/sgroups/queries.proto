@@ -177,8 +177,8 @@ message ListHostsReq {
     // No filtering: return all hosts
     message NoFilter {}
     // Filter by unique identifiers
-    message ByUID {
-        repeated string UIDs = 1;
+    message ByUUID {
+        repeated string UUIDs = 1;
     };
     // Filter by hostnames
     message ByHostName {
@@ -191,7 +191,7 @@ message ListHostsReq {
 
     oneof criteria {
         NoFilter none = 1;
-        ByUID by_uuid = 2;
+        ByUUID byUUID = 2;
         ByHostName by_hostname = 3;
         BySG by_sg_name = 4;
     }

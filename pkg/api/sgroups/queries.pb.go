@@ -1257,7 +1257,7 @@ type ListHostsReq struct {
 	// Types that are valid to be assigned to Criteria:
 	//
 	//	*ListHostsReq_None
-	//	*ListHostsReq_ByUuid
+	//	*ListHostsReq_ByUUID_
 	//	*ListHostsReq_ByHostname
 	//	*ListHostsReq_BySgName
 	Criteria      isListHostsReq_Criteria `protobuf_oneof:"criteria"`
@@ -1311,10 +1311,10 @@ func (x *ListHostsReq) GetNone() *ListHostsReq_NoFilter {
 	return nil
 }
 
-func (x *ListHostsReq) GetByUuid() *ListHostsReq_ByUID {
+func (x *ListHostsReq) GetByUUID() *ListHostsReq_ByUUID {
 	if x != nil {
-		if x, ok := x.Criteria.(*ListHostsReq_ByUuid); ok {
-			return x.ByUuid
+		if x, ok := x.Criteria.(*ListHostsReq_ByUUID_); ok {
+			return x.ByUUID
 		}
 	}
 	return nil
@@ -1346,8 +1346,8 @@ type ListHostsReq_None struct {
 	None *ListHostsReq_NoFilter `protobuf:"bytes,1,opt,name=none,proto3,oneof"`
 }
 
-type ListHostsReq_ByUuid struct {
-	ByUuid *ListHostsReq_ByUID `protobuf:"bytes,2,opt,name=by_uuid,json=byUuid,proto3,oneof"`
+type ListHostsReq_ByUUID_ struct {
+	ByUUID *ListHostsReq_ByUUID `protobuf:"bytes,2,opt,name=byUUID,proto3,oneof"`
 }
 
 type ListHostsReq_ByHostname struct {
@@ -1360,7 +1360,7 @@ type ListHostsReq_BySgName struct {
 
 func (*ListHostsReq_None) isListHostsReq_Criteria() {}
 
-func (*ListHostsReq_ByUuid) isListHostsReq_Criteria() {}
+func (*ListHostsReq_ByUUID_) isListHostsReq_Criteria() {}
 
 func (*ListHostsReq_ByHostname) isListHostsReq_Criteria() {}
 
@@ -2948,27 +2948,27 @@ func (*ListHostsReq_NoFilter) Descriptor() ([]byte, []int) {
 }
 
 // Filter by unique identifiers
-type ListHostsReq_ByUID struct {
+type ListHostsReq_ByUUID struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UIDs          []string               `protobuf:"bytes,1,rep,name=UIDs,proto3" json:"UIDs,omitempty"`
+	UUIDs         []string               `protobuf:"bytes,1,rep,name=UUIDs,proto3" json:"UUIDs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListHostsReq_ByUID) Reset() {
-	*x = ListHostsReq_ByUID{}
+func (x *ListHostsReq_ByUUID) Reset() {
+	*x = ListHostsReq_ByUUID{}
 	mi := &file_sgroups_queries_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListHostsReq_ByUID) String() string {
+func (x *ListHostsReq_ByUUID) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListHostsReq_ByUID) ProtoMessage() {}
+func (*ListHostsReq_ByUUID) ProtoMessage() {}
 
-func (x *ListHostsReq_ByUID) ProtoReflect() protoreflect.Message {
+func (x *ListHostsReq_ByUUID) ProtoReflect() protoreflect.Message {
 	mi := &file_sgroups_queries_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2980,14 +2980,14 @@ func (x *ListHostsReq_ByUID) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListHostsReq_ByUID.ProtoReflect.Descriptor instead.
-func (*ListHostsReq_ByUID) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListHostsReq_ByUUID.ProtoReflect.Descriptor instead.
+func (*ListHostsReq_ByUUID) Descriptor() ([]byte, []int) {
 	return file_sgroups_queries_proto_rawDescGZIP(), []int{20, 1}
 }
 
-func (x *ListHostsReq_ByUID) GetUIDs() []string {
+func (x *ListHostsReq_ByUUID) GetUUIDs() []string {
 	if x != nil {
-		return x.UIDs
+		return x.UUIDs
 	}
 	return nil
 }
@@ -3540,18 +3540,18 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\x15ListSecurityGroupsReq\x12\x19\n" +
 	"\bsg_names\x18\x01 \x03(\tR\asgNames\"J\n" +
 	"\x16ListSecurityGroupsResp\x120\n" +
-	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"\x90\x03\n" +
+	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"\x93\x03\n" +
 	"\fListHostsReq\x12;\n" +
 	"\x04none\x18\x01 \x01(\v2%.hbf.v2.sgroups.ListHostsReq.NoFilterH\x00R\x04none\x12=\n" +
-	"\aby_uuid\x18\x02 \x01(\v2\".hbf.v2.sgroups.ListHostsReq.ByUIDH\x00R\x06byUuid\x12J\n" +
+	"\x06byUUID\x18\x02 \x01(\v2#.hbf.v2.sgroups.ListHostsReq.ByUUIDH\x00R\x06byUUID\x12J\n" +
 	"\vby_hostname\x18\x03 \x01(\v2'.hbf.v2.sgroups.ListHostsReq.ByHostNameH\x00R\n" +
 	"byHostname\x12A\n" +
 	"\n" +
 	"by_sg_name\x18\x04 \x01(\v2!.hbf.v2.sgroups.ListHostsReq.BySGH\x00R\bbySgName\x1a\n" +
 	"\n" +
-	"\bNoFilter\x1a\x1b\n" +
-	"\x05ByUID\x12\x12\n" +
-	"\x04UIDs\x18\x01 \x03(\tR\x04UIDs\x1a\"\n" +
+	"\bNoFilter\x1a\x1e\n" +
+	"\x06ByUUID\x12\x14\n" +
+	"\x05UUIDs\x18\x01 \x03(\tR\x05UUIDs\x1a\"\n" +
 	"\n" +
 	"ByHostName\x12\x14\n" +
 	"\x05names\x18\x01 \x03(\tR\x05names\x1a\x1c\n" +
@@ -3746,7 +3746,7 @@ var file_sgroups_queries_proto_goTypes = []any{
 	(*ListSvcFqdnRulesReq)(nil),            // 49: hbf.v2.sgroups.ListSvcFqdnRulesReq
 	(*ListSvcFqdnRulesResp)(nil),           // 50: hbf.v2.sgroups.ListSvcFqdnRulesResp
 	(*ListHostsReq_NoFilter)(nil),          // 51: hbf.v2.sgroups.ListHostsReq.NoFilter
-	(*ListHostsReq_ByUID)(nil),             // 52: hbf.v2.sgroups.ListHostsReq.ByUID
+	(*ListHostsReq_ByUUID)(nil),            // 52: hbf.v2.sgroups.ListHostsReq.ByUUID
 	(*ListHostsReq_ByHostName)(nil),        // 53: hbf.v2.sgroups.ListHostsReq.ByHostName
 	(*ListHostsReq_BySG)(nil),              // 54: hbf.v2.sgroups.ListHostsReq.BySG
 	(*ListServicesReq_NoFilter)(nil),       // 55: hbf.v2.sgroups.ListServicesReq.NoFilter
@@ -3808,7 +3808,7 @@ var file_sgroups_queries_proto_depIdxs = []int32{
 	69, // 30: hbf.v2.sgroups.ListNetworksResp.networks:type_name -> hbf.v2.sgroups.Network
 	68, // 31: hbf.v2.sgroups.ListSecurityGroupsResp.groups:type_name -> hbf.v2.sgroups.SecGroup
 	51, // 32: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
-	52, // 33: hbf.v2.sgroups.ListHostsReq.by_uuid:type_name -> hbf.v2.sgroups.ListHostsReq.ByUID
+	52, // 33: hbf.v2.sgroups.ListHostsReq.byUUID:type_name -> hbf.v2.sgroups.ListHostsReq.ByUUID
 	53, // 34: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
 	54, // 35: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
 	76, // 36: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
@@ -3865,7 +3865,7 @@ func file_sgroups_queries_proto_init() {
 	}
 	file_sgroups_queries_proto_msgTypes[20].OneofWrappers = []any{
 		(*ListHostsReq_None)(nil),
-		(*ListHostsReq_ByUuid)(nil),
+		(*ListHostsReq_ByUUID_)(nil),
 		(*ListHostsReq_ByHostname)(nil),
 		(*ListHostsReq_BySgName)(nil),
 	}

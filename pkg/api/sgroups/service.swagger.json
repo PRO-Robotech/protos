@@ -654,10 +654,10 @@
       },
       "title": "Filter by hostnames"
     },
-    "ListHostsReqByUID": {
+    "ListHostsReqByUUID": {
       "type": "object",
       "properties": {
-        "UIDs": {
+        "UUIDs": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1377,8 +1377,8 @@
         "none": {
           "$ref": "#/definitions/sgroupsListHostsReqNoFilter"
         },
-        "byUuid": {
-          "$ref": "#/definitions/ListHostsReqByUID"
+        "byUUID": {
+          "$ref": "#/definitions/ListHostsReqByUUID"
         },
         "byHostname": {
           "$ref": "#/definitions/ListHostsReqByHostName"
