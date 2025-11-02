@@ -284,6 +284,105 @@
         ]
       }
     },
+    "/v2/list-service-fqdn-rules": {
+      "post": {
+        "description": "ListSvcFqdnRules: lists Service(s) FQDN Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListSvcFqdnRules",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcFqdnRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcFqdnRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-service-rules": {
+      "post": {
+        "description": "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListSvcSvcRules",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-services": {
+      "post": {
+        "description": "ListServices: list services by variety of scopes",
+        "operationId": "SecGroupService_ListServices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListServicesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListServicesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
     "/v2/sg-icmp-rules": {
       "post": {
         "description": "FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG",
@@ -555,7 +654,19 @@
       },
       "title": "Filter by hostnames"
     },
-    "ListHostsReqBySG": {
+    "ListHostsReqByUUID": {
+      "type": "object",
+      "properties": {
+        "UUIDs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by unique identifiers"
+    },
+    "ListServicesReqBySVCName": {
       "type": "object",
       "properties": {
         "names": {
@@ -565,23 +676,44 @@
           }
         }
       },
-      "title": "Filter by security group names"
+      "title": "Filter by service names"
     },
-    "ListHostsReqByUID": {
+    "ListSvcFqdnRulesReqBySvcFrom": {
       "type": "object",
       "properties": {
-        "UIDs": {
+        "svcFrom": {
           "type": "array",
           "items": {
             "type": "string"
           }
         }
       },
-      "title": "Filter by unique identifiers"
+      "title": "Filter by service names 'from'",
+      "required": [
+        "svcFrom"
+      ]
     },
-    "ListHostsReqNoFilter": {
+    "ListSvcSvcRulesReqBySvcFromTo": {
       "type": "object",
-      "title": "No filtering: return all hosts"
+      "properties": {
+        "svcFrom": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "svcTo": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by service names 'from' -\u003e 'to'",
+      "required": [
+        "svcFrom",
+        "svcTo"
+      ]
     },
     "NetIPTransport": {
       "type": "string",
@@ -601,6 +733,30 @@
         }
       },
       "title": "NetIP: represents IP-Network type (L3)"
+    },
+    "ProtoSpecIcmpTypes": {
+      "type": "object",
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "ProtoSpecPorts": {
+      "type": "object",
+      "properties": {
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsAccPorts"
+          }
+        }
+      }
     },
     "SecGroupDefaultAction": {
       "type": "string",
@@ -1219,19 +1375,35 @@
       "type": "object",
       "properties": {
         "none": {
-          "$ref": "#/definitions/ListHostsReqNoFilter"
+          "$ref": "#/definitions/sgroupsListHostsReqNoFilter"
         },
-        "byUuid": {
-          "$ref": "#/definitions/ListHostsReqByUID"
+        "byUUID": {
+          "$ref": "#/definitions/ListHostsReqByUUID"
         },
         "byHostname": {
           "$ref": "#/definitions/ListHostsReqByHostName"
         },
         "bySgName": {
-          "$ref": "#/definitions/ListHostsReqBySG"
+          "$ref": "#/definitions/sgroupsListHostsReqBySG"
         }
       },
       "title": "ListHostsReq: request to find hosts by variety of scopes"
+    },
+    "sgroupsListHostsReqBySG": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by security group names"
+    },
+    "sgroupsListHostsReqNoFilter": {
+      "type": "object",
+      "title": "No filtering: return all hosts"
     },
     "sgroupsListHostsResp": {
       "type": "object",
@@ -1300,6 +1472,141 @@
       },
       "title": "ListSecurityGroupsResp: Security Groups list resp"
     },
+    "sgroupsListServicesReq": {
+      "type": "object",
+      "properties": {
+        "none": {
+          "$ref": "#/definitions/sgroupsListServicesReqNoFilter"
+        },
+        "bySvcName": {
+          "$ref": "#/definitions/ListServicesReqBySVCName"
+        },
+        "bySgName": {
+          "$ref": "#/definitions/sgroupsListServicesReqBySG"
+        }
+      },
+      "title": "ListServicesReq: request to list services by variety of scopes"
+    },
+    "sgroupsListServicesReqBySG": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by security group names"
+    },
+    "sgroupsListServicesReqNoFilter": {
+      "type": "object",
+      "title": "No filtering: return all services"
+    },
+    "sgroupsListServicesResp": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsService"
+          },
+          "title": "service items"
+        }
+      },
+      "title": "ListSecurityGroupsResp: Security Groups list resp"
+    },
+    "sgroupsListSvcFqdnRulesReq": {
+      "type": "object",
+      "properties": {
+        "none": {
+          "$ref": "#/definitions/sgroupsListSvcFqdnRulesReqNoFilter"
+        },
+        "byRuleName": {
+          "$ref": "#/definitions/sgroupsListSvcFqdnRulesReqByRuleName"
+        },
+        "bySvcFrom": {
+          "$ref": "#/definitions/ListSvcFqdnRulesReqBySvcFrom"
+        }
+      },
+      "title": "ListSvcFqdnRulesReq: req to list all Service(s) FQDN Rule(s) by variety of scopes"
+    },
+    "sgroupsListSvcFqdnRulesReqByRuleName": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by rule name"
+    },
+    "sgroupsListSvcFqdnRulesReqNoFilter": {
+      "type": "object",
+      "title": "No filtering: return all services"
+    },
+    "sgroupsListSvcFqdnRulesResp": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsSvcFqdnRule"
+          },
+          "title": "Service rule(s) items"
+        }
+      },
+      "title": "ListSvcFqdnRulesResp: Service(s) FQDN Rule(s) resp"
+    },
+    "sgroupsListSvcSvcRulesReq": {
+      "type": "object",
+      "properties": {
+        "none": {
+          "$ref": "#/definitions/sgroupsListSvcSvcRulesReqNoFilter"
+        },
+        "byRuleName": {
+          "$ref": "#/definitions/sgroupsListSvcSvcRulesReqByRuleName"
+        },
+        "bySvcFromTo": {
+          "$ref": "#/definitions/ListSvcSvcRulesReqBySvcFromTo"
+        }
+      },
+      "title": "ListSvcSvcRulesReq: req to list all Service(s) Rule(s) by variety of scopes"
+    },
+    "sgroupsListSvcSvcRulesReqByRuleName": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by service rule names"
+    },
+    "sgroupsListSvcSvcRulesReqNoFilter": {
+      "type": "object",
+      "title": "No filtering: return all services"
+    },
+    "sgroupsListSvcSvcRulesResp": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsSvcSvcRule"
+          },
+          "title": "Service rule(s) items"
+        }
+      },
+      "title": "ListSvcSvcRulesResp: Service(s) Rule(s) resp"
+    },
     "sgroupsNetwork": {
       "type": "object",
       "properties": {
@@ -1316,6 +1623,28 @@
       "required": [
         "name"
       ]
+    },
+    "sgroupsProtoSpec": {
+      "type": "object",
+      "properties": {
+        "tcp": {
+          "$ref": "#/definitions/ProtoSpecPorts",
+          "title": "tcp ports"
+        },
+        "udp": {
+          "$ref": "#/definitions/ProtoSpecPorts",
+          "title": "udp ports"
+        },
+        "icmpv4": {
+          "$ref": "#/definitions/ProtoSpecIcmpTypes",
+          "title": "icmpv4 types"
+        },
+        "icmpv6": {
+          "$ref": "#/definitions/ProtoSpecIcmpTypes",
+          "title": "icmpv6 types"
+        }
+      },
+      "title": "ProtoSpec: represents protocols specification (ports, icmp types)"
     },
     "sgroupsRuleAction": {
       "type": "string",
@@ -1354,7 +1683,7 @@
         },
         "defaultAction": {
           "$ref": "#/definitions/SecGroupDefaultAction",
-          "title": "default_action: represents default rula action"
+          "title": "default_action: represents default rule action"
         },
         "trace": {
           "type": "boolean",
@@ -1370,9 +1699,40 @@
             "type": "string"
           },
           "title": "host: related to security group host names"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "services: related to security group service names"
         }
       },
       "title": "SecGroup: represents a security group",
+      "required": [
+        "name"
+      ]
+    },
+    "sgroupsService": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "name of service"
+        },
+        "protocols": {
+          "$ref": "#/definitions/sgroupsProtoSpec",
+          "title": "protocols specification (ports, icmp types)"
+        },
+        "sgNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "related to security group name(s)"
+        }
+      },
+      "title": "Service: represents a service resource",
       "required": [
         "name"
       ]
@@ -1522,6 +1882,97 @@
       },
       "title": "SgSgRulesResp: Security Group(s) Rule(s) resp"
     },
+    "sgroupsSvcFqdnRule": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "rule name"
+        },
+        "svcFrom": {
+          "type": "string",
+          "title": "service at client"
+        },
+        "FQDN": {
+          "type": "string",
+          "title": "FQDN full qualified domain name portable for DNS queries"
+        },
+        "transport": {
+          "$ref": "#/definitions/NetIPTransport",
+          "title": "ip net transport"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsAccPorts"
+          },
+          "title": "access ports set"
+        },
+        "logs": {
+          "type": "boolean",
+          "title": "logs: switch-{ON|OFF} logs in rules"
+        },
+        "trace": {
+          "type": "boolean",
+          "title": "trace: switch-{ON|OFF} trace in rules"
+        },
+        "action": {
+          "$ref": "#/definitions/sgroupsRuleAction",
+          "title": "action: represents rule action"
+        },
+        "priority": {
+          "$ref": "#/definitions/sgroupsRulePriority",
+          "title": "priority: rule priority affects on rule pos in its rule list"
+        }
+      },
+      "title": "SvcFqdnRule: represents Service to FQDN Rule",
+      "required": [
+        "name",
+        "svcFrom",
+        "FQDN",
+        "transport"
+      ]
+    },
+    "sgroupsSvcSvcRule": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "rule name"
+        },
+        "svcFrom": {
+          "type": "string",
+          "title": "service at client"
+        },
+        "svcTo": {
+          "type": "string",
+          "title": "service at server"
+        },
+        "action": {
+          "$ref": "#/definitions/sgroupsRuleAction",
+          "title": "action: represents rule action"
+        },
+        "priority": {
+          "$ref": "#/definitions/sgroupsRulePriority",
+          "title": "priority: rule priority affects on rule pos in its rule list"
+        },
+        "logs": {
+          "type": "boolean",
+          "title": "logs: switch-{ON|OFF} logs in rules"
+        },
+        "trace": {
+          "type": "boolean",
+          "title": "trace: switch-{ON|OFF} trace in rules"
+        }
+      },
+      "title": "SvcSvcRule: represents Service-to-Service Rule",
+      "required": [
+        "name",
+        "svcFrom",
+        "svcTo"
+      ]
+    },
     "sgroupsSyncFqdnRules": {
       "type": "object",
       "properties": {
@@ -1669,6 +2120,18 @@
         "hosts": {
           "$ref": "#/definitions/sgroupsSyncHosts",
           "title": "subject of Host(s)"
+        },
+        "services": {
+          "$ref": "#/definitions/sgroupsSyncServices",
+          "title": "subject of Service(s)"
+        },
+        "serviceRules": {
+          "$ref": "#/definitions/sgroupsSyncSvcSvcRules",
+          "title": "subject of Service-to-Service Rule(s)"
+        },
+        "svcFqdnRules": {
+          "$ref": "#/definitions/sgroupsSyncSvcFqdnRules",
+          "title": "subject of Service to FQDN Rule(s)"
         }
       },
       "title": "SyncReq: request to apply changes in DB for one of subject [Networks|Sucurity Groups|Security Grpups Rules]"
@@ -1686,6 +2149,20 @@
         }
       },
       "title": "SyncSecurityGroups: subject of Security Groups to Sync"
+    },
+    "sgroupsSyncServices": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsService"
+          },
+          "title": "service items"
+        }
+      },
+      "title": "SyncServices: subject of Services to Sync"
     },
     "sgroupsSyncSgIcmpRules": {
       "type": "object",
@@ -1737,6 +2214,34 @@
         }
       },
       "title": "SyncStatusResp: db status after last succeeded Sync"
+    },
+    "sgroupsSyncSvcFqdnRules": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsSvcFqdnRule"
+          },
+          "title": "fqdn rules items"
+        }
+      },
+      "title": "SyncSvcFqdnRules: subject of Service to FQDN Rules to Sync"
+    },
+    "sgroupsSyncSvcSvcRules": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsSvcSvcRule"
+          },
+          "title": "service-to-service rules items"
+        }
+      },
+      "title": "SyncSvcSvcRules: subject of Service-to-Service Rules to Sync"
     }
   },
   "externalDocs": {

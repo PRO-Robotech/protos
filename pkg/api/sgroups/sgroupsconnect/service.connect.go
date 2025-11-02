@@ -48,9 +48,27 @@ const (
 	// SecGroupServiceListSecurityGroupsProcedure is the fully-qualified name of the SecGroupService's
 	// ListSecurityGroups RPC.
 	SecGroupServiceListSecurityGroupsProcedure = "/hbf.v2.sgroups.SecGroupService/ListSecurityGroups"
+	// SecGroupServiceListHostsProcedure is the fully-qualified name of the SecGroupService's ListHosts
+	// RPC.
+	SecGroupServiceListHostsProcedure = "/hbf.v2.sgroups.SecGroupService/ListHosts"
+	// SecGroupServiceListServicesProcedure is the fully-qualified name of the SecGroupService's
+	// ListServices RPC.
+	SecGroupServiceListServicesProcedure = "/hbf.v2.sgroups.SecGroupService/ListServices"
+	// SecGroupServiceListSvcSvcRulesProcedure is the fully-qualified name of the SecGroupService's
+	// ListSvcSvcRules RPC.
+	SecGroupServiceListSvcSvcRulesProcedure = "/hbf.v2.sgroups.SecGroupService/ListSvcSvcRules"
+	// SecGroupServiceListSvcFqdnRulesProcedure is the fully-qualified name of the SecGroupService's
+	// ListSvcFqdnRules RPC.
+	SecGroupServiceListSvcFqdnRulesProcedure = "/hbf.v2.sgroups.SecGroupService/ListSvcFqdnRules"
 	// SecGroupServiceGetSgSubnetsProcedure is the fully-qualified name of the SecGroupService's
 	// GetSgSubnets RPC.
 	SecGroupServiceGetSgSubnetsProcedure = "/hbf.v2.sgroups.SecGroupService/GetSgSubnets"
+	// SecGroupServiceGetSecGroupForAddressProcedure is the fully-qualified name of the
+	// SecGroupService's GetSecGroupForAddress RPC.
+	SecGroupServiceGetSecGroupForAddressProcedure = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
+	// SecGroupServiceGetSecGroupForHostProcedure is the fully-qualified name of the SecGroupService's
+	// GetSecGroupForHost RPC.
+	SecGroupServiceGetSecGroupForHostProcedure = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForHost"
 	// SecGroupServiceFindSgSgRulesProcedure is the fully-qualified name of the SecGroupService's
 	// FindSgSgRules RPC.
 	SecGroupServiceFindSgSgRulesProcedure = "/hbf.v2.sgroups.SecGroupService/FindSgSgRules"
@@ -75,15 +93,6 @@ const (
 	// SecGroupServiceFindIECidrSgIcmpRulesProcedure is the fully-qualified name of the
 	// SecGroupService's FindIECidrSgIcmpRules RPC.
 	SecGroupServiceFindIECidrSgIcmpRulesProcedure = "/hbf.v2.sgroups.SecGroupService/FindIECidrSgIcmpRules"
-	// SecGroupServiceGetSecGroupForAddressProcedure is the fully-qualified name of the
-	// SecGroupService's GetSecGroupForAddress RPC.
-	SecGroupServiceGetSecGroupForAddressProcedure = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
-	// SecGroupServiceGetSecGroupForHostProcedure is the fully-qualified name of the SecGroupService's
-	// GetSecGroupForHost RPC.
-	SecGroupServiceGetSecGroupForHostProcedure = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForHost"
-	// SecGroupServiceListHostsProcedure is the fully-qualified name of the SecGroupService's ListHosts
-	// RPC.
-	SecGroupServiceListHostsProcedure = "/hbf.v2.sgroups.SecGroupService/ListHosts"
 )
 
 // SecGroupServiceClient is a client for the hbf.v2.sgroups.SecGroupService service.
@@ -93,7 +102,13 @@ type SecGroupServiceClient interface {
 	SyncStatuses(context.Context, *connect.Request[empty.Empty]) (*connect.ServerStreamForClient[sgroups.SyncStatusResp], error)
 	ListNetworks(context.Context, *connect.Request[sgroups.ListNetworksReq]) (*connect.Response[sgroups.ListNetworksResp], error)
 	ListSecurityGroups(context.Context, *connect.Request[sgroups.ListSecurityGroupsReq]) (*connect.Response[sgroups.ListSecurityGroupsResp], error)
+	ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error)
+	ListServices(context.Context, *connect.Request[sgroups.ListServicesReq]) (*connect.Response[sgroups.ListServicesResp], error)
+	ListSvcSvcRules(context.Context, *connect.Request[sgroups.ListSvcSvcRulesReq]) (*connect.Response[sgroups.ListSvcSvcRulesResp], error)
+	ListSvcFqdnRules(context.Context, *connect.Request[sgroups.ListSvcFqdnRulesReq]) (*connect.Response[sgroups.ListSvcFqdnRulesResp], error)
 	GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error)
+	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
+	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
 	FindSgSgRules(context.Context, *connect.Request[sgroups.FindSgSgRulesReq]) (*connect.Response[sgroups.SgSgRulesResp], error)
 	FindFqdnRules(context.Context, *connect.Request[sgroups.FindFqdnRulesReq]) (*connect.Response[sgroups.FqdnRulesResp], error)
 	FindSgIcmpRules(context.Context, *connect.Request[sgroups.FindSgIcmpRulesReq]) (*connect.Response[sgroups.SgIcmpRulesResp], error)
@@ -102,9 +117,6 @@ type SecGroupServiceClient interface {
 	FindIESgSgRules(context.Context, *connect.Request[sgroups.FindIESgSgRulesReq]) (*connect.Response[sgroups.IESgSgRulesResp], error)
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
-	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
-	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
-	ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error)
 }
 
 // NewSecGroupServiceClient constructs a client for the hbf.v2.sgroups.SecGroupService service. By
@@ -148,10 +160,46 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(secGroupServiceMethods.ByName("ListSecurityGroups")),
 			connect.WithClientOptions(opts...),
 		),
+		listHosts: connect.NewClient[sgroups.ListHostsReq, sgroups.ListHostsResp](
+			httpClient,
+			baseURL+SecGroupServiceListHostsProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("ListHosts")),
+			connect.WithClientOptions(opts...),
+		),
+		listServices: connect.NewClient[sgroups.ListServicesReq, sgroups.ListServicesResp](
+			httpClient,
+			baseURL+SecGroupServiceListServicesProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("ListServices")),
+			connect.WithClientOptions(opts...),
+		),
+		listSvcSvcRules: connect.NewClient[sgroups.ListSvcSvcRulesReq, sgroups.ListSvcSvcRulesResp](
+			httpClient,
+			baseURL+SecGroupServiceListSvcSvcRulesProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("ListSvcSvcRules")),
+			connect.WithClientOptions(opts...),
+		),
+		listSvcFqdnRules: connect.NewClient[sgroups.ListSvcFqdnRulesReq, sgroups.ListSvcFqdnRulesResp](
+			httpClient,
+			baseURL+SecGroupServiceListSvcFqdnRulesProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("ListSvcFqdnRules")),
+			connect.WithClientOptions(opts...),
+		),
 		getSgSubnets: connect.NewClient[sgroups.GetSgSubnetsReq, sgroups.GetSgSubnetsResp](
 			httpClient,
 			baseURL+SecGroupServiceGetSgSubnetsProcedure,
 			connect.WithSchema(secGroupServiceMethods.ByName("GetSgSubnets")),
+			connect.WithClientOptions(opts...),
+		),
+		getSecGroupForAddress: connect.NewClient[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup](
+			httpClient,
+			baseURL+SecGroupServiceGetSecGroupForAddressProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
+			connect.WithClientOptions(opts...),
+		),
+		getSecGroupForHost: connect.NewClient[sgroups.GetSecGroupForHostReq, sgroups.SecGroup](
+			httpClient,
+			baseURL+SecGroupServiceGetSecGroupForHostProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForHost")),
 			connect.WithClientOptions(opts...),
 		),
 		findSgSgRules: connect.NewClient[sgroups.FindSgSgRulesReq, sgroups.SgSgRulesResp](
@@ -202,24 +250,6 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 			connect.WithClientOptions(opts...),
 		),
-		getSecGroupForAddress: connect.NewClient[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup](
-			httpClient,
-			baseURL+SecGroupServiceGetSecGroupForAddressProcedure,
-			connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
-			connect.WithClientOptions(opts...),
-		),
-		getSecGroupForHost: connect.NewClient[sgroups.GetSecGroupForHostReq, sgroups.SecGroup](
-			httpClient,
-			baseURL+SecGroupServiceGetSecGroupForHostProcedure,
-			connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForHost")),
-			connect.WithClientOptions(opts...),
-		),
-		listHosts: connect.NewClient[sgroups.ListHostsReq, sgroups.ListHostsResp](
-			httpClient,
-			baseURL+SecGroupServiceListHostsProcedure,
-			connect.WithSchema(secGroupServiceMethods.ByName("ListHosts")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
@@ -230,7 +260,13 @@ type secGroupServiceClient struct {
 	syncStatuses          *connect.Client[empty.Empty, sgroups.SyncStatusResp]
 	listNetworks          *connect.Client[sgroups.ListNetworksReq, sgroups.ListNetworksResp]
 	listSecurityGroups    *connect.Client[sgroups.ListSecurityGroupsReq, sgroups.ListSecurityGroupsResp]
+	listHosts             *connect.Client[sgroups.ListHostsReq, sgroups.ListHostsResp]
+	listServices          *connect.Client[sgroups.ListServicesReq, sgroups.ListServicesResp]
+	listSvcSvcRules       *connect.Client[sgroups.ListSvcSvcRulesReq, sgroups.ListSvcSvcRulesResp]
+	listSvcFqdnRules      *connect.Client[sgroups.ListSvcFqdnRulesReq, sgroups.ListSvcFqdnRulesResp]
 	getSgSubnets          *connect.Client[sgroups.GetSgSubnetsReq, sgroups.GetSgSubnetsResp]
+	getSecGroupForAddress *connect.Client[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup]
+	getSecGroupForHost    *connect.Client[sgroups.GetSecGroupForHostReq, sgroups.SecGroup]
 	findSgSgRules         *connect.Client[sgroups.FindSgSgRulesReq, sgroups.SgSgRulesResp]
 	findFqdnRules         *connect.Client[sgroups.FindFqdnRulesReq, sgroups.FqdnRulesResp]
 	findSgIcmpRules       *connect.Client[sgroups.FindSgIcmpRulesReq, sgroups.SgIcmpRulesResp]
@@ -239,9 +275,6 @@ type secGroupServiceClient struct {
 	findIESgSgRules       *connect.Client[sgroups.FindIESgSgRulesReq, sgroups.IESgSgRulesResp]
 	findIESgSgIcmpRules   *connect.Client[sgroups.FindIESgSgIcmpRulesReq, sgroups.IESgSgIcmpRulesResp]
 	findIECidrSgIcmpRules *connect.Client[sgroups.FindIECidrSgIcmpRulesReq, sgroups.IECidrSgIcmpRulesResp]
-	getSecGroupForAddress *connect.Client[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup]
-	getSecGroupForHost    *connect.Client[sgroups.GetSecGroupForHostReq, sgroups.SecGroup]
-	listHosts             *connect.Client[sgroups.ListHostsReq, sgroups.ListHostsResp]
 }
 
 // Sync calls hbf.v2.sgroups.SecGroupService.Sync.
@@ -269,9 +302,39 @@ func (c *secGroupServiceClient) ListSecurityGroups(ctx context.Context, req *con
 	return c.listSecurityGroups.CallUnary(ctx, req)
 }
 
+// ListHosts calls hbf.v2.sgroups.SecGroupService.ListHosts.
+func (c *secGroupServiceClient) ListHosts(ctx context.Context, req *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error) {
+	return c.listHosts.CallUnary(ctx, req)
+}
+
+// ListServices calls hbf.v2.sgroups.SecGroupService.ListServices.
+func (c *secGroupServiceClient) ListServices(ctx context.Context, req *connect.Request[sgroups.ListServicesReq]) (*connect.Response[sgroups.ListServicesResp], error) {
+	return c.listServices.CallUnary(ctx, req)
+}
+
+// ListSvcSvcRules calls hbf.v2.sgroups.SecGroupService.ListSvcSvcRules.
+func (c *secGroupServiceClient) ListSvcSvcRules(ctx context.Context, req *connect.Request[sgroups.ListSvcSvcRulesReq]) (*connect.Response[sgroups.ListSvcSvcRulesResp], error) {
+	return c.listSvcSvcRules.CallUnary(ctx, req)
+}
+
+// ListSvcFqdnRules calls hbf.v2.sgroups.SecGroupService.ListSvcFqdnRules.
+func (c *secGroupServiceClient) ListSvcFqdnRules(ctx context.Context, req *connect.Request[sgroups.ListSvcFqdnRulesReq]) (*connect.Response[sgroups.ListSvcFqdnRulesResp], error) {
+	return c.listSvcFqdnRules.CallUnary(ctx, req)
+}
+
 // GetSgSubnets calls hbf.v2.sgroups.SecGroupService.GetSgSubnets.
 func (c *secGroupServiceClient) GetSgSubnets(ctx context.Context, req *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error) {
 	return c.getSgSubnets.CallUnary(ctx, req)
+}
+
+// GetSecGroupForAddress calls hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress.
+func (c *secGroupServiceClient) GetSecGroupForAddress(ctx context.Context, req *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error) {
+	return c.getSecGroupForAddress.CallUnary(ctx, req)
+}
+
+// GetSecGroupForHost calls hbf.v2.sgroups.SecGroupService.GetSecGroupForHost.
+func (c *secGroupServiceClient) GetSecGroupForHost(ctx context.Context, req *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error) {
+	return c.getSecGroupForHost.CallUnary(ctx, req)
 }
 
 // FindSgSgRules calls hbf.v2.sgroups.SecGroupService.FindSgSgRules.
@@ -314,21 +377,6 @@ func (c *secGroupServiceClient) FindIECidrSgIcmpRules(ctx context.Context, req *
 	return c.findIECidrSgIcmpRules.CallUnary(ctx, req)
 }
 
-// GetSecGroupForAddress calls hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress.
-func (c *secGroupServiceClient) GetSecGroupForAddress(ctx context.Context, req *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error) {
-	return c.getSecGroupForAddress.CallUnary(ctx, req)
-}
-
-// GetSecGroupForHost calls hbf.v2.sgroups.SecGroupService.GetSecGroupForHost.
-func (c *secGroupServiceClient) GetSecGroupForHost(ctx context.Context, req *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error) {
-	return c.getSecGroupForHost.CallUnary(ctx, req)
-}
-
-// ListHosts calls hbf.v2.sgroups.SecGroupService.ListHosts.
-func (c *secGroupServiceClient) ListHosts(ctx context.Context, req *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error) {
-	return c.listHosts.CallUnary(ctx, req)
-}
-
 // SecGroupServiceHandler is an implementation of the hbf.v2.sgroups.SecGroupService service.
 type SecGroupServiceHandler interface {
 	Sync(context.Context, *connect.Request[sgroups.SyncReq]) (*connect.Response[empty.Empty], error)
@@ -336,7 +384,13 @@ type SecGroupServiceHandler interface {
 	SyncStatuses(context.Context, *connect.Request[empty.Empty], *connect.ServerStream[sgroups.SyncStatusResp]) error
 	ListNetworks(context.Context, *connect.Request[sgroups.ListNetworksReq]) (*connect.Response[sgroups.ListNetworksResp], error)
 	ListSecurityGroups(context.Context, *connect.Request[sgroups.ListSecurityGroupsReq]) (*connect.Response[sgroups.ListSecurityGroupsResp], error)
+	ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error)
+	ListServices(context.Context, *connect.Request[sgroups.ListServicesReq]) (*connect.Response[sgroups.ListServicesResp], error)
+	ListSvcSvcRules(context.Context, *connect.Request[sgroups.ListSvcSvcRulesReq]) (*connect.Response[sgroups.ListSvcSvcRulesResp], error)
+	ListSvcFqdnRules(context.Context, *connect.Request[sgroups.ListSvcFqdnRulesReq]) (*connect.Response[sgroups.ListSvcFqdnRulesResp], error)
 	GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error)
+	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
+	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
 	FindSgSgRules(context.Context, *connect.Request[sgroups.FindSgSgRulesReq]) (*connect.Response[sgroups.SgSgRulesResp], error)
 	FindFqdnRules(context.Context, *connect.Request[sgroups.FindFqdnRulesReq]) (*connect.Response[sgroups.FqdnRulesResp], error)
 	FindSgIcmpRules(context.Context, *connect.Request[sgroups.FindSgIcmpRulesReq]) (*connect.Response[sgroups.SgIcmpRulesResp], error)
@@ -345,9 +399,6 @@ type SecGroupServiceHandler interface {
 	FindIESgSgRules(context.Context, *connect.Request[sgroups.FindIESgSgRulesReq]) (*connect.Response[sgroups.IESgSgRulesResp], error)
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
-	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
-	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
-	ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error)
 }
 
 // NewSecGroupServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -387,10 +438,46 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 		connect.WithSchema(secGroupServiceMethods.ByName("ListSecurityGroups")),
 		connect.WithHandlerOptions(opts...),
 	)
+	secGroupServiceListHostsHandler := connect.NewUnaryHandler(
+		SecGroupServiceListHostsProcedure,
+		svc.ListHosts,
+		connect.WithSchema(secGroupServiceMethods.ByName("ListHosts")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceListServicesHandler := connect.NewUnaryHandler(
+		SecGroupServiceListServicesProcedure,
+		svc.ListServices,
+		connect.WithSchema(secGroupServiceMethods.ByName("ListServices")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceListSvcSvcRulesHandler := connect.NewUnaryHandler(
+		SecGroupServiceListSvcSvcRulesProcedure,
+		svc.ListSvcSvcRules,
+		connect.WithSchema(secGroupServiceMethods.ByName("ListSvcSvcRules")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceListSvcFqdnRulesHandler := connect.NewUnaryHandler(
+		SecGroupServiceListSvcFqdnRulesProcedure,
+		svc.ListSvcFqdnRules,
+		connect.WithSchema(secGroupServiceMethods.ByName("ListSvcFqdnRules")),
+		connect.WithHandlerOptions(opts...),
+	)
 	secGroupServiceGetSgSubnetsHandler := connect.NewUnaryHandler(
 		SecGroupServiceGetSgSubnetsProcedure,
 		svc.GetSgSubnets,
 		connect.WithSchema(secGroupServiceMethods.ByName("GetSgSubnets")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceGetSecGroupForAddressHandler := connect.NewUnaryHandler(
+		SecGroupServiceGetSecGroupForAddressProcedure,
+		svc.GetSecGroupForAddress,
+		connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceGetSecGroupForHostHandler := connect.NewUnaryHandler(
+		SecGroupServiceGetSecGroupForHostProcedure,
+		svc.GetSecGroupForHost,
+		connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForHost")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceFindSgSgRulesHandler := connect.NewUnaryHandler(
@@ -441,24 +528,6 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 		connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 		connect.WithHandlerOptions(opts...),
 	)
-	secGroupServiceGetSecGroupForAddressHandler := connect.NewUnaryHandler(
-		SecGroupServiceGetSecGroupForAddressProcedure,
-		svc.GetSecGroupForAddress,
-		connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForAddress")),
-		connect.WithHandlerOptions(opts...),
-	)
-	secGroupServiceGetSecGroupForHostHandler := connect.NewUnaryHandler(
-		SecGroupServiceGetSecGroupForHostProcedure,
-		svc.GetSecGroupForHost,
-		connect.WithSchema(secGroupServiceMethods.ByName("GetSecGroupForHost")),
-		connect.WithHandlerOptions(opts...),
-	)
-	secGroupServiceListHostsHandler := connect.NewUnaryHandler(
-		SecGroupServiceListHostsProcedure,
-		svc.ListHosts,
-		connect.WithSchema(secGroupServiceMethods.ByName("ListHosts")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/hbf.v2.sgroups.SecGroupService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case SecGroupServiceSyncProcedure:
@@ -471,8 +540,20 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 			secGroupServiceListNetworksHandler.ServeHTTP(w, r)
 		case SecGroupServiceListSecurityGroupsProcedure:
 			secGroupServiceListSecurityGroupsHandler.ServeHTTP(w, r)
+		case SecGroupServiceListHostsProcedure:
+			secGroupServiceListHostsHandler.ServeHTTP(w, r)
+		case SecGroupServiceListServicesProcedure:
+			secGroupServiceListServicesHandler.ServeHTTP(w, r)
+		case SecGroupServiceListSvcSvcRulesProcedure:
+			secGroupServiceListSvcSvcRulesHandler.ServeHTTP(w, r)
+		case SecGroupServiceListSvcFqdnRulesProcedure:
+			secGroupServiceListSvcFqdnRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceGetSgSubnetsProcedure:
 			secGroupServiceGetSgSubnetsHandler.ServeHTTP(w, r)
+		case SecGroupServiceGetSecGroupForAddressProcedure:
+			secGroupServiceGetSecGroupForAddressHandler.ServeHTTP(w, r)
+		case SecGroupServiceGetSecGroupForHostProcedure:
+			secGroupServiceGetSecGroupForHostHandler.ServeHTTP(w, r)
 		case SecGroupServiceFindSgSgRulesProcedure:
 			secGroupServiceFindSgSgRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceFindFqdnRulesProcedure:
@@ -489,12 +570,6 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 			secGroupServiceFindIESgSgIcmpRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceFindIECidrSgIcmpRulesProcedure:
 			secGroupServiceFindIECidrSgIcmpRulesHandler.ServeHTTP(w, r)
-		case SecGroupServiceGetSecGroupForAddressProcedure:
-			secGroupServiceGetSecGroupForAddressHandler.ServeHTTP(w, r)
-		case SecGroupServiceGetSecGroupForHostProcedure:
-			secGroupServiceGetSecGroupForHostHandler.ServeHTTP(w, r)
-		case SecGroupServiceListHostsProcedure:
-			secGroupServiceListHostsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -524,8 +599,32 @@ func (UnimplementedSecGroupServiceHandler) ListSecurityGroups(context.Context, *
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.ListSecurityGroups is not implemented"))
 }
 
+func (UnimplementedSecGroupServiceHandler) ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.ListHosts is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) ListServices(context.Context, *connect.Request[sgroups.ListServicesReq]) (*connect.Response[sgroups.ListServicesResp], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.ListServices is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) ListSvcSvcRules(context.Context, *connect.Request[sgroups.ListSvcSvcRulesReq]) (*connect.Response[sgroups.ListSvcSvcRulesResp], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.ListSvcSvcRules is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) ListSvcFqdnRules(context.Context, *connect.Request[sgroups.ListSvcFqdnRulesReq]) (*connect.Response[sgroups.ListSvcFqdnRulesResp], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.ListSvcFqdnRules is not implemented"))
+}
+
 func (UnimplementedSecGroupServiceHandler) GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.GetSgSubnets is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.GetSecGroupForHost is not implemented"))
 }
 
 func (UnimplementedSecGroupServiceHandler) FindSgSgRules(context.Context, *connect.Request[sgroups.FindSgSgRulesReq]) (*connect.Response[sgroups.SgSgRulesResp], error) {
@@ -558,16 +657,4 @@ func (UnimplementedSecGroupServiceHandler) FindIESgSgIcmpRules(context.Context, 
 
 func (UnimplementedSecGroupServiceHandler) FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.FindIECidrSgIcmpRules is not implemented"))
-}
-
-func (UnimplementedSecGroupServiceHandler) GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.GetSecGroupForAddress is not implemented"))
-}
-
-func (UnimplementedSecGroupServiceHandler) GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.GetSecGroupForHost is not implemented"))
-}
-
-func (UnimplementedSecGroupServiceHandler) ListHosts(context.Context, *connect.Request[sgroups.ListHostsReq]) (*connect.Response[sgroups.ListHostsResp], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v2.sgroups.SecGroupService.ListHosts is not implemented"))
 }
