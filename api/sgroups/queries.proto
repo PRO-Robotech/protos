@@ -491,3 +491,9 @@ message ListSvcFqdnRulesResp {
   // Service rule(s) items
   repeated SvcFqdnRule rules = 1;
 }
+
+// UpdHostIPSetReq: request to update Host IPSet by host uuid
+message UpdHostIPSetReq {
+   string uuid = 1;
+   IPList ip_list = 2;
+}

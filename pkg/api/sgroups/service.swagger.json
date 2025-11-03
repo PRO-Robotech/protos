@@ -571,6 +571,40 @@
         ]
       }
     },
+    "/v2/upd-host-ipset": {
+      "post": {
+        "description": "UpdHostIPSet: updates Host IPSet by host uuid",
+        "operationId": "SecGroupService_UpdHostIPSet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsUpdHostIPSetReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
     "/v2/{address}/sg": {
       "get": {
         "description": "GetSecGroupForAddress: gets Security Group by IP or CIDR",
@@ -2242,6 +2276,18 @@
         }
       },
       "title": "SyncSvcSvcRules: subject of Service-to-Service Rules to Sync"
+    },
+    "sgroupsUpdHostIPSetReq": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "ipList": {
+          "$ref": "#/definitions/sgroupsIPList"
+        }
+      },
+      "title": "UpdHostIPSetReq: request to update Host IPSet by host uuid"
     }
   },
   "externalDocs": {
