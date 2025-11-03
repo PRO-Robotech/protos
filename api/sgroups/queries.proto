@@ -494,6 +494,5 @@ message ListSvcFqdnRulesResp {
 
 // UpdHostIPSetReq: request to update Host IPSet by host uuid
 message UpdHostIPSetReq {
-   string uuid = 1;
-   IPList ip_list = 2;
+  repeated HostIPSet hosts = 1;
 }

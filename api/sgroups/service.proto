@@ -226,5 +226,5 @@ service SecGroupService {
       post: "/v2/upd-host-ipset"
       body: "*"
     };
-  };
+   };
 }

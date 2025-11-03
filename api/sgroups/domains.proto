@@ -94,6 +94,17 @@ message Host {
    IPList ip_list = 4;
 }
 
+// HostIPSet: represents a set of IPs for a host
+message HostIPSet {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+     json_schema: {
+       required: ["uuid"]
+     }
+  };
+  string uuid = 1;
+  IPList ip_list = 2;
+}
+
 // ProtoSpec: represents protocols specification (ports, icmp types)
 message ProtoSpec {
   message Ports {

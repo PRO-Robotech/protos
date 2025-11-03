@@ -1145,6 +1145,21 @@
       },
       "title": "Host: represents a host with its name, UUID, and IPs related to Security Group(s)"
     },
+    "sgroupsHostIPSet": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "ipList": {
+          "$ref": "#/definitions/sgroupsIPList"
+        }
+      },
+      "title": "HostIPSet: represents a set of IPs for a host",
+      "required": [
+        "uuid"
+      ]
+    },
     "sgroupsIECidrSgIcmpRule": {
       "type": "object",
       "properties": {
@@ -2280,11 +2295,12 @@
     "sgroupsUpdHostIPSetReq": {
       "type": "object",
       "properties": {
-        "uuid": {
-          "type": "string"
-        },
-        "ipList": {
-          "$ref": "#/definitions/sgroupsIPList"
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsHostIPSet"
+          }
         }
       },
       "title": "UpdHostIPSetReq: request to update Host IPSet by host uuid"

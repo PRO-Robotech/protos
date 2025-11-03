@@ -2913,8 +2913,7 @@ func (x *ListSvcFqdnRulesResp) GetRules() []*SvcFqdnRule {
 // UpdHostIPSetReq: request to update Host IPSet by host uuid
 type UpdHostIPSetReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	IpList        *IPList                `protobuf:"bytes,2,opt,name=ip_list,json=ipList,proto3" json:"ip_list,omitempty"`
+	Hosts         []*HostIPSet           `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2949,16 +2948,9 @@ func (*UpdHostIPSetReq) Descriptor() ([]byte, []int) {
 	return file_sgroups_queries_proto_rawDescGZIP(), []int{50}
 }
 
-func (x *UpdHostIPSetReq) GetUuid() string {
+func (x *UpdHostIPSetReq) GetHosts() []*HostIPSet {
 	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-func (x *UpdHostIPSetReq) GetIpList() *IPList {
-	if x != nil {
-		return x.IpList
+		return x.Hosts
 	}
 	return nil
 }
@@ -3730,10 +3722,9 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\"I\n" +
 	"\x14ListSvcFqdnRulesResp\x121\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v2.sgroups.SvcFqdnRuleR\x05rules\"V\n" +
-	"\x0fUpdHostIPSetReq\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\x12/\n" +
-	"\aip_list\x18\x02 \x01(\v2\x16.hbf.v2.sgroups.IPListR\x06ipListB8Z6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
+	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v2.sgroups.SvcFqdnRuleR\x05rules\"B\n" +
+	"\x0fUpdHostIPSetReq\x12/\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x19.hbf.v2.sgroups.HostIPSetR\x05hostsB8Z6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
 var (
 	file_sgroups_queries_proto_rawDescOnce sync.Once
@@ -3830,7 +3821,7 @@ var file_sgroups_queries_proto_goTypes = []any{
 	(*Host)(nil),                           // 77: hbf.v2.sgroups.Host
 	(*Service)(nil),                        // 78: hbf.v2.sgroups.Service
 	(*SvcSvcRule)(nil),                     // 79: hbf.v2.sgroups.SvcSvcRule
-	(*IPList)(nil),                         // 80: hbf.v2.sgroups.IPList
+	(*HostIPSet)(nil),                      // 80: hbf.v2.sgroups.HostIPSet
 }
 var file_sgroups_queries_proto_depIdxs = []int32{
 	65, // 0: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
@@ -3892,7 +3883,7 @@ var file_sgroups_queries_proto_depIdxs = []int32{
 	63, // 56: hbf.v2.sgroups.ListSvcFqdnRulesReq.by_rule_name:type_name -> hbf.v2.sgroups.ListSvcFqdnRulesReq.ByRuleName
 	64, // 57: hbf.v2.sgroups.ListSvcFqdnRulesReq.by_svc_from:type_name -> hbf.v2.sgroups.ListSvcFqdnRulesReq.BySvcFrom
 	68, // 58: hbf.v2.sgroups.ListSvcFqdnRulesResp.rules:type_name -> hbf.v2.sgroups.SvcFqdnRule
-	80, // 59: hbf.v2.sgroups.UpdHostIPSetReq.ip_list:type_name -> hbf.v2.sgroups.IPList
+	80, // 59: hbf.v2.sgroups.UpdHostIPSetReq.hosts:type_name -> hbf.v2.sgroups.HostIPSet
 	60, // [60:60] is the sub-list for method output_type
 	60, // [60:60] is the sub-list for method input_type
 	60, // [60:60] is the sub-list for extension type_name
