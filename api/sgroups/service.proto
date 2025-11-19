@@ -217,4 +217,14 @@ service SecGroupService {
        description: "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG"
      };
    }
+
+   rpc UpdHostIPSet(UpdHostIPSetReq) returns (google.protobuf.Empty) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "UpdHostIPSet: updates Host IPSet by host uuid"
+    };
+    option (google.api.http) = {
+      post: "/v2/upd-host-ipset"
+      body: "*"
+    };
+   };
 }

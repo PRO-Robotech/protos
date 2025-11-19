@@ -40,6 +40,7 @@ const (
 	SecGroupService_FindIESgSgRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/FindIESgSgRules"
 	SecGroupService_FindIESgSgIcmpRules_FullMethodName   = "/hbf.v2.sgroups.SecGroupService/FindIESgSgIcmpRules"
 	SecGroupService_FindIECidrSgIcmpRules_FullMethodName = "/hbf.v2.sgroups.SecGroupService/FindIECidrSgIcmpRules"
+	SecGroupService_UpdHostIPSet_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/UpdHostIPSet"
 )
 
 // SecGroupServiceClient is the client API for SecGroupService service.
@@ -66,6 +67,7 @@ type SecGroupServiceClient interface {
 	FindIESgSgRules(ctx context.Context, in *FindIESgSgRulesReq, opts ...grpc.CallOption) (*IESgSgRulesResp, error)
 	FindIESgSgIcmpRules(ctx context.Context, in *FindIESgSgIcmpRulesReq, opts ...grpc.CallOption) (*IESgSgIcmpRulesResp, error)
 	FindIECidrSgIcmpRules(ctx context.Context, in *FindIECidrSgIcmpRulesReq, opts ...grpc.CallOption) (*IECidrSgIcmpRulesResp, error)
+	UpdHostIPSet(ctx context.Context, in *UpdHostIPSetReq, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type secGroupServiceClient struct {
@@ -279,6 +281,15 @@ func (c *secGroupServiceClient) FindIECidrSgIcmpRules(ctx context.Context, in *F
 	return out, nil
 }
 
+func (c *secGroupServiceClient) UpdHostIPSet(ctx context.Context, in *UpdHostIPSetReq, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, SecGroupService_UpdHostIPSet_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SecGroupServiceServer is the server API for SecGroupService service.
 // All implementations must embed UnimplementedSecGroupServiceServer
 // for forward compatibility
@@ -303,6 +314,7 @@ type SecGroupServiceServer interface {
 	FindIESgSgRules(context.Context, *FindIESgSgRulesReq) (*IESgSgRulesResp, error)
 	FindIESgSgIcmpRules(context.Context, *FindIESgSgIcmpRulesReq) (*IESgSgIcmpRulesResp, error)
 	FindIECidrSgIcmpRules(context.Context, *FindIECidrSgIcmpRulesReq) (*IECidrSgIcmpRulesResp, error)
+	UpdHostIPSet(context.Context, *UpdHostIPSetReq) (*empty.Empty, error)
 	mustEmbedUnimplementedSecGroupServiceServer()
 }
 
@@ -369,6 +381,9 @@ func (UnimplementedSecGroupServiceServer) FindIESgSgIcmpRules(context.Context, *
 }
 func (UnimplementedSecGroupServiceServer) FindIECidrSgIcmpRules(context.Context, *FindIECidrSgIcmpRulesReq) (*IECidrSgIcmpRulesResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindIECidrSgIcmpRules not implemented")
+}
+func (UnimplementedSecGroupServiceServer) UpdHostIPSet(context.Context, *UpdHostIPSetReq) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdHostIPSet not implemented")
 }
 func (UnimplementedSecGroupServiceServer) mustEmbedUnimplementedSecGroupServiceServer() {}
 
@@ -746,6 +761,24 @@ func _SecGroupService_FindIECidrSgIcmpRules_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SecGroupService_UpdHostIPSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdHostIPSetReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).UpdHostIPSet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_UpdHostIPSet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).UpdHostIPSet(ctx, req.(*UpdHostIPSetReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SecGroupService_ServiceDesc is the grpc.ServiceDesc for SecGroupService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -828,6 +861,10 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindIECidrSgIcmpRules",
 			Handler:    _SecGroupService_FindIECidrSgIcmpRules_Handler,
+		},
+		{
+			MethodName: "UpdHostIPSet",
+			Handler:    _SecGroupService_UpdHostIPSet_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
