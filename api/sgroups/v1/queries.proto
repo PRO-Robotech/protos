@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package hbf.v2.sgroups;
-option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroups";
+package hbf.v1.sgroups;
+option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups/v1;sgroupsv1";
 
 import "google/protobuf/timestamp.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-import "sgroups/domains.proto";
+import "sgroups/v1/domains.proto";
 
 // SyncStatusResp: db status after last succeeded Sync
 message SyncStatusResp {

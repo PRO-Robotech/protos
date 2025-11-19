@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.6.1
-// source: sgroups/service.proto
+// source: sgroups/v1/service.proto
 
-package sgroups
+package sgroupsv1
 
 import (
 	context "context"
@@ -20,27 +20,27 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SecGroupService_Sync_FullMethodName                  = "/hbf.v2.sgroups.SecGroupService/Sync"
-	SecGroupService_SyncStatus_FullMethodName            = "/hbf.v2.sgroups.SecGroupService/SyncStatus"
-	SecGroupService_SyncStatuses_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/SyncStatuses"
-	SecGroupService_ListNetworks_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/ListNetworks"
-	SecGroupService_ListSecurityGroups_FullMethodName    = "/hbf.v2.sgroups.SecGroupService/ListSecurityGroups"
-	SecGroupService_ListHosts_FullMethodName             = "/hbf.v2.sgroups.SecGroupService/ListHosts"
-	SecGroupService_ListServices_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/ListServices"
-	SecGroupService_ListSvcSvcRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/ListSvcSvcRules"
-	SecGroupService_ListSvcFqdnRules_FullMethodName      = "/hbf.v2.sgroups.SecGroupService/ListSvcFqdnRules"
-	SecGroupService_GetSgSubnets_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/GetSgSubnets"
-	SecGroupService_GetSecGroupForAddress_FullMethodName = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForAddress"
-	SecGroupService_GetSecGroupForHost_FullMethodName    = "/hbf.v2.sgroups.SecGroupService/GetSecGroupForHost"
-	SecGroupService_FindSgSgRules_FullMethodName         = "/hbf.v2.sgroups.SecGroupService/FindSgSgRules"
-	SecGroupService_FindFqdnRules_FullMethodName         = "/hbf.v2.sgroups.SecGroupService/FindFqdnRules"
-	SecGroupService_FindSgIcmpRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/FindSgIcmpRules"
-	SecGroupService_FindSgSgIcmpRules_FullMethodName     = "/hbf.v2.sgroups.SecGroupService/FindSgSgIcmpRules"
-	SecGroupService_FindIECidrSgRules_FullMethodName     = "/hbf.v2.sgroups.SecGroupService/FindIECidrSgRules"
-	SecGroupService_FindIESgSgRules_FullMethodName       = "/hbf.v2.sgroups.SecGroupService/FindIESgSgRules"
-	SecGroupService_FindIESgSgIcmpRules_FullMethodName   = "/hbf.v2.sgroups.SecGroupService/FindIESgSgIcmpRules"
-	SecGroupService_FindIECidrSgIcmpRules_FullMethodName = "/hbf.v2.sgroups.SecGroupService/FindIECidrSgIcmpRules"
-	SecGroupService_UpdHostIPSet_FullMethodName          = "/hbf.v2.sgroups.SecGroupService/UpdHostIPSet"
+	SecGroupService_Sync_FullMethodName                  = "/hbf.v1.sgroups.SecGroupService/Sync"
+	SecGroupService_SyncStatus_FullMethodName            = "/hbf.v1.sgroups.SecGroupService/SyncStatus"
+	SecGroupService_SyncStatuses_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/SyncStatuses"
+	SecGroupService_ListNetworks_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/ListNetworks"
+	SecGroupService_ListSecurityGroups_FullMethodName    = "/hbf.v1.sgroups.SecGroupService/ListSecurityGroups"
+	SecGroupService_ListHosts_FullMethodName             = "/hbf.v1.sgroups.SecGroupService/ListHosts"
+	SecGroupService_ListServices_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/ListServices"
+	SecGroupService_ListSvcSvcRules_FullMethodName       = "/hbf.v1.sgroups.SecGroupService/ListSvcSvcRules"
+	SecGroupService_ListSvcFqdnRules_FullMethodName      = "/hbf.v1.sgroups.SecGroupService/ListSvcFqdnRules"
+	SecGroupService_GetSgSubnets_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/GetSgSubnets"
+	SecGroupService_GetSecGroupForAddress_FullMethodName = "/hbf.v1.sgroups.SecGroupService/GetSecGroupForAddress"
+	SecGroupService_GetSecGroupForHost_FullMethodName    = "/hbf.v1.sgroups.SecGroupService/GetSecGroupForHost"
+	SecGroupService_FindSgSgRules_FullMethodName         = "/hbf.v1.sgroups.SecGroupService/FindSgSgRules"
+	SecGroupService_FindFqdnRules_FullMethodName         = "/hbf.v1.sgroups.SecGroupService/FindFqdnRules"
+	SecGroupService_FindSgIcmpRules_FullMethodName       = "/hbf.v1.sgroups.SecGroupService/FindSgIcmpRules"
+	SecGroupService_FindSgSgIcmpRules_FullMethodName     = "/hbf.v1.sgroups.SecGroupService/FindSgSgIcmpRules"
+	SecGroupService_FindIECidrSgRules_FullMethodName     = "/hbf.v1.sgroups.SecGroupService/FindIECidrSgRules"
+	SecGroupService_FindIESgSgRules_FullMethodName       = "/hbf.v1.sgroups.SecGroupService/FindIESgSgRules"
+	SecGroupService_FindIESgSgIcmpRules_FullMethodName   = "/hbf.v1.sgroups.SecGroupService/FindIESgSgIcmpRules"
+	SecGroupService_FindIECidrSgIcmpRules_FullMethodName = "/hbf.v1.sgroups.SecGroupService/FindIECidrSgIcmpRules"
+	SecGroupService_UpdHostIPSet_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/UpdHostIPSet"
 )
 
 // SecGroupServiceClient is the client API for SecGroupService service.
@@ -783,7 +783,7 @@ func _SecGroupService_UpdHostIPSet_Handler(srv interface{}, ctx context.Context,
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SecGroupService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hbf.v2.sgroups.SecGroupService",
+	ServiceName: "hbf.v1.sgroups.SecGroupService",
 	HandlerType: (*SecGroupServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -874,5 +874,5 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "sgroups/service.proto",
+	Metadata: "sgroups/v1/service.proto",
 }

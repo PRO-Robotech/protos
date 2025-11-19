@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "sgroups/queries.proto",
+    "title": "sgroups/v1/queries.proto",
     "version": "version not set"
   },
   "consumes": [

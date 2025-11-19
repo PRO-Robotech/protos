@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "sgroups/domains.proto",
+    "title": "sgroups/v1/domains.proto",
     "version": "version not set"
   },
   "consumes": [

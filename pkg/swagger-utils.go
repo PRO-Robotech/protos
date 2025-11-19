@@ -7,7 +7,8 @@ import (
 	"io/ioutil"
 	"reflect"
 
-	"github.com/PRO-Robotech/protos/pkg/api/sgroups"
+	sgroups "github.com/PRO-Robotech/protos/pkg/api/sgroups/v1"
+
 	"github.com/go-openapi/spec"
 	"github.com/pkg/errors"
 )
@@ -67,7 +68,7 @@ func whenFindSwagger(p string, f func(reader io.Reader) error) error {
 
 func init() {
 	const (
-		apiSGroups = "api/sgroups/service.swagger.json"
+		apiSGroups = "api/sgroups/v1/service.swagger.json"
 	)
 
 	SwaggerUtil[sgroups.SecGroupServiceServer]{}.

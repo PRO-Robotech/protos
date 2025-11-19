@@ -5,7 +5,8 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/PRO-Robotech/protos/pkg/api/sgroups"
+	sgroups "github.com/PRO-Robotech/protos/pkg/api/sgroups/v1"
+
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )
