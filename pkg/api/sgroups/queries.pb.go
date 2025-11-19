@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.6.1
-// source: sgroups/v1/queries.proto
+// source: sgroups/queries.proto
 
-package sgroupsv1
+package sgroups
 
 import (
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
@@ -64,11 +64,11 @@ func (x SyncReq_SyncOp) String() string {
 }
 
 func (SyncReq_SyncOp) Descriptor() protoreflect.EnumDescriptor {
-	return file_sgroups_v1_queries_proto_enumTypes[0].Descriptor()
+	return file_sgroups_queries_proto_enumTypes[0].Descriptor()
 }
 
 func (SyncReq_SyncOp) Type() protoreflect.EnumType {
-	return &file_sgroups_v1_queries_proto_enumTypes[0]
+	return &file_sgroups_queries_proto_enumTypes[0]
 }
 
 func (x SyncReq_SyncOp) Number() protoreflect.EnumNumber {
@@ -77,7 +77,7 @@ func (x SyncReq_SyncOp) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SyncReq_SyncOp.Descriptor instead.
 func (SyncReq_SyncOp) EnumDescriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{15, 0}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{15, 0}
 }
 
 // SyncStatusResp: db status after last succeeded Sync
@@ -91,7 +91,7 @@ type SyncStatusResp struct {
 
 func (x *SyncStatusResp) Reset() {
 	*x = SyncStatusResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[0]
+	mi := &file_sgroups_queries_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -103,7 +103,7 @@ func (x *SyncStatusResp) String() string {
 func (*SyncStatusResp) ProtoMessage() {}
 
 func (x *SyncStatusResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[0]
+	mi := &file_sgroups_queries_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116,7 +116,7 @@ func (x *SyncStatusResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncStatusResp.ProtoReflect.Descriptor instead.
 func (*SyncStatusResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{0}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *SyncStatusResp) GetUpdatedAt() *timestamp.Timestamp {
@@ -137,7 +137,7 @@ type SyncSgSgRules struct {
 
 func (x *SyncSgSgRules) Reset() {
 	*x = SyncSgSgRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[1]
+	mi := &file_sgroups_queries_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -149,7 +149,7 @@ func (x *SyncSgSgRules) String() string {
 func (*SyncSgSgRules) ProtoMessage() {}
 
 func (x *SyncSgSgRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[1]
+	mi := &file_sgroups_queries_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -162,7 +162,7 @@ func (x *SyncSgSgRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSgSgRules.ProtoReflect.Descriptor instead.
 func (*SyncSgSgRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{1}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SyncSgSgRules) GetRules() []*SgSgRule {
@@ -183,7 +183,7 @@ type SyncFqdnRules struct {
 
 func (x *SyncFqdnRules) Reset() {
 	*x = SyncFqdnRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[2]
+	mi := &file_sgroups_queries_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -195,7 +195,7 @@ func (x *SyncFqdnRules) String() string {
 func (*SyncFqdnRules) ProtoMessage() {}
 
 func (x *SyncFqdnRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[2]
+	mi := &file_sgroups_queries_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -208,7 +208,7 @@ func (x *SyncFqdnRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncFqdnRules.ProtoReflect.Descriptor instead.
 func (*SyncFqdnRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{2}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *SyncFqdnRules) GetRules() []*FqdnRule {
@@ -229,7 +229,7 @@ type SyncSvcFqdnRules struct {
 
 func (x *SyncSvcFqdnRules) Reset() {
 	*x = SyncSvcFqdnRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[3]
+	mi := &file_sgroups_queries_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -241,7 +241,7 @@ func (x *SyncSvcFqdnRules) String() string {
 func (*SyncSvcFqdnRules) ProtoMessage() {}
 
 func (x *SyncSvcFqdnRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[3]
+	mi := &file_sgroups_queries_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -254,7 +254,7 @@ func (x *SyncSvcFqdnRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSvcFqdnRules.ProtoReflect.Descriptor instead.
 func (*SyncSvcFqdnRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{3}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SyncSvcFqdnRules) GetRules() []*SvcFqdnRule {
@@ -275,7 +275,7 @@ type SyncSecurityGroups struct {
 
 func (x *SyncSecurityGroups) Reset() {
 	*x = SyncSecurityGroups{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[4]
+	mi := &file_sgroups_queries_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -287,7 +287,7 @@ func (x *SyncSecurityGroups) String() string {
 func (*SyncSecurityGroups) ProtoMessage() {}
 
 func (x *SyncSecurityGroups) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[4]
+	mi := &file_sgroups_queries_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -300,7 +300,7 @@ func (x *SyncSecurityGroups) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSecurityGroups.ProtoReflect.Descriptor instead.
 func (*SyncSecurityGroups) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{4}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SyncSecurityGroups) GetGroups() []*SecGroup {
@@ -321,7 +321,7 @@ type SyncNetworks struct {
 
 func (x *SyncNetworks) Reset() {
 	*x = SyncNetworks{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[5]
+	mi := &file_sgroups_queries_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -333,7 +333,7 @@ func (x *SyncNetworks) String() string {
 func (*SyncNetworks) ProtoMessage() {}
 
 func (x *SyncNetworks) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[5]
+	mi := &file_sgroups_queries_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -346,7 +346,7 @@ func (x *SyncNetworks) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncNetworks.ProtoReflect.Descriptor instead.
 func (*SyncNetworks) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{5}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SyncNetworks) GetNetworks() []*Network {
@@ -366,7 +366,7 @@ type SyncSgIcmpRules struct {
 
 func (x *SyncSgIcmpRules) Reset() {
 	*x = SyncSgIcmpRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[6]
+	mi := &file_sgroups_queries_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -378,7 +378,7 @@ func (x *SyncSgIcmpRules) String() string {
 func (*SyncSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[6]
+	mi := &file_sgroups_queries_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -391,7 +391,7 @@ func (x *SyncSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{6}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *SyncSgIcmpRules) GetRules() []*SgIcmpRule {
@@ -411,7 +411,7 @@ type SyncSgSgIcmpRules struct {
 
 func (x *SyncSgSgIcmpRules) Reset() {
 	*x = SyncSgSgIcmpRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[7]
+	mi := &file_sgroups_queries_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -423,7 +423,7 @@ func (x *SyncSgSgIcmpRules) String() string {
 func (*SyncSgSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncSgSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[7]
+	mi := &file_sgroups_queries_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -436,7 +436,7 @@ func (x *SyncSgSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSgSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncSgSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{7}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *SyncSgSgIcmpRules) GetRules() []*SgSgIcmpRule {
@@ -456,7 +456,7 @@ type SyncIECidrSgRules struct {
 
 func (x *SyncIECidrSgRules) Reset() {
 	*x = SyncIECidrSgRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[8]
+	mi := &file_sgroups_queries_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -468,7 +468,7 @@ func (x *SyncIECidrSgRules) String() string {
 func (*SyncIECidrSgRules) ProtoMessage() {}
 
 func (x *SyncIECidrSgRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[8]
+	mi := &file_sgroups_queries_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +481,7 @@ func (x *SyncIECidrSgRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIECidrSgRules.ProtoReflect.Descriptor instead.
 func (*SyncIECidrSgRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{8}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SyncIECidrSgRules) GetRules() []*IECidrSgRule {
@@ -502,7 +502,7 @@ type SyncIESgSgRules struct {
 
 func (x *SyncIESgSgRules) Reset() {
 	*x = SyncIESgSgRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[9]
+	mi := &file_sgroups_queries_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -514,7 +514,7 @@ func (x *SyncIESgSgRules) String() string {
 func (*SyncIESgSgRules) ProtoMessage() {}
 
 func (x *SyncIESgSgRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[9]
+	mi := &file_sgroups_queries_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -527,7 +527,7 @@ func (x *SyncIESgSgRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIESgSgRules.ProtoReflect.Descriptor instead.
 func (*SyncIESgSgRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{9}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SyncIESgSgRules) GetRules() []*IESgSgRule {
@@ -548,7 +548,7 @@ type SyncIESgSgIcmpRules struct {
 
 func (x *SyncIESgSgIcmpRules) Reset() {
 	*x = SyncIESgSgIcmpRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
+	mi := &file_sgroups_queries_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -560,7 +560,7 @@ func (x *SyncIESgSgIcmpRules) String() string {
 func (*SyncIESgSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncIESgSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[10]
+	mi := &file_sgroups_queries_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -573,7 +573,7 @@ func (x *SyncIESgSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIESgSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncIESgSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{10}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SyncIESgSgIcmpRules) GetRules() []*IESgSgIcmpRule {
@@ -594,7 +594,7 @@ type SyncIECidrSgIcmpRules struct {
 
 func (x *SyncIECidrSgIcmpRules) Reset() {
 	*x = SyncIECidrSgIcmpRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	mi := &file_sgroups_queries_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -606,7 +606,7 @@ func (x *SyncIECidrSgIcmpRules) String() string {
 func (*SyncIECidrSgIcmpRules) ProtoMessage() {}
 
 func (x *SyncIECidrSgIcmpRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[11]
+	mi := &file_sgroups_queries_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -619,7 +619,7 @@ func (x *SyncIECidrSgIcmpRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncIECidrSgIcmpRules.ProtoReflect.Descriptor instead.
 func (*SyncIECidrSgIcmpRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{11}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SyncIECidrSgIcmpRules) GetRules() []*IECidrSgIcmpRule {
@@ -640,7 +640,7 @@ type SyncHosts struct {
 
 func (x *SyncHosts) Reset() {
 	*x = SyncHosts{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
+	mi := &file_sgroups_queries_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -652,7 +652,7 @@ func (x *SyncHosts) String() string {
 func (*SyncHosts) ProtoMessage() {}
 
 func (x *SyncHosts) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[12]
+	mi := &file_sgroups_queries_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -665,7 +665,7 @@ func (x *SyncHosts) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncHosts.ProtoReflect.Descriptor instead.
 func (*SyncHosts) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{12}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SyncHosts) GetHosts() []*Host {
@@ -686,7 +686,7 @@ type SyncServices struct {
 
 func (x *SyncServices) Reset() {
 	*x = SyncServices{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
+	mi := &file_sgroups_queries_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -698,7 +698,7 @@ func (x *SyncServices) String() string {
 func (*SyncServices) ProtoMessage() {}
 
 func (x *SyncServices) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[13]
+	mi := &file_sgroups_queries_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -711,7 +711,7 @@ func (x *SyncServices) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncServices.ProtoReflect.Descriptor instead.
 func (*SyncServices) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{13}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SyncServices) GetServices() []*Service {
@@ -732,7 +732,7 @@ type SyncSvcSvcRules struct {
 
 func (x *SyncSvcSvcRules) Reset() {
 	*x = SyncSvcSvcRules{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
+	mi := &file_sgroups_queries_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -744,7 +744,7 @@ func (x *SyncSvcSvcRules) String() string {
 func (*SyncSvcSvcRules) ProtoMessage() {}
 
 func (x *SyncSvcSvcRules) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[14]
+	mi := &file_sgroups_queries_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -757,7 +757,7 @@ func (x *SyncSvcSvcRules) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncSvcSvcRules.ProtoReflect.Descriptor instead.
 func (*SyncSvcSvcRules) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{14}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *SyncSvcSvcRules) GetRules() []*SvcSvcRule {
@@ -797,7 +797,7 @@ type SyncReq struct {
 
 func (x *SyncReq) Reset() {
 	*x = SyncReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
+	mi := &file_sgroups_queries_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -809,7 +809,7 @@ func (x *SyncReq) String() string {
 func (*SyncReq) ProtoMessage() {}
 
 func (x *SyncReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[15]
+	mi := &file_sgroups_queries_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -822,7 +822,7 @@ func (x *SyncReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncReq.ProtoReflect.Descriptor instead.
 func (*SyncReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{15}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *SyncReq) GetSyncOp() SyncReq_SyncOp {
@@ -1078,7 +1078,7 @@ type ListNetworksReq struct {
 
 func (x *ListNetworksReq) Reset() {
 	*x = ListNetworksReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
+	mi := &file_sgroups_queries_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1090,7 +1090,7 @@ func (x *ListNetworksReq) String() string {
 func (*ListNetworksReq) ProtoMessage() {}
 
 func (x *ListNetworksReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[16]
+	mi := &file_sgroups_queries_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1103,7 +1103,7 @@ func (x *ListNetworksReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNetworksReq.ProtoReflect.Descriptor instead.
 func (*ListNetworksReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{16}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListNetworksReq) GetNetworkNames() []string {
@@ -1124,7 +1124,7 @@ type ListNetworksResp struct {
 
 func (x *ListNetworksResp) Reset() {
 	*x = ListNetworksResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
+	mi := &file_sgroups_queries_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1136,7 +1136,7 @@ func (x *ListNetworksResp) String() string {
 func (*ListNetworksResp) ProtoMessage() {}
 
 func (x *ListNetworksResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[17]
+	mi := &file_sgroups_queries_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1149,7 +1149,7 @@ func (x *ListNetworksResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListNetworksResp.ProtoReflect.Descriptor instead.
 func (*ListNetworksResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{17}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListNetworksResp) GetNetworks() []*Network {
@@ -1170,7 +1170,7 @@ type ListSecurityGroupsReq struct {
 
 func (x *ListSecurityGroupsReq) Reset() {
 	*x = ListSecurityGroupsReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
+	mi := &file_sgroups_queries_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1182,7 +1182,7 @@ func (x *ListSecurityGroupsReq) String() string {
 func (*ListSecurityGroupsReq) ProtoMessage() {}
 
 func (x *ListSecurityGroupsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[18]
+	mi := &file_sgroups_queries_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1195,7 +1195,7 @@ func (x *ListSecurityGroupsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSecurityGroupsReq.ProtoReflect.Descriptor instead.
 func (*ListSecurityGroupsReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{18}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ListSecurityGroupsReq) GetSgNames() []string {
@@ -1216,7 +1216,7 @@ type ListSecurityGroupsResp struct {
 
 func (x *ListSecurityGroupsResp) Reset() {
 	*x = ListSecurityGroupsResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
+	mi := &file_sgroups_queries_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1228,7 +1228,7 @@ func (x *ListSecurityGroupsResp) String() string {
 func (*ListSecurityGroupsResp) ProtoMessage() {}
 
 func (x *ListSecurityGroupsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[19]
+	mi := &file_sgroups_queries_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1241,7 +1241,7 @@ func (x *ListSecurityGroupsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSecurityGroupsResp.ProtoReflect.Descriptor instead.
 func (*ListSecurityGroupsResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{19}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListSecurityGroupsResp) GetGroups() []*SecGroup {
@@ -1267,7 +1267,7 @@ type ListHostsReq struct {
 
 func (x *ListHostsReq) Reset() {
 	*x = ListHostsReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
+	mi := &file_sgroups_queries_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1279,7 +1279,7 @@ func (x *ListHostsReq) String() string {
 func (*ListHostsReq) ProtoMessage() {}
 
 func (x *ListHostsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[20]
+	mi := &file_sgroups_queries_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1292,7 +1292,7 @@ func (x *ListHostsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListHostsReq.ProtoReflect.Descriptor instead.
 func (*ListHostsReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{20}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListHostsReq) GetCriteria() isListHostsReq_Criteria {
@@ -1376,7 +1376,7 @@ type ListHostsResp struct {
 
 func (x *ListHostsResp) Reset() {
 	*x = ListHostsResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
+	mi := &file_sgroups_queries_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1388,7 +1388,7 @@ func (x *ListHostsResp) String() string {
 func (*ListHostsResp) ProtoMessage() {}
 
 func (x *ListHostsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[21]
+	mi := &file_sgroups_queries_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1401,7 +1401,7 @@ func (x *ListHostsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListHostsResp.ProtoReflect.Descriptor instead.
 func (*ListHostsResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{21}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ListHostsResp) GetHosts() []*Host {
@@ -1426,7 +1426,7 @@ type ListServicesReq struct {
 
 func (x *ListServicesReq) Reset() {
 	*x = ListServicesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
+	mi := &file_sgroups_queries_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1438,7 +1438,7 @@ func (x *ListServicesReq) String() string {
 func (*ListServicesReq) ProtoMessage() {}
 
 func (x *ListServicesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[22]
+	mi := &file_sgroups_queries_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1451,7 +1451,7 @@ func (x *ListServicesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListServicesReq.ProtoReflect.Descriptor instead.
 func (*ListServicesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{22}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ListServicesReq) GetCriteria() isListServicesReq_Criteria {
@@ -1521,7 +1521,7 @@ type ListServicesResp struct {
 
 func (x *ListServicesResp) Reset() {
 	*x = ListServicesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	mi := &file_sgroups_queries_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1533,7 +1533,7 @@ func (x *ListServicesResp) String() string {
 func (*ListServicesResp) ProtoMessage() {}
 
 func (x *ListServicesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[23]
+	mi := &file_sgroups_queries_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1546,7 +1546,7 @@ func (x *ListServicesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListServicesResp.ProtoReflect.Descriptor instead.
 func (*ListServicesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{23}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ListServicesResp) GetServices() []*Service {
@@ -1567,7 +1567,7 @@ type GetSgSubnetsReq struct {
 
 func (x *GetSgSubnetsReq) Reset() {
 	*x = GetSgSubnetsReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
+	mi := &file_sgroups_queries_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1579,7 +1579,7 @@ func (x *GetSgSubnetsReq) String() string {
 func (*GetSgSubnetsReq) ProtoMessage() {}
 
 func (x *GetSgSubnetsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[24]
+	mi := &file_sgroups_queries_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1592,7 +1592,7 @@ func (x *GetSgSubnetsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSgSubnetsReq.ProtoReflect.Descriptor instead.
 func (*GetSgSubnetsReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{24}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetSgSubnetsReq) GetSgName() string {
@@ -1613,7 +1613,7 @@ type GetSgSubnetsResp struct {
 
 func (x *GetSgSubnetsResp) Reset() {
 	*x = GetSgSubnetsResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
+	mi := &file_sgroups_queries_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1625,7 +1625,7 @@ func (x *GetSgSubnetsResp) String() string {
 func (*GetSgSubnetsResp) ProtoMessage() {}
 
 func (x *GetSgSubnetsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[25]
+	mi := &file_sgroups_queries_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1638,7 +1638,7 @@ func (x *GetSgSubnetsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSgSubnetsResp.ProtoReflect.Descriptor instead.
 func (*GetSgSubnetsResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{25}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetSgSubnetsResp) GetNetworks() []*Network {
@@ -1661,7 +1661,7 @@ type GetSgSgRulesReq struct {
 
 func (x *GetSgSgRulesReq) Reset() {
 	*x = GetSgSgRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
+	mi := &file_sgroups_queries_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1673,7 +1673,7 @@ func (x *GetSgSgRulesReq) String() string {
 func (*GetSgSgRulesReq) ProtoMessage() {}
 
 func (x *GetSgSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[26]
+	mi := &file_sgroups_queries_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1686,7 +1686,7 @@ func (x *GetSgSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSgSgRulesReq.ProtoReflect.Descriptor instead.
 func (*GetSgSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{26}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetSgSgRulesReq) GetSgFrom() string {
@@ -1716,7 +1716,7 @@ type FindSgSgRulesReq struct {
 
 func (x *FindSgSgRulesReq) Reset() {
 	*x = FindSgSgRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
+	mi := &file_sgroups_queries_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1728,7 +1728,7 @@ func (x *FindSgSgRulesReq) String() string {
 func (*FindSgSgRulesReq) ProtoMessage() {}
 
 func (x *FindSgSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[27]
+	mi := &file_sgroups_queries_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1741,7 +1741,7 @@ func (x *FindSgSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSgSgRulesReq.ProtoReflect.Descriptor instead.
 func (*FindSgSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{27}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *FindSgSgRulesReq) GetSgFrom() []string {
@@ -1769,7 +1769,7 @@ type SgSgRulesResp struct {
 
 func (x *SgSgRulesResp) Reset() {
 	*x = SgSgRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
+	mi := &file_sgroups_queries_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1781,7 +1781,7 @@ func (x *SgSgRulesResp) String() string {
 func (*SgSgRulesResp) ProtoMessage() {}
 
 func (x *SgSgRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[28]
+	mi := &file_sgroups_queries_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1794,7 +1794,7 @@ func (x *SgSgRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgSgRulesResp.ProtoReflect.Descriptor instead.
 func (*SgSgRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{28}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *SgSgRulesResp) GetRules() []*SgSgRule {
@@ -1815,7 +1815,7 @@ type FindFqdnRulesReq struct {
 
 func (x *FindFqdnRulesReq) Reset() {
 	*x = FindFqdnRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
+	mi := &file_sgroups_queries_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1827,7 +1827,7 @@ func (x *FindFqdnRulesReq) String() string {
 func (*FindFqdnRulesReq) ProtoMessage() {}
 
 func (x *FindFqdnRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[29]
+	mi := &file_sgroups_queries_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1840,7 +1840,7 @@ func (x *FindFqdnRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindFqdnRulesReq.ProtoReflect.Descriptor instead.
 func (*FindFqdnRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{29}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *FindFqdnRulesReq) GetSgFrom() []string {
@@ -1861,7 +1861,7 @@ type FqdnRulesResp struct {
 
 func (x *FqdnRulesResp) Reset() {
 	*x = FqdnRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
+	mi := &file_sgroups_queries_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1873,7 +1873,7 @@ func (x *FqdnRulesResp) String() string {
 func (*FqdnRulesResp) ProtoMessage() {}
 
 func (x *FqdnRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[30]
+	mi := &file_sgroups_queries_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1886,7 +1886,7 @@ func (x *FqdnRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FqdnRulesResp.ProtoReflect.Descriptor instead.
 func (*FqdnRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{30}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *FqdnRulesResp) GetRules() []*FqdnRule {
@@ -1907,7 +1907,7 @@ type SvcFqdnRulesResp struct {
 
 func (x *SvcFqdnRulesResp) Reset() {
 	*x = SvcFqdnRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
+	mi := &file_sgroups_queries_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1919,7 +1919,7 @@ func (x *SvcFqdnRulesResp) String() string {
 func (*SvcFqdnRulesResp) ProtoMessage() {}
 
 func (x *SvcFqdnRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[31]
+	mi := &file_sgroups_queries_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1932,7 +1932,7 @@ func (x *SvcFqdnRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SvcFqdnRulesResp.ProtoReflect.Descriptor instead.
 func (*SvcFqdnRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{31}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *SvcFqdnRulesResp) GetRules() []*SvcFqdnRule {
@@ -1953,7 +1953,7 @@ type FindSgIcmpRulesReq struct {
 
 func (x *FindSgIcmpRulesReq) Reset() {
 	*x = FindSgIcmpRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
+	mi := &file_sgroups_queries_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1965,7 +1965,7 @@ func (x *FindSgIcmpRulesReq) String() string {
 func (*FindSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[32]
+	mi := &file_sgroups_queries_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1978,7 +1978,7 @@ func (x *FindSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{32}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *FindSgIcmpRulesReq) GetSG() []string {
@@ -1999,7 +1999,7 @@ type SgIcmpRulesResp struct {
 
 func (x *SgIcmpRulesResp) Reset() {
 	*x = SgIcmpRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
+	mi := &file_sgroups_queries_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2011,7 +2011,7 @@ func (x *SgIcmpRulesResp) String() string {
 func (*SgIcmpRulesResp) ProtoMessage() {}
 
 func (x *SgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[33]
+	mi := &file_sgroups_queries_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2024,7 +2024,7 @@ func (x *SgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*SgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{33}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *SgIcmpRulesResp) GetRules() []*SgIcmpRule {
@@ -2047,7 +2047,7 @@ type FindSgSgIcmpRulesReq struct {
 
 func (x *FindSgSgIcmpRulesReq) Reset() {
 	*x = FindSgSgIcmpRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
+	mi := &file_sgroups_queries_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2059,7 +2059,7 @@ func (x *FindSgSgIcmpRulesReq) String() string {
 func (*FindSgSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindSgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[34]
+	mi := &file_sgroups_queries_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2072,7 +2072,7 @@ func (x *FindSgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSgSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindSgSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{34}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *FindSgSgIcmpRulesReq) GetSgFrom() []string {
@@ -2100,7 +2100,7 @@ type SgSgIcmpRulesResp struct {
 
 func (x *SgSgIcmpRulesResp) Reset() {
 	*x = SgSgIcmpRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
+	mi := &file_sgroups_queries_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2112,7 +2112,7 @@ func (x *SgSgIcmpRulesResp) String() string {
 func (*SgSgIcmpRulesResp) ProtoMessage() {}
 
 func (x *SgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[35]
+	mi := &file_sgroups_queries_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2125,7 +2125,7 @@ func (x *SgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SgSgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*SgSgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{35}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *SgSgIcmpRulesResp) GetRules() []*SgSgIcmpRule {
@@ -2146,7 +2146,7 @@ type FindIECidrSgRulesReq struct {
 
 func (x *FindIECidrSgRulesReq) Reset() {
 	*x = FindIECidrSgRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
+	mi := &file_sgroups_queries_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2158,7 +2158,7 @@ func (x *FindIECidrSgRulesReq) String() string {
 func (*FindIECidrSgRulesReq) ProtoMessage() {}
 
 func (x *FindIECidrSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[36]
+	mi := &file_sgroups_queries_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2171,7 +2171,7 @@ func (x *FindIECidrSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIECidrSgRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIECidrSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{36}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *FindIECidrSgRulesReq) GetSG() []string {
@@ -2192,7 +2192,7 @@ type IECidrSgRulesResp struct {
 
 func (x *IECidrSgRulesResp) Reset() {
 	*x = IECidrSgRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
+	mi := &file_sgroups_queries_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2204,7 +2204,7 @@ func (x *IECidrSgRulesResp) String() string {
 func (*IECidrSgRulesResp) ProtoMessage() {}
 
 func (x *IECidrSgRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[37]
+	mi := &file_sgroups_queries_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2217,7 +2217,7 @@ func (x *IECidrSgRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IECidrSgRulesResp.ProtoReflect.Descriptor instead.
 func (*IECidrSgRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{37}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *IECidrSgRulesResp) GetRules() []*IECidrSgRule {
@@ -2240,7 +2240,7 @@ type FindIESgSgRulesReq struct {
 
 func (x *FindIESgSgRulesReq) Reset() {
 	*x = FindIESgSgRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
+	mi := &file_sgroups_queries_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2252,7 +2252,7 @@ func (x *FindIESgSgRulesReq) String() string {
 func (*FindIESgSgRulesReq) ProtoMessage() {}
 
 func (x *FindIESgSgRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[38]
+	mi := &file_sgroups_queries_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2265,7 +2265,7 @@ func (x *FindIESgSgRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIESgSgRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIESgSgRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{38}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *FindIESgSgRulesReq) GetSG() []string {
@@ -2293,7 +2293,7 @@ type IESgSgRulesResp struct {
 
 func (x *IESgSgRulesResp) Reset() {
 	*x = IESgSgRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
+	mi := &file_sgroups_queries_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2305,7 +2305,7 @@ func (x *IESgSgRulesResp) String() string {
 func (*IESgSgRulesResp) ProtoMessage() {}
 
 func (x *IESgSgRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[39]
+	mi := &file_sgroups_queries_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2318,7 +2318,7 @@ func (x *IESgSgRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgRulesResp.ProtoReflect.Descriptor instead.
 func (*IESgSgRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{39}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *IESgSgRulesResp) GetRules() []*IESgSgRule {
@@ -2341,7 +2341,7 @@ type FindIESgSgIcmpRulesReq struct {
 
 func (x *FindIESgSgIcmpRulesReq) Reset() {
 	*x = FindIESgSgIcmpRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
+	mi := &file_sgroups_queries_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2353,7 +2353,7 @@ func (x *FindIESgSgIcmpRulesReq) String() string {
 func (*FindIESgSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindIESgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[40]
+	mi := &file_sgroups_queries_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2366,7 +2366,7 @@ func (x *FindIESgSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIESgSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIESgSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{40}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *FindIESgSgIcmpRulesReq) GetSG() []string {
@@ -2394,7 +2394,7 @@ type IESgSgIcmpRulesResp struct {
 
 func (x *IESgSgIcmpRulesResp) Reset() {
 	*x = IESgSgIcmpRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
+	mi := &file_sgroups_queries_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2406,7 +2406,7 @@ func (x *IESgSgIcmpRulesResp) String() string {
 func (*IESgSgIcmpRulesResp) ProtoMessage() {}
 
 func (x *IESgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[41]
+	mi := &file_sgroups_queries_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2419,7 +2419,7 @@ func (x *IESgSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*IESgSgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{41}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *IESgSgIcmpRulesResp) GetRules() []*IESgSgIcmpRule {
@@ -2440,7 +2440,7 @@ type FindIECidrSgIcmpRulesReq struct {
 
 func (x *FindIECidrSgIcmpRulesReq) Reset() {
 	*x = FindIECidrSgIcmpRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
+	mi := &file_sgroups_queries_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2452,7 +2452,7 @@ func (x *FindIECidrSgIcmpRulesReq) String() string {
 func (*FindIECidrSgIcmpRulesReq) ProtoMessage() {}
 
 func (x *FindIECidrSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[42]
+	mi := &file_sgroups_queries_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2465,7 +2465,7 @@ func (x *FindIECidrSgIcmpRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindIECidrSgIcmpRulesReq.ProtoReflect.Descriptor instead.
 func (*FindIECidrSgIcmpRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{42}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *FindIECidrSgIcmpRulesReq) GetSG() []string {
@@ -2486,7 +2486,7 @@ type IECidrSgIcmpRulesResp struct {
 
 func (x *IECidrSgIcmpRulesResp) Reset() {
 	*x = IECidrSgIcmpRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
+	mi := &file_sgroups_queries_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2498,7 +2498,7 @@ func (x *IECidrSgIcmpRulesResp) String() string {
 func (*IECidrSgIcmpRulesResp) ProtoMessage() {}
 
 func (x *IECidrSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[43]
+	mi := &file_sgroups_queries_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2511,7 +2511,7 @@ func (x *IECidrSgIcmpRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IECidrSgIcmpRulesResp.ProtoReflect.Descriptor instead.
 func (*IECidrSgIcmpRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{43}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *IECidrSgIcmpRulesResp) GetRules() []*IECidrSgIcmpRule {
@@ -2532,7 +2532,7 @@ type GetSecGroupForAddressReq struct {
 
 func (x *GetSecGroupForAddressReq) Reset() {
 	*x = GetSecGroupForAddressReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[44]
+	mi := &file_sgroups_queries_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2544,7 +2544,7 @@ func (x *GetSecGroupForAddressReq) String() string {
 func (*GetSecGroupForAddressReq) ProtoMessage() {}
 
 func (x *GetSecGroupForAddressReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[44]
+	mi := &file_sgroups_queries_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2557,7 +2557,7 @@ func (x *GetSecGroupForAddressReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSecGroupForAddressReq.ProtoReflect.Descriptor instead.
 func (*GetSecGroupForAddressReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{44}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *GetSecGroupForAddressReq) GetAddress() string {
@@ -2578,7 +2578,7 @@ type GetSecGroupForHostReq struct {
 
 func (x *GetSecGroupForHostReq) Reset() {
 	*x = GetSecGroupForHostReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[45]
+	mi := &file_sgroups_queries_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2590,7 +2590,7 @@ func (x *GetSecGroupForHostReq) String() string {
 func (*GetSecGroupForHostReq) ProtoMessage() {}
 
 func (x *GetSecGroupForHostReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[45]
+	mi := &file_sgroups_queries_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2603,7 +2603,7 @@ func (x *GetSecGroupForHostReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSecGroupForHostReq.ProtoReflect.Descriptor instead.
 func (*GetSecGroupForHostReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{45}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *GetSecGroupForHostReq) GetHostUuid() string {
@@ -2635,7 +2635,7 @@ type ListSvcSvcRulesReq struct {
 
 func (x *ListSvcSvcRulesReq) Reset() {
 	*x = ListSvcSvcRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[46]
+	mi := &file_sgroups_queries_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2647,7 +2647,7 @@ func (x *ListSvcSvcRulesReq) String() string {
 func (*ListSvcSvcRulesReq) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[46]
+	mi := &file_sgroups_queries_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2660,7 +2660,7 @@ func (x *ListSvcSvcRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcSvcRulesReq.ProtoReflect.Descriptor instead.
 func (*ListSvcSvcRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{46}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *ListSvcSvcRulesReq) GetCriteria() isListSvcSvcRulesReq_Criteria {
@@ -2730,7 +2730,7 @@ type ListSvcSvcRulesResp struct {
 
 func (x *ListSvcSvcRulesResp) Reset() {
 	*x = ListSvcSvcRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[47]
+	mi := &file_sgroups_queries_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2742,7 +2742,7 @@ func (x *ListSvcSvcRulesResp) String() string {
 func (*ListSvcSvcRulesResp) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[47]
+	mi := &file_sgroups_queries_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2755,7 +2755,7 @@ func (x *ListSvcSvcRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcSvcRulesResp.ProtoReflect.Descriptor instead.
 func (*ListSvcSvcRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{47}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *ListSvcSvcRulesResp) GetRules() []*SvcSvcRule {
@@ -2780,7 +2780,7 @@ type ListSvcFqdnRulesReq struct {
 
 func (x *ListSvcFqdnRulesReq) Reset() {
 	*x = ListSvcFqdnRulesReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[48]
+	mi := &file_sgroups_queries_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2792,7 +2792,7 @@ func (x *ListSvcFqdnRulesReq) String() string {
 func (*ListSvcFqdnRulesReq) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[48]
+	mi := &file_sgroups_queries_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2805,7 +2805,7 @@ func (x *ListSvcFqdnRulesReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcFqdnRulesReq.ProtoReflect.Descriptor instead.
 func (*ListSvcFqdnRulesReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{48}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *ListSvcFqdnRulesReq) GetCriteria() isListSvcFqdnRulesReq_Criteria {
@@ -2875,7 +2875,7 @@ type ListSvcFqdnRulesResp struct {
 
 func (x *ListSvcFqdnRulesResp) Reset() {
 	*x = ListSvcFqdnRulesResp{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[49]
+	mi := &file_sgroups_queries_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2887,7 +2887,7 @@ func (x *ListSvcFqdnRulesResp) String() string {
 func (*ListSvcFqdnRulesResp) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[49]
+	mi := &file_sgroups_queries_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2900,7 +2900,7 @@ func (x *ListSvcFqdnRulesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcFqdnRulesResp.ProtoReflect.Descriptor instead.
 func (*ListSvcFqdnRulesResp) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{49}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *ListSvcFqdnRulesResp) GetRules() []*SvcFqdnRule {
@@ -2920,7 +2920,7 @@ type UpdHostIPSetReq struct {
 
 func (x *UpdHostIPSetReq) Reset() {
 	*x = UpdHostIPSetReq{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[50]
+	mi := &file_sgroups_queries_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2932,7 +2932,7 @@ func (x *UpdHostIPSetReq) String() string {
 func (*UpdHostIPSetReq) ProtoMessage() {}
 
 func (x *UpdHostIPSetReq) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[50]
+	mi := &file_sgroups_queries_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2945,7 +2945,7 @@ func (x *UpdHostIPSetReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdHostIPSetReq.ProtoReflect.Descriptor instead.
 func (*UpdHostIPSetReq) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{50}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *UpdHostIPSetReq) GetHosts() []*HostIPSet {
@@ -2964,7 +2964,7 @@ type ListHostsReq_NoFilter struct {
 
 func (x *ListHostsReq_NoFilter) Reset() {
 	*x = ListHostsReq_NoFilter{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[51]
+	mi := &file_sgroups_queries_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2976,7 +2976,7 @@ func (x *ListHostsReq_NoFilter) String() string {
 func (*ListHostsReq_NoFilter) ProtoMessage() {}
 
 func (x *ListHostsReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[51]
+	mi := &file_sgroups_queries_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2989,7 +2989,7 @@ func (x *ListHostsReq_NoFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListHostsReq_NoFilter.ProtoReflect.Descriptor instead.
 func (*ListHostsReq_NoFilter) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{20, 0}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{20, 0}
 }
 
 // Filter by unique identifiers
@@ -3002,7 +3002,7 @@ type ListHostsReq_ByUUID struct {
 
 func (x *ListHostsReq_ByUUID) Reset() {
 	*x = ListHostsReq_ByUUID{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[52]
+	mi := &file_sgroups_queries_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3014,7 +3014,7 @@ func (x *ListHostsReq_ByUUID) String() string {
 func (*ListHostsReq_ByUUID) ProtoMessage() {}
 
 func (x *ListHostsReq_ByUUID) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[52]
+	mi := &file_sgroups_queries_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3027,7 +3027,7 @@ func (x *ListHostsReq_ByUUID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListHostsReq_ByUUID.ProtoReflect.Descriptor instead.
 func (*ListHostsReq_ByUUID) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{20, 1}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{20, 1}
 }
 
 func (x *ListHostsReq_ByUUID) GetUUIDs() []string {
@@ -3047,7 +3047,7 @@ type ListHostsReq_ByHostName struct {
 
 func (x *ListHostsReq_ByHostName) Reset() {
 	*x = ListHostsReq_ByHostName{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[53]
+	mi := &file_sgroups_queries_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3059,7 +3059,7 @@ func (x *ListHostsReq_ByHostName) String() string {
 func (*ListHostsReq_ByHostName) ProtoMessage() {}
 
 func (x *ListHostsReq_ByHostName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[53]
+	mi := &file_sgroups_queries_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3072,7 +3072,7 @@ func (x *ListHostsReq_ByHostName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListHostsReq_ByHostName.ProtoReflect.Descriptor instead.
 func (*ListHostsReq_ByHostName) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{20, 2}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{20, 2}
 }
 
 func (x *ListHostsReq_ByHostName) GetNames() []string {
@@ -3092,7 +3092,7 @@ type ListHostsReq_BySG struct {
 
 func (x *ListHostsReq_BySG) Reset() {
 	*x = ListHostsReq_BySG{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[54]
+	mi := &file_sgroups_queries_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3104,7 +3104,7 @@ func (x *ListHostsReq_BySG) String() string {
 func (*ListHostsReq_BySG) ProtoMessage() {}
 
 func (x *ListHostsReq_BySG) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[54]
+	mi := &file_sgroups_queries_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3117,7 +3117,7 @@ func (x *ListHostsReq_BySG) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListHostsReq_BySG.ProtoReflect.Descriptor instead.
 func (*ListHostsReq_BySG) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{20, 3}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{20, 3}
 }
 
 func (x *ListHostsReq_BySG) GetNames() []string {
@@ -3136,7 +3136,7 @@ type ListServicesReq_NoFilter struct {
 
 func (x *ListServicesReq_NoFilter) Reset() {
 	*x = ListServicesReq_NoFilter{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[55]
+	mi := &file_sgroups_queries_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3148,7 +3148,7 @@ func (x *ListServicesReq_NoFilter) String() string {
 func (*ListServicesReq_NoFilter) ProtoMessage() {}
 
 func (x *ListServicesReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[55]
+	mi := &file_sgroups_queries_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3161,7 +3161,7 @@ func (x *ListServicesReq_NoFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListServicesReq_NoFilter.ProtoReflect.Descriptor instead.
 func (*ListServicesReq_NoFilter) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{22, 0}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{22, 0}
 }
 
 // Filter by service names
@@ -3174,7 +3174,7 @@ type ListServicesReq_BySVCName struct {
 
 func (x *ListServicesReq_BySVCName) Reset() {
 	*x = ListServicesReq_BySVCName{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[56]
+	mi := &file_sgroups_queries_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3186,7 +3186,7 @@ func (x *ListServicesReq_BySVCName) String() string {
 func (*ListServicesReq_BySVCName) ProtoMessage() {}
 
 func (x *ListServicesReq_BySVCName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[56]
+	mi := &file_sgroups_queries_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3199,7 +3199,7 @@ func (x *ListServicesReq_BySVCName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListServicesReq_BySVCName.ProtoReflect.Descriptor instead.
 func (*ListServicesReq_BySVCName) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{22, 1}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{22, 1}
 }
 
 func (x *ListServicesReq_BySVCName) GetNames() []string {
@@ -3219,7 +3219,7 @@ type ListServicesReq_BySG struct {
 
 func (x *ListServicesReq_BySG) Reset() {
 	*x = ListServicesReq_BySG{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[57]
+	mi := &file_sgroups_queries_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3231,7 +3231,7 @@ func (x *ListServicesReq_BySG) String() string {
 func (*ListServicesReq_BySG) ProtoMessage() {}
 
 func (x *ListServicesReq_BySG) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[57]
+	mi := &file_sgroups_queries_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3244,7 +3244,7 @@ func (x *ListServicesReq_BySG) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListServicesReq_BySG.ProtoReflect.Descriptor instead.
 func (*ListServicesReq_BySG) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{22, 2}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{22, 2}
 }
 
 func (x *ListServicesReq_BySG) GetNames() []string {
@@ -3263,7 +3263,7 @@ type ListSvcSvcRulesReq_NoFilter struct {
 
 func (x *ListSvcSvcRulesReq_NoFilter) Reset() {
 	*x = ListSvcSvcRulesReq_NoFilter{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[58]
+	mi := &file_sgroups_queries_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3275,7 +3275,7 @@ func (x *ListSvcSvcRulesReq_NoFilter) String() string {
 func (*ListSvcSvcRulesReq_NoFilter) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[58]
+	mi := &file_sgroups_queries_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3288,7 +3288,7 @@ func (x *ListSvcSvcRulesReq_NoFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcSvcRulesReq_NoFilter.ProtoReflect.Descriptor instead.
 func (*ListSvcSvcRulesReq_NoFilter) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{46, 0}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{46, 0}
 }
 
 // Filter by service rule names
@@ -3301,7 +3301,7 @@ type ListSvcSvcRulesReq_ByRuleName struct {
 
 func (x *ListSvcSvcRulesReq_ByRuleName) Reset() {
 	*x = ListSvcSvcRulesReq_ByRuleName{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[59]
+	mi := &file_sgroups_queries_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3313,7 +3313,7 @@ func (x *ListSvcSvcRulesReq_ByRuleName) String() string {
 func (*ListSvcSvcRulesReq_ByRuleName) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesReq_ByRuleName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[59]
+	mi := &file_sgroups_queries_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3326,7 +3326,7 @@ func (x *ListSvcSvcRulesReq_ByRuleName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcSvcRulesReq_ByRuleName.ProtoReflect.Descriptor instead.
 func (*ListSvcSvcRulesReq_ByRuleName) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{46, 1}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{46, 1}
 }
 
 func (x *ListSvcSvcRulesReq_ByRuleName) GetNames() []string {
@@ -3347,7 +3347,7 @@ type ListSvcSvcRulesReq_BySvcFromTo struct {
 
 func (x *ListSvcSvcRulesReq_BySvcFromTo) Reset() {
 	*x = ListSvcSvcRulesReq_BySvcFromTo{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[60]
+	mi := &file_sgroups_queries_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3359,7 +3359,7 @@ func (x *ListSvcSvcRulesReq_BySvcFromTo) String() string {
 func (*ListSvcSvcRulesReq_BySvcFromTo) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesReq_BySvcFromTo) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[60]
+	mi := &file_sgroups_queries_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3372,7 +3372,7 @@ func (x *ListSvcSvcRulesReq_BySvcFromTo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcSvcRulesReq_BySvcFromTo.ProtoReflect.Descriptor instead.
 func (*ListSvcSvcRulesReq_BySvcFromTo) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{46, 2}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{46, 2}
 }
 
 func (x *ListSvcSvcRulesReq_BySvcFromTo) GetSvcFrom() []string {
@@ -3398,7 +3398,7 @@ type ListSvcFqdnRulesReq_NoFilter struct {
 
 func (x *ListSvcFqdnRulesReq_NoFilter) Reset() {
 	*x = ListSvcFqdnRulesReq_NoFilter{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[61]
+	mi := &file_sgroups_queries_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3410,7 +3410,7 @@ func (x *ListSvcFqdnRulesReq_NoFilter) String() string {
 func (*ListSvcFqdnRulesReq_NoFilter) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[61]
+	mi := &file_sgroups_queries_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3423,7 +3423,7 @@ func (x *ListSvcFqdnRulesReq_NoFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcFqdnRulesReq_NoFilter.ProtoReflect.Descriptor instead.
 func (*ListSvcFqdnRulesReq_NoFilter) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{48, 0}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{48, 0}
 }
 
 // Filter by rule name
@@ -3436,7 +3436,7 @@ type ListSvcFqdnRulesReq_ByRuleName struct {
 
 func (x *ListSvcFqdnRulesReq_ByRuleName) Reset() {
 	*x = ListSvcFqdnRulesReq_ByRuleName{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[62]
+	mi := &file_sgroups_queries_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3448,7 +3448,7 @@ func (x *ListSvcFqdnRulesReq_ByRuleName) String() string {
 func (*ListSvcFqdnRulesReq_ByRuleName) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesReq_ByRuleName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[62]
+	mi := &file_sgroups_queries_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3461,7 +3461,7 @@ func (x *ListSvcFqdnRulesReq_ByRuleName) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcFqdnRulesReq_ByRuleName.ProtoReflect.Descriptor instead.
 func (*ListSvcFqdnRulesReq_ByRuleName) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{48, 1}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{48, 1}
 }
 
 func (x *ListSvcFqdnRulesReq_ByRuleName) GetNames() []string {
@@ -3481,7 +3481,7 @@ type ListSvcFqdnRulesReq_BySvcFrom struct {
 
 func (x *ListSvcFqdnRulesReq_BySvcFrom) Reset() {
 	*x = ListSvcFqdnRulesReq_BySvcFrom{}
-	mi := &file_sgroups_v1_queries_proto_msgTypes[63]
+	mi := &file_sgroups_queries_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3493,7 +3493,7 @@ func (x *ListSvcFqdnRulesReq_BySvcFrom) String() string {
 func (*ListSvcFqdnRulesReq_BySvcFrom) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesReq_BySvcFrom) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_v1_queries_proto_msgTypes[63]
+	mi := &file_sgroups_queries_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3506,7 +3506,7 @@ func (x *ListSvcFqdnRulesReq_BySvcFrom) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListSvcFqdnRulesReq_BySvcFrom.ProtoReflect.Descriptor instead.
 func (*ListSvcFqdnRulesReq_BySvcFrom) Descriptor() ([]byte, []int) {
-	return file_sgroups_v1_queries_proto_rawDescGZIP(), []int{48, 2}
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{48, 2}
 }
 
 func (x *ListSvcFqdnRulesReq_BySvcFrom) GetSvcFrom() []string {
@@ -3516,11 +3516,11 @@ func (x *ListSvcFqdnRulesReq_BySvcFrom) GetSvcFrom() []string {
 	return nil
 }
 
-var File_sgroups_v1_queries_proto protoreflect.FileDescriptor
+var File_sgroups_queries_proto protoreflect.FileDescriptor
 
-const file_sgroups_v1_queries_proto_rawDesc = "" +
+const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
-	"\x18sgroups/v1/queries.proto\x12\x0ehbf.v1.sgroups\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x18sgroups/v1/domains.proto\"K\n" +
+	"\x15sgroups/queries.proto\x12\x0ehbf.v1.sgroups\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x15sgroups/domains.proto\"K\n" +
 	"\x0eSyncStatusResp\x129\n" +
 	"\n" +
 	"updated_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"?\n" +
@@ -3724,23 +3724,23 @@ const file_sgroups_v1_queries_proto_rawDesc = "" +
 	"\x14ListSvcFqdnRulesResp\x121\n" +
 	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v1.sgroups.SvcFqdnRuleR\x05rules\"B\n" +
 	"\x0fUpdHostIPSetReq\x12/\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x19.hbf.v1.sgroups.HostIPSetR\x05hostsB=Z;github.com/PRO-Robotech/protos/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
+	"\x05hosts\x18\x01 \x03(\v2\x19.hbf.v1.sgroups.HostIPSetR\x05hostsB8Z6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
 var (
-	file_sgroups_v1_queries_proto_rawDescOnce sync.Once
-	file_sgroups_v1_queries_proto_rawDescData []byte
+	file_sgroups_queries_proto_rawDescOnce sync.Once
+	file_sgroups_queries_proto_rawDescData []byte
 )
 
-func file_sgroups_v1_queries_proto_rawDescGZIP() []byte {
-	file_sgroups_v1_queries_proto_rawDescOnce.Do(func() {
-		file_sgroups_v1_queries_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_sgroups_v1_queries_proto_rawDesc), len(file_sgroups_v1_queries_proto_rawDesc)))
+func file_sgroups_queries_proto_rawDescGZIP() []byte {
+	file_sgroups_queries_proto_rawDescOnce.Do(func() {
+		file_sgroups_queries_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_sgroups_queries_proto_rawDesc), len(file_sgroups_queries_proto_rawDesc)))
 	})
-	return file_sgroups_v1_queries_proto_rawDescData
+	return file_sgroups_queries_proto_rawDescData
 }
 
-var file_sgroups_v1_queries_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_sgroups_v1_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
-var file_sgroups_v1_queries_proto_goTypes = []any{
+var file_sgroups_queries_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_sgroups_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
+var file_sgroups_queries_proto_goTypes = []any{
 	(SyncReq_SyncOp)(0),                    // 0: hbf.v1.sgroups.SyncReq.SyncOp
 	(*SyncStatusResp)(nil),                 // 1: hbf.v1.sgroups.SyncStatusResp
 	(*SyncSgSgRules)(nil),                  // 2: hbf.v1.sgroups.SyncSgSgRules
@@ -3823,7 +3823,7 @@ var file_sgroups_v1_queries_proto_goTypes = []any{
 	(*SvcSvcRule)(nil),                     // 79: hbf.v1.sgroups.SvcSvcRule
 	(*HostIPSet)(nil),                      // 80: hbf.v1.sgroups.HostIPSet
 }
-var file_sgroups_v1_queries_proto_depIdxs = []int32{
+var file_sgroups_queries_proto_depIdxs = []int32{
 	65, // 0: hbf.v1.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
 	66, // 1: hbf.v1.sgroups.SyncSgSgRules.rules:type_name -> hbf.v1.sgroups.SgSgRule
 	67, // 2: hbf.v1.sgroups.SyncFqdnRules.rules:type_name -> hbf.v1.sgroups.FqdnRule
@@ -3891,13 +3891,13 @@ var file_sgroups_v1_queries_proto_depIdxs = []int32{
 	0,  // [0:60] is the sub-list for field type_name
 }
 
-func init() { file_sgroups_v1_queries_proto_init() }
-func file_sgroups_v1_queries_proto_init() {
-	if File_sgroups_v1_queries_proto != nil {
+func init() { file_sgroups_queries_proto_init() }
+func file_sgroups_queries_proto_init() {
+	if File_sgroups_queries_proto != nil {
 		return
 	}
-	file_sgroups_v1_domains_proto_init()
-	file_sgroups_v1_queries_proto_msgTypes[15].OneofWrappers = []any{
+	file_sgroups_domains_proto_init()
+	file_sgroups_queries_proto_msgTypes[15].OneofWrappers = []any{
 		(*SyncReq_Groups)(nil),
 		(*SyncReq_Networks)(nil),
 		(*SyncReq_SgSgRules)(nil),
@@ -3913,23 +3913,23 @@ func file_sgroups_v1_queries_proto_init() {
 		(*SyncReq_ServiceRules)(nil),
 		(*SyncReq_SvcFqdnRules)(nil),
 	}
-	file_sgroups_v1_queries_proto_msgTypes[20].OneofWrappers = []any{
+	file_sgroups_queries_proto_msgTypes[20].OneofWrappers = []any{
 		(*ListHostsReq_None)(nil),
 		(*ListHostsReq_ByUUID_)(nil),
 		(*ListHostsReq_ByHostname)(nil),
 		(*ListHostsReq_BySgName)(nil),
 	}
-	file_sgroups_v1_queries_proto_msgTypes[22].OneofWrappers = []any{
+	file_sgroups_queries_proto_msgTypes[22].OneofWrappers = []any{
 		(*ListServicesReq_None)(nil),
 		(*ListServicesReq_BySvcName)(nil),
 		(*ListServicesReq_BySgName)(nil),
 	}
-	file_sgroups_v1_queries_proto_msgTypes[46].OneofWrappers = []any{
+	file_sgroups_queries_proto_msgTypes[46].OneofWrappers = []any{
 		(*ListSvcSvcRulesReq_None)(nil),
 		(*ListSvcSvcRulesReq_ByRuleName_)(nil),
 		(*ListSvcSvcRulesReq_BySvcFromTo_)(nil),
 	}
-	file_sgroups_v1_queries_proto_msgTypes[48].OneofWrappers = []any{
+	file_sgroups_queries_proto_msgTypes[48].OneofWrappers = []any{
 		(*ListSvcFqdnRulesReq_None)(nil),
 		(*ListSvcFqdnRulesReq_ByRuleName_)(nil),
 		(*ListSvcFqdnRulesReq_BySvcFrom_)(nil),
@@ -3938,18 +3938,18 @@ func file_sgroups_v1_queries_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_queries_proto_rawDesc), len(file_sgroups_v1_queries_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_queries_proto_rawDesc), len(file_sgroups_queries_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   64,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_sgroups_v1_queries_proto_goTypes,
-		DependencyIndexes: file_sgroups_v1_queries_proto_depIdxs,
-		EnumInfos:         file_sgroups_v1_queries_proto_enumTypes,
-		MessageInfos:      file_sgroups_v1_queries_proto_msgTypes,
+		GoTypes:           file_sgroups_queries_proto_goTypes,
+		DependencyIndexes: file_sgroups_queries_proto_depIdxs,
+		EnumInfos:         file_sgroups_queries_proto_enumTypes,
+		MessageInfos:      file_sgroups_queries_proto_msgTypes,
 	}.Build()
-	File_sgroups_v1_queries_proto = out.File
-	file_sgroups_v1_queries_proto_goTypes = nil
-	file_sgroups_v1_queries_proto_depIdxs = nil
+	File_sgroups_queries_proto = out.File
+	file_sgroups_queries_proto_goTypes = nil
+	file_sgroups_queries_proto_depIdxs = nil
 }

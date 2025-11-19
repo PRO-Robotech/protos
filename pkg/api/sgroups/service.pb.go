@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.6.1
-// source: sgroups/v1/service.proto
+// source: sgroups/service.proto
 
-package sgroupsv1
+package sgroups
 
 import (
 	empty "github.com/golang/protobuf/ptypes/empty"
@@ -23,11 +23,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-var File_sgroups_v1_service_proto protoreflect.FileDescriptor
+var File_sgroups_service_proto protoreflect.FileDescriptor
 
-const file_sgroups_v1_service_proto_rawDesc = "" +
+const file_sgroups_service_proto_rawDesc = "" +
 	"\n" +
-	"\x18sgroups/v1/service.proto\x12\x0ehbf.v1.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x18sgroups/v1/queries.proto\x1a\x18sgroups/v1/domains.proto2\xd6!\n" +
+	"\x15sgroups/service.proto\x12\x0ehbf.v1.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x15sgroups/queries.proto\x1a\x15sgroups/domains.proto2\xd6!\n" +
 	"\x0fSecGroupService\x12y\n" +
 	"\x04Sync\x12\x17.hbf.v1.sgroups.SyncReq\x1a\x16.google.protobuf.Empty\"@\x92A\x1b\x1a\x19Sync: makes changes in DB\x82\xd3\xe4\x93\x02\x1c:\x01*Z\r:\x01*\"\b/v2/sync\"\b/v1/sync\x12\xa5\x01\n" +
 	"\n" +
@@ -50,11 +50,11 @@ const file_sgroups_v1_service_proto_rawDesc = "" +
 	"\x0fFindIESgSgRules\x12\".hbf.v1.sgroups.FindIESgSgRulesReq\x1a\x1f.hbf.v1.sgroups.IESgSgRulesResp\"\x8f\x01\x92AV\x1aTFindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-<FROM|TO>\x82\xd3\xe4\x93\x020:\x01*Z\x17:\x01*\"\x12/v2/ie-sg-sg-rules\"\x12/v1/ie-sg-sg-rules\x12\x85\x02\n" +
 	"\x13FindIESgSgIcmpRules\x12&.hbf.v1.sgroups.FindIESgSgIcmpRulesReq\x1a#.hbf.v1.sgroups.IESgSgIcmpRulesResp\"\xa0\x01\x92A]\x1a[FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-<FROM|TO>\x82\xd3\xe4\x93\x02::\x01*Z\x1c:\x01*\"\x17/v2/ie-sg-sg-icmp-rules\"\x17/v1/ie-sg-sg-icmp-rules\x12\x8b\x02\n" +
 	"\x15FindIECidrSgIcmpRules\x12(.hbf.v1.sgroups.FindIECidrSgIcmpRulesReq\x1a%.hbf.v1.sgroups.IECidrSgIcmpRulesResp\"\xa0\x01\x92AY\x1aWFindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG\x82\xd3\xe4\x93\x02>:\x01*Z\x1e:\x01*\"\x19/v2/ie-cidr-sg-icmp-rules\"\x19/v1/ie-cidr-sg-icmp-rules\x12\xb1\x01\n" +
-	"\fUpdHostIPSet\x12\x1f.hbf.v1.sgroups.UpdHostIPSetReq\x1a\x16.google.protobuf.Empty\"h\x92A/\x1a-UpdHostIPSet: updates Host IPSet by host uuid\x82\xd3\xe4\x93\x020:\x01*Z\x17:\x01*\"\x12/v2/upd-host-ipset\"\x12/v1/upd-host-ipset\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xb1\x01\x92Aq\x12\x1a\n" +
+	"\fUpdHostIPSet\x12\x1f.hbf.v1.sgroups.UpdHostIPSetReq\x1a\x16.google.protobuf.Empty\"h\x92A/\x1a-UpdHostIPSet: updates Host IPSet by host uuid\x82\xd3\xe4\x93\x020:\x01*Z\x17:\x01*\"\x12/v2/upd-host-ipset\"\x12/v1/upd-host-ipset\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xac\x01\x92Aq\x12\x1a\n" +
 	"\x13Host Based Firewall2\x031.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
-	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ;github.com/PRO-Robotech/protos/pkg/api/sgroups/v1;sgroupsv1b\x06proto3"
+	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
-var file_sgroups_v1_service_proto_goTypes = []any{
+var file_sgroups_service_proto_goTypes = []any{
 	(*SyncReq)(nil),                  // 0: hbf.v1.sgroups.SyncReq
 	(*empty.Empty)(nil),              // 1: google.protobuf.Empty
 	(*ListNetworksReq)(nil),          // 2: hbf.v1.sgroups.ListNetworksReq
@@ -93,7 +93,7 @@ var file_sgroups_v1_service_proto_goTypes = []any{
 	(*IESgSgIcmpRulesResp)(nil),      // 35: hbf.v1.sgroups.IESgSgIcmpRulesResp
 	(*IECidrSgIcmpRulesResp)(nil),    // 36: hbf.v1.sgroups.IECidrSgIcmpRulesResp
 }
-var file_sgroups_v1_service_proto_depIdxs = []int32{
+var file_sgroups_service_proto_depIdxs = []int32{
 	0,  // 0: hbf.v1.sgroups.SecGroupService.Sync:input_type -> hbf.v1.sgroups.SyncReq
 	1,  // 1: hbf.v1.sgroups.SecGroupService.SyncStatus:input_type -> google.protobuf.Empty
 	1,  // 2: hbf.v1.sgroups.SecGroupService.SyncStatuses:input_type -> google.protobuf.Empty
@@ -143,27 +143,27 @@ var file_sgroups_v1_service_proto_depIdxs = []int32{
 	0,  // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_sgroups_v1_service_proto_init() }
-func file_sgroups_v1_service_proto_init() {
-	if File_sgroups_v1_service_proto != nil {
+func init() { file_sgroups_service_proto_init() }
+func file_sgroups_service_proto_init() {
+	if File_sgroups_service_proto != nil {
 		return
 	}
-	file_sgroups_v1_queries_proto_init()
-	file_sgroups_v1_domains_proto_init()
+	file_sgroups_queries_proto_init()
+	file_sgroups_domains_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_v1_service_proto_rawDesc), len(file_sgroups_v1_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_service_proto_rawDesc), len(file_sgroups_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_sgroups_v1_service_proto_goTypes,
-		DependencyIndexes: file_sgroups_v1_service_proto_depIdxs,
+		GoTypes:           file_sgroups_service_proto_goTypes,
+		DependencyIndexes: file_sgroups_service_proto_depIdxs,
 	}.Build()
-	File_sgroups_v1_service_proto = out.File
-	file_sgroups_v1_service_proto_goTypes = nil
-	file_sgroups_v1_service_proto_depIdxs = nil
+	File_sgroups_service_proto = out.File
+	file_sgroups_service_proto_goTypes = nil
+	file_sgroups_service_proto_depIdxs = nil
 }

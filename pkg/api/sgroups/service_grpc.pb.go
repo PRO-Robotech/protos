@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.6.1
-// source: sgroups/v1/service.proto
+// source: sgroups/service.proto
 
-package sgroupsv1
+package sgroups
 
 import (
 	context "context"
@@ -874,5 +874,5 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "sgroups/v1/service.proto",
+	Metadata: "sgroups/service.proto",
 }

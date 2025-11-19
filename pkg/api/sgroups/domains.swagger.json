@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "agent/v1/messages.proto",
+    "title": "sgroups/domains.proto",
     "version": "version not set"
   },
   "consumes": [

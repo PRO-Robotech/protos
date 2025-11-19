@@ -3,7 +3,7 @@ package pkg
 import (
 	"testing"
 
-	sgroups "github.com/PRO-Robotech/protos/pkg/api/sgroups/v1"
+	"github.com/PRO-Robotech/protos/pkg/api/sgroups"
 
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"

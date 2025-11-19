@@ -1,14 +1,14 @@
 syntax = "proto3";
 
 package hbf.v1.sgroups;
-option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups/v1;sgroupsv1";
+option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroups";
 
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-import "sgroups/v1/queries.proto";
-import "sgroups/v1/domains.proto";
+import "sgroups/queries.proto";
+import "sgroups/domains.proto";
 
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   info: {
