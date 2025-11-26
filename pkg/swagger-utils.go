@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/PRO-Robotech/protos/pkg/api/sgroups"
+
 	"github.com/go-openapi/spec"
 	"github.com/pkg/errors"
 )

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hbf.v2.sgroups;
+package hbf.v1.sgroups;
 option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroups";
 
 import "protoc-gen-openapiv2/options/annotations.proto";
@@ -111,7 +111,7 @@ message ProtoSpec {
     repeated AccPorts ports = 1;
   }
   message IcmpTypes {
-    repeated int32 types = 1;
+    repeated uint32 types = 1;
   }
   // tcp ports
   Ports tcp = 1;

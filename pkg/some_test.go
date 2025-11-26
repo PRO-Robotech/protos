@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/PRO-Robotech/protos/pkg/api/sgroups"
+
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 )

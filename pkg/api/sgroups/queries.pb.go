@@ -771,7 +771,7 @@ func (x *SyncSvcSvcRules) GetRules() []*SvcSvcRule {
 type SyncReq struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// sync operation to apply to
-	SyncOp SyncReq_SyncOp `protobuf:"varint,1,opt,name=sync_op,json=syncOp,proto3,enum=hbf.v2.sgroups.SyncReq_SyncOp" json:"sync_op,omitempty"`
+	SyncOp SyncReq_SyncOp `protobuf:"varint,1,opt,name=sync_op,json=syncOp,proto3,enum=hbf.v1.sgroups.SyncReq_SyncOp" json:"sync_op,omitempty"`
 	// one of subject
 	//
 	// Types that are valid to be assigned to Subject:
@@ -3520,56 +3520,56 @@ var File_sgroups_queries_proto protoreflect.FileDescriptor
 
 const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
-	"\x15sgroups/queries.proto\x12\x0ehbf.v2.sgroups\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x15sgroups/domains.proto\"K\n" +
+	"\x15sgroups/queries.proto\x12\x0ehbf.v1.sgroups\x1a\x1fgoogle/protobuf/timestamp.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x15sgroups/domains.proto\"K\n" +
 	"\x0eSyncStatusResp\x129\n" +
 	"\n" +
 	"updated_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"?\n" +
 	"\rSyncSgSgRules\x12.\n" +
-	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SgSgRuleR\x05rules\"?\n" +
+	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.SgSgRuleR\x05rules\"?\n" +
 	"\rSyncFqdnRules\x12.\n" +
-	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.FqdnRuleR\x05rules\"E\n" +
+	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.FqdnRuleR\x05rules\"E\n" +
 	"\x10SyncSvcFqdnRules\x121\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v2.sgroups.SvcFqdnRuleR\x05rules\"F\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v1.sgroups.SvcFqdnRuleR\x05rules\"F\n" +
 	"\x12SyncSecurityGroups\x120\n" +
-	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"C\n" +
+	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.SecGroupR\x06groups\"C\n" +
 	"\fSyncNetworks\x123\n" +
-	"\bnetworks\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.NetworkR\bnetworks\"C\n" +
+	"\bnetworks\x18\x01 \x03(\v2\x17.hbf.v1.sgroups.NetworkR\bnetworks\"C\n" +
 	"\x0fSyncSgIcmpRules\x120\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SgIcmpRuleR\x05rules\"G\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v1.sgroups.SgIcmpRuleR\x05rules\"G\n" +
 	"\x11SyncSgSgIcmpRules\x122\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v2.sgroups.SgSgIcmpRuleR\x05rules\"G\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v1.sgroups.SgSgIcmpRuleR\x05rules\"G\n" +
 	"\x11SyncIECidrSgRules\x122\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v2.sgroups.IECidrSgRuleR\x05rules\"C\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v1.sgroups.IECidrSgRuleR\x05rules\"C\n" +
 	"\x0fSyncIESgSgRules\x120\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.IESgSgRuleR\x05rules\"K\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v1.sgroups.IESgSgRuleR\x05rules\"K\n" +
 	"\x13SyncIESgSgIcmpRules\x124\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1e.hbf.v2.sgroups.IESgSgIcmpRuleR\x05rules\"O\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1e.hbf.v1.sgroups.IESgSgIcmpRuleR\x05rules\"O\n" +
 	"\x15SyncIECidrSgIcmpRules\x126\n" +
-	"\x05rules\x18\x01 \x03(\v2 .hbf.v2.sgroups.IECidrSgIcmpRuleR\x05rules\"7\n" +
+	"\x05rules\x18\x01 \x03(\v2 .hbf.v1.sgroups.IECidrSgIcmpRuleR\x05rules\"7\n" +
 	"\tSyncHosts\x12*\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts\"C\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v1.sgroups.HostR\x05hosts\"C\n" +
 	"\fSyncServices\x123\n" +
-	"\bservices\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.ServiceR\bservices\"C\n" +
+	"\bservices\x18\x01 \x03(\v2\x17.hbf.v1.sgroups.ServiceR\bservices\"C\n" +
 	"\x0fSyncSvcSvcRules\x120\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SvcSvcRuleR\x05rules\"\xe4\b\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v1.sgroups.SvcSvcRuleR\x05rules\"\xe4\b\n" +
 	"\aSyncReq\x127\n" +
-	"\async_op\x18\x01 \x01(\x0e2\x1e.hbf.v2.sgroups.SyncReq.SyncOpR\x06syncOp\x12<\n" +
-	"\x06groups\x18\x02 \x01(\v2\".hbf.v2.sgroups.SyncSecurityGroupsH\x00R\x06groups\x12:\n" +
-	"\bnetworks\x18\x03 \x01(\v2\x1c.hbf.v2.sgroups.SyncNetworksH\x00R\bnetworks\x12?\n" +
-	"\vsg_sg_rules\x18\x04 \x01(\v2\x1d.hbf.v2.sgroups.SyncSgSgRulesH\x00R\tsgSgRules\x12>\n" +
+	"\async_op\x18\x01 \x01(\x0e2\x1e.hbf.v1.sgroups.SyncReq.SyncOpR\x06syncOp\x12<\n" +
+	"\x06groups\x18\x02 \x01(\v2\".hbf.v1.sgroups.SyncSecurityGroupsH\x00R\x06groups\x12:\n" +
+	"\bnetworks\x18\x03 \x01(\v2\x1c.hbf.v1.sgroups.SyncNetworksH\x00R\bnetworks\x12?\n" +
+	"\vsg_sg_rules\x18\x04 \x01(\v2\x1d.hbf.v1.sgroups.SyncSgSgRulesH\x00R\tsgSgRules\x12>\n" +
 	"\n" +
-	"fqdn_rules\x18\x05 \x01(\v2\x1d.hbf.v2.sgroups.SyncFqdnRulesH\x00R\tfqdnRules\x12E\n" +
-	"\rsg_icmp_rules\x18\x06 \x01(\v2\x1f.hbf.v2.sgroups.SyncSgIcmpRulesH\x00R\vsgIcmpRules\x12L\n" +
-	"\x10sg_sg_icmp_rules\x18\a \x01(\v2!.hbf.v2.sgroups.SyncSgSgIcmpRulesH\x00R\rsgSgIcmpRules\x12L\n" +
-	"\x10ie_cidr_sg_rules\x18\b \x01(\v2!.hbf.v2.sgroups.SyncIECidrSgRulesH\x00R\rieCidrSgRules\x12F\n" +
-	"\x0eie_sg_sg_rules\x18\t \x01(\v2\x1f.hbf.v2.sgroups.SyncIESgSgRulesH\x00R\vieSgSgRules\x12S\n" +
+	"fqdn_rules\x18\x05 \x01(\v2\x1d.hbf.v1.sgroups.SyncFqdnRulesH\x00R\tfqdnRules\x12E\n" +
+	"\rsg_icmp_rules\x18\x06 \x01(\v2\x1f.hbf.v1.sgroups.SyncSgIcmpRulesH\x00R\vsgIcmpRules\x12L\n" +
+	"\x10sg_sg_icmp_rules\x18\a \x01(\v2!.hbf.v1.sgroups.SyncSgSgIcmpRulesH\x00R\rsgSgIcmpRules\x12L\n" +
+	"\x10ie_cidr_sg_rules\x18\b \x01(\v2!.hbf.v1.sgroups.SyncIECidrSgRulesH\x00R\rieCidrSgRules\x12F\n" +
+	"\x0eie_sg_sg_rules\x18\t \x01(\v2\x1f.hbf.v1.sgroups.SyncIESgSgRulesH\x00R\vieSgSgRules\x12S\n" +
 	"\x13ie_sg_sg_icmp_rules\x18\n" +
-	" \x01(\v2#.hbf.v2.sgroups.SyncIESgSgIcmpRulesH\x00R\x0fieSgSgIcmpRules\x12Y\n" +
-	"\x15ie_cidr_sg_icmp_rules\x18\v \x01(\v2%.hbf.v2.sgroups.SyncIECidrSgIcmpRulesH\x00R\x11ieCidrSgIcmpRules\x121\n" +
-	"\x05hosts\x18\f \x01(\v2\x19.hbf.v2.sgroups.SyncHostsH\x00R\x05hosts\x12:\n" +
-	"\bservices\x18\r \x01(\v2\x1c.hbf.v2.sgroups.SyncServicesH\x00R\bservices\x12F\n" +
-	"\rservice_rules\x18\x0e \x01(\v2\x1f.hbf.v2.sgroups.SyncSvcSvcRulesH\x00R\fserviceRules\x12H\n" +
-	"\x0esvc_fqdn_rules\x18\x0f \x01(\v2 .hbf.v2.sgroups.SyncSvcFqdnRulesH\x00R\fsvcFqdnRules\">\n" +
+	" \x01(\v2#.hbf.v1.sgroups.SyncIESgSgIcmpRulesH\x00R\x0fieSgSgIcmpRules\x12Y\n" +
+	"\x15ie_cidr_sg_icmp_rules\x18\v \x01(\v2%.hbf.v1.sgroups.SyncIECidrSgIcmpRulesH\x00R\x11ieCidrSgIcmpRules\x121\n" +
+	"\x05hosts\x18\f \x01(\v2\x19.hbf.v1.sgroups.SyncHostsH\x00R\x05hosts\x12:\n" +
+	"\bservices\x18\r \x01(\v2\x1c.hbf.v1.sgroups.SyncServicesH\x00R\bservices\x12F\n" +
+	"\rservice_rules\x18\x0e \x01(\v2\x1f.hbf.v1.sgroups.SyncSvcSvcRulesH\x00R\fserviceRules\x12H\n" +
+	"\x0esvc_fqdn_rules\x18\x0f \x01(\v2 .hbf.v1.sgroups.SyncSvcFqdnRulesH\x00R\fsvcFqdnRules\">\n" +
 	"\x06SyncOp\x12\b\n" +
 	"\x04NoOp\x10\x00\x12\f\n" +
 	"\bFullSync\x10\x04\x12\n" +
@@ -3581,18 +3581,18 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\x0fListNetworksReq\x12#\n" +
 	"\rnetwork_names\x18\x01 \x03(\tR\fnetworkNames\"G\n" +
 	"\x10ListNetworksResp\x123\n" +
-	"\bnetworks\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.NetworkR\bnetworks\"2\n" +
+	"\bnetworks\x18\x01 \x03(\v2\x17.hbf.v1.sgroups.NetworkR\bnetworks\"2\n" +
 	"\x15ListSecurityGroupsReq\x12\x19\n" +
 	"\bsg_names\x18\x01 \x03(\tR\asgNames\"J\n" +
 	"\x16ListSecurityGroupsResp\x120\n" +
-	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SecGroupR\x06groups\"\x93\x03\n" +
+	"\x06groups\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.SecGroupR\x06groups\"\x93\x03\n" +
 	"\fListHostsReq\x12;\n" +
-	"\x04none\x18\x01 \x01(\v2%.hbf.v2.sgroups.ListHostsReq.NoFilterH\x00R\x04none\x12=\n" +
-	"\x06byUUID\x18\x02 \x01(\v2#.hbf.v2.sgroups.ListHostsReq.ByUUIDH\x00R\x06byUUID\x12J\n" +
-	"\vby_hostname\x18\x03 \x01(\v2'.hbf.v2.sgroups.ListHostsReq.ByHostNameH\x00R\n" +
+	"\x04none\x18\x01 \x01(\v2%.hbf.v1.sgroups.ListHostsReq.NoFilterH\x00R\x04none\x12=\n" +
+	"\x06byUUID\x18\x02 \x01(\v2#.hbf.v1.sgroups.ListHostsReq.ByUUIDH\x00R\x06byUUID\x12J\n" +
+	"\vby_hostname\x18\x03 \x01(\v2'.hbf.v1.sgroups.ListHostsReq.ByHostNameH\x00R\n" +
 	"byHostname\x12A\n" +
 	"\n" +
-	"by_sg_name\x18\x04 \x01(\v2!.hbf.v2.sgroups.ListHostsReq.BySGH\x00R\bbySgName\x1a\n" +
+	"by_sg_name\x18\x04 \x01(\v2!.hbf.v1.sgroups.ListHostsReq.BySGH\x00R\bbySgName\x1a\n" +
 	"\n" +
 	"\bNoFilter\x1a\x1e\n" +
 	"\x06ByUUID\x12\x14\n" +
@@ -3605,12 +3605,12 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\";\n" +
 	"\rListHostsResp\x12*\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v2.sgroups.HostR\x05hosts\"\xbd\x02\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v1.sgroups.HostR\x05hosts\"\xbd\x02\n" +
 	"\x0fListServicesReq\x12>\n" +
-	"\x04none\x18\x01 \x01(\v2(.hbf.v2.sgroups.ListServicesReq.NoFilterH\x00R\x04none\x12K\n" +
-	"\vby_svc_name\x18\x02 \x01(\v2).hbf.v2.sgroups.ListServicesReq.BySVCNameH\x00R\tbySvcName\x12D\n" +
+	"\x04none\x18\x01 \x01(\v2(.hbf.v1.sgroups.ListServicesReq.NoFilterH\x00R\x04none\x12K\n" +
+	"\vby_svc_name\x18\x02 \x01(\v2).hbf.v1.sgroups.ListServicesReq.BySVCNameH\x00R\tbySvcName\x12D\n" +
 	"\n" +
-	"by_sg_name\x18\x03 \x01(\v2$.hbf.v2.sgroups.ListServicesReq.BySGH\x00R\bbySgName\x1a\n" +
+	"by_sg_name\x18\x03 \x01(\v2$.hbf.v1.sgroups.ListServicesReq.BySGH\x00R\bbySgName\x1a\n" +
 	"\n" +
 	"\bNoFilter\x1a!\n" +
 	"\tBySVCName\x12\x14\n" +
@@ -3620,12 +3620,12 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\"G\n" +
 	"\x10ListServicesResp\x123\n" +
-	"\bservices\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.ServiceR\bservices\":\n" +
+	"\bservices\x18\x01 \x03(\v2\x17.hbf.v1.sgroups.ServiceR\bservices\":\n" +
 	"\x0fGetSgSubnetsReq\x12\x17\n" +
 	"\asg_name\x18\x01 \x01(\tR\x06sgName:\x0e\x92A\v\n" +
 	"\t\xd2\x01\x06sgName\"G\n" +
 	"\x10GetSgSubnetsResp\x123\n" +
-	"\bnetworks\x18\x01 \x03(\v2\x17.hbf.v2.sgroups.NetworkR\bnetworks\"V\n" +
+	"\bnetworks\x18\x01 \x03(\v2\x17.hbf.v1.sgroups.NetworkR\bnetworks\"V\n" +
 	"\x0fGetSgSgRulesReq\x12\x17\n" +
 	"\asg_from\x18\x01 \x01(\tR\x06sgFrom\x12\x13\n" +
 	"\x05sg_to\x18\x02 \x01(\tR\x04sgTo:\x15\x92A\x12\n" +
@@ -3635,50 +3635,50 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\x05sg_to\x18\x02 \x03(\tR\x04sgTo:\x15\x92A\x12\n" +
 	"\x10\xd2\x01\x06sgFrom\xd2\x01\x04sgTo\"?\n" +
 	"\rSgSgRulesResp\x12.\n" +
-	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.SgSgRuleR\x05rules\";\n" +
+	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.SgSgRuleR\x05rules\";\n" +
 	"\x10FindFqdnRulesReq\x12\x17\n" +
 	"\asg_from\x18\x01 \x03(\tR\x06sgFrom:\x0e\x92A\v\n" +
 	"\t\xd2\x01\x06sgFrom\"?\n" +
 	"\rFqdnRulesResp\x12.\n" +
-	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v2.sgroups.FqdnRuleR\x05rules\"E\n" +
+	"\x05rules\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.FqdnRuleR\x05rules\"E\n" +
 	"\x10SvcFqdnRulesResp\x121\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v2.sgroups.SvcFqdnRuleR\x05rules\"0\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v1.sgroups.SvcFqdnRuleR\x05rules\"0\n" +
 	"\x12FindSgIcmpRulesReq\x12\x0e\n" +
 	"\x02SG\x18\x01 \x03(\tR\x02SG:\n" +
 	"\x92A\a\n" +
 	"\x05\xd2\x01\x02SG\"C\n" +
 	"\x0fSgIcmpRulesResp\x120\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SgIcmpRuleR\x05rules\"[\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v1.sgroups.SgIcmpRuleR\x05rules\"[\n" +
 	"\x14FindSgSgIcmpRulesReq\x12\x17\n" +
 	"\asg_from\x18\x01 \x03(\tR\x06sgFrom\x12\x13\n" +
 	"\x05sg_to\x18\x02 \x03(\tR\x04sgTo:\x15\x92A\x12\n" +
 	"\x10\xd2\x01\x06sgFrom\xd2\x01\x04sgTo\"G\n" +
 	"\x11SgSgIcmpRulesResp\x122\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v2.sgroups.SgSgIcmpRuleR\x05rules\"2\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v1.sgroups.SgSgIcmpRuleR\x05rules\"2\n" +
 	"\x14FindIECidrSgRulesReq\x12\x0e\n" +
 	"\x02SG\x18\x01 \x03(\tR\x02SG:\n" +
 	"\x92A\a\n" +
 	"\x05\xd2\x01\x02SG\"G\n" +
 	"\x11IECidrSgRulesResp\x122\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v2.sgroups.IECidrSgRuleR\x05rules\"U\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1c.hbf.v1.sgroups.IECidrSgRuleR\x05rules\"U\n" +
 	"\x12FindIESgSgRulesReq\x12\x0e\n" +
 	"\x02SG\x18\x01 \x03(\tR\x02SG\x12\x19\n" +
 	"\bsg_local\x18\x02 \x03(\tR\asgLocal:\x14\x92A\x11\n" +
 	"\x0f\xd2\x01\x02SG\xd2\x01\asgLocal\"C\n" +
 	"\x0fIESgSgRulesResp\x120\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.IESgSgRuleR\x05rules\"Y\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v1.sgroups.IESgSgRuleR\x05rules\"Y\n" +
 	"\x16FindIESgSgIcmpRulesReq\x12\x0e\n" +
 	"\x02SG\x18\x01 \x03(\tR\x02SG\x12\x19\n" +
 	"\bsg_local\x18\x02 \x03(\tR\asgLocal:\x14\x92A\x11\n" +
 	"\x0f\xd2\x01\x02SG\xd2\x01\asgLocal\"K\n" +
 	"\x13IESgSgIcmpRulesResp\x124\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1e.hbf.v2.sgroups.IESgSgIcmpRuleR\x05rules\"6\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1e.hbf.v1.sgroups.IESgSgIcmpRuleR\x05rules\"6\n" +
 	"\x18FindIECidrSgIcmpRulesReq\x12\x0e\n" +
 	"\x02SG\x18\x01 \x03(\tR\x02SG:\n" +
 	"\x92A\a\n" +
 	"\x05\xd2\x01\x02SG\"O\n" +
 	"\x15IECidrSgIcmpRulesResp\x126\n" +
-	"\x05rules\x18\x01 \x03(\v2 .hbf.v2.sgroups.IECidrSgIcmpRuleR\x05rules\"E\n" +
+	"\x05rules\x18\x01 \x03(\v2 .hbf.v1.sgroups.IECidrSgIcmpRuleR\x05rules\"E\n" +
 	"\x18GetSecGroupForAddressReq\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress:\x0f\x92A\f\n" +
 	"\n" +
@@ -3688,10 +3688,10 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\thost_name\x18\x02 \x01(\tR\bhostName:\x1d\x92A\x1a\n" +
 	"\x18\xd2\x01\thost_uuid\xd2\x01\thost_name\"\x97\x03\n" +
 	"\x12ListSvcSvcRulesReq\x12A\n" +
-	"\x04none\x18\x01 \x01(\v2+.hbf.v2.sgroups.ListSvcSvcRulesReq.NoFilterH\x00R\x04none\x12Q\n" +
-	"\fby_rule_name\x18\x02 \x01(\v2-.hbf.v2.sgroups.ListSvcSvcRulesReq.ByRuleNameH\x00R\n" +
+	"\x04none\x18\x01 \x01(\v2+.hbf.v1.sgroups.ListSvcSvcRulesReq.NoFilterH\x00R\x04none\x12Q\n" +
+	"\fby_rule_name\x18\x02 \x01(\v2-.hbf.v1.sgroups.ListSvcSvcRulesReq.ByRuleNameH\x00R\n" +
 	"byRuleName\x12U\n" +
-	"\x0eby_svc_from_to\x18\x03 \x01(\v2..hbf.v2.sgroups.ListSvcSvcRulesReq.BySvcFromToH\x00R\vbySvcFromTo\x1a\n" +
+	"\x0eby_svc_from_to\x18\x03 \x01(\v2..hbf.v1.sgroups.ListSvcSvcRulesReq.BySvcFromToH\x00R\vbySvcFromTo\x1a\n" +
 	"\n" +
 	"\bNoFilter\x1a\"\n" +
 	"\n" +
@@ -3704,12 +3704,12 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\"G\n" +
 	"\x13ListSvcSvcRulesResp\x120\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v2.sgroups.SvcSvcRuleR\x05rules\"\xf3\x02\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1a.hbf.v1.sgroups.SvcSvcRuleR\x05rules\"\xf3\x02\n" +
 	"\x13ListSvcFqdnRulesReq\x12B\n" +
-	"\x04none\x18\x01 \x01(\v2,.hbf.v2.sgroups.ListSvcFqdnRulesReq.NoFilterH\x00R\x04none\x12R\n" +
-	"\fby_rule_name\x18\x02 \x01(\v2..hbf.v2.sgroups.ListSvcFqdnRulesReq.ByRuleNameH\x00R\n" +
+	"\x04none\x18\x01 \x01(\v2,.hbf.v1.sgroups.ListSvcFqdnRulesReq.NoFilterH\x00R\x04none\x12R\n" +
+	"\fby_rule_name\x18\x02 \x01(\v2..hbf.v1.sgroups.ListSvcFqdnRulesReq.ByRuleNameH\x00R\n" +
 	"byRuleName\x12O\n" +
-	"\vby_svc_from\x18\x03 \x01(\v2-.hbf.v2.sgroups.ListSvcFqdnRulesReq.BySvcFromH\x00R\tbySvcFrom\x1a\n" +
+	"\vby_svc_from\x18\x03 \x01(\v2-.hbf.v1.sgroups.ListSvcFqdnRulesReq.BySvcFromH\x00R\tbySvcFrom\x1a\n" +
 	"\n" +
 	"\bNoFilter\x1a\"\n" +
 	"\n" +
@@ -3722,9 +3722,9 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\"I\n" +
 	"\x14ListSvcFqdnRulesResp\x121\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v2.sgroups.SvcFqdnRuleR\x05rules\"B\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v1.sgroups.SvcFqdnRuleR\x05rules\"B\n" +
 	"\x0fUpdHostIPSetReq\x12/\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x19.hbf.v2.sgroups.HostIPSetR\x05hostsB8Z6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
+	"\x05hosts\x18\x01 \x03(\v2\x19.hbf.v1.sgroups.HostIPSetR\x05hostsB8Z6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
 var (
 	file_sgroups_queries_proto_rawDescOnce sync.Once
@@ -3741,149 +3741,149 @@ func file_sgroups_queries_proto_rawDescGZIP() []byte {
 var file_sgroups_queries_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_sgroups_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 64)
 var file_sgroups_queries_proto_goTypes = []any{
-	(SyncReq_SyncOp)(0),                    // 0: hbf.v2.sgroups.SyncReq.SyncOp
-	(*SyncStatusResp)(nil),                 // 1: hbf.v2.sgroups.SyncStatusResp
-	(*SyncSgSgRules)(nil),                  // 2: hbf.v2.sgroups.SyncSgSgRules
-	(*SyncFqdnRules)(nil),                  // 3: hbf.v2.sgroups.SyncFqdnRules
-	(*SyncSvcFqdnRules)(nil),               // 4: hbf.v2.sgroups.SyncSvcFqdnRules
-	(*SyncSecurityGroups)(nil),             // 5: hbf.v2.sgroups.SyncSecurityGroups
-	(*SyncNetworks)(nil),                   // 6: hbf.v2.sgroups.SyncNetworks
-	(*SyncSgIcmpRules)(nil),                // 7: hbf.v2.sgroups.SyncSgIcmpRules
-	(*SyncSgSgIcmpRules)(nil),              // 8: hbf.v2.sgroups.SyncSgSgIcmpRules
-	(*SyncIECidrSgRules)(nil),              // 9: hbf.v2.sgroups.SyncIECidrSgRules
-	(*SyncIESgSgRules)(nil),                // 10: hbf.v2.sgroups.SyncIESgSgRules
-	(*SyncIESgSgIcmpRules)(nil),            // 11: hbf.v2.sgroups.SyncIESgSgIcmpRules
-	(*SyncIECidrSgIcmpRules)(nil),          // 12: hbf.v2.sgroups.SyncIECidrSgIcmpRules
-	(*SyncHosts)(nil),                      // 13: hbf.v2.sgroups.SyncHosts
-	(*SyncServices)(nil),                   // 14: hbf.v2.sgroups.SyncServices
-	(*SyncSvcSvcRules)(nil),                // 15: hbf.v2.sgroups.SyncSvcSvcRules
-	(*SyncReq)(nil),                        // 16: hbf.v2.sgroups.SyncReq
-	(*ListNetworksReq)(nil),                // 17: hbf.v2.sgroups.ListNetworksReq
-	(*ListNetworksResp)(nil),               // 18: hbf.v2.sgroups.ListNetworksResp
-	(*ListSecurityGroupsReq)(nil),          // 19: hbf.v2.sgroups.ListSecurityGroupsReq
-	(*ListSecurityGroupsResp)(nil),         // 20: hbf.v2.sgroups.ListSecurityGroupsResp
-	(*ListHostsReq)(nil),                   // 21: hbf.v2.sgroups.ListHostsReq
-	(*ListHostsResp)(nil),                  // 22: hbf.v2.sgroups.ListHostsResp
-	(*ListServicesReq)(nil),                // 23: hbf.v2.sgroups.ListServicesReq
-	(*ListServicesResp)(nil),               // 24: hbf.v2.sgroups.ListServicesResp
-	(*GetSgSubnetsReq)(nil),                // 25: hbf.v2.sgroups.GetSgSubnetsReq
-	(*GetSgSubnetsResp)(nil),               // 26: hbf.v2.sgroups.GetSgSubnetsResp
-	(*GetSgSgRulesReq)(nil),                // 27: hbf.v2.sgroups.GetSgSgRulesReq
-	(*FindSgSgRulesReq)(nil),               // 28: hbf.v2.sgroups.FindSgSgRulesReq
-	(*SgSgRulesResp)(nil),                  // 29: hbf.v2.sgroups.SgSgRulesResp
-	(*FindFqdnRulesReq)(nil),               // 30: hbf.v2.sgroups.FindFqdnRulesReq
-	(*FqdnRulesResp)(nil),                  // 31: hbf.v2.sgroups.FqdnRulesResp
-	(*SvcFqdnRulesResp)(nil),               // 32: hbf.v2.sgroups.SvcFqdnRulesResp
-	(*FindSgIcmpRulesReq)(nil),             // 33: hbf.v2.sgroups.FindSgIcmpRulesReq
-	(*SgIcmpRulesResp)(nil),                // 34: hbf.v2.sgroups.SgIcmpRulesResp
-	(*FindSgSgIcmpRulesReq)(nil),           // 35: hbf.v2.sgroups.FindSgSgIcmpRulesReq
-	(*SgSgIcmpRulesResp)(nil),              // 36: hbf.v2.sgroups.SgSgIcmpRulesResp
-	(*FindIECidrSgRulesReq)(nil),           // 37: hbf.v2.sgroups.FindIECidrSgRulesReq
-	(*IECidrSgRulesResp)(nil),              // 38: hbf.v2.sgroups.IECidrSgRulesResp
-	(*FindIESgSgRulesReq)(nil),             // 39: hbf.v2.sgroups.FindIESgSgRulesReq
-	(*IESgSgRulesResp)(nil),                // 40: hbf.v2.sgroups.IESgSgRulesResp
-	(*FindIESgSgIcmpRulesReq)(nil),         // 41: hbf.v2.sgroups.FindIESgSgIcmpRulesReq
-	(*IESgSgIcmpRulesResp)(nil),            // 42: hbf.v2.sgroups.IESgSgIcmpRulesResp
-	(*FindIECidrSgIcmpRulesReq)(nil),       // 43: hbf.v2.sgroups.FindIECidrSgIcmpRulesReq
-	(*IECidrSgIcmpRulesResp)(nil),          // 44: hbf.v2.sgroups.IECidrSgIcmpRulesResp
-	(*GetSecGroupForAddressReq)(nil),       // 45: hbf.v2.sgroups.GetSecGroupForAddressReq
-	(*GetSecGroupForHostReq)(nil),          // 46: hbf.v2.sgroups.GetSecGroupForHostReq
-	(*ListSvcSvcRulesReq)(nil),             // 47: hbf.v2.sgroups.ListSvcSvcRulesReq
-	(*ListSvcSvcRulesResp)(nil),            // 48: hbf.v2.sgroups.ListSvcSvcRulesResp
-	(*ListSvcFqdnRulesReq)(nil),            // 49: hbf.v2.sgroups.ListSvcFqdnRulesReq
-	(*ListSvcFqdnRulesResp)(nil),           // 50: hbf.v2.sgroups.ListSvcFqdnRulesResp
-	(*UpdHostIPSetReq)(nil),                // 51: hbf.v2.sgroups.UpdHostIPSetReq
-	(*ListHostsReq_NoFilter)(nil),          // 52: hbf.v2.sgroups.ListHostsReq.NoFilter
-	(*ListHostsReq_ByUUID)(nil),            // 53: hbf.v2.sgroups.ListHostsReq.ByUUID
-	(*ListHostsReq_ByHostName)(nil),        // 54: hbf.v2.sgroups.ListHostsReq.ByHostName
-	(*ListHostsReq_BySG)(nil),              // 55: hbf.v2.sgroups.ListHostsReq.BySG
-	(*ListServicesReq_NoFilter)(nil),       // 56: hbf.v2.sgroups.ListServicesReq.NoFilter
-	(*ListServicesReq_BySVCName)(nil),      // 57: hbf.v2.sgroups.ListServicesReq.BySVCName
-	(*ListServicesReq_BySG)(nil),           // 58: hbf.v2.sgroups.ListServicesReq.BySG
-	(*ListSvcSvcRulesReq_NoFilter)(nil),    // 59: hbf.v2.sgroups.ListSvcSvcRulesReq.NoFilter
-	(*ListSvcSvcRulesReq_ByRuleName)(nil),  // 60: hbf.v2.sgroups.ListSvcSvcRulesReq.ByRuleName
-	(*ListSvcSvcRulesReq_BySvcFromTo)(nil), // 61: hbf.v2.sgroups.ListSvcSvcRulesReq.BySvcFromTo
-	(*ListSvcFqdnRulesReq_NoFilter)(nil),   // 62: hbf.v2.sgroups.ListSvcFqdnRulesReq.NoFilter
-	(*ListSvcFqdnRulesReq_ByRuleName)(nil), // 63: hbf.v2.sgroups.ListSvcFqdnRulesReq.ByRuleName
-	(*ListSvcFqdnRulesReq_BySvcFrom)(nil),  // 64: hbf.v2.sgroups.ListSvcFqdnRulesReq.BySvcFrom
+	(SyncReq_SyncOp)(0),                    // 0: hbf.v1.sgroups.SyncReq.SyncOp
+	(*SyncStatusResp)(nil),                 // 1: hbf.v1.sgroups.SyncStatusResp
+	(*SyncSgSgRules)(nil),                  // 2: hbf.v1.sgroups.SyncSgSgRules
+	(*SyncFqdnRules)(nil),                  // 3: hbf.v1.sgroups.SyncFqdnRules
+	(*SyncSvcFqdnRules)(nil),               // 4: hbf.v1.sgroups.SyncSvcFqdnRules
+	(*SyncSecurityGroups)(nil),             // 5: hbf.v1.sgroups.SyncSecurityGroups
+	(*SyncNetworks)(nil),                   // 6: hbf.v1.sgroups.SyncNetworks
+	(*SyncSgIcmpRules)(nil),                // 7: hbf.v1.sgroups.SyncSgIcmpRules
+	(*SyncSgSgIcmpRules)(nil),              // 8: hbf.v1.sgroups.SyncSgSgIcmpRules
+	(*SyncIECidrSgRules)(nil),              // 9: hbf.v1.sgroups.SyncIECidrSgRules
+	(*SyncIESgSgRules)(nil),                // 10: hbf.v1.sgroups.SyncIESgSgRules
+	(*SyncIESgSgIcmpRules)(nil),            // 11: hbf.v1.sgroups.SyncIESgSgIcmpRules
+	(*SyncIECidrSgIcmpRules)(nil),          // 12: hbf.v1.sgroups.SyncIECidrSgIcmpRules
+	(*SyncHosts)(nil),                      // 13: hbf.v1.sgroups.SyncHosts
+	(*SyncServices)(nil),                   // 14: hbf.v1.sgroups.SyncServices
+	(*SyncSvcSvcRules)(nil),                // 15: hbf.v1.sgroups.SyncSvcSvcRules
+	(*SyncReq)(nil),                        // 16: hbf.v1.sgroups.SyncReq
+	(*ListNetworksReq)(nil),                // 17: hbf.v1.sgroups.ListNetworksReq
+	(*ListNetworksResp)(nil),               // 18: hbf.v1.sgroups.ListNetworksResp
+	(*ListSecurityGroupsReq)(nil),          // 19: hbf.v1.sgroups.ListSecurityGroupsReq
+	(*ListSecurityGroupsResp)(nil),         // 20: hbf.v1.sgroups.ListSecurityGroupsResp
+	(*ListHostsReq)(nil),                   // 21: hbf.v1.sgroups.ListHostsReq
+	(*ListHostsResp)(nil),                  // 22: hbf.v1.sgroups.ListHostsResp
+	(*ListServicesReq)(nil),                // 23: hbf.v1.sgroups.ListServicesReq
+	(*ListServicesResp)(nil),               // 24: hbf.v1.sgroups.ListServicesResp
+	(*GetSgSubnetsReq)(nil),                // 25: hbf.v1.sgroups.GetSgSubnetsReq
+	(*GetSgSubnetsResp)(nil),               // 26: hbf.v1.sgroups.GetSgSubnetsResp
+	(*GetSgSgRulesReq)(nil),                // 27: hbf.v1.sgroups.GetSgSgRulesReq
+	(*FindSgSgRulesReq)(nil),               // 28: hbf.v1.sgroups.FindSgSgRulesReq
+	(*SgSgRulesResp)(nil),                  // 29: hbf.v1.sgroups.SgSgRulesResp
+	(*FindFqdnRulesReq)(nil),               // 30: hbf.v1.sgroups.FindFqdnRulesReq
+	(*FqdnRulesResp)(nil),                  // 31: hbf.v1.sgroups.FqdnRulesResp
+	(*SvcFqdnRulesResp)(nil),               // 32: hbf.v1.sgroups.SvcFqdnRulesResp
+	(*FindSgIcmpRulesReq)(nil),             // 33: hbf.v1.sgroups.FindSgIcmpRulesReq
+	(*SgIcmpRulesResp)(nil),                // 34: hbf.v1.sgroups.SgIcmpRulesResp
+	(*FindSgSgIcmpRulesReq)(nil),           // 35: hbf.v1.sgroups.FindSgSgIcmpRulesReq
+	(*SgSgIcmpRulesResp)(nil),              // 36: hbf.v1.sgroups.SgSgIcmpRulesResp
+	(*FindIECidrSgRulesReq)(nil),           // 37: hbf.v1.sgroups.FindIECidrSgRulesReq
+	(*IECidrSgRulesResp)(nil),              // 38: hbf.v1.sgroups.IECidrSgRulesResp
+	(*FindIESgSgRulesReq)(nil),             // 39: hbf.v1.sgroups.FindIESgSgRulesReq
+	(*IESgSgRulesResp)(nil),                // 40: hbf.v1.sgroups.IESgSgRulesResp
+	(*FindIESgSgIcmpRulesReq)(nil),         // 41: hbf.v1.sgroups.FindIESgSgIcmpRulesReq
+	(*IESgSgIcmpRulesResp)(nil),            // 42: hbf.v1.sgroups.IESgSgIcmpRulesResp
+	(*FindIECidrSgIcmpRulesReq)(nil),       // 43: hbf.v1.sgroups.FindIECidrSgIcmpRulesReq
+	(*IECidrSgIcmpRulesResp)(nil),          // 44: hbf.v1.sgroups.IECidrSgIcmpRulesResp
+	(*GetSecGroupForAddressReq)(nil),       // 45: hbf.v1.sgroups.GetSecGroupForAddressReq
+	(*GetSecGroupForHostReq)(nil),          // 46: hbf.v1.sgroups.GetSecGroupForHostReq
+	(*ListSvcSvcRulesReq)(nil),             // 47: hbf.v1.sgroups.ListSvcSvcRulesReq
+	(*ListSvcSvcRulesResp)(nil),            // 48: hbf.v1.sgroups.ListSvcSvcRulesResp
+	(*ListSvcFqdnRulesReq)(nil),            // 49: hbf.v1.sgroups.ListSvcFqdnRulesReq
+	(*ListSvcFqdnRulesResp)(nil),           // 50: hbf.v1.sgroups.ListSvcFqdnRulesResp
+	(*UpdHostIPSetReq)(nil),                // 51: hbf.v1.sgroups.UpdHostIPSetReq
+	(*ListHostsReq_NoFilter)(nil),          // 52: hbf.v1.sgroups.ListHostsReq.NoFilter
+	(*ListHostsReq_ByUUID)(nil),            // 53: hbf.v1.sgroups.ListHostsReq.ByUUID
+	(*ListHostsReq_ByHostName)(nil),        // 54: hbf.v1.sgroups.ListHostsReq.ByHostName
+	(*ListHostsReq_BySG)(nil),              // 55: hbf.v1.sgroups.ListHostsReq.BySG
+	(*ListServicesReq_NoFilter)(nil),       // 56: hbf.v1.sgroups.ListServicesReq.NoFilter
+	(*ListServicesReq_BySVCName)(nil),      // 57: hbf.v1.sgroups.ListServicesReq.BySVCName
+	(*ListServicesReq_BySG)(nil),           // 58: hbf.v1.sgroups.ListServicesReq.BySG
+	(*ListSvcSvcRulesReq_NoFilter)(nil),    // 59: hbf.v1.sgroups.ListSvcSvcRulesReq.NoFilter
+	(*ListSvcSvcRulesReq_ByRuleName)(nil),  // 60: hbf.v1.sgroups.ListSvcSvcRulesReq.ByRuleName
+	(*ListSvcSvcRulesReq_BySvcFromTo)(nil), // 61: hbf.v1.sgroups.ListSvcSvcRulesReq.BySvcFromTo
+	(*ListSvcFqdnRulesReq_NoFilter)(nil),   // 62: hbf.v1.sgroups.ListSvcFqdnRulesReq.NoFilter
+	(*ListSvcFqdnRulesReq_ByRuleName)(nil), // 63: hbf.v1.sgroups.ListSvcFqdnRulesReq.ByRuleName
+	(*ListSvcFqdnRulesReq_BySvcFrom)(nil),  // 64: hbf.v1.sgroups.ListSvcFqdnRulesReq.BySvcFrom
 	(*timestamp.Timestamp)(nil),            // 65: google.protobuf.Timestamp
-	(*SgSgRule)(nil),                       // 66: hbf.v2.sgroups.SgSgRule
-	(*FqdnRule)(nil),                       // 67: hbf.v2.sgroups.FqdnRule
-	(*SvcFqdnRule)(nil),                    // 68: hbf.v2.sgroups.SvcFqdnRule
-	(*SecGroup)(nil),                       // 69: hbf.v2.sgroups.SecGroup
-	(*Network)(nil),                        // 70: hbf.v2.sgroups.Network
-	(*SgIcmpRule)(nil),                     // 71: hbf.v2.sgroups.SgIcmpRule
-	(*SgSgIcmpRule)(nil),                   // 72: hbf.v2.sgroups.SgSgIcmpRule
-	(*IECidrSgRule)(nil),                   // 73: hbf.v2.sgroups.IECidrSgRule
-	(*IESgSgRule)(nil),                     // 74: hbf.v2.sgroups.IESgSgRule
-	(*IESgSgIcmpRule)(nil),                 // 75: hbf.v2.sgroups.IESgSgIcmpRule
-	(*IECidrSgIcmpRule)(nil),               // 76: hbf.v2.sgroups.IECidrSgIcmpRule
-	(*Host)(nil),                           // 77: hbf.v2.sgroups.Host
-	(*Service)(nil),                        // 78: hbf.v2.sgroups.Service
-	(*SvcSvcRule)(nil),                     // 79: hbf.v2.sgroups.SvcSvcRule
-	(*HostIPSet)(nil),                      // 80: hbf.v2.sgroups.HostIPSet
+	(*SgSgRule)(nil),                       // 66: hbf.v1.sgroups.SgSgRule
+	(*FqdnRule)(nil),                       // 67: hbf.v1.sgroups.FqdnRule
+	(*SvcFqdnRule)(nil),                    // 68: hbf.v1.sgroups.SvcFqdnRule
+	(*SecGroup)(nil),                       // 69: hbf.v1.sgroups.SecGroup
+	(*Network)(nil),                        // 70: hbf.v1.sgroups.Network
+	(*SgIcmpRule)(nil),                     // 71: hbf.v1.sgroups.SgIcmpRule
+	(*SgSgIcmpRule)(nil),                   // 72: hbf.v1.sgroups.SgSgIcmpRule
+	(*IECidrSgRule)(nil),                   // 73: hbf.v1.sgroups.IECidrSgRule
+	(*IESgSgRule)(nil),                     // 74: hbf.v1.sgroups.IESgSgRule
+	(*IESgSgIcmpRule)(nil),                 // 75: hbf.v1.sgroups.IESgSgIcmpRule
+	(*IECidrSgIcmpRule)(nil),               // 76: hbf.v1.sgroups.IECidrSgIcmpRule
+	(*Host)(nil),                           // 77: hbf.v1.sgroups.Host
+	(*Service)(nil),                        // 78: hbf.v1.sgroups.Service
+	(*SvcSvcRule)(nil),                     // 79: hbf.v1.sgroups.SvcSvcRule
+	(*HostIPSet)(nil),                      // 80: hbf.v1.sgroups.HostIPSet
 }
 var file_sgroups_queries_proto_depIdxs = []int32{
-	65, // 0: hbf.v2.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
-	66, // 1: hbf.v2.sgroups.SyncSgSgRules.rules:type_name -> hbf.v2.sgroups.SgSgRule
-	67, // 2: hbf.v2.sgroups.SyncFqdnRules.rules:type_name -> hbf.v2.sgroups.FqdnRule
-	68, // 3: hbf.v2.sgroups.SyncSvcFqdnRules.rules:type_name -> hbf.v2.sgroups.SvcFqdnRule
-	69, // 4: hbf.v2.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v2.sgroups.SecGroup
-	70, // 5: hbf.v2.sgroups.SyncNetworks.networks:type_name -> hbf.v2.sgroups.Network
-	71, // 6: hbf.v2.sgroups.SyncSgIcmpRules.rules:type_name -> hbf.v2.sgroups.SgIcmpRule
-	72, // 7: hbf.v2.sgroups.SyncSgSgIcmpRules.rules:type_name -> hbf.v2.sgroups.SgSgIcmpRule
-	73, // 8: hbf.v2.sgroups.SyncIECidrSgRules.rules:type_name -> hbf.v2.sgroups.IECidrSgRule
-	74, // 9: hbf.v2.sgroups.SyncIESgSgRules.rules:type_name -> hbf.v2.sgroups.IESgSgRule
-	75, // 10: hbf.v2.sgroups.SyncIESgSgIcmpRules.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
-	76, // 11: hbf.v2.sgroups.SyncIECidrSgIcmpRules.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
-	77, // 12: hbf.v2.sgroups.SyncHosts.hosts:type_name -> hbf.v2.sgroups.Host
-	78, // 13: hbf.v2.sgroups.SyncServices.services:type_name -> hbf.v2.sgroups.Service
-	79, // 14: hbf.v2.sgroups.SyncSvcSvcRules.rules:type_name -> hbf.v2.sgroups.SvcSvcRule
-	0,  // 15: hbf.v2.sgroups.SyncReq.sync_op:type_name -> hbf.v2.sgroups.SyncReq.SyncOp
-	5,  // 16: hbf.v2.sgroups.SyncReq.groups:type_name -> hbf.v2.sgroups.SyncSecurityGroups
-	6,  // 17: hbf.v2.sgroups.SyncReq.networks:type_name -> hbf.v2.sgroups.SyncNetworks
-	2,  // 18: hbf.v2.sgroups.SyncReq.sg_sg_rules:type_name -> hbf.v2.sgroups.SyncSgSgRules
-	3,  // 19: hbf.v2.sgroups.SyncReq.fqdn_rules:type_name -> hbf.v2.sgroups.SyncFqdnRules
-	7,  // 20: hbf.v2.sgroups.SyncReq.sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncSgIcmpRules
-	8,  // 21: hbf.v2.sgroups.SyncReq.sg_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncSgSgIcmpRules
-	9,  // 22: hbf.v2.sgroups.SyncReq.ie_cidr_sg_rules:type_name -> hbf.v2.sgroups.SyncIECidrSgRules
-	10, // 23: hbf.v2.sgroups.SyncReq.ie_sg_sg_rules:type_name -> hbf.v2.sgroups.SyncIESgSgRules
-	11, // 24: hbf.v2.sgroups.SyncReq.ie_sg_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIESgSgIcmpRules
-	12, // 25: hbf.v2.sgroups.SyncReq.ie_cidr_sg_icmp_rules:type_name -> hbf.v2.sgroups.SyncIECidrSgIcmpRules
-	13, // 26: hbf.v2.sgroups.SyncReq.hosts:type_name -> hbf.v2.sgroups.SyncHosts
-	14, // 27: hbf.v2.sgroups.SyncReq.services:type_name -> hbf.v2.sgroups.SyncServices
-	15, // 28: hbf.v2.sgroups.SyncReq.service_rules:type_name -> hbf.v2.sgroups.SyncSvcSvcRules
-	4,  // 29: hbf.v2.sgroups.SyncReq.svc_fqdn_rules:type_name -> hbf.v2.sgroups.SyncSvcFqdnRules
-	70, // 30: hbf.v2.sgroups.ListNetworksResp.networks:type_name -> hbf.v2.sgroups.Network
-	69, // 31: hbf.v2.sgroups.ListSecurityGroupsResp.groups:type_name -> hbf.v2.sgroups.SecGroup
-	52, // 32: hbf.v2.sgroups.ListHostsReq.none:type_name -> hbf.v2.sgroups.ListHostsReq.NoFilter
-	53, // 33: hbf.v2.sgroups.ListHostsReq.byUUID:type_name -> hbf.v2.sgroups.ListHostsReq.ByUUID
-	54, // 34: hbf.v2.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v2.sgroups.ListHostsReq.ByHostName
-	55, // 35: hbf.v2.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v2.sgroups.ListHostsReq.BySG
-	77, // 36: hbf.v2.sgroups.ListHostsResp.hosts:type_name -> hbf.v2.sgroups.Host
-	56, // 37: hbf.v2.sgroups.ListServicesReq.none:type_name -> hbf.v2.sgroups.ListServicesReq.NoFilter
-	57, // 38: hbf.v2.sgroups.ListServicesReq.by_svc_name:type_name -> hbf.v2.sgroups.ListServicesReq.BySVCName
-	58, // 39: hbf.v2.sgroups.ListServicesReq.by_sg_name:type_name -> hbf.v2.sgroups.ListServicesReq.BySG
-	78, // 40: hbf.v2.sgroups.ListServicesResp.services:type_name -> hbf.v2.sgroups.Service
-	70, // 41: hbf.v2.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v2.sgroups.Network
-	66, // 42: hbf.v2.sgroups.SgSgRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgRule
-	67, // 43: hbf.v2.sgroups.FqdnRulesResp.rules:type_name -> hbf.v2.sgroups.FqdnRule
-	68, // 44: hbf.v2.sgroups.SvcFqdnRulesResp.rules:type_name -> hbf.v2.sgroups.SvcFqdnRule
-	71, // 45: hbf.v2.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgIcmpRule
-	72, // 46: hbf.v2.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.SgSgIcmpRule
-	73, // 47: hbf.v2.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgRule
-	74, // 48: hbf.v2.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgRule
-	75, // 49: hbf.v2.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IESgSgIcmpRule
-	76, // 50: hbf.v2.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v2.sgroups.IECidrSgIcmpRule
-	59, // 51: hbf.v2.sgroups.ListSvcSvcRulesReq.none:type_name -> hbf.v2.sgroups.ListSvcSvcRulesReq.NoFilter
-	60, // 52: hbf.v2.sgroups.ListSvcSvcRulesReq.by_rule_name:type_name -> hbf.v2.sgroups.ListSvcSvcRulesReq.ByRuleName
-	61, // 53: hbf.v2.sgroups.ListSvcSvcRulesReq.by_svc_from_to:type_name -> hbf.v2.sgroups.ListSvcSvcRulesReq.BySvcFromTo
-	79, // 54: hbf.v2.sgroups.ListSvcSvcRulesResp.rules:type_name -> hbf.v2.sgroups.SvcSvcRule
-	62, // 55: hbf.v2.sgroups.ListSvcFqdnRulesReq.none:type_name -> hbf.v2.sgroups.ListSvcFqdnRulesReq.NoFilter
-	63, // 56: hbf.v2.sgroups.ListSvcFqdnRulesReq.by_rule_name:type_name -> hbf.v2.sgroups.ListSvcFqdnRulesReq.ByRuleName
-	64, // 57: hbf.v2.sgroups.ListSvcFqdnRulesReq.by_svc_from:type_name -> hbf.v2.sgroups.ListSvcFqdnRulesReq.BySvcFrom
-	68, // 58: hbf.v2.sgroups.ListSvcFqdnRulesResp.rules:type_name -> hbf.v2.sgroups.SvcFqdnRule
-	80, // 59: hbf.v2.sgroups.UpdHostIPSetReq.hosts:type_name -> hbf.v2.sgroups.HostIPSet
+	65, // 0: hbf.v1.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
+	66, // 1: hbf.v1.sgroups.SyncSgSgRules.rules:type_name -> hbf.v1.sgroups.SgSgRule
+	67, // 2: hbf.v1.sgroups.SyncFqdnRules.rules:type_name -> hbf.v1.sgroups.FqdnRule
+	68, // 3: hbf.v1.sgroups.SyncSvcFqdnRules.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
+	69, // 4: hbf.v1.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v1.sgroups.SecGroup
+	70, // 5: hbf.v1.sgroups.SyncNetworks.networks:type_name -> hbf.v1.sgroups.Network
+	71, // 6: hbf.v1.sgroups.SyncSgIcmpRules.rules:type_name -> hbf.v1.sgroups.SgIcmpRule
+	72, // 7: hbf.v1.sgroups.SyncSgSgIcmpRules.rules:type_name -> hbf.v1.sgroups.SgSgIcmpRule
+	73, // 8: hbf.v1.sgroups.SyncIECidrSgRules.rules:type_name -> hbf.v1.sgroups.IECidrSgRule
+	74, // 9: hbf.v1.sgroups.SyncIESgSgRules.rules:type_name -> hbf.v1.sgroups.IESgSgRule
+	75, // 10: hbf.v1.sgroups.SyncIESgSgIcmpRules.rules:type_name -> hbf.v1.sgroups.IESgSgIcmpRule
+	76, // 11: hbf.v1.sgroups.SyncIECidrSgIcmpRules.rules:type_name -> hbf.v1.sgroups.IECidrSgIcmpRule
+	77, // 12: hbf.v1.sgroups.SyncHosts.hosts:type_name -> hbf.v1.sgroups.Host
+	78, // 13: hbf.v1.sgroups.SyncServices.services:type_name -> hbf.v1.sgroups.Service
+	79, // 14: hbf.v1.sgroups.SyncSvcSvcRules.rules:type_name -> hbf.v1.sgroups.SvcSvcRule
+	0,  // 15: hbf.v1.sgroups.SyncReq.sync_op:type_name -> hbf.v1.sgroups.SyncReq.SyncOp
+	5,  // 16: hbf.v1.sgroups.SyncReq.groups:type_name -> hbf.v1.sgroups.SyncSecurityGroups
+	6,  // 17: hbf.v1.sgroups.SyncReq.networks:type_name -> hbf.v1.sgroups.SyncNetworks
+	2,  // 18: hbf.v1.sgroups.SyncReq.sg_sg_rules:type_name -> hbf.v1.sgroups.SyncSgSgRules
+	3,  // 19: hbf.v1.sgroups.SyncReq.fqdn_rules:type_name -> hbf.v1.sgroups.SyncFqdnRules
+	7,  // 20: hbf.v1.sgroups.SyncReq.sg_icmp_rules:type_name -> hbf.v1.sgroups.SyncSgIcmpRules
+	8,  // 21: hbf.v1.sgroups.SyncReq.sg_sg_icmp_rules:type_name -> hbf.v1.sgroups.SyncSgSgIcmpRules
+	9,  // 22: hbf.v1.sgroups.SyncReq.ie_cidr_sg_rules:type_name -> hbf.v1.sgroups.SyncIECidrSgRules
+	10, // 23: hbf.v1.sgroups.SyncReq.ie_sg_sg_rules:type_name -> hbf.v1.sgroups.SyncIESgSgRules
+	11, // 24: hbf.v1.sgroups.SyncReq.ie_sg_sg_icmp_rules:type_name -> hbf.v1.sgroups.SyncIESgSgIcmpRules
+	12, // 25: hbf.v1.sgroups.SyncReq.ie_cidr_sg_icmp_rules:type_name -> hbf.v1.sgroups.SyncIECidrSgIcmpRules
+	13, // 26: hbf.v1.sgroups.SyncReq.hosts:type_name -> hbf.v1.sgroups.SyncHosts
+	14, // 27: hbf.v1.sgroups.SyncReq.services:type_name -> hbf.v1.sgroups.SyncServices
+	15, // 28: hbf.v1.sgroups.SyncReq.service_rules:type_name -> hbf.v1.sgroups.SyncSvcSvcRules
+	4,  // 29: hbf.v1.sgroups.SyncReq.svc_fqdn_rules:type_name -> hbf.v1.sgroups.SyncSvcFqdnRules
+	70, // 30: hbf.v1.sgroups.ListNetworksResp.networks:type_name -> hbf.v1.sgroups.Network
+	69, // 31: hbf.v1.sgroups.ListSecurityGroupsResp.groups:type_name -> hbf.v1.sgroups.SecGroup
+	52, // 32: hbf.v1.sgroups.ListHostsReq.none:type_name -> hbf.v1.sgroups.ListHostsReq.NoFilter
+	53, // 33: hbf.v1.sgroups.ListHostsReq.byUUID:type_name -> hbf.v1.sgroups.ListHostsReq.ByUUID
+	54, // 34: hbf.v1.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v1.sgroups.ListHostsReq.ByHostName
+	55, // 35: hbf.v1.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v1.sgroups.ListHostsReq.BySG
+	77, // 36: hbf.v1.sgroups.ListHostsResp.hosts:type_name -> hbf.v1.sgroups.Host
+	56, // 37: hbf.v1.sgroups.ListServicesReq.none:type_name -> hbf.v1.sgroups.ListServicesReq.NoFilter
+	57, // 38: hbf.v1.sgroups.ListServicesReq.by_svc_name:type_name -> hbf.v1.sgroups.ListServicesReq.BySVCName
+	58, // 39: hbf.v1.sgroups.ListServicesReq.by_sg_name:type_name -> hbf.v1.sgroups.ListServicesReq.BySG
+	78, // 40: hbf.v1.sgroups.ListServicesResp.services:type_name -> hbf.v1.sgroups.Service
+	70, // 41: hbf.v1.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v1.sgroups.Network
+	66, // 42: hbf.v1.sgroups.SgSgRulesResp.rules:type_name -> hbf.v1.sgroups.SgSgRule
+	67, // 43: hbf.v1.sgroups.FqdnRulesResp.rules:type_name -> hbf.v1.sgroups.FqdnRule
+	68, // 44: hbf.v1.sgroups.SvcFqdnRulesResp.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
+	71, // 45: hbf.v1.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.SgIcmpRule
+	72, // 46: hbf.v1.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.SgSgIcmpRule
+	73, // 47: hbf.v1.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSgRule
+	74, // 48: hbf.v1.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v1.sgroups.IESgSgRule
+	75, // 49: hbf.v1.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.IESgSgIcmpRule
+	76, // 50: hbf.v1.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSgIcmpRule
+	59, // 51: hbf.v1.sgroups.ListSvcSvcRulesReq.none:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.NoFilter
+	60, // 52: hbf.v1.sgroups.ListSvcSvcRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.ByRuleName
+	61, // 53: hbf.v1.sgroups.ListSvcSvcRulesReq.by_svc_from_to:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.BySvcFromTo
+	79, // 54: hbf.v1.sgroups.ListSvcSvcRulesResp.rules:type_name -> hbf.v1.sgroups.SvcSvcRule
+	62, // 55: hbf.v1.sgroups.ListSvcFqdnRulesReq.none:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.NoFilter
+	63, // 56: hbf.v1.sgroups.ListSvcFqdnRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.ByRuleName
+	64, // 57: hbf.v1.sgroups.ListSvcFqdnRulesReq.by_svc_from:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.BySvcFrom
+	68, // 58: hbf.v1.sgroups.ListSvcFqdnRulesResp.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
+	80, // 59: hbf.v1.sgroups.UpdHostIPSetReq.hosts:type_name -> hbf.v1.sgroups.HostIPSet
 	60, // [60:60] is the sub-list for method output_type
 	60, // [60:60] is the sub-list for method input_type
 	60, // [60:60] is the sub-list for extension type_name

@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Host Based Firewall",
-    "version": "2.0"
+    "version": "1.0"
   },
   "tags": [
     {
@@ -20,7 +20,7 @@
     "application/json"
   ],
   "paths": {
-    "/v2/fqdn-rules": {
+    "/v1/fqdn-rules": {
       "post": {
         "description": "FindFqdnRules: finds FQDN Rule(s) scoped by variety SG 'from'",
         "operationId": "SecGroupService_FindFqdnRules",
@@ -53,7 +53,7 @@
         ]
       }
     },
-    "/v2/ie-cidr-sg-icmp-rules": {
+    "/v1/ie-cidr-sg-icmp-rules": {
       "post": {
         "description": "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG",
         "operationId": "SecGroupService_FindIECidrSgIcmpRules",
@@ -86,7 +86,7 @@
         ]
       }
     },
-    "/v2/ie-cidr-sg-rules": {
+    "/v1/ie-cidr-sg-rules": {
       "post": {
         "description": "FindIECidrSgRules: finds CIDR-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG",
         "operationId": "SecGroupService_FindIECidrSgRules",
@@ -119,7 +119,7 @@
         ]
       }
     },
-    "/v2/ie-sg-sg-icmp-rules": {
+    "/v1/ie-sg-sg-icmp-rules": {
       "post": {
         "description": "FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-\u003cFROM|TO\u003e",
         "operationId": "SecGroupService_FindIESgSgIcmpRules",
@@ -152,7 +152,7 @@
         ]
       }
     },
-    "/v2/ie-sg-sg-rules": {
+    "/v1/ie-sg-sg-rules": {
       "post": {
         "description": "FindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-\u003cFROM|TO\u003e",
         "operationId": "SecGroupService_FindIESgSgRules",
@@ -185,7 +185,7 @@
         ]
       }
     },
-    "/v2/list-hosts": {
+    "/v1/list-hosts": {
       "post": {
         "description": "ListHosts: list hosts by variety of scopes",
         "operationId": "SecGroupService_ListHosts",
@@ -218,7 +218,7 @@
         ]
       }
     },
-    "/v2/list-networks": {
+    "/v1/list-networks": {
       "post": {
         "description": "ListNetworks: shows list of Network",
         "operationId": "SecGroupService_ListNetworks",
@@ -251,7 +251,7 @@
         ]
       }
     },
-    "/v2/list-security-groups": {
+    "/v1/list-security-groups": {
       "post": {
         "description": "ListSecurityGroups: shows list of Security Groups",
         "operationId": "SecGroupService_ListSecurityGroups",
@@ -284,7 +284,7 @@
         ]
       }
     },
-    "/v2/list-service-fqdn-rules": {
+    "/v1/list-service-fqdn-rules": {
       "post": {
         "description": "ListSvcFqdnRules: lists Service(s) FQDN Rule(s) by variety of scopes'",
         "operationId": "SecGroupService_ListSvcFqdnRules",
@@ -317,7 +317,7 @@
         ]
       }
     },
-    "/v2/list-service-rules": {
+    "/v1/list-service-rules": {
       "post": {
         "description": "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'",
         "operationId": "SecGroupService_ListSvcSvcRules",
@@ -350,7 +350,7 @@
         ]
       }
     },
-    "/v2/list-services": {
+    "/v1/list-services": {
       "post": {
         "description": "ListServices: list services by variety of scopes",
         "operationId": "SecGroupService_ListServices",
@@ -383,7 +383,7 @@
         ]
       }
     },
-    "/v2/sg-icmp-rules": {
+    "/v1/sg-icmp-rules": {
       "post": {
         "description": "FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG",
         "operationId": "SecGroupService_FindSgIcmpRules",
@@ -416,7 +416,7 @@
         ]
       }
     },
-    "/v2/sg-sg-icmp-rules": {
+    "/v1/sg-sg-icmp-rules": {
       "post": {
         "description": "FindSgSgIcmpRules: finds SG-SG:ICMP Rule(s) scoped by variety SG\u003cFROM-TO\u003e",
         "operationId": "SecGroupService_FindSgSgIcmpRules",
@@ -449,7 +449,7 @@
         ]
       }
     },
-    "/v2/sg-sg-rules": {
+    "/v1/sg-sg-rules": {
       "post": {
         "description": "FindSgSgRules: finds SG-SG Rule(s) scoped by variety pairs 'SG '-\u003e'to SG'",
         "operationId": "SecGroupService_FindSgSgRules",
@@ -482,7 +482,7 @@
         ]
       }
     },
-    "/v2/sg/{sgName}/subnets": {
+    "/v1/sg/{sgName}/subnets": {
       "get": {
         "description": "GetSgSubnets: gets Networks related to SG",
         "operationId": "SecGroupService_GetSgSubnets",
@@ -514,7 +514,7 @@
         ]
       }
     },
-    "/v2/sync": {
+    "/v1/sync": {
       "post": {
         "description": "Sync: makes changes in DB",
         "operationId": "SecGroupService_Sync",
@@ -548,7 +548,7 @@
         ]
       }
     },
-    "/v2/sync/status": {
+    "/v1/sync/status": {
       "get": {
         "description": "SyncStatus: gets last succeeded update DB status",
         "operationId": "SecGroupService_SyncStatus",
@@ -571,7 +571,7 @@
         ]
       }
     },
-    "/v2/upd-host-ipset": {
+    "/v1/upd-host-ipset": {
       "post": {
         "description": "UpdHostIPSet: updates Host IPSet by host uuid",
         "operationId": "SecGroupService_UpdHostIPSet",
@@ -605,7 +605,7 @@
         ]
       }
     },
-    "/v2/{address}/sg": {
+    "/v1/{address}/sg": {
       "get": {
         "description": "GetSecGroupForAddress: gets Security Group by IP or CIDR",
         "operationId": "SecGroupService_GetSecGroupForAddress",
@@ -637,10 +637,664 @@
         ]
       }
     },
-    "/v2/{hostName}/{hostUuid}/sg": {
+    "/v1/{hostName}/{hostUuid}/sg": {
       "get": {
         "description": "GetSecGroupForHost: gets Security Group by host info",
         "operationId": "SecGroupService_GetSecGroupForHost",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsSecGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hostName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "hostUuid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/fqdn-rules": {
+      "post": {
+        "description": "FindFqdnRules: finds FQDN Rule(s) scoped by variety SG 'from'",
+        "operationId": "SecGroupService_FindFqdnRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsFqdnRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindFqdnRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/ie-cidr-sg-icmp-rules": {
+      "post": {
+        "description": "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG",
+        "operationId": "SecGroupService_FindIECidrSgIcmpRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsIECidrSgIcmpRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindIECidrSgIcmpRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/ie-cidr-sg-rules": {
+      "post": {
+        "description": "FindIECidrSgRules: finds CIDR-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG",
+        "operationId": "SecGroupService_FindIECidrSgRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsIECidrSgRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindIECidrSgRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/ie-sg-sg-icmp-rules": {
+      "post": {
+        "description": "FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-\u003cFROM|TO\u003e",
+        "operationId": "SecGroupService_FindIESgSgIcmpRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsIESgSgIcmpRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindIESgSgIcmpRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/ie-sg-sg-rules": {
+      "post": {
+        "description": "FindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-\u003cFROM|TO\u003e",
+        "operationId": "SecGroupService_FindIESgSgRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsIESgSgRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindIESgSgRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-hosts": {
+      "post": {
+        "description": "ListHosts: list hosts by variety of scopes",
+        "operationId": "SecGroupService_ListHosts2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListHostsResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListHostsReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-networks": {
+      "post": {
+        "description": "ListNetworks: shows list of Network",
+        "operationId": "SecGroupService_ListNetworks2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListNetworksResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListNetworksReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-security-groups": {
+      "post": {
+        "description": "ListSecurityGroups: shows list of Security Groups",
+        "operationId": "SecGroupService_ListSecurityGroups2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSecurityGroupsResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSecurityGroupsReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-service-fqdn-rules": {
+      "post": {
+        "description": "ListSvcFqdnRules: lists Service(s) FQDN Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListSvcFqdnRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcFqdnRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcFqdnRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-service-rules": {
+      "post": {
+        "description": "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListSvcSvcRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListSvcSvcRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/list-services": {
+      "post": {
+        "description": "ListServices: list services by variety of scopes",
+        "operationId": "SecGroupService_ListServices2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListServicesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListServicesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/sg-icmp-rules": {
+      "post": {
+        "description": "FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG",
+        "operationId": "SecGroupService_FindSgIcmpRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsSgIcmpRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindSgIcmpRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/sg-sg-icmp-rules": {
+      "post": {
+        "description": "FindSgSgIcmpRules: finds SG-SG:ICMP Rule(s) scoped by variety SG\u003cFROM-TO\u003e",
+        "operationId": "SecGroupService_FindSgSgIcmpRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsSgSgIcmpRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindSgSgIcmpRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/sg-sg-rules": {
+      "post": {
+        "description": "FindSgSgRules: finds SG-SG Rule(s) scoped by variety pairs 'SG '-\u003e'to SG'",
+        "operationId": "SecGroupService_FindSgSgRules2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsSgSgRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsFindSgSgRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/sg/{sgName}/subnets": {
+      "get": {
+        "description": "GetSgSubnets: gets Networks related to SG",
+        "operationId": "SecGroupService_GetSgSubnets2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsGetSgSubnetsResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sgName",
+            "description": "security group name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/sync": {
+      "post": {
+        "description": "Sync: makes changes in DB",
+        "operationId": "SecGroupService_Sync2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsSyncReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/sync/status": {
+      "get": {
+        "description": "SyncStatus: gets last succeeded update DB status",
+        "operationId": "SecGroupService_SyncStatus2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsSyncStatusResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/upd-host-ipset": {
+      "post": {
+        "description": "UpdHostIPSet: updates Host IPSet by host uuid",
+        "operationId": "SecGroupService_UpdHostIPSet2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsUpdHostIPSetReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/{address}/sg": {
+      "get": {
+        "description": "GetSecGroupForAddress: gets Security Group by IP or CIDR",
+        "operationId": "SecGroupService_GetSecGroupForAddress2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsSecGroup"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "address",
+            "description": "an IP or CIDR",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
+    "/v2/{hostName}/{hostUuid}/sg": {
+      "get": {
+        "description": "GetSecGroupForHost: gets Security Group by host info",
+        "operationId": "SecGroupService_GetSecGroupForHost2",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -775,7 +1429,7 @@
           "type": "array",
           "items": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           }
         }
       }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hbf.v2.sgroups;
+package hbf.v1.sgroups;
 option go_package = "github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroups";
 
 import "google/protobuf/timestamp.proto";
