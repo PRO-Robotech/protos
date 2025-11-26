@@ -1812,7 +1812,7 @@ func (x *ProtoSpec_Ports) GetPorts() []*AccPorts {
 
 type ProtoSpec_IcmpTypes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Types         []int32                `protobuf:"varint,1,rep,packed,name=types,proto3" json:"types,omitempty"`
+	Types         []uint32               `protobuf:"varint,1,rep,packed,name=types,proto3" json:"types,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1847,7 +1847,7 @@ func (*ProtoSpec_IcmpTypes) Descriptor() ([]byte, []int) {
 	return file_sgroups_domains_proto_rawDescGZIP(), []int{7, 1}
 }
 
-func (x *ProtoSpec_IcmpTypes) GetTypes() []int32 {
+func (x *ProtoSpec_IcmpTypes) GetTypes() []uint32 {
 	if x != nil {
 		return x.Types
 	}
@@ -1902,7 +1902,7 @@ const file_sgroups_domains_proto_rawDesc = "" +
 	"\x05Ports\x12.\n" +
 	"\x05ports\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.AccPortsR\x05ports\x1a!\n" +
 	"\tIcmpTypes\x12\x14\n" +
-	"\x05types\x18\x01 \x03(\x05R\x05types\"\x7f\n" +
+	"\x05types\x18\x01 \x03(\rR\x05types\"\x7f\n" +
 	"\aService\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x127\n" +
 	"\tprotocols\x18\x02 \x01(\v2\x19.hbf.v1.sgroups.ProtoSpecR\tprotocols\x12\x19\n" +
