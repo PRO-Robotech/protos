@@ -1430,6 +1430,133 @@ func (x *IECidrSgRule) GetPriority() *RulePriority {
 	return nil
 }
 
+// CIDR-SVC Ingress Egress type rule
+type IECidrSvcRule struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// rule name
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// ip net transport [TCP, UDP]
+	Transport common.Networks_NetIP_Transport `protobuf:"varint,2,opt,name=transport,proto3,enum=common.Networks_NetIP_Transport" json:"transport,omitempty"`
+	// CIDR subnetwork IPv4|IPv6
+	CIDR string `protobuf:"bytes,3,opt,name=CIDR,proto3" json:"CIDR,omitempty"`
+	// service name
+	Svc string `protobuf:"bytes,4,opt,name=svc,proto3" json:"svc,omitempty"`
+	// traffic direction [INGERSS, EGRESS]
+	Traffic common.Traffic `protobuf:"varint,5,opt,name=traffic,proto3,enum=common.Traffic" json:"traffic,omitempty"`
+	// AccPorts: access port set(s)
+	Ports []*AccPorts `protobuf:"bytes,6,rep,name=ports,proto3" json:"ports,omitempty"`
+	// logs: switch-{ON|OFF} logs in rules
+	Logs bool `protobuf:"varint,7,opt,name=logs,proto3" json:"logs,omitempty"`
+	// trace: switch-{ON|OFF} logs in rules
+	Trace bool `protobuf:"varint,8,opt,name=trace,proto3" json:"trace,omitempty"`
+	// action: represents rule action
+	Action RuleAction `protobuf:"varint,9,opt,name=action,proto3,enum=hbf.v1.sgroups.RuleAction" json:"action,omitempty"`
+	// priority: rule priority affects on rule pos in its rule list
+	Priority      *RulePriority `protobuf:"bytes,10,opt,name=priority,proto3" json:"priority,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IECidrSvcRule) Reset() {
+	*x = IECidrSvcRule{}
+	mi := &file_sgroups_domains_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IECidrSvcRule) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IECidrSvcRule) ProtoMessage() {}
+
+func (x *IECidrSvcRule) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_domains_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IECidrSvcRule.ProtoReflect.Descriptor instead.
+func (*IECidrSvcRule) Descriptor() ([]byte, []int) {
+	return file_sgroups_domains_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *IECidrSvcRule) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *IECidrSvcRule) GetTransport() common.Networks_NetIP_Transport {
+	if x != nil {
+		return x.Transport
+	}
+	return common.Networks_NetIP_Transport(0)
+}
+
+func (x *IECidrSvcRule) GetCIDR() string {
+	if x != nil {
+		return x.CIDR
+	}
+	return ""
+}
+
+func (x *IECidrSvcRule) GetSvc() string {
+	if x != nil {
+		return x.Svc
+	}
+	return ""
+}
+
+func (x *IECidrSvcRule) GetTraffic() common.Traffic {
+	if x != nil {
+		return x.Traffic
+	}
+	return common.Traffic(0)
+}
+
+func (x *IECidrSvcRule) GetPorts() []*AccPorts {
+	if x != nil {
+		return x.Ports
+	}
+	return nil
+}
+
+func (x *IECidrSvcRule) GetLogs() bool {
+	if x != nil {
+		return x.Logs
+	}
+	return false
+}
+
+func (x *IECidrSvcRule) GetTrace() bool {
+	if x != nil {
+		return x.Trace
+	}
+	return false
+}
+
+func (x *IECidrSvcRule) GetAction() RuleAction {
+	if x != nil {
+		return x.Action
+	}
+	return RuleAction_UNDEF
+}
+
+func (x *IECidrSvcRule) GetPriority() *RulePriority {
+	if x != nil {
+		return x.Priority
+	}
+	return nil
+}
+
 // CIDR-SG ICMP <in|e>gress type rule
 type IECidrSgIcmpRule struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -1455,7 +1582,7 @@ type IECidrSgIcmpRule struct {
 
 func (x *IECidrSgIcmpRule) Reset() {
 	*x = IECidrSgIcmpRule{}
-	mi := &file_sgroups_domains_proto_msgTypes[16]
+	mi := &file_sgroups_domains_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1467,7 +1594,7 @@ func (x *IECidrSgIcmpRule) String() string {
 func (*IECidrSgIcmpRule) ProtoMessage() {}
 
 func (x *IECidrSgIcmpRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_domains_proto_msgTypes[16]
+	mi := &file_sgroups_domains_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1480,7 +1607,7 @@ func (x *IECidrSgIcmpRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IECidrSgIcmpRule.ProtoReflect.Descriptor instead.
 func (*IECidrSgIcmpRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_domains_proto_rawDescGZIP(), []int{16}
+	return file_sgroups_domains_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *IECidrSgIcmpRule) GetCIDR() string {
@@ -1566,7 +1693,7 @@ type IESgSgRule struct {
 
 func (x *IESgSgRule) Reset() {
 	*x = IESgSgRule{}
-	mi := &file_sgroups_domains_proto_msgTypes[17]
+	mi := &file_sgroups_domains_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1578,7 +1705,7 @@ func (x *IESgSgRule) String() string {
 func (*IESgSgRule) ProtoMessage() {}
 
 func (x *IESgSgRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_domains_proto_msgTypes[17]
+	mi := &file_sgroups_domains_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1591,7 +1718,7 @@ func (x *IESgSgRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgRule.ProtoReflect.Descriptor instead.
 func (*IESgSgRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_domains_proto_rawDescGZIP(), []int{17}
+	return file_sgroups_domains_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *IESgSgRule) GetTransport() common.Networks_NetIP_Transport {
@@ -1682,7 +1809,7 @@ type IESgSgIcmpRule struct {
 
 func (x *IESgSgIcmpRule) Reset() {
 	*x = IESgSgIcmpRule{}
-	mi := &file_sgroups_domains_proto_msgTypes[18]
+	mi := &file_sgroups_domains_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1694,7 +1821,7 @@ func (x *IESgSgIcmpRule) String() string {
 func (*IESgSgIcmpRule) ProtoMessage() {}
 
 func (x *IESgSgIcmpRule) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_domains_proto_msgTypes[18]
+	mi := &file_sgroups_domains_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1707,7 +1834,7 @@ func (x *IESgSgIcmpRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IESgSgIcmpRule.ProtoReflect.Descriptor instead.
 func (*IESgSgIcmpRule) Descriptor() ([]byte, []int) {
-	return file_sgroups_domains_proto_rawDescGZIP(), []int{18}
+	return file_sgroups_domains_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *IESgSgIcmpRule) GetSG() string {
@@ -1775,7 +1902,7 @@ type ProtoSpec_Ports struct {
 
 func (x *ProtoSpec_Ports) Reset() {
 	*x = ProtoSpec_Ports{}
-	mi := &file_sgroups_domains_proto_msgTypes[19]
+	mi := &file_sgroups_domains_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1787,7 +1914,7 @@ func (x *ProtoSpec_Ports) String() string {
 func (*ProtoSpec_Ports) ProtoMessage() {}
 
 func (x *ProtoSpec_Ports) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_domains_proto_msgTypes[19]
+	mi := &file_sgroups_domains_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1819,7 +1946,7 @@ type ProtoSpec_IcmpTypes struct {
 
 func (x *ProtoSpec_IcmpTypes) Reset() {
 	*x = ProtoSpec_IcmpTypes{}
-	mi := &file_sgroups_domains_proto_msgTypes[20]
+	mi := &file_sgroups_domains_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1831,7 +1958,7 @@ func (x *ProtoSpec_IcmpTypes) String() string {
 func (*ProtoSpec_IcmpTypes) ProtoMessage() {}
 
 func (x *ProtoSpec_IcmpTypes) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_domains_proto_msgTypes[20]
+	mi := &file_sgroups_domains_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1972,7 +2099,20 @@ const file_sgroups_domains_proto_rawDesc = "" +
 	"\x05trace\x18\a \x01(\bR\x05trace\x122\n" +
 	"\x06action\x18\b \x01(\x0e2\x1a.hbf.v1.sgroups.RuleActionR\x06action\x128\n" +
 	"\bpriority\x18\t \x01(\v2\x1c.hbf.v1.sgroups.RulePriorityR\bpriority:'\x92A$\n" +
-	"\"\xd2\x01\x04CIDR\xd2\x01\x02SG\xd2\x01\ttransport\xd2\x01\atraffic\"\xc3\x02\n" +
+	"\"\xd2\x01\x04CIDR\xd2\x01\x02SG\xd2\x01\ttransport\xd2\x01\atraffic\"\xad\x03\n" +
+	"\rIECidrSvcRule\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12>\n" +
+	"\ttransport\x18\x02 \x01(\x0e2 .common.Networks.NetIP.TransportR\ttransport\x12\x12\n" +
+	"\x04CIDR\x18\x03 \x01(\tR\x04CIDR\x12\x10\n" +
+	"\x03svc\x18\x04 \x01(\tR\x03svc\x12)\n" +
+	"\atraffic\x18\x05 \x01(\x0e2\x0f.common.TrafficR\atraffic\x12.\n" +
+	"\x05ports\x18\x06 \x03(\v2\x18.hbf.v1.sgroups.AccPortsR\x05ports\x12\x12\n" +
+	"\x04logs\x18\a \x01(\bR\x04logs\x12\x14\n" +
+	"\x05trace\x18\b \x01(\bR\x05trace\x122\n" +
+	"\x06action\x18\t \x01(\x0e2\x1a.hbf.v1.sgroups.RuleActionR\x06action\x128\n" +
+	"\bpriority\x18\n" +
+	" \x01(\v2\x1c.hbf.v1.sgroups.RulePriorityR\bpriority:/\x92A,\n" +
+	"*\xd2\x01\x04name\xd2\x01\x04CIDR\xd2\x01\x03svc\xd2\x01\ttransport\xd2\x01\atraffic\"\xc3\x02\n" +
 	"\x10IECidrSgIcmpRule\x12\x12\n" +
 	"\x04CIDR\x18\x01 \x01(\tR\x04CIDR\x12\x0e\n" +
 	"\x02SG\x18\x02 \x01(\tR\x02SG\x12)\n" +
@@ -2025,7 +2165,7 @@ func file_sgroups_domains_proto_rawDescGZIP() []byte {
 }
 
 var file_sgroups_domains_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_sgroups_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_sgroups_domains_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_sgroups_domains_proto_goTypes = []any{
 	(RuleAction)(0),                      // 0: hbf.v1.sgroups.RuleAction
 	(SecGroup_DefaultAction)(0),          // 1: hbf.v1.sgroups.SecGroup.DefaultAction
@@ -2045,69 +2185,75 @@ var file_sgroups_domains_proto_goTypes = []any{
 	(*SgIcmpRule)(nil),                   // 15: hbf.v1.sgroups.SgIcmpRule
 	(*SgSgIcmpRule)(nil),                 // 16: hbf.v1.sgroups.SgSgIcmpRule
 	(*IECidrSgRule)(nil),                 // 17: hbf.v1.sgroups.IECidrSgRule
-	(*IECidrSgIcmpRule)(nil),             // 18: hbf.v1.sgroups.IECidrSgIcmpRule
-	(*IESgSgRule)(nil),                   // 19: hbf.v1.sgroups.IESgSgRule
-	(*IESgSgIcmpRule)(nil),               // 20: hbf.v1.sgroups.IESgSgIcmpRule
-	(*ProtoSpec_Ports)(nil),              // 21: hbf.v1.sgroups.ProtoSpec.Ports
-	(*ProtoSpec_IcmpTypes)(nil),          // 22: hbf.v1.sgroups.ProtoSpec.IcmpTypes
-	(*common.Networks_NetIP)(nil),        // 23: common.Networks.NetIP
-	(common.Networks_NetIP_Transport)(0), // 24: common.Networks.NetIP.Transport
-	(*common.ICMP)(nil),                  // 25: common.ICMP
-	(common.Traffic)(0),                  // 26: common.Traffic
+	(*IECidrSvcRule)(nil),                // 18: hbf.v1.sgroups.IECidrSvcRule
+	(*IECidrSgIcmpRule)(nil),             // 19: hbf.v1.sgroups.IECidrSgIcmpRule
+	(*IESgSgRule)(nil),                   // 20: hbf.v1.sgroups.IESgSgRule
+	(*IESgSgIcmpRule)(nil),               // 21: hbf.v1.sgroups.IESgSgIcmpRule
+	(*ProtoSpec_Ports)(nil),              // 22: hbf.v1.sgroups.ProtoSpec.Ports
+	(*ProtoSpec_IcmpTypes)(nil),          // 23: hbf.v1.sgroups.ProtoSpec.IcmpTypes
+	(*common.Networks_NetIP)(nil),        // 24: common.Networks.NetIP
+	(common.Networks_NetIP_Transport)(0), // 25: common.Networks.NetIP.Transport
+	(*common.ICMP)(nil),                  // 26: common.ICMP
+	(common.Traffic)(0),                  // 27: common.Traffic
 }
 var file_sgroups_domains_proto_depIdxs = []int32{
-	23, // 0: hbf.v1.sgroups.Network.network:type_name -> common.Networks.NetIP
+	24, // 0: hbf.v1.sgroups.Network.network:type_name -> common.Networks.NetIP
 	1,  // 1: hbf.v1.sgroups.SecGroup.default_action:type_name -> hbf.v1.sgroups.SecGroup.DefaultAction
 	6,  // 2: hbf.v1.sgroups.Host.ip_list:type_name -> hbf.v1.sgroups.IPList
 	6,  // 3: hbf.v1.sgroups.HostIPSet.ip_list:type_name -> hbf.v1.sgroups.IPList
-	21, // 4: hbf.v1.sgroups.ProtoSpec.tcp:type_name -> hbf.v1.sgroups.ProtoSpec.Ports
-	21, // 5: hbf.v1.sgroups.ProtoSpec.udp:type_name -> hbf.v1.sgroups.ProtoSpec.Ports
-	22, // 6: hbf.v1.sgroups.ProtoSpec.icmpv4:type_name -> hbf.v1.sgroups.ProtoSpec.IcmpTypes
-	22, // 7: hbf.v1.sgroups.ProtoSpec.icmpv6:type_name -> hbf.v1.sgroups.ProtoSpec.IcmpTypes
+	22, // 4: hbf.v1.sgroups.ProtoSpec.tcp:type_name -> hbf.v1.sgroups.ProtoSpec.Ports
+	22, // 5: hbf.v1.sgroups.ProtoSpec.udp:type_name -> hbf.v1.sgroups.ProtoSpec.Ports
+	23, // 6: hbf.v1.sgroups.ProtoSpec.icmpv4:type_name -> hbf.v1.sgroups.ProtoSpec.IcmpTypes
+	23, // 7: hbf.v1.sgroups.ProtoSpec.icmpv6:type_name -> hbf.v1.sgroups.ProtoSpec.IcmpTypes
 	9,  // 8: hbf.v1.sgroups.Service.protocols:type_name -> hbf.v1.sgroups.ProtoSpec
 	0,  // 9: hbf.v1.sgroups.SvcSvcRule.action:type_name -> hbf.v1.sgroups.RuleAction
 	3,  // 10: hbf.v1.sgroups.SvcSvcRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	24, // 11: hbf.v1.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	25, // 11: hbf.v1.sgroups.SgSgRule.transport:type_name -> common.Networks.NetIP.Transport
 	2,  // 12: hbf.v1.sgroups.SgSgRule.ports:type_name -> hbf.v1.sgroups.AccPorts
 	0,  // 13: hbf.v1.sgroups.SgSgRule.action:type_name -> hbf.v1.sgroups.RuleAction
 	3,  // 14: hbf.v1.sgroups.SgSgRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	24, // 15: hbf.v1.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
+	25, // 15: hbf.v1.sgroups.FqdnRule.transport:type_name -> common.Networks.NetIP.Transport
 	2,  // 16: hbf.v1.sgroups.FqdnRule.ports:type_name -> hbf.v1.sgroups.AccPorts
 	0,  // 17: hbf.v1.sgroups.FqdnRule.action:type_name -> hbf.v1.sgroups.RuleAction
 	3,  // 18: hbf.v1.sgroups.FqdnRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	24, // 19: hbf.v1.sgroups.SvcFqdnRule.transport:type_name -> common.Networks.NetIP.Transport
+	25, // 19: hbf.v1.sgroups.SvcFqdnRule.transport:type_name -> common.Networks.NetIP.Transport
 	2,  // 20: hbf.v1.sgroups.SvcFqdnRule.ports:type_name -> hbf.v1.sgroups.AccPorts
 	0,  // 21: hbf.v1.sgroups.SvcFqdnRule.action:type_name -> hbf.v1.sgroups.RuleAction
 	3,  // 22: hbf.v1.sgroups.SvcFqdnRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	25, // 23: hbf.v1.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
+	26, // 23: hbf.v1.sgroups.SgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 24: hbf.v1.sgroups.SgIcmpRule.action:type_name -> hbf.v1.sgroups.RuleAction
-	25, // 25: hbf.v1.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
+	26, // 25: hbf.v1.sgroups.SgSgIcmpRule.ICMP:type_name -> common.ICMP
 	0,  // 26: hbf.v1.sgroups.SgSgIcmpRule.action:type_name -> hbf.v1.sgroups.RuleAction
 	3,  // 27: hbf.v1.sgroups.SgSgIcmpRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	24, // 28: hbf.v1.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	26, // 29: hbf.v1.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
+	25, // 28: hbf.v1.sgroups.IECidrSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	27, // 29: hbf.v1.sgroups.IECidrSgRule.traffic:type_name -> common.Traffic
 	2,  // 30: hbf.v1.sgroups.IECidrSgRule.ports:type_name -> hbf.v1.sgroups.AccPorts
 	0,  // 31: hbf.v1.sgroups.IECidrSgRule.action:type_name -> hbf.v1.sgroups.RuleAction
 	3,  // 32: hbf.v1.sgroups.IECidrSgRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	26, // 33: hbf.v1.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
-	25, // 34: hbf.v1.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
-	0,  // 35: hbf.v1.sgroups.IECidrSgIcmpRule.action:type_name -> hbf.v1.sgroups.RuleAction
-	3,  // 36: hbf.v1.sgroups.IECidrSgIcmpRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	24, // 37: hbf.v1.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
-	26, // 38: hbf.v1.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
-	2,  // 39: hbf.v1.sgroups.IESgSgRule.ports:type_name -> hbf.v1.sgroups.AccPorts
-	0,  // 40: hbf.v1.sgroups.IESgSgRule.action:type_name -> hbf.v1.sgroups.RuleAction
-	3,  // 41: hbf.v1.sgroups.IESgSgRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	26, // 42: hbf.v1.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
-	25, // 43: hbf.v1.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
-	0,  // 44: hbf.v1.sgroups.IESgSgIcmpRule.action:type_name -> hbf.v1.sgroups.RuleAction
-	3,  // 45: hbf.v1.sgroups.IESgSgIcmpRule.priority:type_name -> hbf.v1.sgroups.RulePriority
-	2,  // 46: hbf.v1.sgroups.ProtoSpec.Ports.ports:type_name -> hbf.v1.sgroups.AccPorts
-	47, // [47:47] is the sub-list for method output_type
-	47, // [47:47] is the sub-list for method input_type
-	47, // [47:47] is the sub-list for extension type_name
-	47, // [47:47] is the sub-list for extension extendee
-	0,  // [0:47] is the sub-list for field type_name
+	25, // 33: hbf.v1.sgroups.IECidrSvcRule.transport:type_name -> common.Networks.NetIP.Transport
+	27, // 34: hbf.v1.sgroups.IECidrSvcRule.traffic:type_name -> common.Traffic
+	2,  // 35: hbf.v1.sgroups.IECidrSvcRule.ports:type_name -> hbf.v1.sgroups.AccPorts
+	0,  // 36: hbf.v1.sgroups.IECidrSvcRule.action:type_name -> hbf.v1.sgroups.RuleAction
+	3,  // 37: hbf.v1.sgroups.IECidrSvcRule.priority:type_name -> hbf.v1.sgroups.RulePriority
+	27, // 38: hbf.v1.sgroups.IECidrSgIcmpRule.traffic:type_name -> common.Traffic
+	26, // 39: hbf.v1.sgroups.IECidrSgIcmpRule.ICMP:type_name -> common.ICMP
+	0,  // 40: hbf.v1.sgroups.IECidrSgIcmpRule.action:type_name -> hbf.v1.sgroups.RuleAction
+	3,  // 41: hbf.v1.sgroups.IECidrSgIcmpRule.priority:type_name -> hbf.v1.sgroups.RulePriority
+	25, // 42: hbf.v1.sgroups.IESgSgRule.transport:type_name -> common.Networks.NetIP.Transport
+	27, // 43: hbf.v1.sgroups.IESgSgRule.traffic:type_name -> common.Traffic
+	2,  // 44: hbf.v1.sgroups.IESgSgRule.ports:type_name -> hbf.v1.sgroups.AccPorts
+	0,  // 45: hbf.v1.sgroups.IESgSgRule.action:type_name -> hbf.v1.sgroups.RuleAction
+	3,  // 46: hbf.v1.sgroups.IESgSgRule.priority:type_name -> hbf.v1.sgroups.RulePriority
+	27, // 47: hbf.v1.sgroups.IESgSgIcmpRule.traffic:type_name -> common.Traffic
+	26, // 48: hbf.v1.sgroups.IESgSgIcmpRule.ICMP:type_name -> common.ICMP
+	0,  // 49: hbf.v1.sgroups.IESgSgIcmpRule.action:type_name -> hbf.v1.sgroups.RuleAction
+	3,  // 50: hbf.v1.sgroups.IESgSgIcmpRule.priority:type_name -> hbf.v1.sgroups.RulePriority
+	2,  // 51: hbf.v1.sgroups.ProtoSpec.Ports.ports:type_name -> hbf.v1.sgroups.AccPorts
+	52, // [52:52] is the sub-list for method output_type
+	52, // [52:52] is the sub-list for method input_type
+	52, // [52:52] is the sub-list for extension type_name
+	52, // [52:52] is the sub-list for extension extendee
+	0,  // [0:52] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_domains_proto_init() }
@@ -2124,7 +2270,7 @@ func file_sgroups_domains_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_domains_proto_rawDesc), len(file_sgroups_domains_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   21,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

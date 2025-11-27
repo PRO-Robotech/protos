@@ -218,6 +218,39 @@
         ]
       }
     },
+    "/v1/list-ie-cidr-svc-rules": {
+      "post": {
+        "description": "ListIECidrSvcRules: lists CIDR-SVC-[INGRESS|EGRESS] Rule(s) by variety of scopes'",
+        "operationId": "SecGroupService_ListIECidrSvcRules",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/sgroupsListIECidrSvcRulesResp"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsListIECidrSvcRulesReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
     "/v1/list-networks": {
       "post": {
         "description": "ListNetworks: shows list of Network",
@@ -1354,6 +1387,18 @@
       },
       "title": "Filter by unique identifiers"
     },
+    "ListIECidrSvcRulesReqBySvc": {
+      "type": "object",
+      "properties": {
+        "svcNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by Svc names"
+    },
     "ListServicesReqBySVCName": {
       "type": "object",
       "properties": {
@@ -1938,6 +1983,63 @@
       },
       "title": "СidrSgRulesResp: CIDR-SG-[INGRESS, EGRESS] rule(s) resp"
     },
+    "sgroupsIECidrSvcRule": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "rule name"
+        },
+        "transport": {
+          "$ref": "#/definitions/NetIPTransport",
+          "title": "ip net transport [TCP, UDP]"
+        },
+        "CIDR": {
+          "type": "string",
+          "title": "CIDR subnetwork IPv4|IPv6"
+        },
+        "svc": {
+          "type": "string",
+          "title": "service name"
+        },
+        "traffic": {
+          "$ref": "#/definitions/commonTraffic",
+          "title": "traffic direction [INGERSS, EGRESS]"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsAccPorts"
+          },
+          "title": "AccPorts: access port set(s)"
+        },
+        "logs": {
+          "type": "boolean",
+          "title": "logs: switch-{ON|OFF} logs in rules"
+        },
+        "trace": {
+          "type": "boolean",
+          "title": "trace: switch-{ON|OFF} logs in rules"
+        },
+        "action": {
+          "$ref": "#/definitions/sgroupsRuleAction",
+          "title": "action: represents rule action"
+        },
+        "priority": {
+          "$ref": "#/definitions/sgroupsRulePriority",
+          "title": "priority: rule priority affects on rule pos in its rule list"
+        }
+      },
+      "title": "CIDR-SVC Ingress Egress type rule",
+      "required": [
+        "name",
+        "CIDR",
+        "svc",
+        "transport",
+        "traffic"
+      ]
+    },
     "sgroupsIESgSgIcmpRule": {
       "type": "object",
       "properties": {
@@ -2120,6 +2222,51 @@
         }
       },
       "title": "ListHostsResp: returned list of hosts"
+    },
+    "sgroupsListIECidrSvcRulesReq": {
+      "type": "object",
+      "properties": {
+        "none": {
+          "$ref": "#/definitions/sgroupsListIECidrSvcRulesReqNoFilter"
+        },
+        "byRuleName": {
+          "$ref": "#/definitions/sgroupsListIECidrSvcRulesReqByRuleName"
+        },
+        "bySvc": {
+          "$ref": "#/definitions/ListIECidrSvcRulesReqBySvc"
+        }
+      },
+      "title": "ListIECidrSvcRulesReq: req to list all CIDR-SVC-[INGRESS|EGRESS] Rule(s) by variety of scopes"
+    },
+    "sgroupsListIECidrSvcRulesReqByRuleName": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "Filter by rule names"
+    },
+    "sgroupsListIECidrSvcRulesReqNoFilter": {
+      "type": "object",
+      "title": "No filtering: return all CIDR-SVC-[INGRESS|EGRESS] rules"
+    },
+    "sgroupsListIECidrSvcRulesResp": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsIECidrSvcRule"
+          },
+          "title": "CIDR-SVC-[INGRESS|EGRESS] rule(s) items"
+        }
+      },
+      "title": "ListIECidrSvcRulesResp: CIDR-SVC-[INGRESS|EGRESS] Rule(s) resp"
     },
     "sgroupsListNetworksReq": {
       "type": "object",
@@ -2731,6 +2878,19 @@
       },
       "title": "SyncIECidrSgRules: subject of CIDR-SG-[INGRESS|EGRESS] to Sync"
     },
+    "sgroupsSyncIECidrSvcRules": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsIECidrSvcRule"
+          }
+        }
+      },
+      "title": "SyncIECidrSvcRules: subject of CIDR-SVC-[INGRESS|EGRESS] to Sync"
+    },
     "sgroupsSyncIESgSgIcmpRules": {
       "type": "object",
       "properties": {
@@ -2835,6 +2995,10 @@
         "svcFqdnRules": {
           "$ref": "#/definitions/sgroupsSyncSvcFqdnRules",
           "title": "subject of Service to FQDN Rule(s)"
+        },
+        "ieCidrSvcRules": {
+          "$ref": "#/definitions/sgroupsSyncIECidrSvcRules",
+          "title": "subject of CIDR-SVC-[INGRESS|EGRESS] rule(s)"
         }
       },
       "title": "SyncReq: request to apply changes in DB for one of subject [Networks|Sucurity Groups|Security Grpups Rules]"

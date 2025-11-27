@@ -296,6 +296,36 @@ message IECidrSgRule {
   RulePriority priority = 9;
 }
 
+// CIDR-SVC Ingress Egress type rule
+message IECidrSvcRule {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+    json_schema: {
+      required: ["name", "CIDR", "svc", "transport", "traffic"]
+    }
+  };
+  // rule name
+  string name = 1;
+  // ip net transport [TCP, UDP]
+  common.Networks.NetIP.Transport transport = 2;
+  // CIDR subnetwork IPv4|IPv6
+  string CIDR = 3;
+  // service name
+  string svc = 4;
+  // traffic direction [INGERSS, EGRESS]
+  common.Traffic traffic = 5;
+  // AccPorts: access port set(s)
+  repeated AccPorts ports = 6;
+  // logs: switch-{ON|OFF} logs in rules
+  bool logs = 7;
+  // trace: switch-{ON|OFF} logs in rules
+  bool trace = 8;
+  // action: represents rule action
+  RuleAction action = 9;
+  // priority: rule priority affects on rule pos in its rule list
+  RulePriority priority = 10;
+}
+
+
 // CIDR-SG ICMP <in|e>gress type rule
 message IECidrSgIcmpRule {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {

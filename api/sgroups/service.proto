@@ -142,6 +142,16 @@ service SecGroupService {
      };
    };
 
+   rpc ListIECidrSvcRules(ListIECidrSvcRulesReq) returns (ListIECidrSvcRulesResp) {
+     option (google.api.http) = {
+        post: "/v1/list-ie-cidr-svc-rules"
+        body: "*"
+     };
+     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        description: "ListIECidrSvcRules: lists CIDR-SVC-[INGRESS|EGRESS] Rule(s) by variety of scopes'";
+     };
+   };
+
    rpc GetSgSubnets(GetSgSubnetsReq) returns (GetSgSubnetsResp){
      option (google.api.http) = {
         get: "/v1/sg/{sg_name}/subnets"

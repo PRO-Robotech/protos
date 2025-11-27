@@ -29,6 +29,7 @@ const (
 	SecGroupService_ListServices_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/ListServices"
 	SecGroupService_ListSvcSvcRules_FullMethodName       = "/hbf.v1.sgroups.SecGroupService/ListSvcSvcRules"
 	SecGroupService_ListSvcFqdnRules_FullMethodName      = "/hbf.v1.sgroups.SecGroupService/ListSvcFqdnRules"
+	SecGroupService_ListIECidrSvcRules_FullMethodName    = "/hbf.v1.sgroups.SecGroupService/ListIECidrSvcRules"
 	SecGroupService_GetSgSubnets_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/GetSgSubnets"
 	SecGroupService_GetSecGroupForAddress_FullMethodName = "/hbf.v1.sgroups.SecGroupService/GetSecGroupForAddress"
 	SecGroupService_GetSecGroupForHost_FullMethodName    = "/hbf.v1.sgroups.SecGroupService/GetSecGroupForHost"
@@ -56,6 +57,7 @@ type SecGroupServiceClient interface {
 	ListServices(ctx context.Context, in *ListServicesReq, opts ...grpc.CallOption) (*ListServicesResp, error)
 	ListSvcSvcRules(ctx context.Context, in *ListSvcSvcRulesReq, opts ...grpc.CallOption) (*ListSvcSvcRulesResp, error)
 	ListSvcFqdnRules(ctx context.Context, in *ListSvcFqdnRulesReq, opts ...grpc.CallOption) (*ListSvcFqdnRulesResp, error)
+	ListIECidrSvcRules(ctx context.Context, in *ListIECidrSvcRulesReq, opts ...grpc.CallOption) (*ListIECidrSvcRulesResp, error)
 	GetSgSubnets(ctx context.Context, in *GetSgSubnetsReq, opts ...grpc.CallOption) (*GetSgSubnetsResp, error)
 	GetSecGroupForAddress(ctx context.Context, in *GetSecGroupForAddressReq, opts ...grpc.CallOption) (*SecGroup, error)
 	GetSecGroupForHost(ctx context.Context, in *GetSecGroupForHostReq, opts ...grpc.CallOption) (*SecGroup, error)
@@ -176,6 +178,15 @@ func (c *secGroupServiceClient) ListSvcSvcRules(ctx context.Context, in *ListSvc
 func (c *secGroupServiceClient) ListSvcFqdnRules(ctx context.Context, in *ListSvcFqdnRulesReq, opts ...grpc.CallOption) (*ListSvcFqdnRulesResp, error) {
 	out := new(ListSvcFqdnRulesResp)
 	err := c.cc.Invoke(ctx, SecGroupService_ListSvcFqdnRules_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *secGroupServiceClient) ListIECidrSvcRules(ctx context.Context, in *ListIECidrSvcRulesReq, opts ...grpc.CallOption) (*ListIECidrSvcRulesResp, error) {
+	out := new(ListIECidrSvcRulesResp)
+	err := c.cc.Invoke(ctx, SecGroupService_ListIECidrSvcRules_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -303,6 +314,7 @@ type SecGroupServiceServer interface {
 	ListServices(context.Context, *ListServicesReq) (*ListServicesResp, error)
 	ListSvcSvcRules(context.Context, *ListSvcSvcRulesReq) (*ListSvcSvcRulesResp, error)
 	ListSvcFqdnRules(context.Context, *ListSvcFqdnRulesReq) (*ListSvcFqdnRulesResp, error)
+	ListIECidrSvcRules(context.Context, *ListIECidrSvcRulesReq) (*ListIECidrSvcRulesResp, error)
 	GetSgSubnets(context.Context, *GetSgSubnetsReq) (*GetSgSubnetsResp, error)
 	GetSecGroupForAddress(context.Context, *GetSecGroupForAddressReq) (*SecGroup, error)
 	GetSecGroupForHost(context.Context, *GetSecGroupForHostReq) (*SecGroup, error)
@@ -348,6 +360,9 @@ func (UnimplementedSecGroupServiceServer) ListSvcSvcRules(context.Context, *List
 }
 func (UnimplementedSecGroupServiceServer) ListSvcFqdnRules(context.Context, *ListSvcFqdnRulesReq) (*ListSvcFqdnRulesResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSvcFqdnRules not implemented")
+}
+func (UnimplementedSecGroupServiceServer) ListIECidrSvcRules(context.Context, *ListIECidrSvcRulesReq) (*ListIECidrSvcRulesResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListIECidrSvcRules not implemented")
 }
 func (UnimplementedSecGroupServiceServer) GetSgSubnets(context.Context, *GetSgSubnetsReq) (*GetSgSubnetsResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSgSubnets not implemented")
@@ -559,6 +574,24 @@ func _SecGroupService_ListSvcFqdnRules_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SecGroupServiceServer).ListSvcFqdnRules(ctx, req.(*ListSvcFqdnRulesReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SecGroupService_ListIECidrSvcRules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListIECidrSvcRulesReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).ListIECidrSvcRules(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_ListIECidrSvcRules_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).ListIECidrSvcRules(ctx, req.(*ListIECidrSvcRulesReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -817,6 +850,10 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListSvcFqdnRules",
 			Handler:    _SecGroupService_ListSvcFqdnRules_Handler,
+		},
+		{
+			MethodName: "ListIECidrSvcRules",
+			Handler:    _SecGroupService_ListIECidrSvcRules_Handler,
 		},
 		{
 			MethodName: "GetSgSubnets",
