@@ -206,7 +206,11 @@ message ListHostsReq {
 
 // ListHostsResp: returned list of hosts
 message ListHostsResp {
-   repeated Host hosts = 1;
+  message MetaHostInfo {
+    Host host = 1;
+    MetaInfo meta_info = 2;
+  }
+  repeated MetaHostInfo hosts = 1;
 }
 
 // ListServicesReq: request to list services by variety of scopes
@@ -499,9 +503,9 @@ message ListSvcFqdnRulesResp {
   repeated SvcFqdnRule rules = 1;
 }
 
-// UpdHostIPSetReq: request to update Host IPSet by host uuid
-message UpdHostIPSetReq {
-  repeated HostIPSet hosts = 1;
+// UpdHostInfoReq: request to update Host Info by host uuid
+message UpdHostInfoReq {
+  repeated HostInfo hosts = 1;
 }
 
 // ListIECidrSvcRulesReq: req to list all CIDR-SVC-[INGRESS|EGRESS] Rule(s) by variety of scopes

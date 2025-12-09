@@ -1430,8 +1430,8 @@ func (*ListHostsReq_BySgName) isListHostsReq_Criteria() {}
 
 // ListHostsResp: returned list of hosts
 type ListHostsResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Hosts         []*Host                `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	state         protoimpl.MessageState        `protogen:"open.v1"`
+	Hosts         []*ListHostsResp_MetaHostInfo `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1466,7 +1466,7 @@ func (*ListHostsResp) Descriptor() ([]byte, []int) {
 	return file_sgroups_queries_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *ListHostsResp) GetHosts() []*Host {
+func (x *ListHostsResp) GetHosts() []*ListHostsResp_MetaHostInfo {
 	if x != nil {
 		return x.Hosts
 	}
@@ -2972,28 +2972,28 @@ func (x *ListSvcFqdnRulesResp) GetRules() []*SvcFqdnRule {
 	return nil
 }
 
-// UpdHostIPSetReq: request to update Host IPSet by host uuid
-type UpdHostIPSetReq struct {
+// UpdHostInfoReq: request to update Host Info by host uuid
+type UpdHostInfoReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Hosts         []*HostIPSet           `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
+	Hosts         []*HostInfo            `protobuf:"bytes,1,rep,name=hosts,proto3" json:"hosts,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdHostIPSetReq) Reset() {
-	*x = UpdHostIPSetReq{}
+func (x *UpdHostInfoReq) Reset() {
+	*x = UpdHostInfoReq{}
 	mi := &file_sgroups_queries_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdHostIPSetReq) String() string {
+func (x *UpdHostInfoReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdHostIPSetReq) ProtoMessage() {}
+func (*UpdHostInfoReq) ProtoMessage() {}
 
-func (x *UpdHostIPSetReq) ProtoReflect() protoreflect.Message {
+func (x *UpdHostInfoReq) ProtoReflect() protoreflect.Message {
 	mi := &file_sgroups_queries_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -3005,12 +3005,12 @@ func (x *UpdHostIPSetReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdHostIPSetReq.ProtoReflect.Descriptor instead.
-func (*UpdHostIPSetReq) Descriptor() ([]byte, []int) {
+// Deprecated: Use UpdHostInfoReq.ProtoReflect.Descriptor instead.
+func (*UpdHostInfoReq) Descriptor() ([]byte, []int) {
 	return file_sgroups_queries_proto_rawDescGZIP(), []int{51}
 }
 
-func (x *UpdHostIPSetReq) GetHosts() []*HostIPSet {
+func (x *UpdHostInfoReq) GetHosts() []*HostInfo {
 	if x != nil {
 		return x.Hosts
 	}
@@ -3334,6 +3334,58 @@ func (x *ListHostsReq_BySG) GetNames() []string {
 	return nil
 }
 
+type ListHostsResp_MetaHostInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Host          *Host                  `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	MetaInfo      *MetaInfo              `protobuf:"bytes,2,opt,name=meta_info,json=metaInfo,proto3" json:"meta_info,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListHostsResp_MetaHostInfo) Reset() {
+	*x = ListHostsResp_MetaHostInfo{}
+	mi := &file_sgroups_queries_proto_msgTypes[58]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListHostsResp_MetaHostInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListHostsResp_MetaHostInfo) ProtoMessage() {}
+
+func (x *ListHostsResp_MetaHostInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_sgroups_queries_proto_msgTypes[58]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListHostsResp_MetaHostInfo.ProtoReflect.Descriptor instead.
+func (*ListHostsResp_MetaHostInfo) Descriptor() ([]byte, []int) {
+	return file_sgroups_queries_proto_rawDescGZIP(), []int{22, 0}
+}
+
+func (x *ListHostsResp_MetaHostInfo) GetHost() *Host {
+	if x != nil {
+		return x.Host
+	}
+	return nil
+}
+
+func (x *ListHostsResp_MetaHostInfo) GetMetaInfo() *MetaInfo {
+	if x != nil {
+		return x.MetaInfo
+	}
+	return nil
+}
+
 // No filtering: return all services
 type ListServicesReq_NoFilter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -3343,7 +3395,7 @@ type ListServicesReq_NoFilter struct {
 
 func (x *ListServicesReq_NoFilter) Reset() {
 	*x = ListServicesReq_NoFilter{}
-	mi := &file_sgroups_queries_proto_msgTypes[58]
+	mi := &file_sgroups_queries_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3355,7 +3407,7 @@ func (x *ListServicesReq_NoFilter) String() string {
 func (*ListServicesReq_NoFilter) ProtoMessage() {}
 
 func (x *ListServicesReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[58]
+	mi := &file_sgroups_queries_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3381,7 +3433,7 @@ type ListServicesReq_BySVCName struct {
 
 func (x *ListServicesReq_BySVCName) Reset() {
 	*x = ListServicesReq_BySVCName{}
-	mi := &file_sgroups_queries_proto_msgTypes[59]
+	mi := &file_sgroups_queries_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3393,7 +3445,7 @@ func (x *ListServicesReq_BySVCName) String() string {
 func (*ListServicesReq_BySVCName) ProtoMessage() {}
 
 func (x *ListServicesReq_BySVCName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[59]
+	mi := &file_sgroups_queries_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3426,7 +3478,7 @@ type ListServicesReq_BySG struct {
 
 func (x *ListServicesReq_BySG) Reset() {
 	*x = ListServicesReq_BySG{}
-	mi := &file_sgroups_queries_proto_msgTypes[60]
+	mi := &file_sgroups_queries_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3438,7 +3490,7 @@ func (x *ListServicesReq_BySG) String() string {
 func (*ListServicesReq_BySG) ProtoMessage() {}
 
 func (x *ListServicesReq_BySG) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[60]
+	mi := &file_sgroups_queries_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3470,7 +3522,7 @@ type ListSvcSvcRulesReq_NoFilter struct {
 
 func (x *ListSvcSvcRulesReq_NoFilter) Reset() {
 	*x = ListSvcSvcRulesReq_NoFilter{}
-	mi := &file_sgroups_queries_proto_msgTypes[61]
+	mi := &file_sgroups_queries_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3482,7 +3534,7 @@ func (x *ListSvcSvcRulesReq_NoFilter) String() string {
 func (*ListSvcSvcRulesReq_NoFilter) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[61]
+	mi := &file_sgroups_queries_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3508,7 +3560,7 @@ type ListSvcSvcRulesReq_ByRuleName struct {
 
 func (x *ListSvcSvcRulesReq_ByRuleName) Reset() {
 	*x = ListSvcSvcRulesReq_ByRuleName{}
-	mi := &file_sgroups_queries_proto_msgTypes[62]
+	mi := &file_sgroups_queries_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3520,7 +3572,7 @@ func (x *ListSvcSvcRulesReq_ByRuleName) String() string {
 func (*ListSvcSvcRulesReq_ByRuleName) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesReq_ByRuleName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[62]
+	mi := &file_sgroups_queries_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3554,7 +3606,7 @@ type ListSvcSvcRulesReq_BySvcFromTo struct {
 
 func (x *ListSvcSvcRulesReq_BySvcFromTo) Reset() {
 	*x = ListSvcSvcRulesReq_BySvcFromTo{}
-	mi := &file_sgroups_queries_proto_msgTypes[63]
+	mi := &file_sgroups_queries_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3566,7 +3618,7 @@ func (x *ListSvcSvcRulesReq_BySvcFromTo) String() string {
 func (*ListSvcSvcRulesReq_BySvcFromTo) ProtoMessage() {}
 
 func (x *ListSvcSvcRulesReq_BySvcFromTo) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[63]
+	mi := &file_sgroups_queries_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3605,7 +3657,7 @@ type ListSvcFqdnRulesReq_NoFilter struct {
 
 func (x *ListSvcFqdnRulesReq_NoFilter) Reset() {
 	*x = ListSvcFqdnRulesReq_NoFilter{}
-	mi := &file_sgroups_queries_proto_msgTypes[64]
+	mi := &file_sgroups_queries_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3617,7 +3669,7 @@ func (x *ListSvcFqdnRulesReq_NoFilter) String() string {
 func (*ListSvcFqdnRulesReq_NoFilter) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[64]
+	mi := &file_sgroups_queries_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3643,7 +3695,7 @@ type ListSvcFqdnRulesReq_ByRuleName struct {
 
 func (x *ListSvcFqdnRulesReq_ByRuleName) Reset() {
 	*x = ListSvcFqdnRulesReq_ByRuleName{}
-	mi := &file_sgroups_queries_proto_msgTypes[65]
+	mi := &file_sgroups_queries_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3655,7 +3707,7 @@ func (x *ListSvcFqdnRulesReq_ByRuleName) String() string {
 func (*ListSvcFqdnRulesReq_ByRuleName) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesReq_ByRuleName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[65]
+	mi := &file_sgroups_queries_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3688,7 +3740,7 @@ type ListSvcFqdnRulesReq_BySvcFrom struct {
 
 func (x *ListSvcFqdnRulesReq_BySvcFrom) Reset() {
 	*x = ListSvcFqdnRulesReq_BySvcFrom{}
-	mi := &file_sgroups_queries_proto_msgTypes[66]
+	mi := &file_sgroups_queries_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3700,7 +3752,7 @@ func (x *ListSvcFqdnRulesReq_BySvcFrom) String() string {
 func (*ListSvcFqdnRulesReq_BySvcFrom) ProtoMessage() {}
 
 func (x *ListSvcFqdnRulesReq_BySvcFrom) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[66]
+	mi := &file_sgroups_queries_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3732,7 +3784,7 @@ type ListIECidrSvcRulesReq_NoFilter struct {
 
 func (x *ListIECidrSvcRulesReq_NoFilter) Reset() {
 	*x = ListIECidrSvcRulesReq_NoFilter{}
-	mi := &file_sgroups_queries_proto_msgTypes[67]
+	mi := &file_sgroups_queries_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3744,7 +3796,7 @@ func (x *ListIECidrSvcRulesReq_NoFilter) String() string {
 func (*ListIECidrSvcRulesReq_NoFilter) ProtoMessage() {}
 
 func (x *ListIECidrSvcRulesReq_NoFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[67]
+	mi := &file_sgroups_queries_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3770,7 +3822,7 @@ type ListIECidrSvcRulesReq_ByRuleName struct {
 
 func (x *ListIECidrSvcRulesReq_ByRuleName) Reset() {
 	*x = ListIECidrSvcRulesReq_ByRuleName{}
-	mi := &file_sgroups_queries_proto_msgTypes[68]
+	mi := &file_sgroups_queries_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3782,7 +3834,7 @@ func (x *ListIECidrSvcRulesReq_ByRuleName) String() string {
 func (*ListIECidrSvcRulesReq_ByRuleName) ProtoMessage() {}
 
 func (x *ListIECidrSvcRulesReq_ByRuleName) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[68]
+	mi := &file_sgroups_queries_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3815,7 +3867,7 @@ type ListIECidrSvcRulesReq_BySvc struct {
 
 func (x *ListIECidrSvcRulesReq_BySvc) Reset() {
 	*x = ListIECidrSvcRulesReq_BySvc{}
-	mi := &file_sgroups_queries_proto_msgTypes[69]
+	mi := &file_sgroups_queries_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3827,7 +3879,7 @@ func (x *ListIECidrSvcRulesReq_BySvc) String() string {
 func (*ListIECidrSvcRulesReq_BySvc) ProtoMessage() {}
 
 func (x *ListIECidrSvcRulesReq_BySvc) ProtoReflect() protoreflect.Message {
-	mi := &file_sgroups_queries_proto_msgTypes[69]
+	mi := &file_sgroups_queries_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3940,9 +3992,12 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\x04BySG\x12\x14\n" +
 	"\x05names\x18\x01 \x03(\tR\x05namesB\n" +
 	"\n" +
-	"\bcriteria\";\n" +
-	"\rListHostsResp\x12*\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x14.hbf.v1.sgroups.HostR\x05hosts\"\xbd\x02\n" +
+	"\bcriteria\"\xc2\x01\n" +
+	"\rListHostsResp\x12@\n" +
+	"\x05hosts\x18\x01 \x03(\v2*.hbf.v1.sgroups.ListHostsResp.MetaHostInfoR\x05hosts\x1ao\n" +
+	"\fMetaHostInfo\x12(\n" +
+	"\x04host\x18\x01 \x01(\v2\x14.hbf.v1.sgroups.HostR\x04host\x125\n" +
+	"\tmeta_info\x18\x02 \x01(\v2\x18.hbf.v1.sgroups.MetaInfoR\bmetaInfo\"\xbd\x02\n" +
 	"\x0fListServicesReq\x12>\n" +
 	"\x04none\x18\x01 \x01(\v2(.hbf.v1.sgroups.ListServicesReq.NoFilterH\x00R\x04none\x12K\n" +
 	"\vby_svc_name\x18\x02 \x01(\v2).hbf.v1.sgroups.ListServicesReq.BySVCNameH\x00R\tbySvcName\x12D\n" +
@@ -4059,9 +4114,9 @@ const file_sgroups_queries_proto_rawDesc = "" +
 	"\n" +
 	"\bcriteria\"I\n" +
 	"\x14ListSvcFqdnRulesResp\x121\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v1.sgroups.SvcFqdnRuleR\x05rules\"B\n" +
-	"\x0fUpdHostIPSetReq\x12/\n" +
-	"\x05hosts\x18\x01 \x03(\v2\x19.hbf.v1.sgroups.HostIPSetR\x05hosts\"\xdb\x02\n" +
+	"\x05rules\x18\x01 \x03(\v2\x1b.hbf.v1.sgroups.SvcFqdnRuleR\x05rules\"@\n" +
+	"\x0eUpdHostInfoReq\x12.\n" +
+	"\x05hosts\x18\x01 \x03(\v2\x18.hbf.v1.sgroups.HostInfoR\x05hosts\"\xdb\x02\n" +
 	"\x15ListIECidrSvcRulesReq\x12D\n" +
 	"\x04none\x18\x01 \x01(\v2..hbf.v1.sgroups.ListIECidrSvcRulesReq.NoFilterH\x00R\x04none\x12T\n" +
 	"\fby_rule_name\x18\x02 \x01(\v20.hbf.v1.sgroups.ListIECidrSvcRulesReq.ByRuleNameH\x00R\n" +
@@ -4092,7 +4147,7 @@ func file_sgroups_queries_proto_rawDescGZIP() []byte {
 }
 
 var file_sgroups_queries_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_sgroups_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 70)
+var file_sgroups_queries_proto_msgTypes = make([]protoimpl.MessageInfo, 71)
 var file_sgroups_queries_proto_goTypes = []any{
 	(SyncReq_SyncOp)(0),                      // 0: hbf.v1.sgroups.SyncReq.SyncOp
 	(*SyncStatusResp)(nil),                   // 1: hbf.v1.sgroups.SyncStatusResp
@@ -4146,60 +4201,62 @@ var file_sgroups_queries_proto_goTypes = []any{
 	(*ListSvcSvcRulesResp)(nil),              // 49: hbf.v1.sgroups.ListSvcSvcRulesResp
 	(*ListSvcFqdnRulesReq)(nil),              // 50: hbf.v1.sgroups.ListSvcFqdnRulesReq
 	(*ListSvcFqdnRulesResp)(nil),             // 51: hbf.v1.sgroups.ListSvcFqdnRulesResp
-	(*UpdHostIPSetReq)(nil),                  // 52: hbf.v1.sgroups.UpdHostIPSetReq
+	(*UpdHostInfoReq)(nil),                   // 52: hbf.v1.sgroups.UpdHostInfoReq
 	(*ListIECidrSvcRulesReq)(nil),            // 53: hbf.v1.sgroups.ListIECidrSvcRulesReq
 	(*ListIECidrSvcRulesResp)(nil),           // 54: hbf.v1.sgroups.ListIECidrSvcRulesResp
 	(*ListHostsReq_NoFilter)(nil),            // 55: hbf.v1.sgroups.ListHostsReq.NoFilter
 	(*ListHostsReq_ByUUID)(nil),              // 56: hbf.v1.sgroups.ListHostsReq.ByUUID
 	(*ListHostsReq_ByHostName)(nil),          // 57: hbf.v1.sgroups.ListHostsReq.ByHostName
 	(*ListHostsReq_BySG)(nil),                // 58: hbf.v1.sgroups.ListHostsReq.BySG
-	(*ListServicesReq_NoFilter)(nil),         // 59: hbf.v1.sgroups.ListServicesReq.NoFilter
-	(*ListServicesReq_BySVCName)(nil),        // 60: hbf.v1.sgroups.ListServicesReq.BySVCName
-	(*ListServicesReq_BySG)(nil),             // 61: hbf.v1.sgroups.ListServicesReq.BySG
-	(*ListSvcSvcRulesReq_NoFilter)(nil),      // 62: hbf.v1.sgroups.ListSvcSvcRulesReq.NoFilter
-	(*ListSvcSvcRulesReq_ByRuleName)(nil),    // 63: hbf.v1.sgroups.ListSvcSvcRulesReq.ByRuleName
-	(*ListSvcSvcRulesReq_BySvcFromTo)(nil),   // 64: hbf.v1.sgroups.ListSvcSvcRulesReq.BySvcFromTo
-	(*ListSvcFqdnRulesReq_NoFilter)(nil),     // 65: hbf.v1.sgroups.ListSvcFqdnRulesReq.NoFilter
-	(*ListSvcFqdnRulesReq_ByRuleName)(nil),   // 66: hbf.v1.sgroups.ListSvcFqdnRulesReq.ByRuleName
-	(*ListSvcFqdnRulesReq_BySvcFrom)(nil),    // 67: hbf.v1.sgroups.ListSvcFqdnRulesReq.BySvcFrom
-	(*ListIECidrSvcRulesReq_NoFilter)(nil),   // 68: hbf.v1.sgroups.ListIECidrSvcRulesReq.NoFilter
-	(*ListIECidrSvcRulesReq_ByRuleName)(nil), // 69: hbf.v1.sgroups.ListIECidrSvcRulesReq.ByRuleName
-	(*ListIECidrSvcRulesReq_BySvc)(nil),      // 70: hbf.v1.sgroups.ListIECidrSvcRulesReq.BySvc
-	(*timestamp.Timestamp)(nil),              // 71: google.protobuf.Timestamp
-	(*SgSgRule)(nil),                         // 72: hbf.v1.sgroups.SgSgRule
-	(*FqdnRule)(nil),                         // 73: hbf.v1.sgroups.FqdnRule
-	(*SvcFqdnRule)(nil),                      // 74: hbf.v1.sgroups.SvcFqdnRule
-	(*SecGroup)(nil),                         // 75: hbf.v1.sgroups.SecGroup
-	(*Network)(nil),                          // 76: hbf.v1.sgroups.Network
-	(*SgIcmpRule)(nil),                       // 77: hbf.v1.sgroups.SgIcmpRule
-	(*SgSgIcmpRule)(nil),                     // 78: hbf.v1.sgroups.SgSgIcmpRule
-	(*IECidrSgRule)(nil),                     // 79: hbf.v1.sgroups.IECidrSgRule
-	(*IECidrSvcRule)(nil),                    // 80: hbf.v1.sgroups.IECidrSvcRule
-	(*IESgSgRule)(nil),                       // 81: hbf.v1.sgroups.IESgSgRule
-	(*IESgSgIcmpRule)(nil),                   // 82: hbf.v1.sgroups.IESgSgIcmpRule
-	(*IECidrSgIcmpRule)(nil),                 // 83: hbf.v1.sgroups.IECidrSgIcmpRule
-	(*Host)(nil),                             // 84: hbf.v1.sgroups.Host
-	(*Service)(nil),                          // 85: hbf.v1.sgroups.Service
-	(*SvcSvcRule)(nil),                       // 86: hbf.v1.sgroups.SvcSvcRule
-	(*HostIPSet)(nil),                        // 87: hbf.v1.sgroups.HostIPSet
+	(*ListHostsResp_MetaHostInfo)(nil),       // 59: hbf.v1.sgroups.ListHostsResp.MetaHostInfo
+	(*ListServicesReq_NoFilter)(nil),         // 60: hbf.v1.sgroups.ListServicesReq.NoFilter
+	(*ListServicesReq_BySVCName)(nil),        // 61: hbf.v1.sgroups.ListServicesReq.BySVCName
+	(*ListServicesReq_BySG)(nil),             // 62: hbf.v1.sgroups.ListServicesReq.BySG
+	(*ListSvcSvcRulesReq_NoFilter)(nil),      // 63: hbf.v1.sgroups.ListSvcSvcRulesReq.NoFilter
+	(*ListSvcSvcRulesReq_ByRuleName)(nil),    // 64: hbf.v1.sgroups.ListSvcSvcRulesReq.ByRuleName
+	(*ListSvcSvcRulesReq_BySvcFromTo)(nil),   // 65: hbf.v1.sgroups.ListSvcSvcRulesReq.BySvcFromTo
+	(*ListSvcFqdnRulesReq_NoFilter)(nil),     // 66: hbf.v1.sgroups.ListSvcFqdnRulesReq.NoFilter
+	(*ListSvcFqdnRulesReq_ByRuleName)(nil),   // 67: hbf.v1.sgroups.ListSvcFqdnRulesReq.ByRuleName
+	(*ListSvcFqdnRulesReq_BySvcFrom)(nil),    // 68: hbf.v1.sgroups.ListSvcFqdnRulesReq.BySvcFrom
+	(*ListIECidrSvcRulesReq_NoFilter)(nil),   // 69: hbf.v1.sgroups.ListIECidrSvcRulesReq.NoFilter
+	(*ListIECidrSvcRulesReq_ByRuleName)(nil), // 70: hbf.v1.sgroups.ListIECidrSvcRulesReq.ByRuleName
+	(*ListIECidrSvcRulesReq_BySvc)(nil),      // 71: hbf.v1.sgroups.ListIECidrSvcRulesReq.BySvc
+	(*timestamp.Timestamp)(nil),              // 72: google.protobuf.Timestamp
+	(*SgSgRule)(nil),                         // 73: hbf.v1.sgroups.SgSgRule
+	(*FqdnRule)(nil),                         // 74: hbf.v1.sgroups.FqdnRule
+	(*SvcFqdnRule)(nil),                      // 75: hbf.v1.sgroups.SvcFqdnRule
+	(*SecGroup)(nil),                         // 76: hbf.v1.sgroups.SecGroup
+	(*Network)(nil),                          // 77: hbf.v1.sgroups.Network
+	(*SgIcmpRule)(nil),                       // 78: hbf.v1.sgroups.SgIcmpRule
+	(*SgSgIcmpRule)(nil),                     // 79: hbf.v1.sgroups.SgSgIcmpRule
+	(*IECidrSgRule)(nil),                     // 80: hbf.v1.sgroups.IECidrSgRule
+	(*IECidrSvcRule)(nil),                    // 81: hbf.v1.sgroups.IECidrSvcRule
+	(*IESgSgRule)(nil),                       // 82: hbf.v1.sgroups.IESgSgRule
+	(*IESgSgIcmpRule)(nil),                   // 83: hbf.v1.sgroups.IESgSgIcmpRule
+	(*IECidrSgIcmpRule)(nil),                 // 84: hbf.v1.sgroups.IECidrSgIcmpRule
+	(*Host)(nil),                             // 85: hbf.v1.sgroups.Host
+	(*Service)(nil),                          // 86: hbf.v1.sgroups.Service
+	(*SvcSvcRule)(nil),                       // 87: hbf.v1.sgroups.SvcSvcRule
+	(*HostInfo)(nil),                         // 88: hbf.v1.sgroups.HostInfo
+	(*MetaInfo)(nil),                         // 89: hbf.v1.sgroups.MetaInfo
 }
 var file_sgroups_queries_proto_depIdxs = []int32{
-	71, // 0: hbf.v1.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
-	72, // 1: hbf.v1.sgroups.SyncSgSgRules.rules:type_name -> hbf.v1.sgroups.SgSgRule
-	73, // 2: hbf.v1.sgroups.SyncFqdnRules.rules:type_name -> hbf.v1.sgroups.FqdnRule
-	74, // 3: hbf.v1.sgroups.SyncSvcFqdnRules.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
-	75, // 4: hbf.v1.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v1.sgroups.SecGroup
-	76, // 5: hbf.v1.sgroups.SyncNetworks.networks:type_name -> hbf.v1.sgroups.Network
-	77, // 6: hbf.v1.sgroups.SyncSgIcmpRules.rules:type_name -> hbf.v1.sgroups.SgIcmpRule
-	78, // 7: hbf.v1.sgroups.SyncSgSgIcmpRules.rules:type_name -> hbf.v1.sgroups.SgSgIcmpRule
-	79, // 8: hbf.v1.sgroups.SyncIECidrSgRules.rules:type_name -> hbf.v1.sgroups.IECidrSgRule
-	80, // 9: hbf.v1.sgroups.SyncIECidrSvcRules.rules:type_name -> hbf.v1.sgroups.IECidrSvcRule
-	81, // 10: hbf.v1.sgroups.SyncIESgSgRules.rules:type_name -> hbf.v1.sgroups.IESgSgRule
-	82, // 11: hbf.v1.sgroups.SyncIESgSgIcmpRules.rules:type_name -> hbf.v1.sgroups.IESgSgIcmpRule
-	83, // 12: hbf.v1.sgroups.SyncIECidrSgIcmpRules.rules:type_name -> hbf.v1.sgroups.IECidrSgIcmpRule
-	84, // 13: hbf.v1.sgroups.SyncHosts.hosts:type_name -> hbf.v1.sgroups.Host
-	85, // 14: hbf.v1.sgroups.SyncServices.services:type_name -> hbf.v1.sgroups.Service
-	86, // 15: hbf.v1.sgroups.SyncSvcSvcRules.rules:type_name -> hbf.v1.sgroups.SvcSvcRule
+	72, // 0: hbf.v1.sgroups.SyncStatusResp.updated_at:type_name -> google.protobuf.Timestamp
+	73, // 1: hbf.v1.sgroups.SyncSgSgRules.rules:type_name -> hbf.v1.sgroups.SgSgRule
+	74, // 2: hbf.v1.sgroups.SyncFqdnRules.rules:type_name -> hbf.v1.sgroups.FqdnRule
+	75, // 3: hbf.v1.sgroups.SyncSvcFqdnRules.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
+	76, // 4: hbf.v1.sgroups.SyncSecurityGroups.groups:type_name -> hbf.v1.sgroups.SecGroup
+	77, // 5: hbf.v1.sgroups.SyncNetworks.networks:type_name -> hbf.v1.sgroups.Network
+	78, // 6: hbf.v1.sgroups.SyncSgIcmpRules.rules:type_name -> hbf.v1.sgroups.SgIcmpRule
+	79, // 7: hbf.v1.sgroups.SyncSgSgIcmpRules.rules:type_name -> hbf.v1.sgroups.SgSgIcmpRule
+	80, // 8: hbf.v1.sgroups.SyncIECidrSgRules.rules:type_name -> hbf.v1.sgroups.IECidrSgRule
+	81, // 9: hbf.v1.sgroups.SyncIECidrSvcRules.rules:type_name -> hbf.v1.sgroups.IECidrSvcRule
+	82, // 10: hbf.v1.sgroups.SyncIESgSgRules.rules:type_name -> hbf.v1.sgroups.IESgSgRule
+	83, // 11: hbf.v1.sgroups.SyncIESgSgIcmpRules.rules:type_name -> hbf.v1.sgroups.IESgSgIcmpRule
+	84, // 12: hbf.v1.sgroups.SyncIECidrSgIcmpRules.rules:type_name -> hbf.v1.sgroups.IECidrSgIcmpRule
+	85, // 13: hbf.v1.sgroups.SyncHosts.hosts:type_name -> hbf.v1.sgroups.Host
+	86, // 14: hbf.v1.sgroups.SyncServices.services:type_name -> hbf.v1.sgroups.Service
+	87, // 15: hbf.v1.sgroups.SyncSvcSvcRules.rules:type_name -> hbf.v1.sgroups.SvcSvcRule
 	0,  // 16: hbf.v1.sgroups.SyncReq.sync_op:type_name -> hbf.v1.sgroups.SyncReq.SyncOp
 	5,  // 17: hbf.v1.sgroups.SyncReq.groups:type_name -> hbf.v1.sgroups.SyncSecurityGroups
 	6,  // 18: hbf.v1.sgroups.SyncReq.networks:type_name -> hbf.v1.sgroups.SyncNetworks
@@ -4216,45 +4273,47 @@ var file_sgroups_queries_proto_depIdxs = []int32{
 	16, // 29: hbf.v1.sgroups.SyncReq.service_rules:type_name -> hbf.v1.sgroups.SyncSvcSvcRules
 	4,  // 30: hbf.v1.sgroups.SyncReq.svc_fqdn_rules:type_name -> hbf.v1.sgroups.SyncSvcFqdnRules
 	10, // 31: hbf.v1.sgroups.SyncReq.ie_cidr_svc_rules:type_name -> hbf.v1.sgroups.SyncIECidrSvcRules
-	76, // 32: hbf.v1.sgroups.ListNetworksResp.networks:type_name -> hbf.v1.sgroups.Network
-	75, // 33: hbf.v1.sgroups.ListSecurityGroupsResp.groups:type_name -> hbf.v1.sgroups.SecGroup
+	77, // 32: hbf.v1.sgroups.ListNetworksResp.networks:type_name -> hbf.v1.sgroups.Network
+	76, // 33: hbf.v1.sgroups.ListSecurityGroupsResp.groups:type_name -> hbf.v1.sgroups.SecGroup
 	55, // 34: hbf.v1.sgroups.ListHostsReq.none:type_name -> hbf.v1.sgroups.ListHostsReq.NoFilter
 	56, // 35: hbf.v1.sgroups.ListHostsReq.byUUID:type_name -> hbf.v1.sgroups.ListHostsReq.ByUUID
 	57, // 36: hbf.v1.sgroups.ListHostsReq.by_hostname:type_name -> hbf.v1.sgroups.ListHostsReq.ByHostName
 	58, // 37: hbf.v1.sgroups.ListHostsReq.by_sg_name:type_name -> hbf.v1.sgroups.ListHostsReq.BySG
-	84, // 38: hbf.v1.sgroups.ListHostsResp.hosts:type_name -> hbf.v1.sgroups.Host
-	59, // 39: hbf.v1.sgroups.ListServicesReq.none:type_name -> hbf.v1.sgroups.ListServicesReq.NoFilter
-	60, // 40: hbf.v1.sgroups.ListServicesReq.by_svc_name:type_name -> hbf.v1.sgroups.ListServicesReq.BySVCName
-	61, // 41: hbf.v1.sgroups.ListServicesReq.by_sg_name:type_name -> hbf.v1.sgroups.ListServicesReq.BySG
-	85, // 42: hbf.v1.sgroups.ListServicesResp.services:type_name -> hbf.v1.sgroups.Service
-	76, // 43: hbf.v1.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v1.sgroups.Network
-	72, // 44: hbf.v1.sgroups.SgSgRulesResp.rules:type_name -> hbf.v1.sgroups.SgSgRule
-	73, // 45: hbf.v1.sgroups.FqdnRulesResp.rules:type_name -> hbf.v1.sgroups.FqdnRule
-	74, // 46: hbf.v1.sgroups.SvcFqdnRulesResp.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
-	77, // 47: hbf.v1.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.SgIcmpRule
-	78, // 48: hbf.v1.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.SgSgIcmpRule
-	79, // 49: hbf.v1.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSgRule
-	81, // 50: hbf.v1.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v1.sgroups.IESgSgRule
-	82, // 51: hbf.v1.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.IESgSgIcmpRule
-	83, // 52: hbf.v1.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSgIcmpRule
-	62, // 53: hbf.v1.sgroups.ListSvcSvcRulesReq.none:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.NoFilter
-	63, // 54: hbf.v1.sgroups.ListSvcSvcRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.ByRuleName
-	64, // 55: hbf.v1.sgroups.ListSvcSvcRulesReq.by_svc_from_to:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.BySvcFromTo
-	86, // 56: hbf.v1.sgroups.ListSvcSvcRulesResp.rules:type_name -> hbf.v1.sgroups.SvcSvcRule
-	65, // 57: hbf.v1.sgroups.ListSvcFqdnRulesReq.none:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.NoFilter
-	66, // 58: hbf.v1.sgroups.ListSvcFqdnRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.ByRuleName
-	67, // 59: hbf.v1.sgroups.ListSvcFqdnRulesReq.by_svc_from:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.BySvcFrom
-	74, // 60: hbf.v1.sgroups.ListSvcFqdnRulesResp.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
-	87, // 61: hbf.v1.sgroups.UpdHostIPSetReq.hosts:type_name -> hbf.v1.sgroups.HostIPSet
-	68, // 62: hbf.v1.sgroups.ListIECidrSvcRulesReq.none:type_name -> hbf.v1.sgroups.ListIECidrSvcRulesReq.NoFilter
-	69, // 63: hbf.v1.sgroups.ListIECidrSvcRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListIECidrSvcRulesReq.ByRuleName
-	70, // 64: hbf.v1.sgroups.ListIECidrSvcRulesReq.by_svc:type_name -> hbf.v1.sgroups.ListIECidrSvcRulesReq.BySvc
-	80, // 65: hbf.v1.sgroups.ListIECidrSvcRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSvcRule
-	66, // [66:66] is the sub-list for method output_type
-	66, // [66:66] is the sub-list for method input_type
-	66, // [66:66] is the sub-list for extension type_name
-	66, // [66:66] is the sub-list for extension extendee
-	0,  // [0:66] is the sub-list for field type_name
+	59, // 38: hbf.v1.sgroups.ListHostsResp.hosts:type_name -> hbf.v1.sgroups.ListHostsResp.MetaHostInfo
+	60, // 39: hbf.v1.sgroups.ListServicesReq.none:type_name -> hbf.v1.sgroups.ListServicesReq.NoFilter
+	61, // 40: hbf.v1.sgroups.ListServicesReq.by_svc_name:type_name -> hbf.v1.sgroups.ListServicesReq.BySVCName
+	62, // 41: hbf.v1.sgroups.ListServicesReq.by_sg_name:type_name -> hbf.v1.sgroups.ListServicesReq.BySG
+	86, // 42: hbf.v1.sgroups.ListServicesResp.services:type_name -> hbf.v1.sgroups.Service
+	77, // 43: hbf.v1.sgroups.GetSgSubnetsResp.networks:type_name -> hbf.v1.sgroups.Network
+	73, // 44: hbf.v1.sgroups.SgSgRulesResp.rules:type_name -> hbf.v1.sgroups.SgSgRule
+	74, // 45: hbf.v1.sgroups.FqdnRulesResp.rules:type_name -> hbf.v1.sgroups.FqdnRule
+	75, // 46: hbf.v1.sgroups.SvcFqdnRulesResp.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
+	78, // 47: hbf.v1.sgroups.SgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.SgIcmpRule
+	79, // 48: hbf.v1.sgroups.SgSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.SgSgIcmpRule
+	80, // 49: hbf.v1.sgroups.IECidrSgRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSgRule
+	82, // 50: hbf.v1.sgroups.IESgSgRulesResp.rules:type_name -> hbf.v1.sgroups.IESgSgRule
+	83, // 51: hbf.v1.sgroups.IESgSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.IESgSgIcmpRule
+	84, // 52: hbf.v1.sgroups.IECidrSgIcmpRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSgIcmpRule
+	63, // 53: hbf.v1.sgroups.ListSvcSvcRulesReq.none:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.NoFilter
+	64, // 54: hbf.v1.sgroups.ListSvcSvcRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.ByRuleName
+	65, // 55: hbf.v1.sgroups.ListSvcSvcRulesReq.by_svc_from_to:type_name -> hbf.v1.sgroups.ListSvcSvcRulesReq.BySvcFromTo
+	87, // 56: hbf.v1.sgroups.ListSvcSvcRulesResp.rules:type_name -> hbf.v1.sgroups.SvcSvcRule
+	66, // 57: hbf.v1.sgroups.ListSvcFqdnRulesReq.none:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.NoFilter
+	67, // 58: hbf.v1.sgroups.ListSvcFqdnRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.ByRuleName
+	68, // 59: hbf.v1.sgroups.ListSvcFqdnRulesReq.by_svc_from:type_name -> hbf.v1.sgroups.ListSvcFqdnRulesReq.BySvcFrom
+	75, // 60: hbf.v1.sgroups.ListSvcFqdnRulesResp.rules:type_name -> hbf.v1.sgroups.SvcFqdnRule
+	88, // 61: hbf.v1.sgroups.UpdHostInfoReq.hosts:type_name -> hbf.v1.sgroups.HostInfo
+	69, // 62: hbf.v1.sgroups.ListIECidrSvcRulesReq.none:type_name -> hbf.v1.sgroups.ListIECidrSvcRulesReq.NoFilter
+	70, // 63: hbf.v1.sgroups.ListIECidrSvcRulesReq.by_rule_name:type_name -> hbf.v1.sgroups.ListIECidrSvcRulesReq.ByRuleName
+	71, // 64: hbf.v1.sgroups.ListIECidrSvcRulesReq.by_svc:type_name -> hbf.v1.sgroups.ListIECidrSvcRulesReq.BySvc
+	81, // 65: hbf.v1.sgroups.ListIECidrSvcRulesResp.rules:type_name -> hbf.v1.sgroups.IECidrSvcRule
+	85, // 66: hbf.v1.sgroups.ListHostsResp.MetaHostInfo.host:type_name -> hbf.v1.sgroups.Host
+	89, // 67: hbf.v1.sgroups.ListHostsResp.MetaHostInfo.meta_info:type_name -> hbf.v1.sgroups.MetaInfo
+	68, // [68:68] is the sub-list for method output_type
+	68, // [68:68] is the sub-list for method input_type
+	68, // [68:68] is the sub-list for extension type_name
+	68, // [68:68] is the sub-list for extension extendee
+	0,  // [0:68] is the sub-list for field type_name
 }
 
 func init() { file_sgroups_queries_proto_init() }
@@ -4312,7 +4371,7 @@ func file_sgroups_queries_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sgroups_queries_proto_rawDesc), len(file_sgroups_queries_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   70,
+			NumMessages:   71,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
