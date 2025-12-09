@@ -34,10 +34,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/sync"
         body: "*"
-        additional_bindings {
-         post: "/v2/sync"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "Sync: makes changes in DB";
@@ -47,9 +43,6 @@ service SecGroupService {
    rpc SyncStatus(google.protobuf.Empty) returns(SyncStatusResp){
      option (google.api.http) = {
         get: "/v1/sync/status"
-        additional_bindings {
-         get: "/v2/sync/status"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "SyncStatus: gets last succeeded update DB status";
@@ -62,10 +55,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/list-networks"
         body: "*"
-        additional_bindings {
-         post: "/v2/list-networks"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "ListNetworks: shows list of Network";
@@ -76,10 +65,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/list-security-groups"
         body: "*"
-        additional_bindings {
-         post: "/v2/list-security-groups"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "ListSecurityGroups: shows list of Security Groups";
@@ -90,10 +75,6 @@ service SecGroupService {
      option (google.api.http) = {
          post: "/v1/list-hosts"
          body: "*"
-         additional_bindings {
-          post: "/v2/list-hosts"
-          body: "*"
-         }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
          description: "ListHosts: list hosts by variety of scopes";
@@ -104,10 +85,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/list-services"
         body: "*"
-        additional_bindings {
-         post: "/v2/list-services"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "ListServices: list services by variety of scopes";
@@ -118,10 +95,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/list-service-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/list-service-rules"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "ListSvcSvcRules: lists Service-to-Service Rule(s) by variety of scopes'";
@@ -132,10 +105,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/list-service-fqdn-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/list-service-fqdn-rules"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "ListSvcFqdnRules: lists Service(s) FQDN Rule(s) by variety of scopes'";
@@ -145,9 +114,6 @@ service SecGroupService {
    rpc GetSgSubnets(GetSgSubnetsReq) returns (GetSgSubnetsResp){
      option (google.api.http) = {
         get: "/v1/sg/{sg_name}/subnets"
-        additional_bindings {
-         get: "/v2/sg/{sg_name}/subnets"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "GetSgSubnets: gets Networks related to SG";
@@ -157,9 +123,6 @@ service SecGroupService {
    rpc GetSecGroupForAddress(GetSecGroupForAddressReq) returns (SecGroup) {
      option (google.api.http) = {
         get: "/v1/{address}/sg"
-        additional_bindings {
-         get: "/v2/{address}/sg"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "GetSecGroupForAddress: gets Security Group by IP or CIDR";
@@ -169,9 +132,6 @@ service SecGroupService {
    rpc GetSecGroupForHost(GetSecGroupForHostReq) returns (SecGroup) {
      option (google.api.http) = {
         get: "/v1/{host_name}/{host_uuid}/sg"
-        additional_bindings {
-         get: "/v2/{host_name}/{host_uuid}/sg"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "GetSecGroupForHost: gets Security Group by host info";
@@ -182,10 +142,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/sg-sg-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/sg-sg-rules"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "FindSgSgRules: finds SG-SG Rule(s) scoped by variety pairs 'SG '->'to SG'";
@@ -196,10 +152,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/fqdn-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/fqdn-rules"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "FindFqdnRules: finds FQDN Rule(s) scoped by variety SG 'from'";
@@ -210,10 +162,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/sg-icmp-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/sg-icmp-rules"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "FindSgIcmpRules: finds SG:ICMP Rule(s) scoped by variety SG";
@@ -224,10 +172,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/sg-sg-icmp-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/sg-sg-icmp-rules"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "FindSgSgIcmpRules: finds SG-SG:ICMP Rule(s) scoped by variety SG<FROM-TO>";
@@ -238,10 +182,6 @@ service SecGroupService {
      option (google.api.http) = {
         post: "/v1/ie-cidr-sg-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/ie-cidr-sg-rules"
-         body: "*"
-        }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         description: "FindIECidrSgRules: finds CIDR-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG";
@@ -252,10 +192,6 @@ service SecGroupService {
     option (google.api.http) = {
         post: "/v1/ie-sg-sg-rules"
         body: "*"
-        additional_bindings {
-         post: "/v2/ie-sg-sg-rules"
-         body: "*"
-        }
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       description: "FindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-<FROM|TO>"
@@ -266,10 +202,6 @@ service SecGroupService {
      option (google.api.http) = {
        post: "/v1/ie-sg-sg-icmp-rules"
        body: "*"
-       additional_bindings {
-        post: "/v2/ie-sg-sg-icmp-rules"
-        body: "*"
-       }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
        description: "FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-<FROM|TO>"
@@ -280,27 +212,19 @@ service SecGroupService {
      option (google.api.http) = {
        post: "/v1/ie-cidr-sg-icmp-rules"
        body: "*"
-       additional_bindings {
-        post: "/v2/ie-cidr-sg-icmp-rules"
-        body: "*"
-       }
      };
      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
        description: "FindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG"
      };
-   }
+   };
 
-   rpc UpdHostIPSet(UpdHostIPSetReq) returns (google.protobuf.Empty) {
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      description: "UpdHostIPSet: updates Host IPSet by host uuid"
-    };
+   rpc UpdHostInfo(UpdHostInfoReq) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/v1/upd-host-ipset"
+      post: "/v1/upd-host-info"
       body: "*"
-      additional_bindings {
-       post: "/v2/upd-host-ipset"
-       body: "*"
-      }
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "UpdHostInfo: updates Host Info by host uuid"
     };
    };
 }
