@@ -1252,6 +1252,32 @@ func local_request_SecGroupService_UpdHostIPSet_1(ctx context.Context, marshaler
 
 }
 
+func request_SecGroupService_UpdHostInfo_0(ctx context.Context, marshaler runtime.Marshaler, client SecGroupServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdHostInfoReq
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.UpdHostInfo(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_SecGroupService_UpdHostInfo_0(ctx context.Context, marshaler runtime.Marshaler, server SecGroupServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdHostInfoReq
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.UpdHostInfo(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 // RegisterSecGroupServiceHandlerServer registers the http handlers for service SecGroupService to "mux".
 // UnaryRPC     :call SecGroupServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -2258,6 +2284,31 @@ func RegisterSecGroupServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
+	mux.Handle("POST", pattern_SecGroupService_UpdHostInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/hbf.v1.sgroups.SecGroupService/UpdHostInfo", runtime.WithHTTPPathPattern("/v1/upd-host-info"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_SecGroupService_UpdHostInfo_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_SecGroupService_UpdHostInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -3179,6 +3230,28 @@ func RegisterSecGroupServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
+	mux.Handle("POST", pattern_SecGroupService_UpdHostInfo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/hbf.v1.sgroups.SecGroupService/UpdHostInfo", runtime.WithHTTPPathPattern("/v1/upd-host-info"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_SecGroupService_UpdHostInfo_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_SecGroupService_UpdHostInfo_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -3262,6 +3335,8 @@ var (
 	pattern_SecGroupService_UpdHostIPSet_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "upd-host-ipset"}, ""))
 
 	pattern_SecGroupService_UpdHostIPSet_1 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v2", "upd-host-ipset"}, ""))
+
+	pattern_SecGroupService_UpdHostInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "upd-host-info"}, ""))
 )
 
 var (
@@ -3344,4 +3419,6 @@ var (
 	forward_SecGroupService_UpdHostIPSet_0 = runtime.ForwardResponseMessage
 
 	forward_SecGroupService_UpdHostIPSet_1 = runtime.ForwardResponseMessage
+
+	forward_SecGroupService_UpdHostInfo_0 = runtime.ForwardResponseMessage
 )

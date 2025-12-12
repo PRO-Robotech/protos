@@ -303,4 +303,14 @@ service SecGroupService {
       }
     };
    };
+
+   rpc UpdHostInfo(UpdHostInfoReq) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/upd-host-info"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      description: "UpdHostInfo: updates Host Info by host uuid"
+    };
+   };
 }

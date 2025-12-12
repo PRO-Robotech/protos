@@ -41,6 +41,7 @@ const (
 	SecGroupService_FindIESgSgIcmpRules_FullMethodName   = "/hbf.v1.sgroups.SecGroupService/FindIESgSgIcmpRules"
 	SecGroupService_FindIECidrSgIcmpRules_FullMethodName = "/hbf.v1.sgroups.SecGroupService/FindIECidrSgIcmpRules"
 	SecGroupService_UpdHostIPSet_FullMethodName          = "/hbf.v1.sgroups.SecGroupService/UpdHostIPSet"
+	SecGroupService_UpdHostInfo_FullMethodName           = "/hbf.v1.sgroups.SecGroupService/UpdHostInfo"
 )
 
 // SecGroupServiceClient is the client API for SecGroupService service.
@@ -68,6 +69,7 @@ type SecGroupServiceClient interface {
 	FindIESgSgIcmpRules(ctx context.Context, in *FindIESgSgIcmpRulesReq, opts ...grpc.CallOption) (*IESgSgIcmpRulesResp, error)
 	FindIECidrSgIcmpRules(ctx context.Context, in *FindIECidrSgIcmpRulesReq, opts ...grpc.CallOption) (*IECidrSgIcmpRulesResp, error)
 	UpdHostIPSet(ctx context.Context, in *UpdHostIPSetReq, opts ...grpc.CallOption) (*empty.Empty, error)
+	UpdHostInfo(ctx context.Context, in *UpdHostInfoReq, opts ...grpc.CallOption) (*empty.Empty, error)
 }
 
 type secGroupServiceClient struct {
@@ -290,6 +292,15 @@ func (c *secGroupServiceClient) UpdHostIPSet(ctx context.Context, in *UpdHostIPS
 	return out, nil
 }
 
+func (c *secGroupServiceClient) UpdHostInfo(ctx context.Context, in *UpdHostInfoReq, opts ...grpc.CallOption) (*empty.Empty, error) {
+	out := new(empty.Empty)
+	err := c.cc.Invoke(ctx, SecGroupService_UpdHostInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SecGroupServiceServer is the server API for SecGroupService service.
 // All implementations must embed UnimplementedSecGroupServiceServer
 // for forward compatibility
@@ -315,6 +326,7 @@ type SecGroupServiceServer interface {
 	FindIESgSgIcmpRules(context.Context, *FindIESgSgIcmpRulesReq) (*IESgSgIcmpRulesResp, error)
 	FindIECidrSgIcmpRules(context.Context, *FindIECidrSgIcmpRulesReq) (*IECidrSgIcmpRulesResp, error)
 	UpdHostIPSet(context.Context, *UpdHostIPSetReq) (*empty.Empty, error)
+	UpdHostInfo(context.Context, *UpdHostInfoReq) (*empty.Empty, error)
 	mustEmbedUnimplementedSecGroupServiceServer()
 }
 
@@ -384,6 +396,9 @@ func (UnimplementedSecGroupServiceServer) FindIECidrSgIcmpRules(context.Context,
 }
 func (UnimplementedSecGroupServiceServer) UpdHostIPSet(context.Context, *UpdHostIPSetReq) (*empty.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdHostIPSet not implemented")
+}
+func (UnimplementedSecGroupServiceServer) UpdHostInfo(context.Context, *UpdHostInfoReq) (*empty.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdHostInfo not implemented")
 }
 func (UnimplementedSecGroupServiceServer) mustEmbedUnimplementedSecGroupServiceServer() {}
 
@@ -779,6 +794,24 @@ func _SecGroupService_UpdHostIPSet_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SecGroupService_UpdHostInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdHostInfoReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SecGroupServiceServer).UpdHostInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SecGroupService_UpdHostInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SecGroupServiceServer).UpdHostInfo(ctx, req.(*UpdHostInfoReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SecGroupService_ServiceDesc is the grpc.ServiceDesc for SecGroupService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -865,6 +898,10 @@ var SecGroupService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdHostIPSet",
 			Handler:    _SecGroupService_UpdHostIPSet_Handler,
+		},
+		{
+			MethodName: "UpdHostInfo",
+			Handler:    _SecGroupService_UpdHostInfo_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

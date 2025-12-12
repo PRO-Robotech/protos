@@ -496,3 +496,8 @@ message ListSvcFqdnRulesResp {
 message UpdHostIPSetReq {
   repeated HostIPSet hosts = 1;
 }
+
+// UpdHostInfoReq: request to update Host Info by host uuid
+message UpdHostInfoReq {
+  repeated HostInfo hosts = 1;
+}

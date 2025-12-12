@@ -571,6 +571,40 @@
         ]
       }
     },
+    "/v1/upd-host-info": {
+      "post": {
+        "description": "UpdHostInfo: updates Host Info by host uuid",
+        "operationId": "SecGroupService_UpdHostInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/sgroupsUpdHostInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "SecGroupService"
+        ]
+      }
+    },
     "/v1/upd-host-ipset": {
       "post": {
         "description": "UpdHostIPSet: updates Host IPSet by host uuid",
@@ -1795,6 +1829,9 @@
         },
         "ipList": {
           "$ref": "#/definitions/sgroupsIPList"
+        },
+        "metaInfo": {
+          "$ref": "#/definitions/sgroupsMetaInfo"
         }
       },
       "title": "Host: represents a host with its name, UUID, and IPs related to Security Group(s)"
@@ -1810,6 +1847,24 @@
         }
       },
       "title": "HostIPSet: represents a set of IPs for a host",
+      "required": [
+        "uuid"
+      ]
+    },
+    "sgroupsHostInfo": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "ipList": {
+          "$ref": "#/definitions/sgroupsIPList"
+        },
+        "metaInfo": {
+          "$ref": "#/definitions/sgroupsMetaInfo"
+        }
+      },
+      "title": "HostInfo: represents a host info",
       "required": [
         "uuid"
       ]
@@ -2309,6 +2364,30 @@
         }
       },
       "title": "ListSvcSvcRulesResp: Service(s) Rule(s) resp"
+    },
+    "sgroupsMetaInfo": {
+      "type": "object",
+      "properties": {
+        "hostName": {
+          "type": "string"
+        },
+        "os": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "platformFamily": {
+          "type": "string"
+        },
+        "platformVersion": {
+          "type": "string"
+        },
+        "kernelVersion": {
+          "type": "string"
+        }
+      },
+      "title": "MetaInfo: represents host meta information"
     },
     "sgroupsNetwork": {
       "type": "object",
@@ -2958,6 +3037,19 @@
         }
       },
       "title": "UpdHostIPSetReq: request to update Host IPSet by host uuid"
+    },
+    "sgroupsUpdHostInfoReq": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/sgroupsHostInfo"
+          }
+        }
+      },
+      "title": "UpdHostInfoReq: request to update Host Info by host uuid"
     }
   },
   "externalDocs": {

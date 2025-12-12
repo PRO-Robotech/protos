@@ -27,7 +27,7 @@ var File_sgroups_service_proto protoreflect.FileDescriptor
 
 const file_sgroups_service_proto_rawDesc = "" +
 	"\n" +
-	"\x15sgroups/service.proto\x12\x0ehbf.v1.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x15sgroups/queries.proto\x1a\x15sgroups/domains.proto2\xd6!\n" +
+	"\x15sgroups/service.proto\x12\x0ehbf.v1.sgroups\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x15sgroups/queries.proto\x1a\x15sgroups/domains.proto2\xec\"\n" +
 	"\x0fSecGroupService\x12y\n" +
 	"\x04Sync\x12\x17.hbf.v1.sgroups.SyncReq\x1a\x16.google.protobuf.Empty\"@\x92A\x1b\x1a\x19Sync: makes changes in DB\x82\xd3\xe4\x93\x02\x1c:\x01*Z\r:\x01*\"\b/v2/sync\"\b/v1/sync\x12\xa5\x01\n" +
 	"\n" +
@@ -50,7 +50,8 @@ const file_sgroups_service_proto_rawDesc = "" +
 	"\x0fFindIESgSgRules\x12\".hbf.v1.sgroups.FindIESgSgRulesReq\x1a\x1f.hbf.v1.sgroups.IESgSgRulesResp\"\x8f\x01\x92AV\x1aTFindIESgSgRules: finds SG-SG-[INGRESS+EGRESS] rule(s) scoped by variety SG-<FROM|TO>\x82\xd3\xe4\x93\x020:\x01*Z\x17:\x01*\"\x12/v2/ie-sg-sg-rules\"\x12/v1/ie-sg-sg-rules\x12\x85\x02\n" +
 	"\x13FindIESgSgIcmpRules\x12&.hbf.v1.sgroups.FindIESgSgIcmpRulesReq\x1a#.hbf.v1.sgroups.IESgSgIcmpRulesResp\"\xa0\x01\x92A]\x1a[FindSgSgIcmpRules: finds SG-SG-[INGRESS+EGRESS]:ICMP rule(s) scoped by variety SG-<FROM|TO>\x82\xd3\xe4\x93\x02::\x01*Z\x1c:\x01*\"\x17/v2/ie-sg-sg-icmp-rules\"\x17/v1/ie-sg-sg-icmp-rules\x12\x8b\x02\n" +
 	"\x15FindIECidrSgIcmpRules\x12(.hbf.v1.sgroups.FindIECidrSgIcmpRulesReq\x1a%.hbf.v1.sgroups.IECidrSgIcmpRulesResp\"\xa0\x01\x92AY\x1aWFindIECidrSgIcmpRules: finds CIDR-SG-[INGRESS|EGRESS]:ICMP rule(s) scoped by variety SG\x82\xd3\xe4\x93\x02>:\x01*Z\x1e:\x01*\"\x19/v2/ie-cidr-sg-icmp-rules\"\x19/v1/ie-cidr-sg-icmp-rules\x12\xb1\x01\n" +
-	"\fUpdHostIPSet\x12\x1f.hbf.v1.sgroups.UpdHostIPSetReq\x1a\x16.google.protobuf.Empty\"h\x92A/\x1a-UpdHostIPSet: updates Host IPSet by host uuid\x82\xd3\xe4\x93\x020:\x01*Z\x17:\x01*\"\x12/v2/upd-host-ipset\"\x12/v1/upd-host-ipset\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xac\x01\x92Aq\x12\x1a\n" +
+	"\fUpdHostIPSet\x12\x1f.hbf.v1.sgroups.UpdHostIPSetReq\x1a\x16.google.protobuf.Empty\"h\x92A/\x1a-UpdHostIPSet: updates Host IPSet by host uuid\x82\xd3\xe4\x93\x020:\x01*Z\x17:\x01*\"\x12/v2/upd-host-ipset\"\x12/v1/upd-host-ipset\x12\x93\x01\n" +
+	"\vUpdHostInfo\x12\x1e.hbf.v1.sgroups.UpdHostInfoReq\x1a\x16.google.protobuf.Empty\"L\x92A-\x1a+UpdHostInfo: updates Host Info by host uuid\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/upd-host-info\x1a \x92A\x1d\x12\x1bSecurity Groups API serviceB\xac\x01\x92Aq\x12\x1a\n" +
 	"\x13Host Based Firewall2\x031.0*\x01\x012\x10application/json:\x10application/jsonr,\n" +
 	"\rDocumentation\x12\x1bhttps://h-bf.prorobotech.ruZ6github.com/PRO-Robotech/protos/pkg/api/sgroups;sgroupsb\x06proto3"
 
@@ -75,23 +76,24 @@ var file_sgroups_service_proto_goTypes = []any{
 	(*FindIESgSgIcmpRulesReq)(nil),   // 17: hbf.v1.sgroups.FindIESgSgIcmpRulesReq
 	(*FindIECidrSgIcmpRulesReq)(nil), // 18: hbf.v1.sgroups.FindIECidrSgIcmpRulesReq
 	(*UpdHostIPSetReq)(nil),          // 19: hbf.v1.sgroups.UpdHostIPSetReq
-	(*SyncStatusResp)(nil),           // 20: hbf.v1.sgroups.SyncStatusResp
-	(*ListNetworksResp)(nil),         // 21: hbf.v1.sgroups.ListNetworksResp
-	(*ListSecurityGroupsResp)(nil),   // 22: hbf.v1.sgroups.ListSecurityGroupsResp
-	(*ListHostsResp)(nil),            // 23: hbf.v1.sgroups.ListHostsResp
-	(*ListServicesResp)(nil),         // 24: hbf.v1.sgroups.ListServicesResp
-	(*ListSvcSvcRulesResp)(nil),      // 25: hbf.v1.sgroups.ListSvcSvcRulesResp
-	(*ListSvcFqdnRulesResp)(nil),     // 26: hbf.v1.sgroups.ListSvcFqdnRulesResp
-	(*GetSgSubnetsResp)(nil),         // 27: hbf.v1.sgroups.GetSgSubnetsResp
-	(*SecGroup)(nil),                 // 28: hbf.v1.sgroups.SecGroup
-	(*SgSgRulesResp)(nil),            // 29: hbf.v1.sgroups.SgSgRulesResp
-	(*FqdnRulesResp)(nil),            // 30: hbf.v1.sgroups.FqdnRulesResp
-	(*SgIcmpRulesResp)(nil),          // 31: hbf.v1.sgroups.SgIcmpRulesResp
-	(*SgSgIcmpRulesResp)(nil),        // 32: hbf.v1.sgroups.SgSgIcmpRulesResp
-	(*IECidrSgRulesResp)(nil),        // 33: hbf.v1.sgroups.IECidrSgRulesResp
-	(*IESgSgRulesResp)(nil),          // 34: hbf.v1.sgroups.IESgSgRulesResp
-	(*IESgSgIcmpRulesResp)(nil),      // 35: hbf.v1.sgroups.IESgSgIcmpRulesResp
-	(*IECidrSgIcmpRulesResp)(nil),    // 36: hbf.v1.sgroups.IECidrSgIcmpRulesResp
+	(*UpdHostInfoReq)(nil),           // 20: hbf.v1.sgroups.UpdHostInfoReq
+	(*SyncStatusResp)(nil),           // 21: hbf.v1.sgroups.SyncStatusResp
+	(*ListNetworksResp)(nil),         // 22: hbf.v1.sgroups.ListNetworksResp
+	(*ListSecurityGroupsResp)(nil),   // 23: hbf.v1.sgroups.ListSecurityGroupsResp
+	(*ListHostsResp)(nil),            // 24: hbf.v1.sgroups.ListHostsResp
+	(*ListServicesResp)(nil),         // 25: hbf.v1.sgroups.ListServicesResp
+	(*ListSvcSvcRulesResp)(nil),      // 26: hbf.v1.sgroups.ListSvcSvcRulesResp
+	(*ListSvcFqdnRulesResp)(nil),     // 27: hbf.v1.sgroups.ListSvcFqdnRulesResp
+	(*GetSgSubnetsResp)(nil),         // 28: hbf.v1.sgroups.GetSgSubnetsResp
+	(*SecGroup)(nil),                 // 29: hbf.v1.sgroups.SecGroup
+	(*SgSgRulesResp)(nil),            // 30: hbf.v1.sgroups.SgSgRulesResp
+	(*FqdnRulesResp)(nil),            // 31: hbf.v1.sgroups.FqdnRulesResp
+	(*SgIcmpRulesResp)(nil),          // 32: hbf.v1.sgroups.SgIcmpRulesResp
+	(*SgSgIcmpRulesResp)(nil),        // 33: hbf.v1.sgroups.SgSgIcmpRulesResp
+	(*IECidrSgRulesResp)(nil),        // 34: hbf.v1.sgroups.IECidrSgRulesResp
+	(*IESgSgRulesResp)(nil),          // 35: hbf.v1.sgroups.IESgSgRulesResp
+	(*IESgSgIcmpRulesResp)(nil),      // 36: hbf.v1.sgroups.IESgSgIcmpRulesResp
+	(*IECidrSgIcmpRulesResp)(nil),    // 37: hbf.v1.sgroups.IECidrSgIcmpRulesResp
 }
 var file_sgroups_service_proto_depIdxs = []int32{
 	0,  // 0: hbf.v1.sgroups.SecGroupService.Sync:input_type -> hbf.v1.sgroups.SyncReq
@@ -115,29 +117,31 @@ var file_sgroups_service_proto_depIdxs = []int32{
 	17, // 18: hbf.v1.sgroups.SecGroupService.FindIESgSgIcmpRules:input_type -> hbf.v1.sgroups.FindIESgSgIcmpRulesReq
 	18, // 19: hbf.v1.sgroups.SecGroupService.FindIECidrSgIcmpRules:input_type -> hbf.v1.sgroups.FindIECidrSgIcmpRulesReq
 	19, // 20: hbf.v1.sgroups.SecGroupService.UpdHostIPSet:input_type -> hbf.v1.sgroups.UpdHostIPSetReq
-	1,  // 21: hbf.v1.sgroups.SecGroupService.Sync:output_type -> google.protobuf.Empty
-	20, // 22: hbf.v1.sgroups.SecGroupService.SyncStatus:output_type -> hbf.v1.sgroups.SyncStatusResp
-	20, // 23: hbf.v1.sgroups.SecGroupService.SyncStatuses:output_type -> hbf.v1.sgroups.SyncStatusResp
-	21, // 24: hbf.v1.sgroups.SecGroupService.ListNetworks:output_type -> hbf.v1.sgroups.ListNetworksResp
-	22, // 25: hbf.v1.sgroups.SecGroupService.ListSecurityGroups:output_type -> hbf.v1.sgroups.ListSecurityGroupsResp
-	23, // 26: hbf.v1.sgroups.SecGroupService.ListHosts:output_type -> hbf.v1.sgroups.ListHostsResp
-	24, // 27: hbf.v1.sgroups.SecGroupService.ListServices:output_type -> hbf.v1.sgroups.ListServicesResp
-	25, // 28: hbf.v1.sgroups.SecGroupService.ListSvcSvcRules:output_type -> hbf.v1.sgroups.ListSvcSvcRulesResp
-	26, // 29: hbf.v1.sgroups.SecGroupService.ListSvcFqdnRules:output_type -> hbf.v1.sgroups.ListSvcFqdnRulesResp
-	27, // 30: hbf.v1.sgroups.SecGroupService.GetSgSubnets:output_type -> hbf.v1.sgroups.GetSgSubnetsResp
-	28, // 31: hbf.v1.sgroups.SecGroupService.GetSecGroupForAddress:output_type -> hbf.v1.sgroups.SecGroup
-	28, // 32: hbf.v1.sgroups.SecGroupService.GetSecGroupForHost:output_type -> hbf.v1.sgroups.SecGroup
-	29, // 33: hbf.v1.sgroups.SecGroupService.FindSgSgRules:output_type -> hbf.v1.sgroups.SgSgRulesResp
-	30, // 34: hbf.v1.sgroups.SecGroupService.FindFqdnRules:output_type -> hbf.v1.sgroups.FqdnRulesResp
-	31, // 35: hbf.v1.sgroups.SecGroupService.FindSgIcmpRules:output_type -> hbf.v1.sgroups.SgIcmpRulesResp
-	32, // 36: hbf.v1.sgroups.SecGroupService.FindSgSgIcmpRules:output_type -> hbf.v1.sgroups.SgSgIcmpRulesResp
-	33, // 37: hbf.v1.sgroups.SecGroupService.FindIECidrSgRules:output_type -> hbf.v1.sgroups.IECidrSgRulesResp
-	34, // 38: hbf.v1.sgroups.SecGroupService.FindIESgSgRules:output_type -> hbf.v1.sgroups.IESgSgRulesResp
-	35, // 39: hbf.v1.sgroups.SecGroupService.FindIESgSgIcmpRules:output_type -> hbf.v1.sgroups.IESgSgIcmpRulesResp
-	36, // 40: hbf.v1.sgroups.SecGroupService.FindIECidrSgIcmpRules:output_type -> hbf.v1.sgroups.IECidrSgIcmpRulesResp
-	1,  // 41: hbf.v1.sgroups.SecGroupService.UpdHostIPSet:output_type -> google.protobuf.Empty
-	21, // [21:42] is the sub-list for method output_type
-	0,  // [0:21] is the sub-list for method input_type
+	20, // 21: hbf.v1.sgroups.SecGroupService.UpdHostInfo:input_type -> hbf.v1.sgroups.UpdHostInfoReq
+	1,  // 22: hbf.v1.sgroups.SecGroupService.Sync:output_type -> google.protobuf.Empty
+	21, // 23: hbf.v1.sgroups.SecGroupService.SyncStatus:output_type -> hbf.v1.sgroups.SyncStatusResp
+	21, // 24: hbf.v1.sgroups.SecGroupService.SyncStatuses:output_type -> hbf.v1.sgroups.SyncStatusResp
+	22, // 25: hbf.v1.sgroups.SecGroupService.ListNetworks:output_type -> hbf.v1.sgroups.ListNetworksResp
+	23, // 26: hbf.v1.sgroups.SecGroupService.ListSecurityGroups:output_type -> hbf.v1.sgroups.ListSecurityGroupsResp
+	24, // 27: hbf.v1.sgroups.SecGroupService.ListHosts:output_type -> hbf.v1.sgroups.ListHostsResp
+	25, // 28: hbf.v1.sgroups.SecGroupService.ListServices:output_type -> hbf.v1.sgroups.ListServicesResp
+	26, // 29: hbf.v1.sgroups.SecGroupService.ListSvcSvcRules:output_type -> hbf.v1.sgroups.ListSvcSvcRulesResp
+	27, // 30: hbf.v1.sgroups.SecGroupService.ListSvcFqdnRules:output_type -> hbf.v1.sgroups.ListSvcFqdnRulesResp
+	28, // 31: hbf.v1.sgroups.SecGroupService.GetSgSubnets:output_type -> hbf.v1.sgroups.GetSgSubnetsResp
+	29, // 32: hbf.v1.sgroups.SecGroupService.GetSecGroupForAddress:output_type -> hbf.v1.sgroups.SecGroup
+	29, // 33: hbf.v1.sgroups.SecGroupService.GetSecGroupForHost:output_type -> hbf.v1.sgroups.SecGroup
+	30, // 34: hbf.v1.sgroups.SecGroupService.FindSgSgRules:output_type -> hbf.v1.sgroups.SgSgRulesResp
+	31, // 35: hbf.v1.sgroups.SecGroupService.FindFqdnRules:output_type -> hbf.v1.sgroups.FqdnRulesResp
+	32, // 36: hbf.v1.sgroups.SecGroupService.FindSgIcmpRules:output_type -> hbf.v1.sgroups.SgIcmpRulesResp
+	33, // 37: hbf.v1.sgroups.SecGroupService.FindSgSgIcmpRules:output_type -> hbf.v1.sgroups.SgSgIcmpRulesResp
+	34, // 38: hbf.v1.sgroups.SecGroupService.FindIECidrSgRules:output_type -> hbf.v1.sgroups.IECidrSgRulesResp
+	35, // 39: hbf.v1.sgroups.SecGroupService.FindIESgSgRules:output_type -> hbf.v1.sgroups.IESgSgRulesResp
+	36, // 40: hbf.v1.sgroups.SecGroupService.FindIESgSgIcmpRules:output_type -> hbf.v1.sgroups.IESgSgIcmpRulesResp
+	37, // 41: hbf.v1.sgroups.SecGroupService.FindIECidrSgIcmpRules:output_type -> hbf.v1.sgroups.IECidrSgIcmpRulesResp
+	1,  // 42: hbf.v1.sgroups.SecGroupService.UpdHostIPSet:output_type -> google.protobuf.Empty
+	1,  // 43: hbf.v1.sgroups.SecGroupService.UpdHostInfo:output_type -> google.protobuf.Empty
+	22, // [22:44] is the sub-list for method output_type
+	0,  // [0:22] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
