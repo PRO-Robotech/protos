@@ -102,6 +102,18 @@ message Host {
    string uuid = 2;
    string sg_name = 3;
    IPList ip_list = 4;
+   MetaInfo meta_info = 5;
+}
+
+// HostIPSet: represents a set of IPs for a host
+message HostIPSet {
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+     json_schema: {
+       required: ["uuid"]
+     }
+  };
+  string uuid = 1;
+  IPList ip_list = 2;
 }
 
 // HostInfo: represents a host info

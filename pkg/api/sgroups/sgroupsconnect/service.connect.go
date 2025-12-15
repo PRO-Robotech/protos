@@ -96,6 +96,9 @@ const (
 	// SecGroupServiceFindIECidrSgIcmpRulesProcedure is the fully-qualified name of the
 	// SecGroupService's FindIECidrSgIcmpRules RPC.
 	SecGroupServiceFindIECidrSgIcmpRulesProcedure = "/hbf.v1.sgroups.SecGroupService/FindIECidrSgIcmpRules"
+	// SecGroupServiceUpdHostIPSetProcedure is the fully-qualified name of the SecGroupService's
+	// UpdHostIPSet RPC.
+	SecGroupServiceUpdHostIPSetProcedure = "/hbf.v1.sgroups.SecGroupService/UpdHostIPSet"
 	// SecGroupServiceUpdHostInfoProcedure is the fully-qualified name of the SecGroupService's
 	// UpdHostInfo RPC.
 	SecGroupServiceUpdHostInfoProcedure = "/hbf.v1.sgroups.SecGroupService/UpdHostInfo"
@@ -124,6 +127,7 @@ type SecGroupServiceClient interface {
 	FindIESgSgRules(context.Context, *connect.Request[sgroups.FindIESgSgRulesReq]) (*connect.Response[sgroups.IESgSgRulesResp], error)
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
+	UpdHostIPSet(context.Context, *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error)
 	UpdHostInfo(context.Context, *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error)
 }
 
@@ -264,6 +268,12 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 			connect.WithClientOptions(opts...),
 		),
+		updHostIPSet: connect.NewClient[sgroups.UpdHostIPSetReq, empty.Empty](
+			httpClient,
+			baseURL+SecGroupServiceUpdHostIPSetProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("UpdHostIPSet")),
+			connect.WithClientOptions(opts...),
+		),
 		updHostInfo: connect.NewClient[sgroups.UpdHostInfoReq, empty.Empty](
 			httpClient,
 			baseURL+SecGroupServiceUpdHostInfoProcedure,
@@ -296,6 +306,7 @@ type secGroupServiceClient struct {
 	findIESgSgRules       *connect.Client[sgroups.FindIESgSgRulesReq, sgroups.IESgSgRulesResp]
 	findIESgSgIcmpRules   *connect.Client[sgroups.FindIESgSgIcmpRulesReq, sgroups.IESgSgIcmpRulesResp]
 	findIECidrSgIcmpRules *connect.Client[sgroups.FindIECidrSgIcmpRulesReq, sgroups.IECidrSgIcmpRulesResp]
+	updHostIPSet          *connect.Client[sgroups.UpdHostIPSetReq, empty.Empty]
 	updHostInfo           *connect.Client[sgroups.UpdHostInfoReq, empty.Empty]
 }
 
@@ -404,6 +415,11 @@ func (c *secGroupServiceClient) FindIECidrSgIcmpRules(ctx context.Context, req *
 	return c.findIECidrSgIcmpRules.CallUnary(ctx, req)
 }
 
+// UpdHostIPSet calls hbf.v1.sgroups.SecGroupService.UpdHostIPSet.
+func (c *secGroupServiceClient) UpdHostIPSet(ctx context.Context, req *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error) {
+	return c.updHostIPSet.CallUnary(ctx, req)
+}
+
 // UpdHostInfo calls hbf.v1.sgroups.SecGroupService.UpdHostInfo.
 func (c *secGroupServiceClient) UpdHostInfo(ctx context.Context, req *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error) {
 	return c.updHostInfo.CallUnary(ctx, req)
@@ -432,6 +448,7 @@ type SecGroupServiceHandler interface {
 	FindIESgSgRules(context.Context, *connect.Request[sgroups.FindIESgSgRulesReq]) (*connect.Response[sgroups.IESgSgRulesResp], error)
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
+	UpdHostIPSet(context.Context, *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error)
 	UpdHostInfo(context.Context, *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error)
 }
 
@@ -568,6 +585,12 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 		connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 		connect.WithHandlerOptions(opts...),
 	)
+	secGroupServiceUpdHostIPSetHandler := connect.NewUnaryHandler(
+		SecGroupServiceUpdHostIPSetProcedure,
+		svc.UpdHostIPSet,
+		connect.WithSchema(secGroupServiceMethods.ByName("UpdHostIPSet")),
+		connect.WithHandlerOptions(opts...),
+	)
 	secGroupServiceUpdHostInfoHandler := connect.NewUnaryHandler(
 		SecGroupServiceUpdHostInfoProcedure,
 		svc.UpdHostInfo,
@@ -618,6 +641,8 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 			secGroupServiceFindIESgSgIcmpRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceFindIECidrSgIcmpRulesProcedure:
 			secGroupServiceFindIECidrSgIcmpRulesHandler.ServeHTTP(w, r)
+		case SecGroupServiceUpdHostIPSetProcedure:
+			secGroupServiceUpdHostIPSetHandler.ServeHTTP(w, r)
 		case SecGroupServiceUpdHostInfoProcedure:
 			secGroupServiceUpdHostInfoHandler.ServeHTTP(w, r)
 		default:
@@ -711,6 +736,10 @@ func (UnimplementedSecGroupServiceHandler) FindIESgSgIcmpRules(context.Context, 
 
 func (UnimplementedSecGroupServiceHandler) FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v1.sgroups.SecGroupService.FindIECidrSgIcmpRules is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) UpdHostIPSet(context.Context, *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v1.sgroups.SecGroupService.UpdHostIPSet is not implemented"))
 }
 
 func (UnimplementedSecGroupServiceHandler) UpdHostInfo(context.Context, *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error) {

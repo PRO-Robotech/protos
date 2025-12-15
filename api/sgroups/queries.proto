@@ -206,11 +206,7 @@ message ListHostsReq {
 
 // ListHostsResp: returned list of hosts
 message ListHostsResp {
-  message MetaHostInfo {
-    Host host = 1;
-    MetaInfo meta_info = 2;
-  }
-  repeated MetaHostInfo hosts = 1;
+   repeated Host hosts = 1;
 }
 
 // ListServicesReq: request to list services by variety of scopes
@@ -501,6 +497,11 @@ message ListSvcFqdnRulesReq {
 message ListSvcFqdnRulesResp {
   // Service rule(s) items
   repeated SvcFqdnRule rules = 1;
+}
+
+// UpdHostIPSetReq: request to update Host IPSet by host uuid
+message UpdHostIPSetReq {
+  repeated HostIPSet hosts = 1;
 }
 
 // UpdHostInfoReq: request to update Host Info by host uuid
