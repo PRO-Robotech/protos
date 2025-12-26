@@ -60,6 +60,9 @@ const (
 	// SecGroupServiceListSvcFqdnRulesProcedure is the fully-qualified name of the SecGroupService's
 	// ListSvcFqdnRules RPC.
 	SecGroupServiceListSvcFqdnRulesProcedure = "/hbf.v1.sgroups.SecGroupService/ListSvcFqdnRules"
+	// SecGroupServiceListIECidrSvcRulesProcedure is the fully-qualified name of the SecGroupService's
+	// ListIECidrSvcRules RPC.
+	SecGroupServiceListIECidrSvcRulesProcedure = "/hbf.v1.sgroups.SecGroupService/ListIECidrSvcRules"
 	// SecGroupServiceGetSgSubnetsProcedure is the fully-qualified name of the SecGroupService's
 	// GetSgSubnets RPC.
 	SecGroupServiceGetSgSubnetsProcedure = "/hbf.v1.sgroups.SecGroupService/GetSgSubnets"
@@ -93,6 +96,9 @@ const (
 	// SecGroupServiceFindIECidrSgIcmpRulesProcedure is the fully-qualified name of the
 	// SecGroupService's FindIECidrSgIcmpRules RPC.
 	SecGroupServiceFindIECidrSgIcmpRulesProcedure = "/hbf.v1.sgroups.SecGroupService/FindIECidrSgIcmpRules"
+	// SecGroupServiceUpdHostIPSetProcedure is the fully-qualified name of the SecGroupService's
+	// UpdHostIPSet RPC.
+	SecGroupServiceUpdHostIPSetProcedure = "/hbf.v1.sgroups.SecGroupService/UpdHostIPSet"
 	// SecGroupServiceUpdHostInfoProcedure is the fully-qualified name of the SecGroupService's
 	// UpdHostInfo RPC.
 	SecGroupServiceUpdHostInfoProcedure = "/hbf.v1.sgroups.SecGroupService/UpdHostInfo"
@@ -109,6 +115,7 @@ type SecGroupServiceClient interface {
 	ListServices(context.Context, *connect.Request[sgroups.ListServicesReq]) (*connect.Response[sgroups.ListServicesResp], error)
 	ListSvcSvcRules(context.Context, *connect.Request[sgroups.ListSvcSvcRulesReq]) (*connect.Response[sgroups.ListSvcSvcRulesResp], error)
 	ListSvcFqdnRules(context.Context, *connect.Request[sgroups.ListSvcFqdnRulesReq]) (*connect.Response[sgroups.ListSvcFqdnRulesResp], error)
+	ListIECidrSvcRules(context.Context, *connect.Request[sgroups.ListIECidrSvcRulesReq]) (*connect.Response[sgroups.ListIECidrSvcRulesResp], error)
 	GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error)
 	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
 	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
@@ -120,6 +127,7 @@ type SecGroupServiceClient interface {
 	FindIESgSgRules(context.Context, *connect.Request[sgroups.FindIESgSgRulesReq]) (*connect.Response[sgroups.IESgSgRulesResp], error)
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
+	UpdHostIPSet(context.Context, *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error)
 	UpdHostInfo(context.Context, *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error)
 }
 
@@ -188,6 +196,12 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(secGroupServiceMethods.ByName("ListSvcFqdnRules")),
 			connect.WithClientOptions(opts...),
 		),
+		listIECidrSvcRules: connect.NewClient[sgroups.ListIECidrSvcRulesReq, sgroups.ListIECidrSvcRulesResp](
+			httpClient,
+			baseURL+SecGroupServiceListIECidrSvcRulesProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("ListIECidrSvcRules")),
+			connect.WithClientOptions(opts...),
+		),
 		getSgSubnets: connect.NewClient[sgroups.GetSgSubnetsReq, sgroups.GetSgSubnetsResp](
 			httpClient,
 			baseURL+SecGroupServiceGetSgSubnetsProcedure,
@@ -254,6 +268,12 @@ func NewSecGroupServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 			connect.WithClientOptions(opts...),
 		),
+		updHostIPSet: connect.NewClient[sgroups.UpdHostIPSetReq, empty.Empty](
+			httpClient,
+			baseURL+SecGroupServiceUpdHostIPSetProcedure,
+			connect.WithSchema(secGroupServiceMethods.ByName("UpdHostIPSet")),
+			connect.WithClientOptions(opts...),
+		),
 		updHostInfo: connect.NewClient[sgroups.UpdHostInfoReq, empty.Empty](
 			httpClient,
 			baseURL+SecGroupServiceUpdHostInfoProcedure,
@@ -274,6 +294,7 @@ type secGroupServiceClient struct {
 	listServices          *connect.Client[sgroups.ListServicesReq, sgroups.ListServicesResp]
 	listSvcSvcRules       *connect.Client[sgroups.ListSvcSvcRulesReq, sgroups.ListSvcSvcRulesResp]
 	listSvcFqdnRules      *connect.Client[sgroups.ListSvcFqdnRulesReq, sgroups.ListSvcFqdnRulesResp]
+	listIECidrSvcRules    *connect.Client[sgroups.ListIECidrSvcRulesReq, sgroups.ListIECidrSvcRulesResp]
 	getSgSubnets          *connect.Client[sgroups.GetSgSubnetsReq, sgroups.GetSgSubnetsResp]
 	getSecGroupForAddress *connect.Client[sgroups.GetSecGroupForAddressReq, sgroups.SecGroup]
 	getSecGroupForHost    *connect.Client[sgroups.GetSecGroupForHostReq, sgroups.SecGroup]
@@ -285,6 +306,7 @@ type secGroupServiceClient struct {
 	findIESgSgRules       *connect.Client[sgroups.FindIESgSgRulesReq, sgroups.IESgSgRulesResp]
 	findIESgSgIcmpRules   *connect.Client[sgroups.FindIESgSgIcmpRulesReq, sgroups.IESgSgIcmpRulesResp]
 	findIECidrSgIcmpRules *connect.Client[sgroups.FindIECidrSgIcmpRulesReq, sgroups.IECidrSgIcmpRulesResp]
+	updHostIPSet          *connect.Client[sgroups.UpdHostIPSetReq, empty.Empty]
 	updHostInfo           *connect.Client[sgroups.UpdHostInfoReq, empty.Empty]
 }
 
@@ -331,6 +353,11 @@ func (c *secGroupServiceClient) ListSvcSvcRules(ctx context.Context, req *connec
 // ListSvcFqdnRules calls hbf.v1.sgroups.SecGroupService.ListSvcFqdnRules.
 func (c *secGroupServiceClient) ListSvcFqdnRules(ctx context.Context, req *connect.Request[sgroups.ListSvcFqdnRulesReq]) (*connect.Response[sgroups.ListSvcFqdnRulesResp], error) {
 	return c.listSvcFqdnRules.CallUnary(ctx, req)
+}
+
+// ListIECidrSvcRules calls hbf.v1.sgroups.SecGroupService.ListIECidrSvcRules.
+func (c *secGroupServiceClient) ListIECidrSvcRules(ctx context.Context, req *connect.Request[sgroups.ListIECidrSvcRulesReq]) (*connect.Response[sgroups.ListIECidrSvcRulesResp], error) {
+	return c.listIECidrSvcRules.CallUnary(ctx, req)
 }
 
 // GetSgSubnets calls hbf.v1.sgroups.SecGroupService.GetSgSubnets.
@@ -388,6 +415,11 @@ func (c *secGroupServiceClient) FindIECidrSgIcmpRules(ctx context.Context, req *
 	return c.findIECidrSgIcmpRules.CallUnary(ctx, req)
 }
 
+// UpdHostIPSet calls hbf.v1.sgroups.SecGroupService.UpdHostIPSet.
+func (c *secGroupServiceClient) UpdHostIPSet(ctx context.Context, req *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error) {
+	return c.updHostIPSet.CallUnary(ctx, req)
+}
+
 // UpdHostInfo calls hbf.v1.sgroups.SecGroupService.UpdHostInfo.
 func (c *secGroupServiceClient) UpdHostInfo(ctx context.Context, req *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error) {
 	return c.updHostInfo.CallUnary(ctx, req)
@@ -404,6 +436,7 @@ type SecGroupServiceHandler interface {
 	ListServices(context.Context, *connect.Request[sgroups.ListServicesReq]) (*connect.Response[sgroups.ListServicesResp], error)
 	ListSvcSvcRules(context.Context, *connect.Request[sgroups.ListSvcSvcRulesReq]) (*connect.Response[sgroups.ListSvcSvcRulesResp], error)
 	ListSvcFqdnRules(context.Context, *connect.Request[sgroups.ListSvcFqdnRulesReq]) (*connect.Response[sgroups.ListSvcFqdnRulesResp], error)
+	ListIECidrSvcRules(context.Context, *connect.Request[sgroups.ListIECidrSvcRulesReq]) (*connect.Response[sgroups.ListIECidrSvcRulesResp], error)
 	GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error)
 	GetSecGroupForAddress(context.Context, *connect.Request[sgroups.GetSecGroupForAddressReq]) (*connect.Response[sgroups.SecGroup], error)
 	GetSecGroupForHost(context.Context, *connect.Request[sgroups.GetSecGroupForHostReq]) (*connect.Response[sgroups.SecGroup], error)
@@ -415,6 +448,7 @@ type SecGroupServiceHandler interface {
 	FindIESgSgRules(context.Context, *connect.Request[sgroups.FindIESgSgRulesReq]) (*connect.Response[sgroups.IESgSgRulesResp], error)
 	FindIESgSgIcmpRules(context.Context, *connect.Request[sgroups.FindIESgSgIcmpRulesReq]) (*connect.Response[sgroups.IESgSgIcmpRulesResp], error)
 	FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error)
+	UpdHostIPSet(context.Context, *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error)
 	UpdHostInfo(context.Context, *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error)
 }
 
@@ -477,6 +511,12 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 		SecGroupServiceListSvcFqdnRulesProcedure,
 		svc.ListSvcFqdnRules,
 		connect.WithSchema(secGroupServiceMethods.ByName("ListSvcFqdnRules")),
+		connect.WithHandlerOptions(opts...),
+	)
+	secGroupServiceListIECidrSvcRulesHandler := connect.NewUnaryHandler(
+		SecGroupServiceListIECidrSvcRulesProcedure,
+		svc.ListIECidrSvcRules,
+		connect.WithSchema(secGroupServiceMethods.ByName("ListIECidrSvcRules")),
 		connect.WithHandlerOptions(opts...),
 	)
 	secGroupServiceGetSgSubnetsHandler := connect.NewUnaryHandler(
@@ -545,6 +585,12 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 		connect.WithSchema(secGroupServiceMethods.ByName("FindIECidrSgIcmpRules")),
 		connect.WithHandlerOptions(opts...),
 	)
+	secGroupServiceUpdHostIPSetHandler := connect.NewUnaryHandler(
+		SecGroupServiceUpdHostIPSetProcedure,
+		svc.UpdHostIPSet,
+		connect.WithSchema(secGroupServiceMethods.ByName("UpdHostIPSet")),
+		connect.WithHandlerOptions(opts...),
+	)
 	secGroupServiceUpdHostInfoHandler := connect.NewUnaryHandler(
 		SecGroupServiceUpdHostInfoProcedure,
 		svc.UpdHostInfo,
@@ -571,6 +617,8 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 			secGroupServiceListSvcSvcRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceListSvcFqdnRulesProcedure:
 			secGroupServiceListSvcFqdnRulesHandler.ServeHTTP(w, r)
+		case SecGroupServiceListIECidrSvcRulesProcedure:
+			secGroupServiceListIECidrSvcRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceGetSgSubnetsProcedure:
 			secGroupServiceGetSgSubnetsHandler.ServeHTTP(w, r)
 		case SecGroupServiceGetSecGroupForAddressProcedure:
@@ -593,6 +641,8 @@ func NewSecGroupServiceHandler(svc SecGroupServiceHandler, opts ...connect.Handl
 			secGroupServiceFindIESgSgIcmpRulesHandler.ServeHTTP(w, r)
 		case SecGroupServiceFindIECidrSgIcmpRulesProcedure:
 			secGroupServiceFindIECidrSgIcmpRulesHandler.ServeHTTP(w, r)
+		case SecGroupServiceUpdHostIPSetProcedure:
+			secGroupServiceUpdHostIPSetHandler.ServeHTTP(w, r)
 		case SecGroupServiceUpdHostInfoProcedure:
 			secGroupServiceUpdHostInfoHandler.ServeHTTP(w, r)
 		default:
@@ -640,6 +690,10 @@ func (UnimplementedSecGroupServiceHandler) ListSvcFqdnRules(context.Context, *co
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v1.sgroups.SecGroupService.ListSvcFqdnRules is not implemented"))
 }
 
+func (UnimplementedSecGroupServiceHandler) ListIECidrSvcRules(context.Context, *connect.Request[sgroups.ListIECidrSvcRulesReq]) (*connect.Response[sgroups.ListIECidrSvcRulesResp], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v1.sgroups.SecGroupService.ListIECidrSvcRules is not implemented"))
+}
+
 func (UnimplementedSecGroupServiceHandler) GetSgSubnets(context.Context, *connect.Request[sgroups.GetSgSubnetsReq]) (*connect.Response[sgroups.GetSgSubnetsResp], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v1.sgroups.SecGroupService.GetSgSubnets is not implemented"))
 }
@@ -682,6 +736,10 @@ func (UnimplementedSecGroupServiceHandler) FindIESgSgIcmpRules(context.Context, 
 
 func (UnimplementedSecGroupServiceHandler) FindIECidrSgIcmpRules(context.Context, *connect.Request[sgroups.FindIECidrSgIcmpRulesReq]) (*connect.Response[sgroups.IECidrSgIcmpRulesResp], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v1.sgroups.SecGroupService.FindIECidrSgIcmpRules is not implemented"))
+}
+
+func (UnimplementedSecGroupServiceHandler) UpdHostIPSet(context.Context, *connect.Request[sgroups.UpdHostIPSetReq]) (*connect.Response[empty.Empty], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("hbf.v1.sgroups.SecGroupService.UpdHostIPSet is not implemented"))
 }
 
 func (UnimplementedSecGroupServiceHandler) UpdHostInfo(context.Context, *connect.Request[sgroups.UpdHostInfoReq]) (*connect.Response[empty.Empty], error) {

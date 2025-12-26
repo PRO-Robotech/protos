@@ -59,6 +59,11 @@ message SyncIECidrSgRules {
   repeated IECidrSgRule rules = 1;
 }
 
+// SyncIECidrSvcRules: subject of CIDR-SVC-[INGRESS|EGRESS] to Sync
+message SyncIECidrSvcRules {
+  repeated IECidrSvcRule rules = 1;
+}
+
 // SyncIESgSgRules: subject of SG-SG-[INGRESS|EGRESS] to Sync
 message SyncIESgSgRules {
   // SG-SG rules
@@ -145,6 +150,8 @@ message SyncReq {
       SyncSvcSvcRules service_rules = 14;
       // subject of Service to FQDN Rule(s)
       SyncSvcFqdnRules svc_fqdn_rules = 15;
+      // subject of CIDR-SVC-[INGRESS|EGRESS] rule(s)
+      SyncIECidrSvcRules ie_cidr_svc_rules = 16;
   }
 }
 
@@ -199,11 +206,7 @@ message ListHostsReq {
 
 // ListHostsResp: returned list of hosts
 message ListHostsResp {
-  message MetaHostInfo {
-    Host host = 1;
-    MetaInfo meta_info = 2;
-  }
-  repeated MetaHostInfo hosts = 1;
+   repeated Host hosts = 1;
 }
 
 // ListServicesReq: request to list services by variety of scopes
@@ -496,7 +499,38 @@ message ListSvcFqdnRulesResp {
   repeated SvcFqdnRule rules = 1;
 }
 
+// UpdHostIPSetReq: request to update Host IPSet by host uuid
+message UpdHostIPSetReq {
+  repeated HostIPSet hosts = 1;
+}
+
 // UpdHostInfoReq: request to update Host Info by host uuid
 message UpdHostInfoReq {
   repeated HostInfo hosts = 1;
+}
+
+// ListIECidrSvcRulesReq: req to list all CIDR-SVC-[INGRESS|EGRESS] Rule(s) by variety of scopes
+message ListIECidrSvcRulesReq {
+  // No filtering: return all CIDR-SVC-[INGRESS|EGRESS] rules
+  message NoFilter {}
+  // Filter by rule names
+  message ByRuleName {
+    repeated string names = 1;
+  };
+  // Filter by Svc names
+  message BySvc {
+    repeated string svc_names = 1;
+  };
+
+  oneof criteria {
+    NoFilter none = 1;
+    ByRuleName by_rule_name = 2;
+    BySvc by_svc = 3;
+  }
+}
+
+// ListIECidrSvcRulesResp: CIDR-SVC-[INGRESS|EGRESS] Rule(s) resp
+message ListIECidrSvcRulesResp {
+  // CIDR-SVC-[INGRESS|EGRESS] rule(s) items
+  repeated IECidrSvcRule rules = 1;
 }
